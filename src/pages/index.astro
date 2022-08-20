@@ -1,0 +1,348 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Particles from "../components/Particles.astro";
+// import ProjectCard from "../components/ProjectCard.astro";
+
+const aboutSentences = [
+  "I'm a front-end developer who writes simple code into complex applications.",
+  "React apps are my main focus but I'm always up for a challenge.",
+  "To know more, feel free to look around.",
+];
+
+const isDevMode = import.meta.env.DEV;
+---
+
+<Layout title="Billy Le">
+  <Header />
+  <main>
+    <section id="home" class="relative flex items-center min-h-screen h-full">
+      <Particles />
+      <div class="relative container w-full mx-auto flex flex-col justify-center">
+        <div class="blob"></div>
+        <h2 class="opacity-0 text-slate-800">Hello.</h2>
+        <div class="p-fade space-y-2">
+          {aboutSentences.map((sentence) => <p class="opacity-0 text-slate-600">{sentence}</p>)}
+        </div>
+      </div>
+
+      <svg class="absolute bottom-0 w-full" viewBox="0 0 1440 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0)">
+          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="-664" y="-1" width="2764" height="273">
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M1446.08 100.033C1850.24 55.8925 2099.85 345.366 2099.85 252.956C2099.85 113.253 1481.16 -0.000244141 717.986 -0.000244141C452.101 -0.000244141 203.756 14.1782 -7.00009 37.9999C-401.187 82.5547 -663.877 161.923 -663.877 252.956C-663.877 342.895 -406.457 51.5606 -20.1457 96.4134L-25.167 165.873H1441.06L1446.08 100.033Z"
+              fill="url(#paint0_linear)"></path>
+          </mask>
+          <g mask="url(#mask0)">
+            <path d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z" fill="#94A3B8"></path>
+          </g>
+        </g>
+        <defs>
+          <linearGradient
+            id="paint0_linear"
+            x1="717.986"
+            y1="-0.000244141"
+            x2="717.986"
+            y2="271.278"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stop-color="#FAFBFC"></stop>
+            <stop offset="1" stop-color="white"></stop>
+          </linearGradient>
+          <clipPath id="clip0">
+            <rect width="1453" height="38" fill="white" transform="translate(-7)"></rect>
+          </clipPath>
+        </defs>
+      </svg>
+    </section>
+
+    <section id="projects" class="relative min-h-screen h-full bg-slate-400">
+      <div class="container mx-auto h-full flex flex-col py-8">
+        <h2 class="opacity-0 text-slate-800 mb-4">Projects.</h2>
+        <div class="flex flex-wrap gap-2">
+          <!-- <ProjectCard /> -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="relative min-h-screen h-full">
+      <div class="container mx-auto h-full flex flex-col py-8">
+        <h2 class="opacity-0 text-slate-800 mb-4">About.</h2>
+        <div class="relative h-full">
+          <div class="grid gap-8 lg:grid-cols-3">
+            <div class="relative lg:col-span-2">
+              <svg
+                class="relative w-[320px] h-[320px] lg:w-[600px] lg:h-[600px] lg:-left-20"
+                viewBox="0 0 800 800"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <defs>
+                  <filter id="grain" x="-50vw" y="-50vh" width="100vw" height="100vh">
+                    <feFlood flood-color="#ffffff" result="neutral-gray"></feFlood>
+                    <feTurbulence
+                      in="neutral-gray"
+                      type="fractalNoise"
+                      baseFrequency="2.5"
+                      numOctaves="100"
+                      stitchTiles="stitch"
+                      result="noise"></feTurbulence>
+
+                    <feColorMatrix in="noise" type="saturate" values="0" result="destaturatedNoise"></feColorMatrix>
+
+                    <feComponentTransfer in="desaturatedNoise" result="theNoise">
+                      <feFuncA type="table" tableValues="0 0 0.5 0"></feFuncA>
+                    </feComponentTransfer>
+
+                    <feBlend in="SourceGraphic" in2="theNoise" mode="soft-light" result="noisy-image"></feBlend>
+                  </filter>
+
+                  <pattern
+                    id="pattern"
+                    patternUnits="userSpaceOnUse"
+                    width="25"
+                    height="25"
+                    viewBox="0 0 100 100"
+                    fill="#D6E2E2"
+                  >
+                    <circle cx="50" cy="50" r="12.5"></circle>
+                  </pattern>
+
+                  <clipPath id="shape">
+                    <path
+                      fill="currentColor"
+                      d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
+                    ></path>
+                  </clipPath>
+                </defs>
+
+                <path
+                  fill="url(#pattern)"
+                  d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
+                  transform="translate(-60, -60)"></path>
+
+                <g filter="url(#grain)" clip-path="url(#shape)">
+                  <path
+                    fill="#D6E2E2"
+                    d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
+                  ></path>
+                </g>
+              </svg>
+              <img class="absolute top-0 left-20 object-contain max-h-full" src="/images/me.png" />
+            </div>
+
+            <div class="p-fade flex flex-col justify-center text-slate-600 space-y-6">
+              <p class="opacity-0">
+                Coding isn't the only thing I like to do - I love playing with my dog, smashing buttons on video games, or
+                binge-watching on Netflix.
+              </p>
+
+              <p class="opacity-0">
+                Sometimes, when the mood is just right, I like take a drive into the mountains for scenic cruise or enjoy a nice hike.
+              </p>
+
+              <p class="opacity-0">
+                But most of all, if I could leisure endlessly, I would find myself in another country immersed in all their food and culture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative min-h-screen h-full overflow-hidden">
+      <div class="container mx-auto h-full flex flex-col py-8">
+        <h2 class="opacity-0 text-slate-800 mb-4">Contact.</h2>
+        <div class="space-y-8">
+          <form
+            class="flex flex-col space-y-4 max-w-md"
+            action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
+            method="POST"
+          >
+            <input type="hidden" name="_next" value={isDevMode ? "http://localhost:3000" : "https://billyle.dev"} />
+            <input type="hidden" name="_subject" value="New Message!" />
+            <input type="text" name="_honey" class="hidden" />
+            <input type="text" name="name" class="h-10 px-3 rounded ring-2 ring-neutral-300" placeholder="Name" required
+            />
+            <input
+              type="email"
+              name="email"
+              class="h-10 px-3 rounded ring-2 ring-neutral-300"
+              placeholder="Email"
+              required
+            />
+            <textarea
+              name="message"
+              class="px-3 py-2 rounded ring-2 ring-neutral-300"
+              rows={5}
+              placeholder="What would you like to say?"
+              required></textarea>
+            <div class="flex justify-end space-x-2">
+              <button type="submit" class="px-3 py-1 bg-slate-900 rounded text-xl text-slate-50">Submit</button>
+            </div>
+          </form>
+
+          <h4>
+            Looking for my resume? Download <a
+              href="/documents/billy_le_resume.pdf"
+              class="border-b-2 border-solid border-green-300"
+              >here
+            </a>
+          </h4>
+        </div>
+      </div>
+      <div id="globeViz" class="absolute h-full w-full top-0 -right-1/3 z-[-1]"></div>
+    </section>
+  </main>
+
+  <footer></footer>
+</Layout>
+<style>
+  h2 {
+    font-size: clamp(2rem, 5vw, 10rem);
+    font-family: Vidaloka;
+  }
+
+  h4 {
+    font-size: clamp(1.15rem, 1vw, 2.5rem);
+  }
+
+  p {
+    font-size: clamp(1rem, 1vw, 2rem);
+  }
+
+  .blob {
+    z-index: -1;
+    position: absolute;
+    left: -10%;
+    width: clamp(320px, 50vw, 1440px);
+    height: clamp(320px, 50vw, 1440px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml;utf8, %3Csvg width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 %3E %3Cdefs%3E %3Cfilter id=%22grain%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E %3CfeFlood flood-color=%22%23ffffff%22 result=%22neutral-gray%22 %2F%3E %3CfeTurbulence in=%22neutral-gray%22 type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22 %2F%3E %3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22 %3E%3C%2FfeColorMatrix%3E %3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E %3CfeFuncA type=%22table%22 tableValues=%220 0 0.5 0%22%3E%3C%2FfeFuncA%3E %3C%2FfeComponentTransfer%3E %3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22 %2F%3E %3C%2Ffilter%3E %3Cpattern id=%22pattern%22 patternUnits=%22userSpaceOnUse%22 width=%2225%22 height=%2225%22 viewBox=%220 0 100 100%22 fill=%22%23D7E2E2%22 %3E %3Ccircle cx=%2250%22 cy=%2250%22 r=%2212.5%22 %2F%3E %3C%2Fpattern%3E %3CclipPath id=%22shape%22%3E %3Cpath fill=%22currentColor%22 d=%22M941.5%2C645Q900%2C790%2C757.5%2C821.5Q615%2C853%2C495%2C868.5Q375%2C884%2C276%2C809.5Q177%2C735%2C91.5%2C617.5Q6%2C500%2C53.5%2C355Q101%2C210%2C245%2C184.5Q389%2C159%2C521.5%2C92Q654%2C25%2C731.5%2C150.5Q809%2C276%2C896%2C388Q983%2C500%2C941.5%2C645Z%22%3E%3C%2Fpath%3E %3C%2FclipPath%3E %3C%2Fdefs%3E %3Cg filter=%22url(%23grain)%22 clip-path=%22url(%23shape)%22%3E %3Cpath fill=%22url(%23pattern)%22 d=%22M941.5%2C645Q900%2C790%2C757.5%2C821.5Q615%2C853%2C495%2C868.5Q375%2C884%2C276%2C809.5Q177%2C735%2C91.5%2C617.5Q6%2C500%2C53.5%2C355Q101%2C210%2C245%2C184.5Q389%2C159%2C521.5%2C92Q654%2C25%2C731.5%2C150.5Q809%2C276%2C896%2C388Q983%2C500%2C941.5%2C645Z%22 %2F%3E %3C%2Fg%3E %3C%2Fsvg%3E");
+  }
+
+  @keyframes text-fade-in {
+    0% {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+<script>
+  import * as THREE from "three";
+  import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
+  import ThreeGlobe from "three-globe";
+  import countries from "./countries.json";
+
+  const Globe = new ThreeGlobe()
+    .atmosphereColor("LightSlateGray")
+    .globeImageUrl("/images/map-texture.png")
+    .polygonsData(countries.features.filter((d) => d.properties.ISO_A2 !== "AQ"))
+    .polygonCapColor(() => "#D8E3E2")
+    .polygonSideColor(() => "rgba(148, 163, 184, .5)")
+    .polygonStrokeColor(() => "#1E293B");
+
+  let hasIntersected = false;
+
+  const show = new IntersectionObserver((entries) => {
+    if (hasIntersected) return;
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        hasIntersected = true;
+        setInterval(() => {
+          Globe.polygonAltitude(() =>  Math.random() * (.5 - .001) + 0.01)
+        }, 3000)
+      }
+    });
+  });
+
+  // Setup renderer
+  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
+  renderer.setSize(innerWidth, innerHeight);
+  globeDiv.appendChild(renderer.domElement);
+
+  show.observe(globeDiv);
+
+  // Setup scene
+  const scene = new THREE.Scene();
+  scene.add(Globe);
+  scene.add(new THREE.AmbientLight(0xbbbbbb));
+  scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+
+  // Setup camera
+  const camera = new THREE.PerspectiveCamera();
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  camera.position.z = 300;
+
+  // Add camera controls
+  const tbControls = new TrackballControls(camera, renderer.domElement);
+  tbControls.rotateSpeed = 5;
+  tbControls.zoomSpeed = 0.8;
+  tbControls.minDistance = 300;
+  tbControls.maxDistance = 1000;
+
+  (function animate() {
+    tbControls.update();
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  })();
+
+  window.addEventListener("resize", () => {
+    renderer.setSize(innerWidth, innerHeight);
+  });
+</script>
+<script>
+  const blob1: HTMLDivElement | null = document.querySelector(".blob");
+  const blob2: HTMLDivElement | null = document.querySelector(".blob2");
+  function shiftObjects() {
+    if (blob1) {
+      blob1.style.transform = `translateY(-${scrollY / 4}px)`;
+    }
+    if (blob2) {
+      blob2.style.transform = `translateY(${scrollY / 2}px)`;
+    }
+  }
+  window.addEventListener("scroll", shiftObjects);
+
+  const headingObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const target = entry.target as HTMLElement;
+      if (entry.isIntersecting && !target.style.animation) {
+        target.style.animation = "text-fade-in forwards .7s";
+      }
+    });
+  });
+
+  const paragraphsObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const target = entry.target as HTMLElement;
+      if (entry.isIntersecting) {
+        const paragraphs = target.querySelectorAll("p");
+        for (let i = 0; i < paragraphs.length; i++) {
+          const paragraph = paragraphs[i];
+          if (paragraph) {
+            paragraph.style.animation = `text-fade-in forwards .4s ${i * 0.2 + 0.8}s`;
+          }
+        }
+      }
+    });
+  });
+
+  const headings = document.querySelectorAll("h2");
+  const paragraphSection = document.querySelectorAll(".p-fade");
+  for (const heading of headings) {
+    headingObserver.observe(heading);
+  }
+
+  for (const section of paragraphSection) {
+    paragraphsObserver.observe(section);
+  }
+</script>

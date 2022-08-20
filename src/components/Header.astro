@@ -1,0 +1,60 @@
+---
+const navLinks = ["Home", "Projects", "About",  "Contact"];
+---
+
+<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 overflow-x-hidden px-8 py-4 hover:bg-green-50 group">
+  <nav class="xl:max-w-[80%] mx-auto">
+    <ul id="nav-links" class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              class="px-2 py-1 xl:px-4 xl:py-2 hover:ring-2 hover:ring-green-300 hover:bg-green-100/50"
+              href={`#${link.toLowerCase()}`}
+            >
+              {link}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>
+<style>
+  header {
+    z-index: 1;
+  }
+
+  h1,
+  li {
+    letter-spacing: -1px;
+    font-family: Vidaloka;
+  }
+
+  a {
+    font-size: clamp(1.25rem, 2vw, 2.5rem);
+  }
+</style>
+<script>
+  window.addEventListener('scroll', handleHeaderOffsetTop);
+  const headerClassList = ["bg-opacity-20"];
+  const navLinksClassList = [
+    "translate-x-full",
+    "opacity-0",
+  ];
+
+  const header = document.querySelector("header");
+  const navLinks = document.querySelector("#nav-links");
+
+  function handleHeaderOffsetTop() {
+    if (header && navLinks) {
+      if (Math.floor(window.scrollY) > 0) {
+        header.classList.add(...headerClassList);
+        navLinks.classList.add(...navLinksClassList);
+      } else {
+        header.classList.remove(...headerClassList);
+        navLinks.classList.remove(...navLinksClassList);
+      }
+    }
+  }
+</script>

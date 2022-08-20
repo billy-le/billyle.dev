@@ -1,0 +1,53 @@
+---
+import "@fontsource/inter/variable.css";
+import "@fontsource/vidaloka/400.css";
+
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props as Props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-fixed">
+    <slot />
+    <style>
+      html {
+        scroll-behavior: smooth;
+        font-family: InterVariable;
+      }
+
+      body {
+        background-image: conic-gradient(
+            from 231deg at 1% 65%,
+            hsla(0, 0%, 72.94%, 0.04343454032113192) 94%,
+            hsla(60, 100%, 84.12%, 0.518908795029966) 95%
+          ),
+          conic-gradient(
+            from 178deg at 75% 28%,
+            hsla(186.67, 36%, 95.1%, 0.5876948183941447) 67%,
+            hsla(0, 0%, 100%, 0.6174479126319269) 94%
+          ),
+          linear-gradient(
+            5deg,
+            hsla(354.89, 100%, 90.78%, 0.8154554751635659) 68%,
+            hsla(55.29, 67.11%, 29.8%, 0.009536936881926028) 78%
+          ),
+          linear-gradient(
+            266deg,
+            hsla(182.54, 30.47%, 54.31%, 0.21474266544789078) 63%,
+            hsla(182.31, 33.33%, 84.71%, 0.33280158645216595) 94%
+          ),
+          repeating-linear-gradient(270deg, #fcfee6 40%, #d1d1d1 74%);
+      }
+    </style>
+  </body>
+</html>
