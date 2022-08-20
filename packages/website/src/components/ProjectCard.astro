@@ -1,0 +1,20 @@
+---
+interface Props {
+
+}
+import { Picture } from '@astrojs/image/components';
+import food1 from './food1.jpg'
+---
+
+<div class="rounded overflow-hidden shadow h-full w-full bg-slate-50 flex">
+    <Picture src={food1} widths={[400]} class="flex-shrink-0 object-cover"  />
+    <div class="p-4">
+        <h1>Love, Edith</h1>
+        <h4>Category: ecommerce, shopping</h4>
+        <p class="inline-flex items-center space-x-4">Made with: <span /> <svg height={40} width={40} viewBox="0 0 128 128">
+            <path d="M64 0C28.7 0 0 28.7 0 64s28.7 64 64 64 64-28.7 64-64S99.3 0 64 0zm32.7 114.4L48.4 41.8h-6.8v50.1h6.8V55.3l44.2 61.5c-8.5 4.6-18.2 7.2-28.6 7.2-33.2.1-60.1-26.8-60.1-60S30.8 3.9 64 3.9s60.1 26.9 60.1 60.1c0 21.1-10.9 39.7-27.4 50.4z"></path><path d="M78.6 73.3l7.5 11.3V41.8h-7.5z"></path>
+            </svg><svg height={40} width={40} viewBox="0 0 128 128">
+                <path d="M114 13.9C114 7.3 108.7 2 102.1 2H25.9C19.3 2 14 7.3 14 13.9v100.3c0 6.6 5.3 11.9 11.9 11.9h76.3c6.6 0 11.9-5.3 11.9-11.9V13.9zm-4 .1v99.3c0 4.7-3.5 8.7-8.2 8.7H26.5c-4.7 0-8.5-4-8.5-8.7V14c0-4.7 3.9-8 8.5-8h75.2c4.7 0 8.4 3.6 8.4 8.3l-.1-.3zm-73 94.7l14.1-14.1L37 80.5zm14-60.9V18.4l-13.9.1s.1 45.9.2 45.7C80.1 47.5 77 59.4 77 59.4v49.4l-.1.2H90V59.5c0-27.1-39-11.7-39-11.7zM70 36h14.8c8-10 10.7-17 10.7-17H80.2S75.3 30 70 36z" fill="#6762A6"></path>
+                </svg> </p>
+    </div>
+</div>
