@@ -33,6 +33,7 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
+      "@assets/*": ["src/assets/*"]
     },
     "types": ["astro/client", "@astrojs/image/client"],
   },

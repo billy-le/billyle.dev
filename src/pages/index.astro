@@ -1,12 +1,18 @@
 ---
 // components
-import { Image } from "@astrojs/image/components";
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Particles from "../components/Particles.astro";
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Particles from "@components/Particles.astro";
+import Work from "@components/Work.astro";
+import Mound from "@components/Mound.astro";
+import Idea from "@components/Idea.astro";
+import Strategize from "@components/Strategize.astro";
+import Collab from "@components/Collab.astro";
+import Develop from "@components/Develop.astro";
+import Feedback from "@components/Feedback.astro";
+import Feature from "@components/Feature.astro";
 
 // data
-import workExp from "src/data/experience.json";
 import landing from "src/data/landing.json";
 import about from "src/data/about.json";
 
@@ -19,79 +25,39 @@ const isDevMode = import.meta.env.DEV;
   <main>
     <section id="home" class="relative flex items-center min-h-screen h-full">
       <Particles />
-      <div class="relative container w-full mx-auto flex flex-col justify-center">
+      <div
+        class="relative container w-full mx-auto flex flex-col justify-center"
+      >
         <div class="blob"></div>
         <h2 class="opacity-0 text-slate-800">Hello.</h2>
         <div class="p-fade space-y-2">
-          {landing.map((text) => <p class="opacity-0 text-slate-600">{text}</p>)}
+          {
+            landing.map((text) => (
+              <p class="opacity-0 text-slate-600">{text}</p>
+            ))
+          }
         </div>
       </div>
     </section>
 
     <section id="work" class="relative py-8">
       <h2 class="container mx-auto opacity-0 text-slate-800 mb-4">Work.</h2>
-      <div class="flex overflow-hidden isolate max-w-screen-2xl mx-auto">
-        {
-          workExp.map((exp) => (
-            <div class='relative h-full group overflow-hidden basis-[20%] hover:basis-[40%] transition-["width"] duration-500'>
-                  <div class='after:content-[""] after:block after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-gradient-to-tr after:from-blue-900 after:to-slate-800 after:opacity-50 after:z-[1] group-hover:after:to-transparent group-hover:after:from-transparent'>
-                <Image src={exp.image} width={600} height={800} format="jpeg" class='w-full h-[400px] xl:h-[600px] blur-[0.5px] object-cover bg-center grayscale group-hover:filter-none transition-["filter"] duration-500' alt={exp.imageAlt} />
-                </div>
-                <h3 class="absolute top-1/2 xl:top-3/4 left-1/2 transform -translate-x-1/2 translate-y-1/2 text-white whitespace-nowrap font-['Vidaloka'] z-10 group-hover:top-[10%] xl:group-hover:top-[40%] transition-['transform'] duration-500 py-3 border-t border-b border-solid border-slate-100">
-                  {exp.startYear === exp.endYear ? exp.startYear :
-                   `${exp.startYear} - ${exp.endYear || "Present"}`
-                  }
-                </h3>
-                <div class='h-full w-full absolute translate-y-full top-0 left-0 transition-["transform"] duration-500 group-hover:translate-y-0 before:content-[""] before:block before:absolute before:h-full before:w-full before:bg-gradient-to-t before:from-black'>
-                  <h4 class="text-center relative top-1/2 xl:top-2/3 text-green-500 text-xl uppercase tracking-widest">{exp.name}</h4>
-                  <p class="text-center relative top-1/2 xl:top-2/3 text-sm p-4 text-slate-100 opacity-0 group-hover:opacity-100 transition-all duration-1000">{exp.description}</p>
-                  </div>
-            </div>
-          ))
-        }
-      </div>
-
-     
+      <Work />
     </section>
 
     <section id="services" class="relative min-h-screen h-full">
       <div class="container mx-auto h-full flex flex-col py-8">
         <h2 class="opacity-0 text-slate-800 mb-4">Services.</h2>
-        <div class="flex flex-wrap gap-2">
-          <!-- <ProjectCard /> -->
+        <div class="flex flex-wrap justify-between">
+          <Idea />
+          <Strategize />
+          <Collab />
+          <Develop />
+          <Feedback />
+          <Feature />
         </div>
       </div>
-
-      <svg class="absolute bottom-0 w-full" viewBox="0 0 1440 38" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0)">
-          <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="-664" y="-1" width="2764" height="273">
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M1446.08 100.033C1850.24 55.8925 2099.85 345.366 2099.85 252.956C2099.85 113.253 1481.16 -0.000244141 717.986 -0.000244141C452.101 -0.000244141 203.756 14.1782 -7.00009 37.9999C-401.187 82.5547 -663.877 161.923 -663.877 252.956C-663.877 342.895 -406.457 51.5606 -20.1457 96.4134L-25.167 165.873H1441.06L1446.08 100.033Z"
-              fill="url(#paint0_linear)"></path>
-          </mask>
-          <g mask="url(#mask0)">
-            <path d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z" fill="#94A3B8"></path>
-          </g>
-        </g>
-        <defs>
-          <linearGradient
-            id="paint0_linear"
-            x1="717.986"
-            y1="-0.000244141"
-            x2="717.986"
-            y2="271.278"
-            gradientUnits="userSpaceOnUse"
-          >
-            <stop stop-color="#FAFBFC"></stop>
-            <stop offset="1" stop-color="white"></stop>
-          </linearGradient>
-          <clipPath id="clip0">
-            <rect width="1453" height="38" fill="white" transform="translate(-7)"></rect>
-          </clipPath>
-        </defs>
-      </svg>
+      <Mound className="mound w-full" />
     </section>
 
     <section id="projects" class="relative min-h-screen h-full bg-slate-400">
@@ -115,8 +81,15 @@ const isDevMode = import.meta.env.DEV;
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
-                  <filter id="grain" x="-50vw" y="-50vh" width="100vw" height="100vh">
-                    <feFlood flood-color="#ffffff" result="neutral-gray"></feFlood>
+                  <filter
+                    id="grain"
+                    x="-50vw"
+                    y="-50vh"
+                    width="100vw"
+                    height="100vh"
+                  >
+                    <feFlood flood-color="#ffffff" result="neutral-gray"
+                    ></feFlood>
                     <feTurbulence
                       in="neutral-gray"
                       type="fractalNoise"
@@ -125,13 +98,24 @@ const isDevMode = import.meta.env.DEV;
                       stitchTiles="stitch"
                       result="noise"></feTurbulence>
 
-                    <feColorMatrix in="noise" type="saturate" values="0" result="destaturatedNoise"></feColorMatrix>
+                    <feColorMatrix
+                      in="noise"
+                      type="saturate"
+                      values="0"
+                      result="destaturatedNoise"></feColorMatrix>
 
-                    <feComponentTransfer in="desaturatedNoise" result="theNoise">
+                    <feComponentTransfer
+                      in="desaturatedNoise"
+                      result="theNoise"
+                    >
                       <feFuncA type="table" tableValues="0 0 0.5 0"></feFuncA>
                     </feComponentTransfer>
 
-                    <feBlend in="SourceGraphic" in2="theNoise" mode="soft-light" result="noisy-image"></feBlend>
+                    <feBlend
+                      in="SourceGraphic"
+                      in2="theNoise"
+                      mode="soft-light"
+                      result="noisy-image"></feBlend>
                   </filter>
 
                   <pattern
@@ -165,10 +149,15 @@ const isDevMode = import.meta.env.DEV;
                   ></path>
                 </g>
               </svg>
-              <img class="absolute top-0 left-20 object-contain max-h-full" src="/images/me.png" />
+              <img
+                class="absolute top-0 left-20 object-contain max-h-full"
+                src="/images/me.png"
+              />
             </div>
 
-            <div class="p-fade flex flex-col justify-center text-slate-600 space-y-6">
+            <div
+              class="p-fade flex flex-col justify-center text-slate-600 space-y-6"
+            >
               {about.map((text) => <p class="opacity-0">{text}</p>)}
             </div>
           </div>
@@ -185,10 +174,21 @@ const isDevMode = import.meta.env.DEV;
             action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
             method="POST"
           >
-            <input type="hidden" name="_next" value={isDevMode ? "http://localhost:3000" : "https://billyle.dev"} />
+            <input
+              type="hidden"
+              name="_next"
+              value={isDevMode
+                ? "http://localhost:3000"
+                : "https://billyle.dev"}
+            />
             <input type="hidden" name="_subject" value="New Message!" />
             <input type="text" name="_honey" class="hidden" />
-            <input type="text" name="name" class="h-10 px-3 rounded ring-2 ring-neutral-300" placeholder="Name" required
+            <input
+              type="text"
+              name="name"
+              class="h-10 px-3 rounded ring-2 ring-neutral-300"
+              placeholder="Name"
+              required
             />
             <input
               type="email"
@@ -204,7 +204,11 @@ const isDevMode = import.meta.env.DEV;
               placeholder="What would you like to say?"
               required></textarea>
             <div class="flex justify-end space-x-2">
-              <button type="submit" class="px-3 py-1 bg-slate-900 rounded text-xl text-slate-50">Submit</button>
+              <button
+                type="submit"
+                class="px-3 py-1 bg-slate-900 rounded text-xl text-slate-50"
+                >Submit
+              </button>
             </div>
           </form>
 
@@ -217,7 +221,8 @@ const isDevMode = import.meta.env.DEV;
           </h4>
         </div>
       </div>
-      <div id="globeViz" class="absolute h-full w-full top-0 -right-1/3 z-[-1]"></div>
+      <div id="globeViz" class="absolute h-full w-full top-0 -right-1/3 z-[-1]">
+      </div>
     </section>
   </main>
 </Layout>
@@ -266,7 +271,9 @@ const isDevMode = import.meta.env.DEV;
   const Globe = new ThreeGlobe()
     .atmosphereColor("LightSlateGray")
     .globeImageUrl("/images/map-texture.png")
-    .polygonsData(countries.features.filter((d) => d.properties.ISO_A2 !== "AQ"))
+    .polygonsData(
+      countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
+    )
     .polygonCapColor(() => "#D8E3E2")
     .polygonSideColor(() => "rgba(148, 163, 184, .5)")
     .polygonStrokeColor(() => "#1E293B");
@@ -327,6 +334,12 @@ const isDevMode = import.meta.env.DEV;
 <script>
   const blob1: HTMLDivElement | null = document.querySelector(".blob");
   const blob2: HTMLDivElement | null = document.querySelector(".blob2");
+  const servicesPage = document.querySelector("#services") as HTMLDivElement;
+  const servicesHeading = servicesPage.querySelector(
+    "h2"
+  ) as HTMLHeadingElement;
+  const mound = document.querySelector(".mound") as SVGGElement;
+  console.log(mound);
   function shiftObjects() {
     if (blob1) {
       blob1.style.transform = `translateY(-${scrollY / 4}px)`;
@@ -334,7 +347,41 @@ const isDevMode = import.meta.env.DEV;
     if (blob2) {
       blob2.style.transform = `translateY(${scrollY / 2}px)`;
     }
+    if (servicesHeading.offsetTop <= scrollY) {
+      servicesHeading.classList.add(...["sticky", "top-0"]);
+    } else {
+      servicesHeading.classList.remove(...["sticky", "top-0"]);
+    }
+    const moundHeight = mound.getBoundingClientRect().height;
+    console.log(
+      servicesPage.offsetTop +
+        servicesPage.clientHeight -
+        innerHeight -
+        moundHeight
+    );
+    if (
+      servicesPage.offsetTop + innerHeight / 4 > scrollY ||
+      servicesPage.offsetTop + servicesPage.clientHeight - innerHeight <=
+        scrollY
+    ) {
+      mound.style.position = "absolute";
+      mound.style.top = "auto";
+      mound.style.bottom = "0";
+    } else if (servicesPage.offsetTop <= scrollY) {
+      mound.style.position = "fixed";
+      mound.style.top = `${Math.ceil(innerHeight - moundHeight)}px`;
+    }
   }
+  window.addEventListener("load", () => {
+    if (servicesHeading.offsetTop <= scrollY) {
+      servicesHeading.classList.add(...["sticky", "top-0"]);
+    }
+    if (servicesPage.offsetTop <= scrollY) {
+      const moundHeight = mound.getBoundingClientRect().height;
+      mound.style.position = "fixed";
+      mound.style.top = `${Math.ceil(innerHeight - moundHeight)}px`;
+    }
+  });
   window.addEventListener("scroll", shiftObjects);
 
   const headingObserver = new IntersectionObserver((entries) => {
@@ -354,7 +401,9 @@ const isDevMode = import.meta.env.DEV;
         for (let i = 0; i < paragraphs.length; i++) {
           const paragraph = paragraphs[i];
           if (paragraph) {
-            paragraph.style.animation = `text-fade-in forwards .4s ${i * 0.2 + 0.8}s`;
+            paragraph.style.animation = `text-fade-in forwards .4s ${
+              i * 0.2 + 0.8
+            }s`;
           }
         }
       }
