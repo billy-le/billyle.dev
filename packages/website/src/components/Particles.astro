@@ -1,5 +1,6 @@
 ---
 ---
+
 <canvas id="canvas-particles"></canvas>
 <script>
   class Particle {
@@ -80,7 +81,9 @@
 
   let particlesArray: Particle[] = [];
 
-  const canvas = document.querySelector("#canvas-particles") as HTMLCanvasElement;
+  const canvas = document.querySelector(
+    "#canvas-particles"
+  ) as HTMLCanvasElement;
   canvas.width = innerWidth;
   canvas.height = innerHeight;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -98,16 +101,32 @@
 
   function init() {
     particlesArray = [];
-    const numberOfParticles = Math.min((canvas.width * canvas.height) / 15_000, 200);
+    const numberOfParticles = Math.min(
+      (canvas.width * canvas.height) / 15_000,
+      200
+    );
     for (let i = 0; i < numberOfParticles; i++) {
       const particleSize = Math.random() * 5 + 1;
       const sizeMultiple = particleSize * 2;
-      const x = Math.random() * (innerWidth - sizeMultiple - sizeMultiple) + sizeMultiple;
-      const y = Math.random() * (innerHeight - sizeMultiple - sizeMultiple) + sizeMultiple;
+      const x =
+        Math.random() * (innerWidth - sizeMultiple - sizeMultiple) +
+        sizeMultiple;
+      const y =
+        Math.random() * (innerHeight - sizeMultiple - sizeMultiple) +
+        sizeMultiple;
       const directionX = Math.random() * 5 - 2.5;
       const directionY = Math.random() * 5 - 2.5;
       const color = "#D6E2E2";
-      particlesArray.push(new Particle({ x, y, directionX, directionY, size: particleSize, color }));
+      particlesArray.push(
+        new Particle({
+          x,
+          y,
+          directionX,
+          directionY,
+          size: particleSize,
+          color,
+        })
+      );
     }
   }
 

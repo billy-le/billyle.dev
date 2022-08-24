@@ -1,0 +1,114 @@
+---
+const isDevMode = import.meta.env.DEV;
+---
+
+<section id="contact" class="relative min-h-screen h-full overflow-hidden">
+  <div class="container mx-auto h-full flex flex-col py-8">
+    <h2 class="opacity-0 text-slate-800 mb-4">Contact.</h2>
+    <div class="space-y-8">
+      <form
+        class="flex flex-col space-y-4 max-w-md"
+        action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="_next"
+          value={isDevMode ? "http://localhost:3000" : "https://billyle.dev"}
+        />
+        <input type="hidden" name="_subject" value="New Message!" />
+        <input type="text" name="_honey" class="hidden" />
+        <input
+          type="text"
+          name="name"
+          class="h-10 px-3 rounded ring-2 ring-neutral-300"
+          placeholder="Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          class="h-10 px-3 rounded ring-2 ring-neutral-300"
+          placeholder="Email"
+          required
+        />
+        <textarea
+          name="message"
+          class="px-3 py-2 rounded ring-2 ring-neutral-300"
+          rows={5}
+          placeholder="What would you like to say?"
+          required></textarea>
+        <div class="flex justify-end space-x-2">
+          <button
+            type="submit"
+            class="px-3 py-1 bg-slate-900 rounded text-xl text-slate-50"
+            >Submit
+          </button>
+        </div>
+      </form>
+
+      <h4>
+        Looking for my resume? Download <a
+          href="/documents/billy_le_resume.pdf"
+          class="border-b-2 border-solid border-green-300"
+          >here
+        </a>
+      </h4>
+    </div>
+  </div>
+  <div id="globeViz" class="absolute h-full w-full top-0 -right-1/3 z-[-1]">
+  </div>
+</section>
+<script>
+  import * as THREE from "three";
+  import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
+  import ThreeGlobe from "three-globe";
+  import countries from "src/data/countries.json";
+
+  const Globe = new ThreeGlobe()
+    .atmosphereColor("LightSlateGray")
+    .globeImageUrl("/images/map-texture.png")
+    .polygonsData(
+      countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
+    )
+    .polygonCapColor(() => "#D8E3E2")
+    .polygonSideColor(() => "rgba(148, 163, 184, .5)")
+    .polygonStrokeColor(() => "#1E293B");
+
+  Globe.polygonAltitude(() => 0.025);
+
+  // Setup renderer
+  const renderer = new THREE.WebGLRenderer({ alpha: true });
+  const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
+  renderer.setSize(innerWidth, innerHeight);
+  globeDiv.appendChild(renderer.domElement);
+
+  // Setup scene
+  const scene = new THREE.Scene();
+  scene.add(Globe);
+  scene.add(new THREE.AmbientLight(0xbbbbbb));
+  scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+
+  // Setup camera
+  const camera = new THREE.PerspectiveCamera();
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  camera.position.z = 300;
+
+  // Add camera controls
+  const tbControls = new TrackballControls(camera, renderer.domElement);
+  tbControls.rotateSpeed = 5;
+  tbControls.zoomSpeed = 0.8;
+  tbControls.minDistance = 300;
+  tbControls.maxDistance = 1000;
+
+  (function animate() {
+    tbControls.update();
+    renderer.render(scene, camera);
+    requestAnimationFrame(animate);
+  })();
+
+  window.addEventListener("resize", () => {
+    renderer.setSize(innerWidth, innerHeight);
+  });
+</script>
