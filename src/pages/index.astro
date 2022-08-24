@@ -2,231 +2,28 @@
 // components
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
-import Particles from "@components/Particles.astro";
+import Home from '@components/Home.astro';
 import Work from "@components/Work.astro";
-import Mound from "@components/Mound.astro";
-import Idea from "@components/Idea.astro";
-import Strategize from "@components/Strategize.astro";
-import Collab from "@components/Collab.astro";
-import Develop from "@components/Develop.astro";
-import Feedback from "@components/Feedback.astro";
-import Feature from "@components/Feature.astro";
-
-// data
-import landing from "src/data/landing.json";
-import about from "src/data/about.json";
+import Services from '@components/Services.astro';
+import Projects from '@components/Projects.astro';
+import About from '@components/About.astro';
+import Contact from '@components/Contact.astro';
 
 // meta
-const isDevMode = import.meta.env.DEV;
 ---
 
 <Layout title="Billy Le">
   <Header />
   <main>
-    <section id="home" class="relative flex items-center min-h-screen h-full">
-      <Particles />
-      <div
-        class="relative container w-full mx-auto flex flex-col justify-center"
-      >
-        <div class="blob"></div>
-        <h2 class="opacity-0 text-slate-800">Hello.</h2>
-        <div class="p-fade space-y-2">
-          {
-            landing.map((text) => (
-              <p class="opacity-0 text-slate-600">{text}</p>
-            ))
-          }
-        </div>
-      </div>
-    </section>
-
-    <section id="work" class="relative py-8">
-      <h2 class="container mx-auto opacity-0 text-slate-800 mb-4">Work.</h2>
-      <Work />
-    </section>
-
-    <section id="services" class="relative min-h-screen h-full">
-      <div class="container mx-auto h-full flex flex-col py-8">
-        <h2 class="opacity-0 text-slate-800 mb-4">Services.</h2>
-        <div class="flex flex-wrap justify-between">
-          <Idea />
-          <Strategize />
-          <Collab />
-          <Develop />
-          <Feedback />
-          <Feature />
-        </div>
-      </div>
-      <Mound className="mound w-full" />
-    </section>
-
-    <section id="projects" class="relative min-h-screen h-full bg-slate-400">
-      <div class="container mx-auto h-full flex flex-col py-8">
-        <h2 class="opacity-0 text-slate-800 mb-4">Projects.</h2>
-        <div class="flex flex-wrap gap-2">
-          <!-- <ProjectCard /> -->
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="relative min-h-screen h-full">
-      <div class="container mx-auto h-full flex flex-col py-8">
-        <h2 class="opacity-0 text-slate-800 mb-4">About.</h2>
-        <div class="relative h-full">
-          <div class="grid gap-8 lg:grid-cols-3">
-            <div class="relative lg:col-span-2">
-              <svg
-                class="relative w-[320px] h-[320px] lg:w-[600px] lg:h-[600px] lg:-left-20"
-                viewBox="0 0 800 800"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <defs>
-                  <filter
-                    id="grain"
-                    x="-50vw"
-                    y="-50vh"
-                    width="100vw"
-                    height="100vh"
-                  >
-                    <feFlood flood-color="#ffffff" result="neutral-gray"
-                    ></feFlood>
-                    <feTurbulence
-                      in="neutral-gray"
-                      type="fractalNoise"
-                      baseFrequency="2.5"
-                      numOctaves="100"
-                      stitchTiles="stitch"
-                      result="noise"></feTurbulence>
-
-                    <feColorMatrix
-                      in="noise"
-                      type="saturate"
-                      values="0"
-                      result="destaturatedNoise"></feColorMatrix>
-
-                    <feComponentTransfer
-                      in="desaturatedNoise"
-                      result="theNoise"
-                    >
-                      <feFuncA type="table" tableValues="0 0 0.5 0"></feFuncA>
-                    </feComponentTransfer>
-
-                    <feBlend
-                      in="SourceGraphic"
-                      in2="theNoise"
-                      mode="soft-light"
-                      result="noisy-image"></feBlend>
-                  </filter>
-
-                  <pattern
-                    id="pattern"
-                    patternUnits="userSpaceOnUse"
-                    width="25"
-                    height="25"
-                    viewBox="0 0 100 100"
-                    fill="#D6E2E2"
-                  >
-                    <circle cx="50" cy="50" r="12.5"></circle>
-                  </pattern>
-
-                  <clipPath id="shape">
-                    <path
-                      fill="currentColor"
-                      d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-                    ></path>
-                  </clipPath>
-                </defs>
-
-                <path
-                  fill="url(#pattern)"
-                  d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-                  transform="translate(-60, -60)"></path>
-
-                <g filter="url(#grain)" clip-path="url(#shape)">
-                  <path
-                    fill="#D6E2E2"
-                    d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-                  ></path>
-                </g>
-              </svg>
-              <img
-                class="absolute top-0 left-20 object-contain max-h-full"
-                src="/images/me.png"
-              />
-            </div>
-
-            <div
-              class="p-fade flex flex-col justify-center text-slate-600 space-y-6"
-            >
-              {about.map((text) => <p class="opacity-0">{text}</p>)}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="relative min-h-screen h-full overflow-hidden">
-      <div class="container mx-auto h-full flex flex-col py-8">
-        <h2 class="opacity-0 text-slate-800 mb-4">Contact.</h2>
-        <div class="space-y-8">
-          <form
-            class="flex flex-col space-y-4 max-w-md"
-            action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
-            method="POST"
-          >
-            <input
-              type="hidden"
-              name="_next"
-              value={isDevMode
-                ? "http://localhost:3000"
-                : "https://billyle.dev"}
-            />
-            <input type="hidden" name="_subject" value="New Message!" />
-            <input type="text" name="_honey" class="hidden" />
-            <input
-              type="text"
-              name="name"
-              class="h-10 px-3 rounded ring-2 ring-neutral-300"
-              placeholder="Name"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              class="h-10 px-3 rounded ring-2 ring-neutral-300"
-              placeholder="Email"
-              required
-            />
-            <textarea
-              name="message"
-              class="px-3 py-2 rounded ring-2 ring-neutral-300"
-              rows={5}
-              placeholder="What would you like to say?"
-              required></textarea>
-            <div class="flex justify-end space-x-2">
-              <button
-                type="submit"
-                class="px-3 py-1 bg-slate-900 rounded text-xl text-slate-50"
-                >Submit
-              </button>
-            </div>
-          </form>
-
-          <h4>
-            Looking for my resume? Download <a
-              href="/documents/billy_le_resume.pdf"
-              class="border-b-2 border-solid border-green-300"
-              >here
-            </a>
-          </h4>
-        </div>
-      </div>
-      <div id="globeViz" class="absolute h-full w-full top-0 -right-1/3 z-[-1]">
-      </div>
-    </section>
+    <Home />
+    <Work />
+    <Services />
+    <Projects />
+    <About />
+    <Contact />
   </main>
 </Layout>
-<style>
+<style is:global>
   h2 {
     font-size: clamp(2rem, 5vw, 10rem);
     font-family: Vidaloka;
@@ -238,17 +35,6 @@ const isDevMode = import.meta.env.DEV;
 
   p {
     font-size: clamp(1rem, 1vw, 2rem);
-  }
-
-  .blob {
-    z-index: -1;
-    position: absolute;
-    left: -10%;
-    width: clamp(320px, 50vw, 1440px);
-    height: clamp(320px, 50vw, 1440px);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("data:image/svg+xml;utf8, %3Csvg width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 1000 1000%22 xmlns=%22http:%2F%2Fwww.w3.org%2F2000%2Fsvg%22 %3E %3Cdefs%3E %3Cfilter id=%22grain%22 x=%22-50vw%22 y=%22-50vh%22 width=%22100vw%22 height=%22100vh%22%3E %3CfeFlood flood-color=%22%23ffffff%22 result=%22neutral-gray%22 %2F%3E %3CfeTurbulence in=%22neutral-gray%22 type=%22fractalNoise%22 baseFrequency=%222.5%22 numOctaves=%22100%22 stitchTiles=%22stitch%22 result=%22noise%22 %2F%3E %3CfeColorMatrix in=%22noise%22 type=%22saturate%22 values=%220%22 result=%22destaturatedNoise%22 %3E%3C%2FfeColorMatrix%3E %3CfeComponentTransfer in=%22desaturatedNoise%22 result=%22theNoise%22%3E %3CfeFuncA type=%22table%22 tableValues=%220 0 0.5 0%22%3E%3C%2FfeFuncA%3E %3C%2FfeComponentTransfer%3E %3CfeBlend in=%22SourceGraphic%22 in2=%22theNoise%22 mode=%22soft-light%22 result=%22noisy-image%22 %2F%3E %3C%2Ffilter%3E %3Cpattern id=%22pattern%22 patternUnits=%22userSpaceOnUse%22 width=%2225%22 height=%2225%22 viewBox=%220 0 100 100%22 fill=%22%23D7E2E2%22 %3E %3Ccircle cx=%2250%22 cy=%2250%22 r=%2212.5%22 %2F%3E %3C%2Fpattern%3E %3CclipPath id=%22shape%22%3E %3Cpath fill=%22currentColor%22 d=%22M941.5%2C645Q900%2C790%2C757.5%2C821.5Q615%2C853%2C495%2C868.5Q375%2C884%2C276%2C809.5Q177%2C735%2C91.5%2C617.5Q6%2C500%2C53.5%2C355Q101%2C210%2C245%2C184.5Q389%2C159%2C521.5%2C92Q654%2C25%2C731.5%2C150.5Q809%2C276%2C896%2C388Q983%2C500%2C941.5%2C645Z%22%3E%3C%2Fpath%3E %3C%2FclipPath%3E %3C%2Fdefs%3E %3Cg filter=%22url(%23grain)%22 clip-path=%22url(%23shape)%22%3E %3Cpath fill=%22url(%23pattern)%22 d=%22M941.5%2C645Q900%2C790%2C757.5%2C821.5Q615%2C853%2C495%2C868.5Q375%2C884%2C276%2C809.5Q177%2C735%2C91.5%2C617.5Q6%2C500%2C53.5%2C355Q101%2C210%2C245%2C184.5Q389%2C159%2C521.5%2C92Q654%2C25%2C731.5%2C150.5Q809%2C276%2C896%2C388Q983%2C500%2C941.5%2C645Z%22 %2F%3E %3C%2Fg%3E %3C%2Fsvg%3E");
   }
 
   @keyframes text-fade-in {
@@ -263,127 +49,6 @@ const isDevMode = import.meta.env.DEV;
   }
 </style>
 <script>
-  import * as THREE from "three";
-  import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
-  import ThreeGlobe from "three-globe";
-  import countries from "src/data/countries.json";
-
-  const Globe = new ThreeGlobe()
-    .atmosphereColor("LightSlateGray")
-    .globeImageUrl("/images/map-texture.png")
-    .polygonsData(
-      countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
-    )
-    .polygonCapColor(() => "#D8E3E2")
-    .polygonSideColor(() => "rgba(148, 163, 184, .5)")
-    .polygonStrokeColor(() => "#1E293B");
-
-  Globe.polygonAltitude(() => 0.025);
-
-  let hasIntersected = false;
-
-  const show = new IntersectionObserver((entries) => {
-    if (hasIntersected) return;
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        hasIntersected = true;
-        // setInterval(() => {
-        //   Globe.polygonAltitude(() => Math.random() * (0.5 - 0.001) + 0.01);
-        // }, 3000);
-      }
-    });
-  });
-
-  // Setup renderer
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
-  renderer.setSize(innerWidth, innerHeight);
-  globeDiv.appendChild(renderer.domElement);
-
-  show.observe(globeDiv);
-
-  // Setup scene
-  const scene = new THREE.Scene();
-  scene.add(Globe);
-  scene.add(new THREE.AmbientLight(0xbbbbbb));
-  scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
-
-  // Setup camera
-  const camera = new THREE.PerspectiveCamera();
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  camera.position.z = 300;
-
-  // Add camera controls
-  const tbControls = new TrackballControls(camera, renderer.domElement);
-  tbControls.rotateSpeed = 5;
-  tbControls.zoomSpeed = 0.8;
-  tbControls.minDistance = 300;
-  tbControls.maxDistance = 1000;
-
-  (function animate() {
-    tbControls.update();
-    renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  })();
-
-  window.addEventListener("resize", () => {
-    renderer.setSize(innerWidth, innerHeight);
-  });
-</script>
-<script>
-  const blob1: HTMLDivElement | null = document.querySelector(".blob");
-  const blob2: HTMLDivElement | null = document.querySelector(".blob2");
-  const servicesPage = document.querySelector("#services") as HTMLDivElement;
-  const servicesHeading = servicesPage.querySelector(
-    "h2"
-  ) as HTMLHeadingElement;
-  const mound = document.querySelector(".mound") as SVGGElement;
-  console.log(mound);
-  function shiftObjects() {
-    if (blob1) {
-      blob1.style.transform = `translateY(-${scrollY / 4}px)`;
-    }
-    if (blob2) {
-      blob2.style.transform = `translateY(${scrollY / 2}px)`;
-    }
-    if (servicesHeading.offsetTop <= scrollY) {
-      servicesHeading.classList.add(...["sticky", "top-0"]);
-    } else {
-      servicesHeading.classList.remove(...["sticky", "top-0"]);
-    }
-    const moundHeight = mound.getBoundingClientRect().height;
-    console.log(
-      servicesPage.offsetTop +
-        servicesPage.clientHeight -
-        innerHeight -
-        moundHeight
-    );
-    if (
-      servicesPage.offsetTop + innerHeight / 4 > scrollY ||
-      servicesPage.offsetTop + servicesPage.clientHeight - innerHeight <=
-        scrollY
-    ) {
-      mound.style.position = "absolute";
-      mound.style.top = "auto";
-      mound.style.bottom = "0";
-    } else if (servicesPage.offsetTop <= scrollY) {
-      mound.style.position = "fixed";
-      mound.style.top = `${Math.ceil(innerHeight - moundHeight)}px`;
-    }
-  }
-  window.addEventListener("load", () => {
-    if (servicesHeading.offsetTop <= scrollY) {
-      servicesHeading.classList.add(...["sticky", "top-0"]);
-    }
-    if (servicesPage.offsetTop <= scrollY) {
-      const moundHeight = mound.getBoundingClientRect().height;
-      mound.style.position = "fixed";
-      mound.style.top = `${Math.ceil(innerHeight - moundHeight)}px`;
-    }
-  });
-  window.addEventListener("scroll", shiftObjects);
-
   const headingObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       const target = entry.target as HTMLElement;
