@@ -2,15 +2,15 @@
 interface Props {
   className?: string;
 }
-import Mound from '@components/Mound.astro'
+import Mound from "@components/Mound.astro";
 import about from "src/data/about.json";
 
-const {className=''} = Astro.props;
+const { className = "" } = Astro.props;
 ---
 
 <section id="about" class={`relative h-full ${className}`}>
   <div class="container mx-auto h-full flex flex-col py-8">
-    <h2 class="opacity-0 text-slate-800 mb-4">About.</h2>
+    <h2 class="text-heading">About.</h2>
     <div class="relative h-full">
       <div class="grid gap-8 lg:grid-cols-3">
         <div class="relative lg:col-span-2">
@@ -90,13 +90,11 @@ const {className=''} = Astro.props;
           />
         </div>
 
-        <div
-          class="p-fade flex flex-col justify-center text-slate-600 space-y-6 z-[1]"
-        >
-          {about.map((text) => <p class="opacity-0">{text}</p>)}
+        <div class="p-fade flex flex-col justify-center space-y-6 z-[1]">
+          {about.map((text) => <p class="text-body opacity-0">{text}</p>)}
         </div>
       </div>
     </div>
   </div>
-  <Mound  className="absolute bottom-0 w-full" />
+  <Mound className="absolute bottom-0 w-full" />
 </section>

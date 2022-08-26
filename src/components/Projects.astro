@@ -3,13 +3,12 @@ interface Props {
   className?: string;
 }
 
-const {className=''} = Astro.props
+const { className = "" } = Astro.props;
 ---
+
 <section id="projects" class={`relative h-full ${className}`}>
   <div class="container mx-auto h-full flex flex-col py-8">
-    <h2 class="opacity-0 text-slate-800 mb-4">Projects.</h2>
-    <div class="flex flex-wrap gap-2">
-      
-    </div>
+    <h2 class="text-heading">Projects.</h2>
+   
   </div>
 </section>
