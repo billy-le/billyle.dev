@@ -21,17 +21,39 @@ import Footer from '@components/Footer.astro';
   <Footer />
 </Layout>
 <style is:global>
-  h2 {
+  .text-heading {
+    @apply text-slate-800 opacity-0 mb-4;
+
     font-size: clamp(2rem, 5vw, 10rem);
     font-family: Vidaloka;
   }
 
-  h4 {
-    font-size: clamp(1.15rem, 1vw, 2.5rem);
+  .text-body {
+    @apply text-slate-600;
+
+    font-size: clamp(1rem, 1vw, 2rem);
   }
 
-  p {
-    font-size: clamp(1rem, 1vw, 2rem);
+  .link-hover {
+    position: relative;
+    width: max-content;
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      bottom: -.1em;
+      height: 2px;
+      width: 0;
+      transition: width .2s ease-in;
+    
+      
+      @apply bg-gradient-to-r from-green-300 to-green-400;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
   }
 
   @keyframes text-fade-in {

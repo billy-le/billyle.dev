@@ -30,7 +30,11 @@ const date = new Date();
         <div class="w-max ml-auto">
           <div class="grid grid-cols-3 gap-6">
             <div class="flex flex-col gap-1">
-              <a href="sitemap-index.xml" target="_blank" class="text-sm">
+              <a
+                href="sitemap-index.xml"
+                target="_blank"
+                class="link-hover footer-link"
+              >
                 Sitemap
               </a>
             </div>
@@ -38,7 +42,10 @@ const date = new Date();
               linksOfThree.map((links) => (
                 <div class="flex flex-col gap-1">
                   {links.map((link) => (
-                    <a href={`#${link.toLowerCase()}`} class="text-sm">
+                    <a
+                      href={`#${link.toLowerCase()}`}
+                      class="link-hover footer-link"
+                    >
                       {link}
                     </a>
                   ))}
@@ -53,10 +60,12 @@ const date = new Date();
           Stay in touch
         </h5>
         <div class="flex gap-10">
-          <div>
-            <a href="tel:+17029079889" class="text-sm">tel: +17029079889</a>
-            <a href="mailto:hi@billyle.dev" class="text-sm"
-              >email: hi@billyle.dev
+          <div class="space-y-1">
+            <a href="tel:+17029079889" class="link-hover footer-link"
+              >+17029079889
+            </a>
+            <a href="mailto:hi@billyle.dev" class="link-hover footer-link">
+              hi@billyle.dev
             </a>
           </div>
           <div class="w-full flex items-center justify-end space-x-4">
@@ -115,7 +124,6 @@ const date = new Date();
               </svg>
             </a>
             <p class="text-slate-200 text-4xl">/</p>
-
             <a
               href="https://youtube.com/"
               target="_blank"
@@ -147,7 +155,7 @@ const date = new Date();
       </div>
     </div>
     <div class="space-y-1">
-      <h5 class="text-center text-xs">
+      <h6 class="text-center text-xs">
         &#169; {date.getFullYear()}. All rights reserved. <span
           class="text-center text-xs"
         >
@@ -178,7 +186,12 @@ const date = new Date();
             </svg>
           </a>
         </span>
-      </h5>
+      </h6>
     </div>
   </div>
 </footer>
+<style>
+  .footer-link {
+    @apply block text-sm;
+  }
+</style>
