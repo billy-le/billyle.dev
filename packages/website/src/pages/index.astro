@@ -1,27 +1,24 @@
 ---
-// components
 import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
-import Home from '@components/Home.astro';
+import Home from "@components/Home.astro";
 import Work from "@components/Work.astro";
-import Services from '@components/Services.astro';
-import Projects from '@components/Projects.astro';
-import About from '@components/About.astro';
-import Contact from '@components/Contact.astro';
-
-// meta
+import Projects from "@components/Projects.astro";
+import About from "@components/About.astro";
+import Contact from "@components/Contact.astro";
+import Footer from '@components/Footer.astro';
 ---
 
 <Layout title="Billy Le">
   <Header />
   <main>
-    <Home />
+    <Home className="min-h-screen" />
     <Work />
-    <Services />
-    <Projects />
-    <About />
-    <Contact />
+    <About className="min-h-screen 2xl:min-h-full" />
+    <Projects className="bg-slate-400 min-h-screen 2xl:min-h-full" />
+    <Contact className="min-h-screen 2xl:min-h-full" />
   </main>
+  <Footer />
 </Layout>
 <style is:global>
   h2 {
@@ -49,39 +46,41 @@ import Contact from '@components/Contact.astro';
   }
 </style>
 <script>
-  const headingObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const target = entry.target as HTMLElement;
-      if (entry.isIntersecting && !target.style.animation) {
-        target.style.animation = "text-fade-in forwards .7s";
-      }
+  window.addEventListener("DOMContentLoaded", () => {
+    const headingObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        if (entry.isIntersecting && !target.style.animation) {
+          target.style.animation = "text-fade-in forwards .7s";
+        }
+      });
     });
-  });
 
-  const paragraphsObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      const target = entry.target as HTMLElement;
-      if (entry.isIntersecting) {
-        const paragraphs = target.querySelectorAll("p");
-        for (let i = 0; i < paragraphs.length; i++) {
-          const paragraph = paragraphs[i];
-          if (paragraph) {
-            paragraph.style.animation = `text-fade-in forwards .4s ${
-              i * 0.2 + 0.8
-            }s`;
+    const paragraphsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        if (entry.isIntersecting) {
+          const paragraphs = target.querySelectorAll("p");
+          for (let i = 0; i < paragraphs.length; i++) {
+            const paragraph = paragraphs[i];
+            if (paragraph) {
+              paragraph.style.animation = `text-fade-in forwards .4s ${
+                i * 0.2 + 0.8
+              }s`;
+            }
           }
         }
-      }
+      });
     });
+
+    const headings = document.querySelectorAll("h2");
+    const paragraphSection = document.querySelectorAll(".p-fade");
+    for (const heading of headings) {
+      headingObserver.observe(heading);
+    }
+
+    for (const section of paragraphSection) {
+      paragraphsObserver.observe(section);
+    }
   });
-
-  const headings = document.querySelectorAll("h2");
-  const paragraphSection = document.querySelectorAll(".p-fade");
-  for (const heading of headings) {
-    headingObserver.observe(heading);
-  }
-
-  for (const section of paragraphSection) {
-    paragraphsObserver.observe(section);
-  }
 </script>

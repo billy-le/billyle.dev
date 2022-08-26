@@ -1,4 +1,8 @@
 ---
+interface Props {
+  className?: string;
+}
+
 // assets
 import amtrak from 'src/assets/images/amtrak.jpg';
 import bridge from 'src/assets/images/bridge.jpg';
@@ -20,10 +24,12 @@ const workExp: (Omit<typeof workExpJson[0], 'image'> & {image: ImageMetadata})[]
 for(const exp of workExpJson) {
     workExp.push({...exp, image: workExpImages.find(image => image.src.includes(exp.image)) as ImageMetadata})
 }
+
+const {className=""} = Astro.props;
 ---
-<section id="work" class="relative py-8">
+<section id="work" class={`relative py-8  ${className}`}>
   <h2 class="container mx-auto opacity-0 text-slate-800 mb-4">Work.</h2>
-  <div class="flex flex-col overflow-hidden isolate max-w-screen-2xl mx-auto md:flex-row">
+  <div class="flex flex-col isolate max-w-screen-2xl mx-auto md:flex-row">
     {
       workExp.map((exp) => (
         <div class='relative h-full group overflow-hidden basis-[20%] hover:basis-[40%] transition-["width"] duration-500'>
