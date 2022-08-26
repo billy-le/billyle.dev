@@ -1,15 +1,15 @@
 ---
-const navLinks = ["Home", "Work", "Services", "Projects", "About",  "Contact"];
+export const navLinks = ["Home", "Work",  "Projects", "About",  "Contact"];
 ---
 
-<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 overflow-x-hidden px-8 py-4 hover:bg-green-50 group">
+<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 text-slate-800 overflow-x-hidden px-8 py-4 hover:bg-green-50 group">
   <nav class="xl:max-w-[80%] mx-auto">
     <ul id="nav-links" class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100">
       {
         navLinks.map((link) => (
-          <li>
+          <li class="relative">
             <a
-              class="px-2 py-1 xl:px-4 xl:py-2 hover:ring-2 hover:ring-green-300 hover:bg-green-100/50"
+              class="px-2 py-1 xl:px-4 xl:py-2"
               href={`#${link.toLowerCase()}`}
             >
               {link}
@@ -24,30 +24,50 @@ const navLinks = ["Home", "Work", "Services", "Projects", "About",  "Contact"];
   header {
     z-index: 1;
   }
-
-  h1,
-  li {
-    letter-spacing: -1px;
-    font-family: Vidaloka;
-  }
-
   a {
-    font-size: clamp(1.25rem, 2vw, 2.5rem);
+    letter-spacing: -1px;
+    font-family: InterVariable;
+    font-size: clamp(1.15rem, 1vw, 2rem);
+    font-weight: 400;
+    transition: font-weight .5s ease;
+    isolation: isolate;
+
+    &:hover {
+      font-weight: 800;
+
+      &::after {
+        @apply bg-green-300 bg-opacity-50;
+
+        height: 100%;
+      }
+    }
+
+    &::after {
+      display: block;
+      content: "";
+      position: absolute;
+      border-radius: 4px;
+      height: 0;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: height .3s ease-in-out;
+      z-index: -1;
+    }
   }
 </style>
 <script>
-  window.addEventListener('scroll', handleHeaderOffsetTop);
+  
   const headerClassList = ["bg-opacity-20"];
   const navLinksClassList = [
     "translate-x-full",
     "opacity-0",
   ];
 
-  const header = document.querySelector("header");
-  const navLinks = document.querySelector("#nav-links");
+  const header = document.querySelector("header") as HTMLElement;
+  const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
 
   function handleHeaderOffsetTop() {
-    if (header && navLinks) {
       if (Math.floor(window.scrollY) > 0) {
         header.classList.add(...headerClassList);
         navLinks.classList.add(...navLinksClassList);
@@ -55,6 +75,9 @@ const navLinks = ["Home", "Work", "Services", "Projects", "About",  "Contact"];
         header.classList.remove(...headerClassList);
         navLinks.classList.remove(...navLinksClassList);
       }
-    }
+    
   }
+
+  window.addEventListener('scroll', handleHeaderOffsetTop);
+ 
 </script>

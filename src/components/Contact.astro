@@ -1,8 +1,13 @@
 ---
+interface Props {
+  className?: string;
+}
 const isDevMode = import.meta.env.DEV;
+
+const {className=''} = Astro.props;
 ---
 
-<section id="contact" class="relative min-h-screen h-full overflow-hidden">
+<section id="contact" class={`relative h-full overflow-hidden ${className}`}>
   <div class="container mx-auto h-full flex flex-col py-8">
     <h2 class="opacity-0 text-slate-800 mb-4">Contact.</h2>
     <div class="space-y-8">

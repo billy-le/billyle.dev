@@ -1,9 +1,14 @@
 ---
+interface Props {
+  className?: string;
+}
 import Particles from "@components/Particles.astro";
 import landing from "@data/landing.json";
+
+const {className=''} = Astro.props
 ---
 
-<section id="home" class="relative flex items-center min-h-screen h-full">
+<section id="home" class={`relative flex items-center h-full ${className}`}>
   <Particles />
   <div class="relative container w-full mx-auto flex flex-col justify-center">
     <svg
