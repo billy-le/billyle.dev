@@ -22,12 +22,12 @@ const date = new Date();
 
 <footer id="footer" class={`bg-slate-500 opacity-90 ${className}`}>
   <div class="container mx-auto flex flex-col py-6 space-y-4 text-slate-200">
-    <div class="h-full flex-grow flex divide-x divide-solid divide-slate-200">
-      <div class="w-full pr-4 py-4 text-right">
+    <div class="h-full flex-grow flex flex-col md:divide-x md:divide-solid md:divide-slate-200 md:flex-row">
+      <div class="w-full py-4 md:pr-4 md:text-right">
         <h5 class="mb-3 uppercase tracking-widest text-green-300 w-full">
           Get Around
         </h5>
-        <div class="w-max ml-auto">
+        <div class="w-max md:ml-auto">
           <div class="grid grid-cols-3 gap-6">
             <div class="flex flex-col gap-1">
               <a
@@ -55,11 +55,11 @@ const date = new Date();
           </div>
         </div>
       </div>
-      <div class="w-full pl-4 py-4 text-left">
+      <div class="w-full py-4 md:pl-4">
         <h5 class="mb-3 uppercase tracking-widest text-green-300 w-full">
           Stay in touch
         </h5>
-        <div class="flex gap-10">
+        <div class="flex flex-col gap-10 lg:flex-row">
           <div class="space-y-1">
             <a href="tel:+17029079889" class="link-hover footer-link"
               >+17029079889
@@ -68,7 +68,7 @@ const date = new Date();
               hi@billyle.dev
             </a>
           </div>
-          <div class="w-full flex items-center justify-end space-x-4">
+          <div class="w-full flex items-center justify-center space-x-4 sm:justify-start lg:justify-end">
             <a
               href="https://github.com/billy-le"
               target="_blank"
@@ -125,7 +125,7 @@ const date = new Date();
             </a>
             <p class="text-slate-200 text-4xl">/</p>
             <a
-              href="https://youtube.com/"
+              href="https://www.youtube.com/channel/UCKydCO1pRNqFvvrFVaGPAfg"
               target="_blank"
               rel="noopener noreferer"
               class="group"

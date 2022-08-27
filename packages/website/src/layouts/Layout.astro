@@ -16,10 +16,12 @@ const { title } = Astro.props as Props;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <script src="https://kit.fontawesome.com/536e9f73a2.js" crossorigin="anonymous"></script>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-fixed">
+  <body class="relative min-h-screen">
+    <div class="bg" />
     <slot />
     <style>
       html {
@@ -27,7 +29,13 @@ const { title } = Astro.props as Props;
         font-family: InterVariable;
       }
 
-      body {
+      .bg {
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 100%;
         background-image: conic-gradient(
             from 231deg at 1% 65%,
             hsla(0, 0%, 72.94%, 0.04343454032113192) 94%,
@@ -49,6 +57,9 @@ const { title } = Astro.props as Props;
             hsla(182.31, 33.33%, 84.71%, 0.33280158645216595) 94%
           ),
           repeating-linear-gradient(270deg, #fcfee6 40%, #d1d1d1 74%);
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
       }
     </style>
   </body>
