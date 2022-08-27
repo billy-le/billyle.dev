@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Love, Edith",
+    "description": "An e-commerce website that sold hand-made women clothing. This project was requested by the client to maximize simplicity, page speed, and costs. We settled on using the JAMStack approach to build this project where I used Next.js on the frontend, Strapi as the CMS, and deployed to Netlify and Heroku.",
+    "link": "https://loveedith.netlify.app/",
+    "images": [],
+    "sourceCode": [
+      { "link": "https://github.com/billy-le/love-edith", "host": "github" },
+      {
+        "link": "https://github.com/billy-le/love-edith-strapi",
+        "host": "github"
+      }
+    ],
+    "tags": [
+      "react",
+      "nextjs",
+      "strapi",
+      "heroku",
+      "tailwind",
+      "graphql",
+      "apollo",
+      "netlify"
+    ]
+  },
+  {
+    "name": "Soil Life",
+    "description": "An informational website that educates the public about soil life using JAMStack. This project initially started as a monolithic stack where static pages were served from an express node server using ejs templates. Final product was converted to React and used Google Sheets as a CMS.",
+    "link": "https://soillife.org/",
+    "images": [],
+    "sourceCode": [
+      { "link": "https://github.com/SoilLife/soil-life-web", "host": "github" }
+    ],
+    "tags": ["react", "netlify", "tailwind"]
+  }
+]
