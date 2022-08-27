@@ -2,88 +2,29 @@
 interface Props {
   className?: string;
 }
+
+import { Image } from "@astrojs/image/components";
+
 import Mound from "@components/Mound.astro";
-import about from "src/data/about.json";
+import about from "@data/about.json";
+import blobOffset from "@assets/images/blob-offset.png";
 
 const { className = "" } = Astro.props;
 ---
 
 <section id="about" class={`relative h-full ${className}`}>
-  <div class="container mx-auto h-full flex flex-col py-8">
+  <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">About.</h2>
     <div class="relative h-full">
-      <div class="grid gap-8 lg:grid-cols-3">
-        <div class="relative lg:col-span-2">
-          <svg
-            class="relative w-[320px] h-[320px] lg:w-[600px] lg:h-[600px] lg:-left-20"
-            viewBox="0 0 800 800"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <defs>
-              <filter
-                id="grain"
-                x="-50vw"
-                y="-50vh"
-                width="100vw"
-                height="100vh"
-              >
-                <feFlood flood-color="#ffffff" result="neutral-gray"></feFlood>
-                <feTurbulence
-                  in="neutral-gray"
-                  type="fractalNoise"
-                  baseFrequency="2.5"
-                  numOctaves="100"
-                  stitchTiles="stitch"
-                  result="noise"></feTurbulence>
-
-                <feColorMatrix
-                  in="noise"
-                  type="saturate"
-                  values="0"
-                  result="destaturatedNoise"></feColorMatrix>
-
-                <feComponentTransfer in="desaturatedNoise" result="theNoise">
-                  <feFuncA type="table" tableValues="0 0 0.5 0"></feFuncA>
-                </feComponentTransfer>
-
-                <feBlend
-                  in="SourceGraphic"
-                  in2="theNoise"
-                  mode="soft-light"
-                  result="noisy-image"></feBlend>
-              </filter>
-
-              <pattern
-                id="pattern"
-                patternUnits="userSpaceOnUse"
-                width="25"
-                height="25"
-                viewBox="0 0 100 100"
-                fill="#D6E2E2"
-              >
-                <circle cx="50" cy="50" r="12.5"></circle>
-              </pattern>
-
-              <clipPath id="shape">
-                <path
-                  fill="currentColor"
-                  d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-                ></path>
-              </clipPath>
-            </defs>
-
-            <path
-              fill="url(#pattern)"
-              d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-              transform="translate(-60, -60)"></path>
-
-            <g filter="url(#grain)" clip-path="url(#shape)">
-              <path
-                fill="#D6E2E2"
-                d="M740,694Q626,888,393,817.5Q160,747,131.5,479Q103,211,375,129.5Q647,48,750.5,274Q854,500,740,694Z"
-              ></path>
-            </g>
-          </svg>
+      <div class="grid gap-8 md:grid-cols-3">
+        <div class="relative mx-auto md:col-span-2">
+          <Image
+            src={blobOffset}
+            width={1000}
+            height={1000}
+            format="png"
+            class="relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] md:-left-20"
+          />
           <img
             class="absolute top-0 left-20 object-contain max-h-full"
             src="/images/me.png"

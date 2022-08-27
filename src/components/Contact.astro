@@ -8,7 +8,7 @@ const { className = "" } = Astro.props;
 ---
 
 <section id="contact" class={`relative h-full overflow-hidden ${className}`}>
-  <div class="container mx-auto h-full flex flex-col py-8">
+  <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">Contact.</h2>
     <div class="space-y-8">
       <form
@@ -62,7 +62,7 @@ const { className = "" } = Astro.props;
       </p>
     </div>
   </div>
-  <div id="globeViz" class="hidden absolute h-full w-full top-0 -right-1/3 z-[-1] md:block">
+  <div id="globeViz" class="hidden absolute h-full w-full top-0 -right-1/3 z-[-1] lg:block">
   </div>
 </section>
 <script>
