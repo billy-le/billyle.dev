@@ -16,14 +16,18 @@ const { title } = Astro.props as Props;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <script src="https://kit.fontawesome.com/536e9f73a2.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/536e9f73a2.js"
+      crossorigin="anonymous"
+    ></script>
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
   <body class="relative min-h-screen">
-    <div class="bg" />
+    <div class="bg"></div>
     <slot />
-    <style>
+
+    <style is:global>
       html {
         scroll-behavior: smooth;
         font-family: InterVariable;
@@ -61,6 +65,90 @@ const { title } = Astro.props as Props;
         background-size: cover;
         background-repeat: no-repeat;
       }
+
+      .text-heading {
+        @apply text-slate-800 opacity-0 mb-4;
+
+        font-size: clamp(2rem, 5vw, 5rem);
+        font-family: Vidaloka;
+      }
+
+      .text-body {
+        @apply text-slate-600;
+
+        font-size: clamp(1rem, 1vw, 2rem);
+      }
+
+      .link-hover {
+        position: relative;
+        width: max-content;
+
+        &::after {
+          display: block;
+          content: "";
+          position: absolute;
+          bottom: -0.1em;
+          height: 2px;
+          width: 0;
+          transition: width 0.2s ease-in;
+
+          @apply bg-gradient-to-r from-green-300 to-green-400;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+
+      @keyframes text-fade-in {
+        0% {
+          opacity: 0;
+          transform: translateY(100%);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const headingObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const target = entry.target as HTMLElement;
+            if (entry.isIntersecting && !target.style.animation) {
+              target.style.animation = "text-fade-in forwards .7s";
+            }
+          });
+        });
+
+        const paragraphsObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const target = entry.target as HTMLElement;
+            if (entry.isIntersecting) {
+              const paragraphs = target.querySelectorAll("p");
+              for (let i = 0; i < paragraphs.length; i++) {
+                const paragraph = paragraphs[i];
+                if (paragraph) {
+                  paragraph.style.animation = `text-fade-in forwards .4s ${
+                    i * 0.2 + 0.8
+                  }s`;
+                }
+              }
+            }
+          });
+        });
+
+        const headings = document.querySelectorAll(".text-heading");
+        const paragraphSection = document.querySelectorAll(".p-fade");
+        for (const heading of headings) {
+          headingObserver.observe(heading);
+        }
+
+        for (const section of paragraphSection) {
+          paragraphsObserver.observe(section);
+        }
+      });
+    </script>
   </body>
 </html>
