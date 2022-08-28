@@ -12,11 +12,11 @@ import Footer from '@components/Footer.astro';
 <Layout title="Billy Le">
   <Header />
   <main>
-    <Home className="min-h-screen" />
+    <Home className="min-h-[580px] md:min-h-[768px]" />
     <Work />
-    <About className="min-h-screen 2xl:min-h-full" />
-    <Projects className="bg-slate-400 min-h-screen 2xl:min-h-full" />
-    <Contact className="min-h-screen 2xl:min-h-full" />
+    <About className="md:min-h-[768px]" />
+    <Projects className="md:min-h-[768px] bg-slate-400" />
+    <Contact className="md:min-h-[768px]" />
   </main>
   <Footer />
 </Layout>

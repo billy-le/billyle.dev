@@ -7,7 +7,8 @@ import projectsData from "@data/projects.json";
 
 const { className = "" } = Astro.props;
 ---
-<section id="projects" class={`relative h-full ${className}`}>
+
+<section id="projects" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">Projects.</h2>
     <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-8">
@@ -18,19 +19,27 @@ const { className = "" } = Astro.props;
               <div class="space-y-3">
                 <div class="flex justify-between">
                   <h3 class="text-xl text-slate-800">{name}</h3>
-                <h4 class="flex items-center space-x-2">
-                  <i class="fa-solid fa-link fa-xs text-blue-400" />
-                  <a
-                  href={link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                    class="link-hover text-xs text-slate-600"
+                  <h4 class="hidden space-x-2 items-center md:flex">
+                    <i class="fa-solid fa-link fa-xs text-blue-400" />
+                    <a
+                      href={link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      class="link-hover text-xs text-slate-500"
                     >
-                    {link}
+                      {link}
                     </a>
-                    </h4>
-                    </div>
-                    <p class="text-sm text-slate-600">{description}</p>
+                  </h4>
+                  <a
+                    href={link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="md:hidden"
+                  >
+                    <i class="fa-solid fa-link fa-lg text-blue-400" />
+                  </a>
+                </div>
+                <p class="text-sm text-slate-500">{description}</p>
               </div>
               <div>
                 <h4 class="text-sm text-slate-800 mb-1">Source Code:</h4>
@@ -45,7 +54,7 @@ const { className = "" } = Astro.props;
                           href={link}
                           rel="noopener noreferrer"
                           target="_blank"
-                          class="link-hover text-xs text-slate-600"
+                          class="link-hover text-xs text-slate-500"
                         >
                           {link}
                         </a>
@@ -53,8 +62,15 @@ const { className = "" } = Astro.props;
                     </li>
                   ))}
                 </ul>
-                </div>
-                <p class="text-sm text-slate-600">{tags.join(", ")}</p>
+              </div>
+              <div class="flex flex-wrap gap-1">
+                <h4 class="text-sm text-slate-800">Tags:</h4>{" "}
+                {tags.map((tag) => (
+                  <div class="bg-blue-500 bg-opacity-10 text-blue-500 text-xs rounded-full px-2 py-0.5 grid place-items-center">
+                    {tag}
+                  </div>
+                ))}
+              </div>
             </div>
           )
         )
@@ -62,6 +78,3 @@ const { className = "" } = Astro.props;
     </div>
   </div>
 </section>
-<script>
-
-</script>

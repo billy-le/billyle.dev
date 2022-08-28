@@ -12,10 +12,10 @@ import blobOffset from "@assets/images/blob-offset.png";
 const { className = "" } = Astro.props;
 ---
 
-<section id="about" class={`relative h-full ${className}`}>
+<section id="about" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">About.</h2>
-    <div class="relative h-full">
+    <div class="relative h-full 2xl:mb-20">
       <div class="grid gap-8 md:grid-cols-3">
         <div class="relative mx-auto md:col-span-2">
           <Image
@@ -31,7 +31,7 @@ const { className = "" } = Astro.props;
           />
         </div>
 
-        <div class="p-fade flex flex-col justify-center space-y-6 z-[1]">
+        <div class="p-fade flex flex-col justify-center space-y-6">
           {about.map((text) => <p class="text-body opacity-0">{text}</p>)}
         </div>
       </div>
