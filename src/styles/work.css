@@ -124,7 +124,7 @@
     }
 
     &::before {
-      @apply bg-black bg-opacity-30 bg-gradient-to-t from-blue-900/20;
+      @apply bg-black bg-opacity-50 bg-gradient-to-b from-black/20;
 
       display: block;
       content: "";
@@ -133,7 +133,7 @@
       width: 100%;
 
       @screen md {
-        @apply bg-transparent from-black;
+        @apply bg-transparent bg-gradient-to-t from-black;
       }
     }
 

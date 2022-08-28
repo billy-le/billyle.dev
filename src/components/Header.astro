@@ -2,17 +2,18 @@
 export const navLinks = ["Home", "Work",  "Projects", "About",  "Contact"];
 ---
 
-<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 text-slate-800 overflow-x-hidden px-8 py-4 hover:bg-green-50 group">
-  <nav class="xl:max-w-[80%] mx-auto">
+<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 text-slate-800 overflow-x-hidden py-4 hover:bg-green-50 group">
+  <nav class="container">
     <ul id="nav-links" class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100">
       {
         navLinks.map((link) => (
           <li class="relative">
             <a
-              class="px-2 py-1 xl:px-4 xl:py-2"
               href={`#${link.toLowerCase()}`}
             >
+            <span class="px-2 py-1 xl:px-4 xl:py-2">
               {link}
+              </span>
             </a>
           </li>
         ))
@@ -30,7 +31,6 @@ export const navLinks = ["Home", "Work",  "Projects", "About",  "Contact"];
     font-size: clamp(1.15rem, 1vw, 2rem);
     font-weight: 400;
     transition: font-weight .5s ease;
-    isolation: isolate;
 
     &:hover {
       font-weight: 800;
