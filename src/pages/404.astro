@@ -1,0 +1,30 @@
+---
+import { Image } from "@astrojs/image/components";
+
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+
+import error404 from "@assets/images/404.png";
+---
+
+<Layout title="Billy Le">
+  <Header />
+  <main class="min-h-[580px] md:min-h-[768px] grid place-items-center">
+    <div class="space-y-4">
+      <h2 class="text-5xl text-slate-800">Oh no!</h2>
+      <p class="text-slate-600">Sorry the page you are looking for doesn't exist.</p>
+      <div class="h-[400px]">
+        <Image src={error404} class="h-full w-full" format="png" />
+        <h4 class="text-slate-500 text-xs link-hover">
+          <a
+            href="https://www.freepik.com/free-vector/404-error-with-person-looking-concept-illustration_20824298.htm#query=not%20found&position=0&from_view=search"
+            >Image by storyset
+          </a>
+        </h4>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>
