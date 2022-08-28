@@ -12,7 +12,7 @@ import blob from '@assets/images/blob.png'
 const {className=''} = Astro.props
 ---
 
-<section id="home" class={`relative flex items-center h-full ${className}`}>
+<section id="home" class={`relative flex items-center ${className}`}>
   <Particles />
   <div class="relative container w-full flex flex-col justify-center">
     <Image src={blob} width={1000} height={1000} format="png" class="blob"  />

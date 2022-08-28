@@ -34,7 +34,8 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
-      "@data/*": ["src/data/*"]
+      "@data/*": ["src/data/*"],
+      "@styles/*": ["src/styles/*"]
     },
     "types": ["astro/client", "@astrojs/image/client"],
   },
