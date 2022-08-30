@@ -112,43 +112,41 @@ const { title } = Astro.props as Props;
       }
     </style>
     <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        const headingObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const target = entry.target as HTMLElement;
-            if (entry.isIntersecting && !target.style.animation) {
-              target.style.animation = "text-fade-in forwards .7s";
-            }
-          });
+      const headingObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement;
+          if (entry.isIntersecting && !target.style.animation) {
+            target.style.animation = "text-fade-in forwards .7s";
+          }
         });
+      });
 
-        const paragraphsObserver = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            const target = entry.target as HTMLElement;
-            if (entry.isIntersecting) {
-              const paragraphs = target.querySelectorAll("p");
-              for (let i = 0; i < paragraphs.length; i++) {
-                const paragraph = paragraphs[i];
-                if (paragraph) {
-                  paragraph.style.animation = `text-fade-in forwards .4s ${
-                    i * 0.2 + 0.8
-                  }s`;
-                }
+      const paragraphsObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement;
+          if (entry.isIntersecting) {
+            const paragraphs = target.querySelectorAll("p");
+            for (let i = 0; i < paragraphs.length; i++) {
+              const paragraph = paragraphs[i];
+              if (paragraph) {
+                paragraph.style.animation = `text-fade-in forwards .4s ${
+                  i * 0.2 + 0.8
+                }s`;
               }
             }
-          });
+          }
         });
-
-        const headings = document.querySelectorAll(".text-heading");
-        const paragraphSection = document.querySelectorAll(".p-fade");
-        for (const heading of headings) {
-          headingObserver.observe(heading);
-        }
-
-        for (const section of paragraphSection) {
-          paragraphsObserver.observe(section);
-        }
       });
+
+      const headings = document.querySelectorAll(".text-heading");
+      const paragraphSection = document.querySelectorAll(".p-fade");
+      for (const heading of headings) {
+        headingObserver.observe(heading);
+      }
+
+      for (const section of paragraphSection) {
+        paragraphsObserver.observe(section);
+      }
     </script>
   </body>
 </html>
