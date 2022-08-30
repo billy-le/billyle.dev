@@ -62,16 +62,11 @@ const { className = "" } = Astro.props;
         </p>
       </div>
     </div>
-    <div
-      id="globeViz"
-      class="hidden w-1/2 md:block"
-    >
-    </div>
+    <div id="globeViz" class="hidden w-1/2 md:block"></div>
   </div>
 </section>
 <script>
   import * as THREE from "three";
-  import { TrackballControls } from "three/examples/jsm/controls/TrackballControls";
   import ThreeGlobe from "three-globe";
   import countries from "src/data/countries.json";
 
@@ -112,18 +107,13 @@ const { className = "" } = Astro.props;
   camera.updateProjectionMatrix();
   camera.position.z = 300;
 
-  // Add camera controls
-  const tbControls = new TrackballControls(camera, renderer.domElement);
-  tbControls.rotateSpeed = 5;
-  tbControls.zoomSpeed = 0.8;
-  tbControls.minDistance = 300;
-  tbControls.maxDistance = 1000;
-
-  (function animate() {
-    tbControls.update();
+  function animate() {
+    scene.rotateY(-0.01);
     renderer.render(scene, camera);
-    requestAnimationFrame(animate);
-  })();
+    return requestAnimationFrame(animate);
+  }
+
+  animate();
 
   window.addEventListener("resize", () => {
     renderer.setSize(section.clientWidth, section.clientHeight);
