@@ -106,6 +106,7 @@ const { className = "" } = Astro.props;
   camera.aspect = section.clientWidth / section.clientHeight;
   camera.updateProjectionMatrix();
   camera.position.z = 300;
+  camera.position.x = 80;
 
   function animate() {
     scene.rotateY(-0.01);
