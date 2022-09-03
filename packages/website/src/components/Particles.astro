@@ -84,8 +84,8 @@
   const canvas = document.querySelector(
     "#canvas-particles"
   ) as HTMLCanvasElement;
-  canvas.width = innerWidth;
-  canvas.height = innerHeight;
+  canvas.width = canvas?.parentElement?.clientWidth ?? innerWidth;
+  canvas.height = canvas?.parentElement?.clientHeight ?? innerHeight;
   const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
 
   function getMouseRadius() {
@@ -109,10 +109,10 @@
       const particleSize = Math.random() * 5 + 1;
       const sizeMultiple = particleSize * 2;
       const x =
-        Math.random() * (innerWidth - sizeMultiple - sizeMultiple) +
+        Math.random() * (canvas.width - sizeMultiple - sizeMultiple) +
         sizeMultiple;
       const y =
-        Math.random() * (innerHeight - sizeMultiple - sizeMultiple) +
+        Math.random() * (canvas.height - sizeMultiple - sizeMultiple) +
         sizeMultiple;
       const directionX = Math.random() * 5 - 2.5;
       const directionY = Math.random() * 5 - 2.5;
@@ -158,7 +158,7 @@
 
   function animate() {
     animationId = requestAnimationFrame(animate);
-    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (let i = 0; i < particlesArray.length; i++) {
       particlesArray[i]?.update();
     }
@@ -166,15 +166,15 @@
   }
 
   window.addEventListener("resize", () => {
-    canvas.width = innerWidth;
-    canvas.height = innerHeight;
+    canvas.width = canvas?.parentElement?.clientWidth ?? innerWidth;
+    canvas.height = canvas?.parentElement?.clientHeight ?? innerHeight;
     mouse.radius = getMouseRadius();
     init();
   });
 
   window.addEventListener("mousemove", (e) => {
-    mouse.x = e.x;
-    mouse.y = e.y;
+    mouse.x = e.pageX;
+    mouse.y = e.pageY;
   });
 
   window.addEventListener("mouseout", () => {
@@ -183,10 +183,10 @@
   });
 
   window.addEventListener("scroll", () => {
-    if (scrollY > innerHeight && animationId != null) {
+    if (scrollY > canvas.height && animationId != null) {
       window.cancelAnimationFrame(animationId);
       animationId = null;
-    } else if (scrollY < innerHeight && animationId == null) {
+    } else if (scrollY < canvas.height && animationId == null) {
       animate();
     }
   });
