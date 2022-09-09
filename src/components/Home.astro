@@ -7,7 +7,7 @@ import {Image} from '@astrojs/image/components'
 
 import Particles from "@components/Particles.astro";
 import landing from "@data/landing.json";
-import blob from '@assets/images/blob.png'
+import blob from '@assets/images/blob.webp'
 
 const {className=''} = Astro.props
 ---
@@ -15,7 +15,7 @@ const {className=''} = Astro.props
 <section id="home" class={`relative flex items-center ${className}`}>
   <Particles />
   <div class="relative container w-full flex flex-col justify-center">
-    <Image src={blob} width={1000} height={1000} format="png" class="blob"  />
+    <Image src={blob} width={1000} height={1000} format="webp" class="blob"  />
     <h2 class="text-heading">Hello. I'm Billy.</h2>
     <div class="text-body p-fade space-y-2">
       {landing.map((text) => <p class="opacity-0">{text}</p>)}
