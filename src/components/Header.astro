@@ -1,19 +1,21 @@
 ---
-export const navLinks = ["Home", "Work",  "Projects", "About",  "Contact"];
+export const navLinks = ["Home", "Work", "Projects", "About", "Contact"];
+const centralAngle = 90 / navLinks.length;
 ---
 
-<header class="fixed w-full top-0 transition transition-all duration-300 ease-in-out bg-green-50 text-slate-800 overflow-x-hidden py-4 hover:bg-green-50 group">
+<header
+  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition transition-all duration-300 ease-in-out text-slate-800 bg-green-50 hover:bg-green-50 sm:block z-[1]"
+>
   <nav class="container">
-    <ul id="nav-links" class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100">
+    <ul
+      id="nav-links"
+      class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100"
+    >
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a
-              href={`/#${link.toLowerCase()}`}
-            >
-            <span class="px-2 py-1 xl:px-4 xl:py-2">
-              {link}
-              </span>
+            <a href={`/#${link.toLowerCase()}`}>
+              <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
         ))
@@ -21,63 +23,151 @@ export const navLinks = ["Home", "Work",  "Projects", "About",  "Contact"];
     </ul>
   </nav>
 </header>
+
+<div class="sm:hidden">
+  <div
+    id="menu-mobile"
+    class="isolate bg-green-200 text-slate-800 fixed top-0 right-0 -translate-y-1/2 translate-x-1/2 z-[1] h-[10rem] w-[10rem]"
+  >
+    <nav class="absolute bottom-0 left-0 h-1/2 w-1/2">
+      <ul id="nav-links-mobile" class="relative h-full w-full">
+        {
+          navLinks.map((link, index) => {
+            const angle = centralAngle * index;
+            const skew = 90 - centralAngle;
+            return (
+              <li
+                class="link-mobile absolute top-0 right-0 h-full w-[80%]"
+                style={`transform: rotate(-${angle}deg) skew(-${skew}deg); transform-origin: top right`}
+              >
+                <a
+                  href={`/#${link.toLowerCase()}`}
+                  class="absolute"
+                  style={`transform: rotate(0deg) skew(${skew}deg) translateY(30px)`}
+                >
+                  <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+  <button id="menu-button" class="fixed top-4 right-4 text-slate-800 z-[1]">
+    <i class="fa-solid fa-bars fa-2x"></i>
+    <i class="fa-solid fa-times fa-2x"></i>
+  </button>
+</div>
+
 <style>
-  header {
-    z-index: 1;
+  #menu-button {
+    .fa-times {
+      display: none;
+    }
   }
-  a {
-    letter-spacing: -1px;
-    font-family: InterVariable;
-    font-size: clamp(1.15rem, 1vw, 2rem);
-    font-weight: 400;
-    transition: font-weight .5s ease;
+  #menu-mobile {
+    clip-path: circle(50%);
+    transition: height 0.2s ease, width 0.2s ease;
 
-    &:hover {
-      font-weight: 800;
-
-      &::after {
-        @apply bg-green-300 bg-opacity-50;
-
-        height: 100%;
-      }
+    .link-mobile {
+      opacity: 0;
+      transition: opacity 0.2s ease-in;
     }
 
-    &::after {
-      display: block;
-      content: "";
-      position: absolute;
-      border-radius: 4px;
-      height: 0;
-      width: 100%;
-      top: 50%;
-      transform: translateY(-50%);
-      transition: height .3s ease-in-out;
-      z-index: -1;
+    &.open {
+      height: 40rem;
+      width: 40rem;
+
+      ~ #menu-button {
+        .fa-bars {
+          display: none;
+        }
+
+        .fa-times {
+          display: block;
+        }
+      }
+
+      .link-mobile {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media screen and (min-width: 640px) {
+    a {
+      letter-spacing: -1px;
+      font-family: InterVariable;
+      font-size: clamp(1.15rem, 1vw, 2rem);
+      font-weight: 400;
+      transition: font-weight 0.5s ease;
+
+      &:hover {
+        font-weight: 800;
+
+        &::after {
+          @apply bg-green-300 bg-opacity-50;
+
+          height: 100%;
+        }
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        border-radius: 4px;
+        height: 0;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: height 0.3s ease-in-out;
+        z-index: -1;
+      }
     }
   }
 </style>
 <script>
-  
   const headerClassList = ["bg-opacity-20"];
-  const navLinksClassList = [
-    "translate-x-full",
-    "opacity-0",
-  ];
+  const navLinksClassList = ["translate-x-full", "opacity-0"];
 
   const header = document.querySelector("header") as HTMLElement;
   const navLinks = document.querySelector("#nav-links") as HTMLUListElement;
+  const menuMobile = document.querySelector("#menu-mobile") as HTMLDivElement;
+  const menuButton = document.querySelector(
+    "#menu-button"
+  ) as HTMLButtonElement;
 
   function handleHeaderOffsetTop() {
-      if (Math.floor(window.scrollY) > 0) {
-        header.classList.add(...headerClassList);
-        navLinks.classList.add(...navLinksClassList);
-      } else {
-        header.classList.remove(...headerClassList);
-        navLinks.classList.remove(...navLinksClassList);
-      }
-    
+    if (Math.floor(window.scrollY) > 0) {
+      header.classList.add(...headerClassList);
+      navLinks.classList.add(...navLinksClassList);
+    } else {
+      header.classList.remove(...headerClassList);
+      navLinks.classList.remove(...navLinksClassList);
+    }
   }
 
-  window.addEventListener('scroll', handleHeaderOffsetTop);
- 
+  function handleMediaMatch(event: MediaQueryListEvent) {
+    if (event.matches) {
+      menuMobile.classList.remove("open");
+      window.addEventListener("scroll", handleHeaderOffsetTop);
+    } else {
+      window.removeEventListener("scroll", handleHeaderOffsetTop);
+    }
+  }
+  const matchMedia = window.matchMedia("(min-width: 640px)");
+  matchMedia.addEventListener("change", handleMediaMatch);
+
+  if (matchMedia.matches) {
+    menuMobile.classList.remove("open");
+    window.addEventListener("scroll", handleHeaderOffsetTop);
+  } else {
+    window.removeEventListener("scroll", handleHeaderOffsetTop);
+  }
+
+  menuButton.addEventListener("click", () => {
+    menuMobile.classList.toggle("open");
+  });
 </script>
