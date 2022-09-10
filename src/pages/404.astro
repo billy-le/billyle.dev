@@ -8,7 +8,7 @@ import Footer from "@components/Footer.astro";
 import error404 from "@assets/images/404.webp";
 ---
 
-<Layout title="Billy Le | 404 Not Found" description="404 Not Found Page">
+<Layout title="Billy Le | Not Found" description="Not Found">
   <Header />
   <main class="min-h-[580px] md:min-h-[768px] grid place-items-center">
     <div class="space-y-4">
@@ -17,7 +17,12 @@ import error404 from "@assets/images/404.webp";
         Sorry the page you are looking for doesn't exist.
       </p>
       <div class="h-[400px]">
-        <Image src={error404} class="h-full w-full" format="webp" />
+        <Image
+          src={error404}
+          class="h-full w-full"
+          format="webp"
+          alt="Illustration of a man with binoculars"
+        />
         <h4 class="text-slate-500 text-xs link-hover">
           <a
             href="https://www.freepik.com/free-vector/404-error-with-person-looking-concept-illustration_20824298.htm#query=not%20found&position=0&from_view=search"
