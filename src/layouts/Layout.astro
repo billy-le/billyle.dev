@@ -4,8 +4,9 @@ import "@fontsource/vidaloka/400.css";
 
 export interface Props {
   title: string;
+  description: string;
 }
-const { title } = Astro.props as Props;
+const { title, description } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -13,15 +14,16 @@ const { title } = Astro.props as Props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <title>{title}</title>
     <script
       src="https://kit.fontawesome.com/536e9f73a2.js"
       crossorigin="anonymous"
     ></script>
-    <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
   </head>
   <body class="relative min-h-screen">
     <div class="bg"></div>
