@@ -102,6 +102,10 @@ const { title, description } = Astro.props as Props;
         }
       }
 
+      .no-js {
+        opacity: 1;
+      }
+
       @keyframes text-fade-in {
         0% {
           opacity: 0;
@@ -114,6 +118,11 @@ const { title, description } = Astro.props as Props;
       }
     </style>
     <script>
+      const noJs = document.querySelectorAll('.no-js')
+      for(const el of noJs) {
+          el.classList.remove('no-js')
+      }
+
       const headingObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           const target = entry.target as HTMLElement;

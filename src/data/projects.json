@@ -24,7 +24,7 @@
   },
   {
     "name": "Soil Life",
-    "description": "An informational website that educates the public about soil life using JAMStack. This project initially started as a monolithic stack where static pages were served from an express node server using ejs templates. Final product was converted to React and used Google Sheets as a CMS.",
+    "description": "An informational website that educates the public about soil life using JAMStack. This project initially started as a monolithic stack where static pages were served from an Express Node server using Embedded JavaScript Templates (ejs). The final product was converted to React and used Google Sheets as a CMS.",
     "link": "https://soillife.org/",
     "images": [],
     "sourceCode": [
