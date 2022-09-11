@@ -14,7 +14,7 @@ const { className = "" } = Astro.props;
 
 <section id="about" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
-    <h2 class="text-heading">About.</h2>
+    <h2 class="text-heading no-js no-js">About.</h2>
     <div class="relative h-full 2xl:mb-20">
       <div class="grid gap-8 md:grid-cols-3">
         <div class="relative mx-auto md:col-span-2">
@@ -24,15 +24,19 @@ const { className = "" } = Astro.props;
             height={1000}
             format="webp"
             class="relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] md:-left-20"
+            alt=""
+            aria-hidden="true"
           />
           <img
             class="absolute top-0 left-20 object-contain max-h-full"
             src="/images/me.webp"
+            alt="Photo of Billy Le"
+            loading="lazy"
           />
         </div>
 
         <div class="p-fade flex flex-col justify-center space-y-6">
-          {about.map((text) => <p class="text-body opacity-0">{text}</p>)}
+          {about.map((text) => <p class="text-body opacity-0 no-js">{text}</p>)}
         </div>
       </div>
     </div>
