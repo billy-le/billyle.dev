@@ -66,57 +66,57 @@ const { className = "" } = Astro.props;
   </div>
 </section>
 <script>
-  import * as THREE from "three";
-  import ThreeGlobe from "three-globe";
-  import countries from "src/data/countries.json";
-
   const contactsContainer = document.querySelector(
     "#contact"
   ) as HTMLDivElement;
   const section = contactsContainer.querySelector(
     ".container"
   ) as HTMLDivElement;
+  Promise.all([
+    import("three"),
+    import("three-globe"),
+    import("src/data/countries.json"),
+  ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
+    const Globe = new ThreeGlobe()
+      .atmosphereColor("LightSlateGray")
+      .globeImageUrl("/images/map-texture.png")
+      .polygonsData(
+        countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
+      )
+      .polygonCapColor(() => "#D8E3E2")
+      .polygonSideColor(() => "rgba(148, 163, 184, .5)")
+      .polygonStrokeColor(() => "#1E293B");
 
-  const Globe = new ThreeGlobe()
-    .atmosphereColor("LightSlateGray")
-    .globeImageUrl("/images/map-texture.png")
-    .polygonsData(
-      countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
-    )
-    .polygonCapColor(() => "#D8E3E2")
-    .polygonSideColor(() => "rgba(148, 163, 184, .5)")
-    .polygonStrokeColor(() => "#1E293B");
+    Globe.polygonAltitude(() => 0.025);
 
-  Globe.polygonAltitude(() => 0.025);
-
-  // Setup renderer
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
-  renderer.setSize(section.clientWidth, section.clientHeight);
-  globeDiv.appendChild(renderer.domElement);
-
-  // Setup scene
-  const scene = new THREE.Scene();
-  scene.add(Globe);
-  scene.add(new THREE.AmbientLight(0xbbbbbb));
-  scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
-
-  // Setup camera
-  const camera = new THREE.PerspectiveCamera();
-  camera.aspect = section.clientWidth / section.clientHeight;
-  camera.updateProjectionMatrix();
-  camera.position.z = 300;
-  camera.position.x = 80;
-
-  function animate() {
-    scene.rotateY(-0.01);
-    renderer.render(scene, camera);
-    return requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  window.addEventListener("resize", () => {
+    // Setup renderer
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
+    const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
     renderer.setSize(section.clientWidth, section.clientHeight);
+    globeDiv.appendChild(renderer.domElement);
+
+    // Setup scene
+    const scene = new THREE.Scene();
+    scene.add(Globe);
+    scene.add(new THREE.AmbientLight(0xbbbbbb));
+    scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+
+    // Setup camera
+    const camera = new THREE.PerspectiveCamera();
+    camera.aspect = section.clientWidth / section.clientHeight;
+    camera.updateProjectionMatrix();
+    camera.position.z = 300;
+    camera.position.x = 80;
+
+    function animate() {
+      scene.rotateY(-0.01);
+      renderer.render(scene, camera);
+      return requestAnimationFrame(animate);
+    }
+
+    animate();
+    window.addEventListener("resize", () => {
+      renderer.setSize(section.clientWidth, section.clientHeight);
+    });
   });
 </script>
