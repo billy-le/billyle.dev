@@ -66,57 +66,81 @@ const { className = "" } = Astro.props;
   </div>
 </section>
 <script>
-  import * as THREE from "three";
-  import ThreeGlobe from "three-globe";
-  import countries from "src/data/countries.json";
-
   const contactsContainer = document.querySelector(
     "#contact"
   ) as HTMLDivElement;
-  const section = contactsContainer.querySelector(
-    ".container"
-  ) as HTMLDivElement;
 
-  const Globe = new ThreeGlobe()
-    .atmosphereColor("LightSlateGray")
-    .globeImageUrl("/images/map-texture.png")
-    .polygonsData(
-      countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
-    )
-    .polygonCapColor(() => "#D8E3E2")
-    .polygonSideColor(() => "rgba(148, 163, 184, .5)")
-    .polygonStrokeColor(() => "#1E293B");
+  const observer = new IntersectionObserver(async (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        await Promise.all([
+          import("three"),
+          import("three-globe"),
+          import("src/data/countries.json"),
+        ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
+          let animationId: number | null = null;
 
-  Globe.polygonAltitude(() => 0.025);
+          const Globe = new ThreeGlobe()
+            .atmosphereColor("LightSlateGray")
+            .globeImageUrl("/images/map-texture.png")
+            .polygonsData(
+              countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
+            )
+            .polygonCapColor(() => "#D8E3E2")
+            .polygonSideColor(() => "rgba(148, 163, 184, .5)")
+            .polygonStrokeColor(() => "#1E293B");
 
-  // Setup renderer
-  const renderer = new THREE.WebGLRenderer({ alpha: true });
-  const globeDiv = document.getElementById("globeViz") as HTMLDivElement;
-  renderer.setSize(section.clientWidth, section.clientHeight);
-  globeDiv.appendChild(renderer.domElement);
+          Globe.polygonAltitude(() => 0.025);
 
-  // Setup scene
-  const scene = new THREE.Scene();
-  scene.add(Globe);
-  scene.add(new THREE.AmbientLight(0xbbbbbb));
-  scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+          // Setup renderer
+          const renderer = new THREE.WebGLRenderer({ alpha: true });
+          const section = contactsContainer.querySelector(
+            ".container"
+          ) as HTMLDivElement;
+          const globeDiv = document.getElementById(
+            "globeViz"
+          ) as HTMLDivElement;
+          renderer.setSize(section.clientWidth, section.clientHeight);
+          globeDiv.appendChild(renderer.domElement);
 
-  // Setup camera
-  const camera = new THREE.PerspectiveCamera();
-  camera.aspect = section.clientWidth / section.clientHeight;
-  camera.updateProjectionMatrix();
-  camera.position.z = 300;
-  camera.position.x = 80;
+          // Setup scene
+          const scene = new THREE.Scene();
+          scene.add(Globe);
+          scene.add(new THREE.AmbientLight(0xbbbbbb));
+          scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
 
-  function animate() {
-    scene.rotateY(-0.01);
-    renderer.render(scene, camera);
-    return requestAnimationFrame(animate);
-  }
+          // Setup camera
+          const camera = new THREE.PerspectiveCamera();
+          camera.aspect = section.clientWidth / section.clientHeight;
+          camera.updateProjectionMatrix();
+          camera.position.z = 300;
+          camera.position.x = 80;
 
-  animate();
+          function animate() {
+            scene.rotateY(-0.01);
+            renderer.render(scene, camera);
+            animationId = requestAnimationFrame(animate);
+          }
 
-  window.addEventListener("resize", () => {
-    renderer.setSize(section.clientWidth, section.clientHeight);
+          animate();
+
+          window.addEventListener("scroll", () => {
+            const threshold =
+              contactsContainer.offsetTop - contactsContainer.clientHeight;
+
+            if (scrollY < threshold && animationId != null) {
+              window.cancelAnimationFrame(animationId);
+              animationId = null;
+            } else if (scrollY >= threshold && animationId == null) {
+              animate();
+            }
+          });
+        });
+
+        observer.disconnect();
+      }
+    }
   });
+
+  observer.observe(contactsContainer);
 </script>
