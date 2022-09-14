@@ -4,7 +4,7 @@
 ---
 - [x] - main page
 - [x] - contact form
-- [ ] - mobile navigation
+- [x] - mobile navigation
 - [ ] - blog
 - [ ] - more recent picture
 - [ ] - more blobs and animation
@@ -13,3 +13,4 @@
 - [ ] - detailed project information
 - [ ] - project canvas physics animation
 - [ ] - services and process sections
+- [ ] - dark mode
