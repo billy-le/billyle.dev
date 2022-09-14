@@ -1,0 +1,23 @@
+---
+import Layout from "@layouts/Layout.astro";
+import type { MDXInstance } from "astro";
+
+const glob = await import.meta.glob("./*.mdx");
+
+let posts: MDXInstance<{ title: string; date: string }>[] = [];
+
+for (const [fileName, func] of Object.entries<Function>(glob)) {
+  // remove all draft posts
+  if (!/draft/gi.test(fileName)) {
+    break;
+  }
+  posts.push(await func());
+}
+---
+
+<Layout
+  title="Billy Le | Blog"
+  description="See all my blog posts about anything from coding tutorials, cryptocurrencies, business, seo and marketing, and software and hardware reviews. Posts are tagged by category and sorted by most recent."
+>
+  <main class="min-h-screen container"></main>
+</Layout>

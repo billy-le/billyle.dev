@@ -2,14 +2,11 @@
 import { Image } from "@astrojs/image/components";
 
 import Layout from "@layouts/Layout.astro";
-import Header from "@components/Header.astro";
-import Footer from "@components/Footer.astro";
 
 import error404 from "@assets/images/404.webp";
 ---
 
 <Layout title="Billy Le | Not Found" description="Not Found">
-  <Header />
   <main class="min-h-[580px] md:min-h-[768px] grid place-items-center">
     <div class="space-y-4">
       <h2 class="text-5xl text-slate-800">Oh no!</h2>
@@ -32,5 +29,4 @@ import error404 from "@assets/images/404.webp";
       </div>
     </div>
   </main>
-  <Footer />
 </Layout>

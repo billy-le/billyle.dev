@@ -1,5 +1,12 @@
 ---
-export const navLinks = ["Home", "Work", "Projects", "About", "Contact"];
+export const navLinks = [
+  "Home",
+  "Work",
+  "Projects",
+  "About",
+  "Contact",
+  "Blog",
+];
 const centralAngle = 90 / navLinks.length;
 ---
 
@@ -14,7 +21,7 @@ const centralAngle = 90 / navLinks.length;
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a href={`/#${link.toLowerCase()}`}>
+            <a href={link === "Blog" ? "/blog" : `/#${link.toLowerCase()}`}>
               <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
@@ -41,7 +48,7 @@ const centralAngle = 90 / navLinks.length;
                 style={`transform: rotate(-${angle}deg) skew(-${skew}deg); transform-origin: top right`}
               >
                 <a
-                  href={`/#${link.toLowerCase()}`}
+                  href={link === "Blog" ? "/blog" : `/#${link.toLowerCase()}`}
                   class="absolute"
                   style={`transform: rotate(0deg) skew(${skew}deg) translateY(30px)`}
                 >
