@@ -3,7 +3,7 @@ interface Props {
   className?: string;
 }
 
-import { Image } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 
 import Particles from "@components/Particles.astro";
 import landing from "@data/landing.json";
@@ -15,10 +15,10 @@ const { className = "" } = Astro.props;
 <section id="home" class={`relative flex items-center ${className}`}>
   <Particles />
   <div class="relative container w-full flex flex-col justify-center">
-    <Image
+    <Picture
       src={blob}
-      width={1000}
-      height={1000}
+      widths={[320, 640, 768]}
+      sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
       format="webp"
       class="blob"
       alt=""

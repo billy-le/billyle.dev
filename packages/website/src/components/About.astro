@@ -3,7 +3,7 @@ interface Props {
   className?: string;
 }
 
-import { Image } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 
 import Mound from "@components/Mound.astro";
 import about from "@data/about.json";
@@ -18,10 +18,10 @@ const { className = "" } = Astro.props;
     <div class="relative h-full 2xl:mb-20">
       <div class="grid gap-8 md:grid-cols-3">
         <div class="relative mx-auto md:col-span-2">
-          <Image
+          <Picture
             src={blobOffset}
-            width={1000}
-            height={1000}
+            widths={[320, 640, 768]}
+            sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
             format="webp"
             class="relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] md:-left-20"
             alt=""
