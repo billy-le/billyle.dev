@@ -55,12 +55,15 @@
     .work_img {
       height: inherit;
       width: 100%;
-      object-fit: cover;
-      object-position: center;
 
       @screen md {
         filter: grayscale(1) blur(0.5px);
         transition: filter 0.5s;
+      }
+
+      img {
+        object-fit: cover;
+        height: 100%;
       }
     }
 

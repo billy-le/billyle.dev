@@ -11,10 +11,10 @@ import coffee from "src/assets/images/coffee.webp";
 import meetup from "src/assets/images/meetup.webp";
 import sunflowers from "src/assets/images/sunflowers.webp";
 import towerRecords from "src/assets/images/tower-records.webp";
-import '@styles/work.css';
+import "@styles/work.css";
 
 // components
-import { Image } from "@astrojs/image/components";
+import { Picture } from "@astrojs/image/components";
 
 // data
 import workExpJson from "src/data/experience.json";
@@ -50,10 +50,10 @@ const { className = "" } = Astro.props;
       workExp.map((exp) => (
         <div class="work_container">
           <div class="work_img_container">
-            <Image
+            <Picture
               src={exp.image}
-              width={600}
-              height={800}
+              widths={[320, 640, 768]}
+              sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
               format="webp"
               class="work_img"
               alt={exp.imageAlt}
@@ -65,12 +65,8 @@ const { className = "" } = Astro.props;
               : `${exp.startYear} - ${exp.endYear || "Present"}`}
           </h3>
           <div class="work_content">
-            <h4 class="work_title">
-              {exp.name}
-            </h4>
-            <p class="work_description">
-              {exp.description}
-            </p>
+            <h4 class="work_title">{exp.name}</h4>
+            <p class="work_description">{exp.description}</p>
           </div>
         </div>
       ))
