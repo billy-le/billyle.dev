@@ -3,11 +3,13 @@ interface Props {
   className?: string;
 }
 
-import { navLinks } from "./Header.astro";
+import navLinks from "@data/navigation.json";
 
-const linksOfThree: string[][] = [];
+type NAV_LINK = typeof navLinks[0];
+
+const linksOfThree: NAV_LINK[][] = [];
 for (let i = 0; i < navLinks.length; i++) {
-  const link = navLinks[i] as string;
+  const link = navLinks[i] as NAV_LINK;
   if (i % 3 === 0) {
     linksOfThree.push([link]);
   } else {
@@ -44,13 +46,8 @@ const date = new Date();
               linksOfThree.map((links) => (
                 <div class="flex flex-col gap-1">
                   {links.map((link) => (
-                    <a
-                      href={
-                        link === "Blog" ? "/blog" : `/#${link.toLowerCase()}`
-                      }
-                      class="link-hover footer-link"
-                    >
-                      {link}
+                    <a href={link.href} class="link-hover footer-link">
+                      {link.name}
                     </a>
                   ))}
                 </div>

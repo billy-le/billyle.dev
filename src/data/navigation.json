@@ -1,0 +1,8 @@
+[
+  { "name": "Home", "href": "/" },
+  { "name": "Work", "href": "/#work" },
+  { "name": "Projects", "href": "/#projects" },
+  { "name": "About", "href": "/#about" },
+  { "name": "Contact", "href": "/#contact" },
+  { "name": "Blog", "href": "/blog" }
+]

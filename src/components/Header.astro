@@ -1,12 +1,5 @@
 ---
-export const navLinks = [
-  "Home",
-  "Work",
-  "Projects",
-  "About",
-  "Contact",
-  "Blog",
-];
+import navLinks from "@data/navigation.json";
 const centralAngle = 90 / navLinks.length;
 ---
 
@@ -21,8 +14,8 @@ const centralAngle = 90 / navLinks.length;
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a href={link === "Blog" ? "/blog" : `/#${link.toLowerCase()}`}>
-              <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+            <a href={link.href}>
+              <span class="px-2 py-1 xl:px-4 xl:py-2">{link.name}</span>
             </a>
           </li>
         ))
@@ -48,11 +41,11 @@ const centralAngle = 90 / navLinks.length;
                 style={`transform: rotate(-${angle}deg) skew(-${skew}deg); transform-origin: top right`}
               >
                 <a
-                  href={link === "Blog" ? "/blog" : `/#${link.toLowerCase()}`}
+                  href={link.href}
                   class="absolute"
                   style={`transform: rotate(0deg) skew(${skew}deg) translateY(30px)`}
                 >
-                  <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+                  <span class="px-2 py-1 xl:px-4 xl:py-2">{link.name}</span>
                 </a>
               </li>
             );
