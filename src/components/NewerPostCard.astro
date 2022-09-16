@@ -1,0 +1,42 @@
+---
+interface Props extends Post {
+  url: string;
+  className?: string;
+}
+
+const {
+  date,
+  description,
+  image,
+  imageAlt,
+  title,
+  url,
+  className = "",
+} = Astro.props;
+---
+
+<div class={className}>
+  {
+    image && (
+      <img src={image} alt={imageAlt} class="rounded-lg object-cover mb-2" />
+    )
+  }
+  <div class="sm:flex sm:items-center sm:justify-between mb-1">
+    <a href={url} class="link-hover">
+      <h5 class="text-slate-800 font-bold line-clamp-1">{title}</h5>
+    </a>
+    <time class="block text-slate-500 italic font-medium">{date}</time>
+  </div>
+  <p class="text-slate-600 line-clamp-4 sm:line-clamp-3">{description}</p>
+</div>
+<style>
+  time {
+    font-size: clamp(0.75rem, 1vw, 1rem);
+  }
+  h5 {
+    font-size: clamp(0.9rem, 1vw, 1.5rem);
+  }
+  p {
+    font-size: clamp(0.8rem, 1vw, 1.25rem);
+  }
+</style>

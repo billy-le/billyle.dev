@@ -7,10 +7,9 @@ import Footer from "@components/Footer.astro";
 import Background from "@components/Background.astro";
 
 export interface Props {
-  title: string;
-  description: string;
+  frontmatter: Post;
 }
-const { title, description } = Astro.props as Props;
+const { frontmatter } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -19,16 +18,23 @@ const { title, description } = Astro.props as Props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <meta name="description" content={frontmatter.description} />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <title>{title}</title>
+    <title>{frontmatter.title}</title>
   </head>
   <body class="relative min-h-screen">
     <Background />
     <Header />
-    <slot />
+    <main class="py-20">
+      <article
+        class="container prose prose-slate prose-sm sm:prose-base xl:prose-xl"
+      >
+        <h1>{frontmatter.title}</h1>
+        <slot />
+      </article>
+    </main>
     <Footer />
   </body>
 </html>

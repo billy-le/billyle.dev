@@ -1,9 +1,9 @@
-declare global {
-  interface ImportMeta {
-    env: {
-      DEV: boolean;
-    };
-  }
+interface Post  {
+  title: string;
+  description: string;
+  date: string;
+  image: string;
+  imageAlt: string;
+  draft: boolean;
+  tags: string[]
 }
-
-export {}

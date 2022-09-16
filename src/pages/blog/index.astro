@@ -1,23 +1,84 @@
 ---
-import Layout from "@layouts/Layout.astro";
 import type { MDXInstance } from "astro";
+import Layout from "@layouts/Layout.astro";
+import MostRecentPostCard from "@components/MostRecentPostCard.astro";
+import NewerPostCard from "@components/NewerPostCard.astro";
+import OlderPostCard from "@components/OlderPostCard.astro";
 
 const glob = await import.meta.glob("./*.mdx");
 
-let posts: MDXInstance<{ title: string; date: string }>[] = [];
+let posts: MDXInstance<Post>[] = [];
 
-for (const [fileName, func] of Object.entries<Function>(glob)) {
-  // remove all draft posts
-  if (!/draft/gi.test(fileName)) {
-    break;
-  }
-  posts.push(await func());
+for (const [, func] of Object.entries<Function>(glob)) {
+  const post: MDXInstance<Post> = await func();
+  // remove all draft posts from production
+  if (post.frontmatter.draft && !import.meta.env.DEV) break;
+  posts.push(post);
 }
+
+// sort by most recent
+posts.sort(
+  (postA, postB) =>
+    Number(new Date(postB.frontmatter.date)) -
+    Number(new Date(postA.frontmatter.date))
+);
+
+const mostRecentPost = posts.splice(0, 1)[0] as MDXInstance<Post>;
+const newerPosts = posts.splice(0, 2);
 ---
 
 <Layout
   title="Billy Le | Blog"
   description="See all my blog posts about anything from coding tutorials, cryptocurrencies, business, seo and marketing, and software and hardware reviews. Posts are tagged by category and sorted by most recent."
 >
-  <main class="min-h-screen container"></main>
+  <main class="min-h-screen py-16 space-y-10">
+    <div class="container">
+      <h1
+        class="blog-heading border-b-2 border-solid border-slate-400 text-slate-800 text-center"
+      >
+        WHAT'S NEW?
+      </h1>
+      <div
+        class="py-6 space-y-8 border-b-2 border-solid border-slate-400 sm:px-6 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8"
+      >
+        <MostRecentPostCard
+          className="col-span-2"
+          url={mostRecentPost?.url ?? "#"}
+          {...mostRecentPost?.frontmatter}
+        />
+        <div class="grid grid-cols-2 gap-8 lg:block lg:space-y-8">
+          {
+            newerPosts?.map((post) => (
+              <NewerPostCard url={post?.url ?? "#"} {...post.frontmatter} />
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <h2 class="text-4xl mb-10 text-slate-800">Older Blog Posts</h2>
+      <ul class="space-y-4 sm:border-l-2 sm:border-solid sm:border-slate-400">
+        {
+          posts?.map((post) => (
+            <OlderPostCard
+              url={post.url ?? "#"}
+              {...post.frontmatter}
+              className="sm:flex sm:gap-10 xl:gap-20"
+            />
+          ))
+        }
+      </ul>
+    </div>
+  </main>
 </Layout>
+<style>
+  .blog-heading {
+    font-size: clamp(2rem, 8vw, 7rem);
+    font-family: Vidaloka;
+    letter-spacing: 10px;
+  }
+
+  h2 {
+    font-family: Vidaloka;
+  }
+</style>
