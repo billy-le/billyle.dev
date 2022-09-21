@@ -24,6 +24,17 @@ const { title, description } = Astro.props as Props;
       src="https://kit.fontawesome.com/536e9f73a2.js"
       crossorigin="anonymous"
     ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7X79K0T33N"
+    ></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7X79K0T33N");
+    </script>
   </head>
   <body class="relative min-h-screen">
     <div class="bg"></div>
@@ -118,9 +129,9 @@ const { title, description } = Astro.props as Props;
       }
     </style>
     <script>
-      const noJs = document.querySelectorAll('.no-js')
-      for(const el of noJs) {
-          el.classList.remove('no-js')
+      const noJs = document.querySelectorAll(".no-js");
+      for (const el of noJs) {
+        el.classList.remove("no-js");
       }
 
       const headingObserver = new IntersectionObserver((entries) => {
