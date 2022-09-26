@@ -14,12 +14,17 @@ const centralAngle = 90 / navLinks.length;
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a href={`/#${link.toLowerCase()}`}>
+            <a class="nav-link" href={`/#${link.toLowerCase()}`}>
               <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
         ))
       }
+      <li class="ml-2">
+        <a class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2" href="/documents/billy_le_resume.pdf" target="_blank">
+            Resume
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
@@ -61,6 +66,13 @@ const centralAngle = 90 / navLinks.length;
 </div>
 
 <style>
+  a {
+    letter-spacing: -1px;
+    font-family: InterVariable;
+    font-size: clamp(1.15rem, 1vw, 2rem);
+    font-weight: 400;
+  }
+
   #menu-button {
     .fa-times {
       display: none;
@@ -96,7 +108,7 @@ const centralAngle = 90 / navLinks.length;
   }
 
   @media screen and (min-width: 640px) {
-    a {
+    .nav-link {
       letter-spacing: -1px;
       font-family: InterVariable;
       font-size: clamp(1.15rem, 1vw, 2rem);
