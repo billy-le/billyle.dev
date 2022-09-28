@@ -31,5 +31,15 @@
       { "link": "https://github.com/SoilLife/soil-life-web", "host": "github" }
     ],
     "tags": ["react", "netlify", "tailwind"]
+  },
+  {
+    "name": "Converse",
+    "description": "Converse is a real-time web chat app using WebRTC and Socket.io that features public chatrooms, live video and audio streaming, changing of input/output media devices, and invitation link sharing. This project was created so that I can learn more about real-time web communications and protocols.",
+    "link": "https://converse-fbwk.onrender.com/",
+    "images": [],
+    "sourceCode": [
+      { "link": "https://github.com/billy-le/converse", "host": "github" }
+    ],
+    "tags": ["node", "express", "liquidjs", "web-rtc", "socket.io"]
   }
 ]

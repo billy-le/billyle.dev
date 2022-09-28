@@ -11,7 +11,7 @@ const { className = "" } = Astro.props;
 <section id="projects" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">Projects.</h2>
-    <div class="flex flex-col space-y-4 md:flex-row md:space-y-0 md:space-x-8">
+    <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {
         projectsData.map(
           ({ name, description, images, link, sourceCode, tags }) => (
