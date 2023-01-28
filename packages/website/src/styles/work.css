@@ -53,7 +53,8 @@
     height: inherit;
 
     .work_img {
-      height: inherit;
+      object-fit: cover;
+      height:100%;
       width: 100%;
 
       @screen md {
@@ -61,10 +62,7 @@
         transition: filter 0.5s;
       }
 
-      img {
-        object-fit: cover;
-        height: 100%;
-      }
+     
     }
 
     @screen md {
