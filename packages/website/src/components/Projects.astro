@@ -14,9 +14,9 @@ const { className = "" } = Astro.props;
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {
         projectsData.map(
-          ({ name, description, images, link, sourceCode, tags }) => (
-            <div class="w-full bg-slate-100 rounded-lg shadow p-8 space-y-4 flex flex-col justify-between">
-              <div class="space-y-3">
+          ({ name, description, link, sourceCode, tags }) => (
+            <div class="w-full bg-slate-100 rounded-lg shadow p-8 flex flex-col gap-4">
+              <div class="h-full space-y-3">
                 <div class="flex justify-between">
                   <h3 class="text-xl text-slate-800">{name}</h3>
                   <h4 class="hidden space-x-2 items-center md:flex">
@@ -42,8 +42,7 @@ const { className = "" } = Astro.props;
                 <p class="text-sm text-slate-500">{description}</p>
               </div>
               <div>
-                <h4 class="text-sm text-slate-800 mb-1">Source Code:</h4>
-                <ul class="space-y-0.5">
+                <ul class="space-y-1">
                   {sourceCode.map(({ host, link }) => (
                     <li class="flex items-center space-x-2">
                       {host === "github" && (
@@ -64,12 +63,19 @@ const { className = "" } = Astro.props;
                 </ul>
               </div>
               <div class="flex flex-wrap gap-1">
-                <h4 class="text-sm text-slate-800">Tags:</h4>{" "}
-                {tags.map((tag) => (
+                {tags.slice(0, 3).map((tag) => (
                   <div class="bg-blue-500 bg-opacity-10 text-blue-500 text-xs rounded-full px-2 py-0.5 grid place-items-center">
                     {tag}
                   </div>
                 ))}
+                {tags.slice(3).length > 0 &&
+                  <div class="group relative bg-blue-500 bg-opacity-10 text-blue-500 text-xs rounded-full px-2 py-0.5 grid place-items-center">
+                    <span>+ {tags.slice(3).length}</span>
+                    <ul class="hidden group-hover:block absolute left-full space-y-0.5 text-xs p-3 bg-slate-100 rounded shadow-md">
+                      {tags.slice(3).map(tag => <li>{tag}</li>)}
+                      </ul>
+                  </div>
+                }
               </div>
             </div>
           )

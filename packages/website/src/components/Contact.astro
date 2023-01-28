@@ -117,9 +117,9 @@ const { className = "" } = Astro.props;
           camera.position.x = 80;
 
           function animate() {
-            scene.rotateY(-0.01);
+            // scene.rotateY(-0.01);
             renderer.render(scene, camera);
-            animationId = requestAnimationFrame(animate);
+            // animationId = requestAnimationFrame(animate);
           }
 
           animate();
