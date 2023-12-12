@@ -4,7 +4,7 @@ const centralAngle = 90 / navLinks.length;
 ---
 
 <header
-  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 bg-emerald-50/50 hover:bg-green-50 sm:block z-[1]"
+  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 hover:bg-green-50 sm:block z-[1]"
 >
   <nav class="container">
     <ul
@@ -147,7 +147,18 @@ const centralAngle = 90 / navLinks.length;
   }
 </style>
 <script>
-  const headerClassList = ["bg-opacity-20"];
+  function debounce(callback: (...args: any) => void, wait: number) {
+    let timerId: NodeJS.Timeout;
+
+    return (...args: any) => {
+      clearTimeout(timerId);
+      timerId = setTimeout(() => {
+        callback(...args);
+      }, wait);
+    };
+  }
+
+  const headerClassList = ["opacity-0"];
   const navLinksClassList = ["translate-x-full", "opacity-0"];
 
   const header = document.querySelector("header") as HTMLElement;
@@ -157,22 +168,28 @@ const centralAngle = 90 / navLinks.length;
     "#menu-button"
   ) as HTMLButtonElement;
 
+  let lastScrollTop = 0;
+
   function handleHeaderOffsetTop() {
-    if (Math.floor(window.scrollY) > 0) {
+    if (window.scrollY > lastScrollTop) {
       header.classList.add(...headerClassList);
       navLinks.classList.add(...navLinksClassList);
-    } else {
+      console.log("scroll down");
+    } else if (window.scrollY < lastScrollTop) {
       header.classList.remove(...headerClassList);
       navLinks.classList.remove(...navLinksClassList);
     }
+    lastScrollTop = Math.floor(window.scrollY);
   }
+
+  const debouncedHandleHeaderOffsetTop = debounce(handleHeaderOffsetTop, 100);
 
   function handleMediaMatch(event: MediaQueryListEvent) {
     if (event.matches) {
       menuMobile.classList.remove("open");
-      window.addEventListener("scroll", handleHeaderOffsetTop);
+      window.addEventListener("scroll", debouncedHandleHeaderOffsetTop);
     } else {
-      window.removeEventListener("scroll", handleHeaderOffsetTop);
+      window.removeEventListener("scroll", debouncedHandleHeaderOffsetTop);
     }
   }
   const matchMedia = window.matchMedia("(min-width: 640px)");
@@ -180,9 +197,9 @@ const centralAngle = 90 / navLinks.length;
 
   if (matchMedia.matches) {
     menuMobile.classList.remove("open");
-    window.addEventListener("scroll", handleHeaderOffsetTop);
+    window.addEventListener("scroll", debouncedHandleHeaderOffsetTop);
   } else {
-    window.removeEventListener("scroll", handleHeaderOffsetTop);
+    window.removeEventListener("scroll", debouncedHandleHeaderOffsetTop);
   }
 
   menuButton.addEventListener("click", () => {
