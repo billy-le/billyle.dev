@@ -37,6 +37,6 @@
       "@data/*": ["src/data/*"],
       "@styles/*": ["src/styles/*"]
     },
-    "types": ["astro/client", "@astrojs/image/client"],
+    "types": ["astro/client"],
   },
 }
