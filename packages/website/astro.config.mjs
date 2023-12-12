@@ -1,11 +1,10 @@
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import image from "@astrojs/image";
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
 
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://billyle.dev',
-  integrations: [tailwind(), image(), sitemap()]
+  site: "https://billyle.dev",
+  integrations: [tailwind(), sitemap()],
 });
