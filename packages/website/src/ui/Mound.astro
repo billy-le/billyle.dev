@@ -4,7 +4,7 @@ interface Props {
   className?: string;
 }
 
-const { color = "#FAFBFC", className = "" } = Astro.props;
+const { color = "#94a3b8", className = "" } = Astro.props;
 ---
 
 <svg
@@ -30,7 +30,7 @@ const { color = "#FAFBFC", className = "" } = Astro.props;
         fill="url(#paint0_linear)"></path>
     </mask>
     <g mask="url(#mask0)">
-      <path d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z" fill="#94A3B8"
+      <path d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z" fill={color}
       ></path>
     </g>
   </g>

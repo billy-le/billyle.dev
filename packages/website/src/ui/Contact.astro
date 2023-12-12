@@ -88,8 +88,8 @@ const { className = "" } = Astro.props;
             .polygonsData(
               countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
             )
-            .polygonCapColor(() => "#D8E3E2")
-            .polygonSideColor(() => "rgba(148, 163, 184, .5)")
+            .polygonCapColor(() => "#d1fae5")
+            .polygonSideColor(() => "rgba(148, 163, 184, 1)")
             .polygonStrokeColor(() => "#1E293B");
 
           Globe.polygonAltitude(() => 0.025);
@@ -108,8 +108,9 @@ const { className = "" } = Astro.props;
           // Setup scene
           const scene = new THREE.Scene();
           scene.add(Globe);
-          scene.add(new THREE.AmbientLight(0xbbbbbb));
-          scene.add(new THREE.DirectionalLight(0xffffff, 0.1));
+          scene.add(new THREE.AmbientLight(0xffffff));
+          scene.add(new THREE.DirectionalLight(0xffffff, 5));
+          scene.rotateX(-50);
 
           // Setup camera
           const camera = new THREE.PerspectiveCamera();
