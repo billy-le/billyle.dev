@@ -1,6 +1,6 @@
 ---
-import "@fontsource/inter/variable.css";
-import "@fontsource/vidaloka/400.css";
+import "@fontsource-variable/inter";
+import "@fontsource/vidaloka";
 
 export interface Props {
   title: string;
@@ -43,7 +43,7 @@ const { title, description } = Astro.props as Props;
     <style is:global>
       html {
         scroll-behavior: smooth;
-        font-family: InterVariable;
+        font-family: "Inter Variable", sans-serif;
       }
 
       .bg {
@@ -83,7 +83,7 @@ const { title, description } = Astro.props as Props;
         @apply text-slate-800 opacity-0 mb-4;
 
         font-size: clamp(2rem, 5vw, 5rem);
-        font-family: Vidaloka;
+        font-family: "Vidaloka", sans-serif;
       }
 
       .text-body {

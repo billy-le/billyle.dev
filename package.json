@@ -10,25 +10,24 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/image": "^0.13.0",
-    "@astrojs/sitemap": "^1.0.0",
-    "@astrojs/tailwind": "^3.0.0",
-    "@tailwindcss/typography": "^0.5.9",
-    "@types/node": "^18.11.18",
-    "@types/three": "^0.148.1",
-    "astro": "^3.6.4",
-    "autoprefixer": "^10.4.13",
-    "cssnano": "^5.1.14",
+    "@astrojs/sitemap": "^3.0.3",
+    "@astrojs/tailwind": "^5.0.3",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^20.10.4",
+    "@types/three": "^0.159.0",
+    "astro": "^4.0.4",
+    "autoprefixer": "^10.4.16",
+    "cssnano": "^6.0.1",
     "postcss-import": "^15.1.0",
-    "prettier": "^2.8.3",
-    "prettier-plugin-astro": "^0.5.5",
-    "tailwindcss": "^3.2.4"
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.2",
+    "tailwindcss": "^3.3.6"
   },
   "dependencies": {
-    "@fontsource/inter": "^4.5.15",
-    "@fontsource/vidaloka": "^4.5.9",
+    "@fontsource-variable/inter": "^5.0.16",
+    "@fontsource/vidaloka": "^5.0.8",
     "sharp": "^0.33.0",
-    "three": "^0.149.0",
-    "three-globe": "^2.24.13"
+    "three": "^0.159.0",
+    "three-globe": "^2.30.0"
   }
 }
