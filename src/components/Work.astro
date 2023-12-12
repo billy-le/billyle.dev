@@ -14,7 +14,7 @@ import towerRecords from "src/assets/images/tower-records.webp";
 import "@styles/work.css";
 
 // components
-import { Picture } from "@astrojs/image/components";
+import { Picture } from "astro:assets";
 
 // data
 import workExpJson from "src/data/experience.json";
@@ -28,7 +28,7 @@ const workExpImages = [
   sunflowers,
   towerRecords,
 ] as unknown as ImageMetadata[];
-const workExp: (Omit<typeof workExpJson[0], "image"> & {
+const workExp: (Omit<(typeof workExpJson)[0], "image"> & {
   image: ImageMetadata;
 })[] = [];
 for (const exp of workExpJson) {
