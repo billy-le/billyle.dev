@@ -90,7 +90,7 @@
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    font-family: Vidaloka;
+    font-family: 'Vidaloka', sans-serif;   
     z-index: 10;
 
     text-align: center;
