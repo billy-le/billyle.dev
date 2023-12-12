@@ -13,8 +13,6 @@
     "noEmit": true,
     // Enable strict type checking.
     "strict": true,
-    // Error when a value import is only used as a type.
-    "importsNotUsedAsValues": "error",
     // Report errors for fallthrough cases in switch statements
     "noFallthroughCasesInSwitch": true,
     // Force functions designed to override their parent class to be specified as `override`.
@@ -29,9 +27,11 @@
     "noUncheckedIndexedAccess": true,
     // Report an error when the value `undefined` is given to an optional property that doesn't specify `undefined` as a valid value.
     "exactOptionalPropertyTypes": true,
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/ui/*"],
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
       "@data/*": ["src/data/*"],

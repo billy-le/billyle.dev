@@ -1,11 +1,12 @@
 ---
+
 ---
 
 <canvas id="canvas-particles"></canvas>
 <script>
-     const canvas = document.querySelector(
-          "#canvas-particles"
-        ) as HTMLCanvasElement;
+  const canvas = document.querySelector(
+    "#canvas-particles"
+  ) as HTMLCanvasElement;
 
   const observer = new IntersectionObserver(async (entries) => {
     for (const entry of entries) {
@@ -123,7 +124,7 @@
               sizeMultiple;
             const directionX = Math.random() * 5 - 2.5;
             const directionY = Math.random() * 5 - 2.5;
-            const color = "#D6E2E2";
+            const color = "rgba(110, 231, 183, .5)";
             particlesArray.push(
               new Particle({
                 x,
@@ -150,7 +151,7 @@
 
                 if (distance < (canvas.width / 8) * (canvas.height / 8)) {
                   opacityValue = 1 - distance / 15000;
-                  ctx.strokeStyle = `rgba(214, 226, 226, ${opacityValue})`;
+                  ctx.strokeStyle = `rgba(167, 243, 208, ${opacityValue})`;
                   ctx.beginPath();
                   ctx.moveTo(particleA.x, particleA.y);
                   ctx.lineTo(particleB.x, particleB.y);
@@ -206,7 +207,7 @@
     }
   });
 
-  observer.observe(canvas)
+  observer.observe(canvas);
 </script>
 <style>
   #canvas-particles {

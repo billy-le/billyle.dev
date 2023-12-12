@@ -55,7 +55,9 @@ const { className = "" } = Astro.props;
 
         <p class="text-body">
           In a hurry? You can download <a
+            target="_blank"
             href="/documents/billy_le_resume.pdf"
+            download="billy_le_resume.pdf"
             class="link-hover inline-block font-bold"
             >my resume
           </a> and view it later.
@@ -107,7 +109,7 @@ const { className = "" } = Astro.props;
           const scene = new THREE.Scene();
           scene.add(Globe);
           scene.add(new THREE.AmbientLight(0xbbbbbb));
-          scene.add(new THREE.DirectionalLight(0xffffff, 0.6));
+          scene.add(new THREE.DirectionalLight(0xffffff, 0.1));
 
           // Setup camera
           const camera = new THREE.PerspectiveCamera();
