@@ -1,0 +1,112 @@
+[
+  {
+    "name": "Javascript",
+    "level": 4,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg"
+  },
+  {
+    "name": "Typescript",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg"
+  },
+  {
+    "name": "CSS",
+    "level": 4,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain-wordmark.svg"
+  },
+  {
+    "name": "HTML",
+    "level": 4,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain-wordmark.svg"
+  },
+  {
+    "name": "Redux",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
+  },
+  {
+    "name": "RxJS",
+    "level": 3,
+    "icon": "https://rxjs.dev/generated/images/marketing/home/Rx_Logo-512-512.png"
+  },
+  {
+    "name": "React",
+    "level": 4,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+  },
+  {
+    "name": "Node",
+    "level": 2,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+  },
+  {
+    "name": "Express",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
+  },
+  {
+    "name": "MongoDB",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-plain-wordmark.svg"
+  },
+  {
+    "name": "Postgres",
+    "level": 1,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain-wordmark.svg"
+  },
+  {
+    "name": "MySQL",
+    "level": 1,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-plain-wordmark.svg"
+  },
+  {
+    "name": "NextJS",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+  },
+  {
+    "name": "Golang",
+    "level": 1,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg"
+  },
+  {
+    "name": "Tailwindcss",
+    "level": 4,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg"
+  },
+  {
+    "name": "Git",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+  },
+  {
+    "name": "Jira",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jira/jira-plain-wordmark.svg"
+  },
+  {
+    "name": "Github",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original-wordmark.svg"
+  },
+  {
+    "name": "Jest",
+    "level": 3,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg"
+  },
+  {
+    "name": "JQuery",
+    "level": 2,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-plain-wordmark.svg"
+  },
+  {
+    "name": "Storybook",
+    "level": 3,
+    "icon": "  https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg"
+  },
+  {
+    "name": "Webpack",
+    "level": 2,
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-plain.svg"
+  }
+]

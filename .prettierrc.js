@@ -1,3 +1,0 @@
-{
-    astroAllowShorthand: true;
-  }

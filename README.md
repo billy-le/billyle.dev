@@ -1,7 +1,9 @@
 ## Personal Website
 
 ### To-do List
+
 ---
+
 - [x] - main page
 - [x] - contact form
 - [x] - mobile navigation
