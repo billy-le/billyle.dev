@@ -11,7 +11,6 @@ import coffee from "src/assets/images/coffee.webp";
 import meetup from "src/assets/images/meetup.webp";
 import sunflowers from "src/assets/images/sunflowers.webp";
 import towerRecords from "src/assets/images/tower-records.webp";
-import "@styles/work.css";
 
 // components
 import { Picture } from "astro:assets";
@@ -76,5 +75,185 @@ const { className = "" } = Astro.props;
 <style>
   h4 {
     font-size: clamp(1.15rem, 1vw, 2.5rem);
+  }
+
+  .work_container {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+
+    @screen md {
+      height: 400px;
+      flex-basis: 20%;
+      transition: flex-basis 0.5s;
+
+      &:hover {
+        flex-basis: 40%;
+      }
+    }
+
+    @screen xl {
+      height: 600px;
+    }
+
+    &:hover {
+      @screen md {
+        .work_img_container {
+          &::after {
+            background-image: none;
+          }
+
+          .work_img {
+            filter: none;
+          }
+        }
+
+        .work_content {
+          transform: translateY(0);
+
+          .work_description {
+            opacity: 1;
+          }
+        }
+      }
+
+      .work_year {
+        @screen md {
+          top: 30%;
+        }
+
+        @screen xl {
+          top: 50%;
+        }
+      }
+    }
+
+    .work_img_container {
+      height: inherit;
+
+      .work_img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+
+        @screen md {
+          filter: grayscale(1) blur(0.5px);
+          transition: filter 0.5s;
+        }
+      }
+
+      @screen md {
+        &::after {
+          @apply bg-gradient-to-tr from-blue-900 to-slate-800;
+
+          display: block;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          opacity: 0.5;
+          z-index: 1;
+        }
+      }
+    }
+
+    .work_year {
+      @apply text-slate-100 border-slate-100 py-3;
+
+      position: absolute;
+      top: 4rem;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-family: "Vidaloka", sans-serif;
+      z-index: 10;
+
+      text-align: center;
+      min-width: 60px;
+
+      @screen md {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: top 0.5s;
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+      }
+
+      @screen xl {
+        top: 75%;
+      }
+    }
+
+    .work_content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+
+      @screen md {
+        transform: translateY(100%);
+        transition: transform 0.5s;
+      }
+
+      &::before {
+        @apply bg-black bg-opacity-50 bg-gradient-to-b from-black/20;
+
+        display: block;
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+
+        @screen md {
+          @apply bg-transparent bg-gradient-to-t from-black;
+        }
+      }
+
+      .work_title {
+        @apply tracking-widest text-green-500;
+
+        position: relative;
+        text-transform: uppercase;
+        text-align: center;
+        top: 1rem;
+
+        @screen md {
+          @apply text-xl;
+
+          top: 50%;
+        }
+
+        @screen xl {
+          top: 66.66%;
+        }
+      }
+
+      .work_description {
+        @apply text-xs text-slate-100 p-4;
+
+        position: relative;
+        top: 4rem;
+        text-align: center;
+
+        @screen md {
+          @apply text-sm;
+
+          top: 50%;
+          opacity: 0;
+          transition: opacity 1s;
+          text-align: left;
+        }
+
+        @screen xl {
+          top: 66.66%;
+        }
+      }
+    }
   }
 </style>
