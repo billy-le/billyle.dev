@@ -69,7 +69,7 @@ const { className = "" } = Astro.props;
 </section>
 <script>
   const contactsContainer = document.querySelector(
-    "#contact"
+    "#contact",
   ) as HTMLDivElement;
 
   const observer = new IntersectionObserver(async (entries) => {
@@ -86,7 +86,7 @@ const { className = "" } = Astro.props;
             .atmosphereColor("LightSlateGray")
             .globeImageUrl("/images/map-texture.png")
             .polygonsData(
-              countries.features.filter((d) => d.properties.ISO_A2 !== "AQ")
+              countries.features.filter((d) => d.properties.ISO_A2 !== "AQ"),
             )
             .polygonCapColor(() => "#d1fae5")
             .polygonSideColor(() => "rgba(148, 163, 184, 1)")
@@ -97,10 +97,10 @@ const { className = "" } = Astro.props;
           // Setup renderer
           const renderer = new THREE.WebGLRenderer({ alpha: true });
           const section = contactsContainer.querySelector(
-            ".container"
+            ".container",
           ) as HTMLDivElement;
           const globeDiv = document.getElementById(
-            "globeViz"
+            "globeViz",
           ) as HTMLDivElement;
           renderer.setSize(section.clientWidth, section.clientHeight);
           globeDiv.appendChild(renderer.domElement);

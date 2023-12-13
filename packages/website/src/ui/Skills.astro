@@ -1,0 +1,59 @@
+---
+interface Props {
+  className?: string;
+}
+
+import skillsJson from "@data/skills.json";
+
+const { className = "" } = Astro.props;
+const levelMap: Record<number, string> = {
+  1: "Novice",
+  2: "Advanced Beginner",
+  3: "Competent",
+  4: "Proficient",
+  5: "Expert",
+};
+---
+
+<section id="skills" class={`relative ${className}`}>
+  <div class="container h-full flex flex-col py-8">
+    <h2 class="text-heading">Skills.</h2>
+    <ul
+      class="flex flex-wrap sm:grid sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-10 pb-10"
+    >
+      {
+        skillsJson
+          .sort((a, b) => b.level - a.level)
+          .map((skill) => (
+            <li>
+              <div class="flex items-center gap-2 mb-2">
+                <img src={skill.icon} class="h-8 w-8 rounded" />
+                <p class="text-glow text-4xl text-emerald-300">{skill.name}</p>
+              </div>
+              <div class="relative inline-flex divide-x divide-x-slate-400 ring-1 ring-slate-400  overflow-hidden -skew-x-12">
+                {Array(5)
+                  .fill(null)
+                  .map(() => {
+                    return <div class={`h-6 w-6`} />;
+                  })}
+                <div
+                  class="bg-gradient-to-r from-emerald-300 to-blue-400 absolute top-0 h-6 -left-[0px] -z-10"
+                  style={{ width: `${(skill.level / 5) * 100}%` }}
+                />
+              </div>
+              <p class="text-xs text-slate-400">{levelMap[skill.level]}</p>
+            </li>
+          ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .text-glow {
+    color: white;
+    -webkit-text-stroke: 1px rgb(110 231 183);
+    text-shadow: 0px 1px 4px rgb(110 231 183);
+    font-family: "SpaceAndriodsItalic", system-ui, sans-serif;
+  }
+</style>

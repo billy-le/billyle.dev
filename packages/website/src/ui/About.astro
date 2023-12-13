@@ -5,7 +5,6 @@ interface Props {
 
 import { Picture } from "astro:assets";
 
-import Mound from "@ui/Mound.astro";
 import about from "@data/about.json";
 import blobOffset from "@assets/images/blob-offset.webp";
 
@@ -41,5 +40,4 @@ const { className = "" } = Astro.props;
       </div>
     </div>
   </div>
-  <Mound className="w-full absolute bottom-[-1px]" />
 </section>

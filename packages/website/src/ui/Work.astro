@@ -35,7 +35,7 @@ for (const exp of workExpJson) {
   workExp.push({
     ...exp,
     image: workExpImages.find((image) =>
-      image.src.includes(exp.image)
+      image.src.includes(exp.image),
     ) as ImageMetadata,
   });
 }

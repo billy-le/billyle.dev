@@ -5,7 +5,7 @@
 <canvas id="canvas-particles"></canvas>
 <script>
   const canvas = document.querySelector(
-    "#canvas-particles"
+    "#canvas-particles",
   ) as HTMLCanvasElement;
 
   const observer = new IntersectionObserver(async (entries) => {
@@ -111,7 +111,7 @@
           particlesArray = [];
           const numberOfParticles = Math.min(
             (canvas.width * canvas.height) / 15_000,
-            200
+            200,
           );
           for (let i = 0; i < numberOfParticles; i++) {
             const particleSize = Math.random() * 5 + 1;
@@ -133,7 +133,7 @@
                 directionY,
                 size: particleSize,
                 color,
-              })
+              }),
             );
           }
         }
