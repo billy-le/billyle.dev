@@ -8,7 +8,7 @@ const { className = "" } = Astro.props;
 ---
 
 <section id="contact" class={`relative overflow-hidden ${className}`}>
-  <div class="container h-full flex justify-between py-8">
+  <div class="container">
     <div class="flex flex-col flex-grow md:w-1/2">
       <h2 class="text-heading">Contact.</h2>
       <div class="space-y-8">
@@ -52,7 +52,6 @@ const { className = "" } = Astro.props;
             </button>
           </div>
         </form>
-
         <p class="text-body">
           In a hurry? You can download <a
             target="_blank"
@@ -64,9 +63,14 @@ const { className = "" } = Astro.props;
         </p>
       </div>
     </div>
-    <div id="globeViz" class="hidden w-1/2 md:block"></div>
+  </div>
+  <div
+    id="globeViz"
+    class="hidden w-1/2 h-full md:block absolute top-0 right-0 -z-10"
+  >
   </div>
 </section>
+
 <script>
   const contactsContainer = document.querySelector(
     "#contact",
@@ -80,9 +84,26 @@ const { className = "" } = Astro.props;
           import("three-globe"),
           import("src/data/countries.json"),
         ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
-          let animationId: number | null = null;
+          const globeDiv = document.getElementById(
+            "globeViz",
+          ) as HTMLDivElement;
 
-          const Globe = new ThreeGlobe()
+          const renderer = new THREE.WebGLRenderer({
+            alpha: true,
+            antialias: true,
+          });
+          const clock = new THREE.Clock();
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera();
+          const directionalLight = new THREE.DirectionalLight("white", 4);
+          const ambientLight = new THREE.AmbientLight("white");
+          const radiansPerSecond = THREE.MathUtils.degToRad(15);
+
+          renderer.setPixelRatio(window.devicePixelRatio);
+          directionalLight.position.set(-10, 0, 10);
+          camera.position.z = 300;
+
+          const Globe = new ThreeGlobe({})
             .atmosphereColor("LightSlateGray")
             .globeImageUrl("/images/map-texture.png")
             .polygonsData(
@@ -90,53 +111,49 @@ const { className = "" } = Astro.props;
             )
             .polygonCapColor(() => "#d1fae5")
             .polygonSideColor(() => "rgba(148, 163, 184, 1)")
-            .polygonStrokeColor(() => "#1E293B");
+            .polygonStrokeColor(() => "#1E293B")
+            .polygonAltitude(() => 0.025);
 
-          Globe.polygonAltitude(() => 0.025);
-
-          // Setup renderer
-          const renderer = new THREE.WebGLRenderer({ alpha: true });
-          const section = contactsContainer.querySelector(
-            ".container",
-          ) as HTMLDivElement;
-          const globeDiv = document.getElementById(
-            "globeViz",
-          ) as HTMLDivElement;
-          renderer.setSize(section.clientWidth, section.clientHeight);
-          globeDiv.appendChild(renderer.domElement);
-
-          // Setup scene
-          const scene = new THREE.Scene();
-          scene.add(Globe);
-          scene.add(new THREE.AmbientLight(0xffffff));
-          scene.add(new THREE.DirectionalLight(0xffffff, 5));
-          scene.rotateX(-50);
-
-          // Setup camera
-          const camera = new THREE.PerspectiveCamera();
-          camera.aspect = section.clientWidth / section.clientHeight;
-          camera.updateProjectionMatrix();
-          camera.position.z = 300;
-          camera.position.x = 80;
-
-          function animate() {
-            // scene.rotateY(-0.01);
-            renderer.render(scene, camera);
-            // animationId = requestAnimationFrame(animate);
+          function setSize(
+            container: HTMLDivElement,
+            camera: THREE.PerspectiveCamera,
+            renderer: THREE.WebGLRenderer,
+          ) {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
           }
 
-          animate();
+          setSize(globeDiv, camera, renderer);
+          scene.add(Globe, directionalLight, ambientLight);
+          globeDiv.append(renderer.domElement);
+
+          function tick(delta: number) {
+            Globe.rotation.y += delta * radiansPerSecond;
+          }
+
+          function nextTick() {
+            const delta = clock.getDelta();
+            tick(delta);
+          }
+
+          function start() {
+            nextTick();
+            renderer.render(scene, camera);
+          }
 
           window.addEventListener("scroll", () => {
             const threshold =
               contactsContainer.offsetTop - contactsContainer.clientHeight;
-
-            if (scrollY < threshold && animationId != null) {
-              window.cancelAnimationFrame(animationId);
-              animationId = null;
-            } else if (scrollY >= threshold && animationId == null) {
-              animate();
+            if (scrollY < threshold) {
+              renderer.setAnimationLoop(null);
+            } else if (scrollY >= threshold) {
+              renderer.setAnimationLoop(start);
             }
+          });
+
+          window.addEventListener("resize", () => {
+            setSize(globeDiv, camera, renderer);
           });
         });
 
