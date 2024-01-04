@@ -46,10 +46,13 @@ const brushStrokes: Record<string, string> = {
                   .map((skill) => (
                     <li>
                       <div class="flex items-center gap-2 mb-2">
-                        <img src={skill.icon} class="h-8 w-8 rounded" />
-                        <p class="text-glow text-4xl text-emerald-300">
-                          {skill.name}
-                        </p>
+                        <img
+                          src={skill.icon}
+                          alt={`${skill.name} logo`}
+                          class="h-8 w-8 rounded"
+                          loading="lazy"
+                        />
+                        <p class="text-glow text-4xl">{skill.name}</p>
                       </div>
                       <div class="relative inline-block -skew-x-12">
                         <div class="inline-flex divide-x divide-x-slate-400 ring-1 ring-slate-400 ">

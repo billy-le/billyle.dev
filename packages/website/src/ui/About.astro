@@ -7,6 +7,7 @@ import { Picture } from "astro:assets";
 
 import about from "@data/about.json";
 import blobOffset from "@assets/images/blob-offset.webp";
+import mePic from "@assets/images/me.webp";
 
 const { className = "" } = Astro.props;
 ---
@@ -26,9 +27,11 @@ const { className = "" } = Astro.props;
             alt=""
             aria-hidden="true"
           />
-          <img
-            class="absolute top-0 left-20 object-contain max-h-full"
-            src="/images/me.webp"
+          <Picture
+            src={mePic}
+            widths={[320, 640, 768]}
+            sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
+            class="absolute top-0 object-contain max-h-full"
             alt="Photo of Billy Le"
             loading="lazy"
           />
