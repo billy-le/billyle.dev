@@ -52,7 +52,7 @@ const { className = "" } = Astro.props;
             <Picture
               src={exp.image}
               widths={[320, 640, 768]}
-              sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
+              sizes="(max-width < 640px) 320px, (max-width < 768px) 640px, (width >= 768px) 768px"
               format="webp"
               class="work_img"
               alt={exp.imageAlt}

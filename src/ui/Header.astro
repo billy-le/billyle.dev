@@ -70,7 +70,11 @@ const centralAngle = 90 / navLinks.length;
       </ul>
     </nav>
   </div>
-  <button id="menu-button" class="fixed top-4 right-4 text-slate-800 z-[1]">
+  <button
+    id="menu-button"
+    aria-label="Open Menu"
+    class="fixed top-4 right-4 text-slate-800 z-[1]"
+  >
     <i class="fa-solid fa-bars fa-2x"></i>
     <i class="fa-solid fa-times fa-2x"></i>
   </button>
@@ -210,5 +214,7 @@ const centralAngle = 90 / navLinks.length;
 
   menuButton.addEventListener("click", () => {
     menuMobile.classList.toggle("open");
+    const isOpen = menuMobile.classList.contains("open");
+    menuButton.ariaLabel = `${isOpen ? "Close" : "Open"} Menu`;
   });
 </script>
