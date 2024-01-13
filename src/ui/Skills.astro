@@ -25,11 +25,11 @@ const brushStrokes: Record<string, string> = {
 <section id="skills" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading">Skills.</h2>
-    <ul>
+    <ul class="space-y-10">
       {
         skillsJson.map((skill) => {
           return (
-            <li class="space-y-5">
+            <li class="space-y-10">
               <div
                 class={`brush relative inline-block p-5 before:content-[""] before:absolute before:h-full before:w-full before:top-0 before:left-0 before:-z-10 ${
                   brushStrokes[skill.category]
@@ -67,7 +67,7 @@ const brushStrokes: Record<string, string> = {
                           style={{ width: `${(skill.level / 5) * 100}%` }}
                         />
                       </div>
-                      <p class="text-xs text-slate-400">
+                      <p class="text-sm text-gray-400">
                         {levelMap[skill.level]}
                       </p>
                     </li>
