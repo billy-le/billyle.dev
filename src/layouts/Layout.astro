@@ -50,6 +50,9 @@ const { title, description } = Astro.props as Props;
 
         scroll-behavior: smooth;
         font-family: "Inter Variable", sans-serif;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .text-heading {
@@ -60,9 +63,9 @@ const { title, description } = Astro.props as Props;
       }
 
       .text-body {
-        @apply text-slate-600;
+        @apply text-gray-500;
 
-        font-size: clamp(1rem, 1vw, 2rem);
+        font-size: clamp(1rem, 2vw, 1.5rem);
       }
 
       .link-hover {
