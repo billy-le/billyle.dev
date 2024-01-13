@@ -180,12 +180,15 @@ const centralAngle = 90 / navLinks.length;
   ) as HTMLButtonElement;
 
   let lastScrollTop = 0;
+  let isScollingDown = false;
 
   function handleHeaderOffsetTop() {
     if (window.scrollY > lastScrollTop) {
+      isScollingDown = true;
       header.classList.add(...headerClassList);
       navLinks.classList.add(...navLinksClassList);
     } else if (window.scrollY < lastScrollTop) {
+      isScollingDown = false;
       header.classList.remove(...headerClassList);
       navLinks.classList.remove(...navLinksClassList);
     }
@@ -216,5 +219,17 @@ const centralAngle = 90 / navLinks.length;
     menuMobile.classList.toggle("open");
     const isOpen = menuMobile.classList.contains("open");
     menuButton.ariaLabel = `${isOpen ? "Close" : "Open"} Menu`;
+  });
+
+  header.addEventListener("mouseover", () => {
+    if (isScollingDown) {
+      header.classList.remove(...headerClassList);
+    }
+  });
+
+  header.addEventListener("mouseleave", () => {
+    if (isScollingDown) {
+      header.classList.add(...headerClassList);
+    }
   });
 </script>

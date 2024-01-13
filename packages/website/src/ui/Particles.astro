@@ -4,6 +4,10 @@
 
 <canvas id="canvas-particles"></canvas>
 <script>
+  function getRandomAlpha(min: number, max: number): number {
+    return parseFloat((Math.random() * (max - min) + min).toFixed(2));
+  }
+
   const canvas = document.querySelector(
     "#canvas-particles",
   ) as HTMLCanvasElement;
@@ -114,7 +118,7 @@
             200,
           );
           for (let i = 0; i < numberOfParticles; i++) {
-            const particleSize = Math.random() * 5 + 1;
+            const particleSize = Math.random() * 5 + 1.5;
             const sizeMultiple = particleSize * 2;
             const x =
               Math.random() * (canvas.width - sizeMultiple - sizeMultiple) +
@@ -124,7 +128,8 @@
               sizeMultiple;
             const directionX = Math.random() * 5 - 2.5;
             const directionY = Math.random() * 5 - 2.5;
-            const color = "rgba(110, 231, 183, .5)";
+            const alpha = getRandomAlpha(0.4, 0.7);
+            const color = `rgba(110, 231, 183, ${alpha})`;
             particlesArray.push(
               new Particle({
                 x,
