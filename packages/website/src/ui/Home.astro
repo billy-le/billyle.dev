@@ -17,8 +17,7 @@ const { className = "" } = Astro.props;
   <div class="relative container w-full flex flex-col justify-center">
     <Picture
       src={blob}
-      widths={[320, 640, 768]}
-      sizes="320px, (min-width: 640px) 640px, (min-width: 768px) 768px"
+      widths={[320, 640, 768, 1024]}
       format="webp"
       class="blob"
       alt=""

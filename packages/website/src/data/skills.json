@@ -74,7 +74,7 @@
       },
       {
         "name": "Postgres",
-        "level": 1,
+        "level": 2,
         "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"
       },
       {
@@ -85,7 +85,7 @@
 
       {
         "name": "Golang",
-        "level": 1,
+        "level": 2,
         "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg"
       }
     ]

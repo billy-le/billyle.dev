@@ -7,7 +7,7 @@ const isDevMode = import.meta.env.DEV;
 const { className = "" } = Astro.props;
 ---
 
-<section id="contact" class={`relative overflow-hidden ${className}`}>
+<section id="contact" class={`relative overflow-hidden py-8 ${className}`}>
   <div class="container">
     <div class="flex flex-col flex-grow md:w-1/2">
       <h2 class="text-heading">Contact.</h2>
@@ -52,7 +52,7 @@ const { className = "" } = Astro.props;
             </button>
           </div>
         </form>
-        <p class="text-body">
+        <p class="text-gray-500">
           In a hurry? You can download <a
             target="_blank"
             href="/documents/billy_le_resume.pdf"
