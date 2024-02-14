@@ -6,8 +6,13 @@ interface Props {
 import { Picture } from "astro:assets";
 
 import Particles from "@ui/Particles.astro";
-import landing from "@data/landing.json";
 import blob from "@assets/images/blob.webp";
+
+const jumboText = [
+  "I'm a front-end developer who transforms simple code into complex applications.",
+  "React apps are my primary focus, but I'm always up for a challenge.",
+  "To learn more, feel free to look around.",
+];
 
 const { className = "" } = Astro.props;
 ---
@@ -26,7 +31,7 @@ const { className = "" } = Astro.props;
     />
     <h2 class="text-heading dark:text-white">Hello. I'm Billy.</h2>
     <div class="p-fade space-y-2">
-      {landing.map((text) => <p class="text-body no-js">{text}</p>)}
+      {jumboText.map((text) => <p class="text-body no-js">{text}</p>)}
     </div>
   </div>
 </section>

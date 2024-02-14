@@ -5,9 +5,14 @@ interface Props {
 
 import { Picture } from "astro:assets";
 
-import about from "@data/about.json";
 import blobOffset from "@assets/images/blob-offset.webp";
 import mePic from "@assets/images/me.png";
+
+const about = [
+  "Coding isn't the only thing I love to do - I also enjoy playing with my dogs, learning about investments and finance, reading books, and watching TV shows.",
+  "Occasionally, when the mood is just right, I take a drive into the mountains for a scenic cruise or enjoy a nice hike.",
+  "Most of all, if I could leisure endlessly, I would find myself in another country, immersed in their food and culture.",
+];
 
 const { className = "" } = Astro.props;
 ---
