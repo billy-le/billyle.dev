@@ -16,7 +16,72 @@ import towerRecords from "src/assets/images/tower-records.webp";
 import { Picture } from "astro:assets";
 
 // data
-import workExpJson from "src/data/experience.json";
+const workExpJson = [
+  {
+    name: "Self-study",
+    description:
+      "I began my journey as a developer by learning from online courses such as Codecademy and freeCodeCamp. I continued to enhance my understanding of advanced concepts through blogs, YouTube, and books.",
+    image: "coffee",
+    imageAlt: "A cup of coffee sitting on a laptop. Image by AltumCode.",
+    startYear: "2015",
+    endYear: "",
+  },
+  {
+    name: "FreeCodeCamp Organizer",
+    description:
+      "I organized community events for people who shared a common interest in learning how to code. I conducted multiple classes, talks, and devoted my time to helping others learn.",
+    image: "meetup",
+    imageAlt: "A freeCodeCamp community event held at a coffee shop",
+    startYear: "2016",
+    endYear: "2019",
+  },
+  {
+    name: "Kore Innovations",
+    description:
+      "My first contract position and professional job as a developer involved working with Ruby on Rails, a technology that was initially unfamiliar to me. I collaborated closely with the CEO to deliver features for various clients.",
+    image: "bridge",
+    imageAlt:
+      "Arial view of the Guy A. West Memorial Bridge. Image by Stephen Leonardi.",
+    startYear: "2017",
+    endYear: "2017",
+  },
+  {
+    name: "CLC Inc",
+    description:
+      "Through my freeCodeCamp network, I secured a position as a Software Engineer, working on the MERN stack. In addition to supporting legacy code written in Backbone and JQuery, I also created new features for financial products.",
+    image: "capitol-interior",
+    imageAlt: "The Capitol dome's interior. Image by Ravi Krishnappa.",
+    startYear: "2017",
+    endYear: "2018",
+  },
+  {
+    name: "SBM Management",
+    description:
+      "Another connection from freeCodeCamp led to a contract job involving the conversion of an Angular application to React. I worked closely with the team to architect the front-end infrastructure and successfully rebuilt the entire application within a few months.",
+    image: "amtrak",
+    imageAlt: "Historic Amtrak Trains in Old Sacramento. Image by Simon Hurry.",
+    startYear: "2018",
+    endYear: "2019",
+  },
+  {
+    name: "4insite",
+    description:
+      "After the termination of the contract with SBM, I was offered a full-time position where I continued to support existing features, create new ones, and enhance the front-end infrastructure. Two years later, I was promoted to Lead FE Engineer.",
+    image: "tower-records",
+    imageAlt: "Tower Records building in frame. Image by Justin W.",
+    startYear: "2019",
+    endYear: "2022",
+  },
+  {
+    name: "Contractor",
+    description:
+      "I started consulting and providing full-stack services, guiding clients through the development and design process while empowering them to manage their own content.",
+    image: "sunflowers",
+    imageAlt: "A field of sunflowers. Image by Sofia Ornelas.",
+    startYear: "2020",
+    endYear: "",
+  },
+];
 
 const workExpImages = [
   amtrak,

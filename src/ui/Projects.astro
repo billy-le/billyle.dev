@@ -5,7 +5,54 @@ interface Props {
   className?: string;
 }
 
-import projectsData from "@data/projects.json";
+const projectsData = [
+  {
+    name: "Love, Edith",
+    description:
+      "I worked on an e-commerce website specializing in handmade women's clothing. The client emphasized the importance of simplicity, fast page speed, and cost-effectiveness. To meet these requirements, we opted for the JAMStack approach, using Next.js for the frontend, Strapi as the CMS, and deploying on Netlify and Heroku.",
+    link: "https://loveedith.netlify.app/",
+    images: [],
+    sourceCode: [
+      { link: "https://github.com/billy-le/love-edith", host: "github" },
+      {
+        link: "https://github.com/billy-le/love-edith-strapi",
+        host: "github",
+      },
+    ],
+    tags: [
+      "react",
+      "nextjs",
+      "strapi",
+      "heroku",
+      "tailwind",
+      "graphql",
+      "apollo",
+      "netlify",
+    ],
+  },
+  {
+    name: "Soil Life",
+    description:
+      "I developed an informational website aimed at educating the public about soil life, employing the JAMStack architecture. Initially, the project began as a monolithic stack with static pages served from an Express Node server using Embedded JavaScript Templates (ejs). Eventually, the final product transitioned to React, leveraging Google Sheets as the CMS.",
+    link: "https://soillife.org",
+    images: [],
+    sourceCode: [
+      { link: "https://github.com/SoilLife/soil-life-web", host: "github" },
+    ],
+    tags: ["react", "netlify", "tailwind"],
+  },
+  {
+    name: "Converse",
+    description:
+      "Converse is a real-time web chat app utilizing WebRTC and Socket.io. It boasts features such as public chatrooms, live video and audio streaming, the ability to change input/output media devices, and invitation link sharing. I initiated this project with the primary goal of enhancing my knowledge in real-time web communications and protocols.",
+    link: "https://converse-fbwk.onrender.com/",
+    images: [],
+    sourceCode: [
+      { link: "https://github.com/billy-le/converse", host: "github" },
+    ],
+    tags: ["node", "express", "liquidjs", "web-rtc", "socket.io"],
+  },
+];
 
 const { className = "" } = Astro.props;
 ---
