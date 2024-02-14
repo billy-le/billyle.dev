@@ -8,11 +8,11 @@
 - [x] - contact form
 - [x] - mobile navigation
 - [ ] - blog
-- [ ] - more recent picture
+- [x] - more recent picture
 - [ ] - more blobs and animation
 - [ ] - globe animation on contact submit
 - [ ] - more projects
 - [ ] - detailed project information
 - [ ] - project canvas physics animation
 - [ ] - services and process sections
-- [ ] - dark mode
+- [x] - dark mode
