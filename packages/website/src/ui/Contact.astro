@@ -77,7 +77,7 @@ const { className = "" } = Astro.props;
         await Promise.all([
           import("three"),
           import("three-globe"),
-          import("src/data/countries.json"),
+          import("src/assets/data/countries.json"),
         ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
           const globeDiv = document.getElementById(
             "globeViz",
