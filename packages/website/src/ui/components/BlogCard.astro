@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  link: string;
+  className?: string;
+}
+
+const { className = "", title, summary, link } = Astro.props;
+---
+
+<div class={`p-4 ${className}`}>
+  <h3>{title}</h3>
+  <p>{summary}</p>
+  <p>{link}</p>
+</div>
