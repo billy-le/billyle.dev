@@ -25,7 +25,7 @@ const { className = "" } = Astro.props;
           <div class="w-full bg-slate-100 rounded-lg shadow p-8 flex flex-col gap-4 dark:bg-slate-800">
             <div class="h-full space-y-3">
               <div class="flex justify-between">
-                <h3 class="text-xl text-slate-800 dark:text-emerald-300">
+                <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
                   {name}
                 </h3>
                 <a
@@ -110,12 +110,12 @@ const { className = "" } = Astro.props;
             </div>
             <div class="flex flex-wrap gap-2">
               {tags.slice(0, 3).map((tag) => (
-                <div class="bg-blue-500 bg-opacity-10 text-blue-500 text-xs rounded-full px-2 py-0.5 grid place-items-center dark:bg-blue-600 dark:text-white">
+                <div class="bg-blue-500 bg-opacity-10 text-blue-500 text-xs font-medium rounded-full px-2 py-0.5 grid place-items-center dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
                   {tag}
                 </div>
               ))}
               {tags.slice(3).length > 0 && (
-                <div class="group relative bg-blue-500 bg-opacity-10 text-blue-500 text-xs rounded-full px-2 py-0.5 grid place-items-center dark:bg-blue-600 dark:text-white">
+                <div class="group relative bg-blue-500 bg-opacity-10 text-blue-500 text-xs font-medium rounded-full px-2 py-0.5 grid place-items-center dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
                   <span>+ {tags.slice(3).length}</span>
                   <ul class="hidden ml-2 group-hover:block absolute left-full space-y-0.5 text-xs p-3 bg-slate-100 rounded shadow-md dark:bg-slate-700">
                     {tags.slice(3).map((tag) => (
