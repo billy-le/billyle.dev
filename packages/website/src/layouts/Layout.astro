@@ -20,9 +20,6 @@ const { title, description } = Astro.props as Props;
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <title>{title}</title>
-    <script
-      src="https://kit.fontawesome.com/536e9f73a2.js"
-      crossorigin="anonymous"></script>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-7X79K0T33N"
     ></script>
     <script defer>
@@ -35,7 +32,7 @@ const { title, description } = Astro.props as Props;
       gtag("config", "G-7X79K0T33N");
     </script>
   </head>
-  <body class="relative min-h-screen">
+  <body class="relative min-h-screen dark:bg-slate-800">
     <slot />
 
     <style is:global>
@@ -56,15 +53,16 @@ const { title, description } = Astro.props as Props;
       }
 
       .text-heading {
-        @apply text-slate-800 opacity-0 mb-4;
+        @apply text-slate-800 opacity-0 mb-4 dark:text-white;
 
         font-size: clamp(2rem, 5vw, 5rem);
         font-family: "Vidaloka", sans-serif;
       }
 
       .text-body {
-        @apply text-gray-500;
+        @apply text-gray-500 dark:text-gray-300;
 
+        opacity: 0;
         font-size: clamp(1rem, 2vw, 1.5rem);
       }
 

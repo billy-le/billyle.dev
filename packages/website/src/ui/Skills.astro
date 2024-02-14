@@ -55,7 +55,7 @@ const brushStrokes: Record<string, string> = {
                         <p class="text-glow text-4xl">{skill.name}</p>
                       </div>
                       <div class="relative inline-block -skew-x-12">
-                        <div class="inline-flex divide-x divide-x-slate-400 ring-1 ring-slate-400 ">
+                        <div class="inline-flex divide-x divide-slate-400 ring-1 ring-slate-400 dark:divide-slate-500 dark:ring-slate-500">
                           {Array(5)
                             .fill(null)
                             .map(() => {
@@ -63,11 +63,11 @@ const brushStrokes: Record<string, string> = {
                             })}
                         </div>
                         <div
-                          class="absolute top-0 left-0 bg-gradient-to-r from-emerald-300 to-blue-400 h-6 -z-10 "
+                          class="absolute top-0 left-0 bg-gradient-to-r from-emerald-300 to-blue-400 h-6 -z-10"
                           style={{ width: `${(skill.level / 5) * 100}%` }}
                         />
                       </div>
-                      <p class="text-sm text-gray-400">
+                      <p class="text-sm text-gray-400 dark:text-gray-100">
                         {levelMap[skill.level]}
                       </p>
                     </li>
@@ -111,7 +111,7 @@ const brushStrokes: Record<string, string> = {
 
 <style>
   .text-glow {
-    color: white;
+    @apply text-white dark:text-slate-950;
     -webkit-text-stroke: 1px rgb(110 231 183);
     text-shadow: 0px 1px 4px rgb(110 231 183);
     font-family: "SpaceAndriodsItalic", system-ui, sans-serif;

@@ -19,14 +19,14 @@ const { className = "" } = Astro.props;
       src={blob}
       widths={[320, 640, 768, 1024]}
       format="webp"
-      class="blob"
+      class="blob dark:opacity-20"
       alt=""
       aria-hidden="true"
       loading="eager"
     />
-    <h2 class="text-heading">Hello. I'm Billy.</h2>
-    <div class="text-body p-fade space-y-2">
-      {landing.map((text) => <p class="opacity-0 no-js">{text}</p>)}
+    <h2 class="text-heading dark:text-white">Hello. I'm Billy.</h2>
+    <div class="p-fade space-y-2">
+      {landing.map((text) => <p class="text-body no-js">{text}</p>)}
     </div>
   </div>
 </section>
