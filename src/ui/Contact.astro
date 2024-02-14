@@ -2,7 +2,6 @@
 interface Props {
   className?: string;
 }
-const isDevMode = import.meta.env.DEV;
 
 const { className = "" } = Astro.props;
 ---
@@ -17,11 +16,7 @@ const { className = "" } = Astro.props;
           action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
           method="POST"
         >
-          <input
-            type="hidden"
-            name="_next"
-            value={isDevMode ? "http://localhost:3000" : "https://billyle.dev"}
-          />
+          <input type="hidden" name="_next" value={Astro.url.href} />
           <input type="hidden" name="_subject" value="New Message!" />
           <input type="text" name="_honey" class="hidden" />
           <input
