@@ -32,38 +32,40 @@
 </button>
 
 <script>
-  const themeToggle = document.querySelector(".theme-toggle");
+  const themeToggles = document.querySelectorAll(".theme-toggle");
 
-  themeToggle?.addEventListener("click", () => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      localStorage.setItem("theme", "light");
-      document.documentElement.classList.remove("dark");
-      if (themeToggle) {
-        themeToggle.ariaLabel = "toggle dark mode";
+  for (const themeToggle of themeToggles) {
+    themeToggle.addEventListener("click", () => {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        localStorage.setItem("theme", "light");
+        document.documentElement.classList.remove("dark");
+        if (themeToggle) {
+          themeToggle.ariaLabel = "toggle dark mode";
+        }
+      } else {
+        localStorage.setItem("theme", "dark");
+        document.documentElement.classList.add("dark");
+        if (themeToggle) {
+          themeToggle.ariaLabel = "toggle light mode";
+        }
       }
-    } else {
-      localStorage.setItem("theme", "dark");
+    });
+
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
       document.documentElement.classList.add("dark");
       if (themeToggle) {
         themeToggle.ariaLabel = "toggle light mode";
       }
-    }
-  });
-
-  if (
-    localStorage.theme === "dark" ||
-    (!("theme" in localStorage) &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches)
-  ) {
-    document.documentElement.classList.add("dark");
-    if (themeToggle) {
-      themeToggle.ariaLabel = "toggle light mode";
-    }
-  } else {
-    document.documentElement.classList.remove("dark");
-    if (themeToggle) {
-      themeToggle.ariaLabel = "toggle dark mode";
+    } else {
+      document.documentElement.classList.remove("dark");
+      if (themeToggle) {
+        themeToggle.ariaLabel = "toggle dark mode";
+      }
     }
   }
 </script>
