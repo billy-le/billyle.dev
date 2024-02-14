@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from "./components/ThemeToggle.astro";
 export const navLinks = [
   "Home",
   "Work",
@@ -11,12 +12,13 @@ const centralAngle = 90 / navLinks.length;
 ---
 
 <header
-  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 hover:bg-green-50 sm:block z-[1]"
+  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 hover:bg-green-50 sm:block z-[1]
+  dark:bg-slate-900/80 dark:text-slate-50"
 >
   <nav class="container">
     <ul
       id="nav-links"
-      class="flex justify-end transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100"
+      class="flex items-center justify-end gap-4 transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100"
     >
       {
         navLinks.map((link) => (
@@ -27,14 +29,18 @@ const centralAngle = 90 / navLinks.length;
           </li>
         ))
       }
-      <li class="ml-2">
+
+      <li>
         <a
-          class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2"
+          class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2 dark:bg-slate-700"
           href="/documents/billy_le_resume.pdf"
           target="_blank"
         >
           Resume
         </a>
+      </li>
+      <li>
+        <ThemeToggle />
       </li>
     </ul>
   </nav>
@@ -73,10 +79,34 @@ const centralAngle = 90 / navLinks.length;
   <button
     id="menu-button"
     aria-label="Open Menu"
-    class="fixed top-4 right-4 text-slate-800 z-[1]"
+    class="fixed top-4 right-4 text-slate-800 z-[1] h-8 w-8"
   >
-    <i class="fa-solid fa-bars fa-2x"></i>
-    <i class="fa-solid fa-times fa-2x"></i>
+    <svg
+      class="menu-open-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+    <svg
+      class="menu-close-icon"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M6 18 18 6M6 6l12 12"></path>
+    </svg>
   </button>
 </div>
 
@@ -89,7 +119,7 @@ const centralAngle = 90 / navLinks.length;
   }
 
   #menu-button {
-    .fa-times {
+    .menu-close-icon {
       display: none;
     }
   }
@@ -109,11 +139,11 @@ const centralAngle = 90 / navLinks.length;
       width: 40rem;
 
       ~ #menu-button {
-        .fa-bars {
+        .menu-open-icon {
           display: none;
         }
 
-        .fa-times {
+        .menu-close-icon {
           display: block;
         }
       }
@@ -133,10 +163,12 @@ const centralAngle = 90 / navLinks.length;
       transition: font-weight 0.5s ease;
 
       &:hover {
+        @apply dark:text-slate-800;
+
         font-weight: 800;
 
         &::after {
-          @apply bg-green-300 bg-opacity-50;
+          @apply bg-green-300;
 
           height: 100%;
         }

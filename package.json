@@ -10,25 +10,25 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.0.3",
-    "@astrojs/tailwind": "^5.0.3",
+    "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/tailwind": "^5.1.0",
     "@tailwindcss/typography": "^0.5.10",
-    "@types/node": "^20.10.4",
-    "@types/three": "^0.159.0",
-    "astro": "^4.0.4",
-    "autoprefixer": "^10.4.16",
-    "cssnano": "^6.0.1",
-    "postcss-import": "^15.1.0",
-    "prettier": "^3.1.1",
-    "prettier-plugin-astro": "^0.12.2",
-    "tailwindcss": "^3.3.6",
+    "@types/node": "^20.11.17",
+    "@types/three": "^0.161.2",
+    "astro": "^4.3.7",
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3",
+    "postcss-import": "^16.0.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.0.16",
     "@fontsource/vidaloka": "^5.0.8",
-    "sharp": "^0.33.0",
-    "three": "^0.159.0",
-    "three-globe": "^2.30.0"
+    "sharp": "^0.33.2",
+    "three": "^0.161.0",
+    "three-globe": "^2.30.3"
   }
 }
