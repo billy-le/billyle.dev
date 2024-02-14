@@ -7,12 +7,7 @@ interface Props {
 const { color = "#94a3b8", className = "" } = Astro.props;
 ---
 
-<svg
-  class={className}
-  viewBox="0 0 1440 38"
-  fill="none"
-  xmlns="http://www.w3.org/2000/svg"
->
+<svg viewBox="0 0 1440 38" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g clip-path="url(#clip0)">
     <mask
       id="mask0"
@@ -30,8 +25,9 @@ const { color = "#94a3b8", className = "" } = Astro.props;
         fill="url(#paint0_linear)"></path>
     </mask>
     <g mask="url(#mask0)">
-      <path d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z" fill={color}
-      ></path>
+      <path
+        d="M1446 -0.000244141H-7V169.944H1446V-0.000244141Z"
+        class={className}></path>
     </g>
   </g>
   <defs>
