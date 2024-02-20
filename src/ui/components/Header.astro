@@ -1,13 +1,13 @@
 ---
-import ThemeToggle from "./components/ThemeToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 export const navLinks = [
-  "Home",
-  "Blog",
-  "Work",
-  "About",
-  "Skills",
-  "Projects",
-  "Contact",
+  "home",
+  "blog",
+  "work",
+  "about",
+  "skills",
+  "projects",
+  "contact",
 ];
 const centralAngle = 90 / navLinks.length;
 ---
@@ -25,8 +25,8 @@ const centralAngle = 90 / navLinks.length;
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a class="nav-link" href={`/#${link.toLowerCase()}`}>
-              <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+            <a class="nav-link" href={link === "blog" ? "/blog" : `/#${link}`}>
+              <span class="capitalize px-2 py-1 xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
         ))

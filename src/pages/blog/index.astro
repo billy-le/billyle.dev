@@ -1,14 +1,27 @@
 ---
-import BlogLayout from "@layouts/Blog.astro";
-import Header from "@ui/Header.astro";
-import Footer from "@ui/Footer.astro";
+export interface BlogPost {
+  title: string;
+  pubDate: Date;
+  description: string;
+  author: string;
+  image: { url: string; alt: string };
+  tags: string[];
+}
+
+import Layout from "@layouts/Layout.astro";
+import Header from "@ui/components/Header.astro";
+import Footer from "@ui/components/Footer.astro";
+const allPosts = await Astro.glob<BlogPost>("/src/pages/blog/*.md");
 ---
 
-<BlogLayout
-  title="Billy Le | Personal Site"
-  description="I'm a JavaScript full-stack developer with a focus on front-end development. I mainly work with React and have other technical skills which includes but not limited to Node, and NoSQL Databases. Find out more through my site."
->
+<Layout title="Blog" description="">
   <Header />
-  <main></main>
+  <main class="py-16 h-[4000px]">
+    {
+      allPosts.map((post) => {
+        return <div>{post.frontmatter.title}</div>;
+      })
+    }
+  </main>
   <Footer />
-</BlogLayout>
+</Layout>
