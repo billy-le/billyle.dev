@@ -1,5 +1,5 @@
 ---
-import Mound from "@ui/Mound.astro";
+import Mound from "@ui/components/Mound.astro";
 
 interface Props {
   className?: string;
@@ -57,11 +57,9 @@ const projectsData = [
 const { className = "" } = Astro.props;
 ---
 
-<section class="relative">
-  <div class="w-full absolute bottom-[-1px]">
-    <Mound className="fill-slate-400 dark:fill-slate-900" />
-  </div>
-</section>
+<div class="w-full relative bottom-[-2px]">
+  <Mound className="fill-slate-400 dark:fill-slate-900" />
+</div>
 
 <section id="projects" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">

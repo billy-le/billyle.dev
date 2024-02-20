@@ -1,12 +1,12 @@
 ---
 import "@fontsource-variable/inter";
 import "@fontsource/vidaloka";
+import "@assets/styles/global.css";
 
-export interface Props {
-  title: string;
-  description: string;
-}
-const { title, description } = Astro.props as Props;
+import Header from "@ui/components/Header.astro";
+import Footer from "@ui/components/Footer.astro";
+
+const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,7 +15,7 @@ const { title, description } = Astro.props as Props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={description} />
+    <meta name="description" content="" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -30,9 +30,11 @@ const { title, description } = Astro.props as Props;
 
       gtag("config", "G-7X79K0T33N");
     </script>
-    <title>{title}</title>
+    <title>Blog</title>
   </head>
   <body class="relative min-h-screen dark:bg-slate-800">
+    <Header />
     <slot />
+    <Footer />
   </body>
 </html>

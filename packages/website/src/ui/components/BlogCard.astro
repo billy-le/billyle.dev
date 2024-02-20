@@ -1,16 +1,21 @@
 ---
 interface Props {
   title: string;
-  summary: string;
-  link: string;
+  description: string;
+  image: {
+    url: string;
+    alt: string;
+  };
+  link: string | undefined;
   className?: string;
 }
 
-const { className = "", title, summary, link } = Astro.props;
+const { className = "", title, link } = Astro.props;
 ---
 
-<div class={`p-4 ${className}`}>
-  <h3>{title}</h3>
-  <p>{summary}</p>
-  <p>{link}</p>
+<div class={`isolate relative overflow-hidden h-full ${className}`}>
+  <div class="relative p-10">
+    <h3 class="text-lg">{title}</h3>
+    {link && <a href={link}>{link}</a>}
+  </div>
 </div>

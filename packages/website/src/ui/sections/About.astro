@@ -20,14 +20,16 @@ const { className = "" } = Astro.props;
 <section id="about" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
     <h2 class="text-heading no-js no-js">About.</h2>
-    <div class="relative h-full 2xl:mb-20">
-      <div class="grid gap-8 md:grid-cols-3">
-        <div class="relative mx-auto md:col-span-2">
+    <div class="relative h-full">
+      <div class="grid gap-8 md:grid-cols-5 lg:grid-cols-3">
+        <div
+          class="relative mx-auto md:col-span-3 lg:col-span-2 w-[320px] h-[320px] md:w-[600px] md:h-[600px]"
+        >
           <Picture
             src={blobOffset}
             widths={[320, 640, 768, 1024]}
             format="webp"
-            class="relative w-[320px] h-[320px] md:w-[600px] md:h-[600px] md:-left-20 dark:opacity-15"
+            class="dark:opacity-15"
             alt=""
             aria-hidden="true"
           />
@@ -40,8 +42,16 @@ const { className = "" } = Astro.props;
           />
         </div>
 
-        <div class="p-fade flex flex-col justify-center space-y-6">
-          {about.map((text) => <p class="text-body opacity-0 no-js">{text}</p>)}
+        <div
+          class="p-fade flex flex-col justify-center space-y-6 md:col-span-2 lg:col-span-1"
+        >
+          {
+            about.map((text) => (
+              <p class="text-body opacity-0 no-js mix-blend-difference dark:mix-blend-normal">
+                {text}
+              </p>
+            ))
+          }
         </div>
       </div>
     </div>

@@ -1,0 +1,84 @@
+---
+interface Props {
+  className?: string;
+}
+
+import SvgGrain from "@ui/components/SvgGrain.astro";
+import BlogCard from "@ui/components/BlogCard.astro";
+import { compareDesc } from "date-fns";
+const allPosts = await Astro.glob("/src/pages/blog/*.md");
+
+const configuration = [
+  ["h-80", "h-80"],
+  ["h-48", "h-64", "h-44"],
+  ["h-64", "h-96"],
+];
+
+const mostRecentPosts = allPosts
+  .sort((a, b) => compareDesc(a.frontmatter.pubDate, b.frontmatter.pubDate))
+  .slice(0, 7);
+
+const postsWithConfig = configuration.map((col) => {
+  return col.map((height) => {
+    const post = mostRecentPosts.shift();
+    return { post, height };
+  });
+});
+
+const { className = "" } = Astro.props;
+---
+
+<section id="blog" class={`relative py-8 container ${className}`}>
+  <h2 class="text-heading flex items-center gap-6">
+    Blog.
+    <a
+      href="/blog"
+      aria-label="view blog posts"
+      class="flex items-center group"
+    >
+      <span
+        class="-translate-x-1/2 opacity-0 text-base lg:text-xl text-gray-500 transition-all duration-300 ease-in group-hover:w-auto group-hover:opacity-100 group-hover:translate-x-0 dark:text-gray-300"
+        >View More</span
+      >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="inline h-10 w-10 lg:h-16 lg:w-16 -translate-x-[175%] transition-all duration-300 ease-in group-hover:translate-x-0"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
+          class="stroke-emerald-400"></path>
+      </svg>
+    </a>
+  </h2>
+  <div class="flex gap-4 isolate max-w-screen-2xl mx-auto">
+    {
+      postsWithConfig.map((config) => (
+        <div class="flex-1 space-y-4">
+          {config.map(({ post, height }) => {
+            return (
+              <div
+                class={`${height} isolate relative rounded-lg border-2 border-slate-400/10 bg-slate-50 dark:bg-slate-700 dark:text-white`}
+              >
+                <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+                {post && (
+                  <BlogCard
+                    title={post.frontmatter.title}
+                    description={post.frontmatter.description}
+                    image={post.frontmatter.image}
+                    link={post.url}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ))
+    }
+  </div>
+</section>

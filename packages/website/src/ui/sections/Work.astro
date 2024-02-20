@@ -109,7 +109,7 @@ const { className = "" } = Astro.props;
 
 <section id="work" class={`relative py-8  ${className}`}>
   <h2 class="text-heading container">Work.</h2>
-  <div class="flex flex-col isolate max-w-screen-2xl mx-auto md:flex-row">
+  <div class="flex flex-col isolate max-w-screen-2xl mx-auto lg:flex-row">
     {
       workExp.map((exp) => (
         <div class="work_container">
@@ -147,7 +147,7 @@ const { className = "" } = Astro.props;
     overflow: hidden;
     height: 200px;
 
-    @screen md {
+    @screen lg {
       height: 400px;
       flex-basis: 20%;
       transition: flex-basis 0.5s;
@@ -162,7 +162,7 @@ const { className = "" } = Astro.props;
     }
 
     &:hover {
-      @screen md {
+      @screen lg {
         .work_img_container {
           &::after {
             background-image: none;
@@ -183,7 +183,7 @@ const { className = "" } = Astro.props;
       }
 
       .work_year {
-        @screen md {
+        @screen lg {
           top: 30%;
         }
 
@@ -201,13 +201,13 @@ const { className = "" } = Astro.props;
         height: 100%;
         width: 100%;
 
-        @screen md {
+        @screen lg {
           filter: grayscale(1) blur(0.5px);
           transition: filter 0.5s;
         }
       }
 
-      @screen md {
+      @screen lg {
         &::after {
           @apply bg-gradient-to-tr from-blue-900 to-slate-800;
 
@@ -238,7 +238,7 @@ const { className = "" } = Astro.props;
       text-align: center;
       min-width: 60px;
 
-      @screen md {
+      @screen lg {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -261,7 +261,7 @@ const { className = "" } = Astro.props;
       height: 100%;
       width: 100%;
 
-      @screen md {
+      @screen lg {
         transform: translateY(100%);
         transition: transform 0.5s;
       }
@@ -275,7 +275,7 @@ const { className = "" } = Astro.props;
         height: 100%;
         width: 100%;
 
-        @screen md {
+        @screen lg {
           @apply bg-transparent bg-gradient-to-t from-black;
         }
       }
@@ -288,7 +288,7 @@ const { className = "" } = Astro.props;
         text-align: center;
         top: 1rem;
 
-        @screen md {
+        @screen lg {
           @apply text-xl;
 
           top: 50%;
@@ -306,7 +306,7 @@ const { className = "" } = Astro.props;
         top: 4rem;
         text-align: center;
 
-        @screen md {
+        @screen lg {
           @apply text-sm;
 
           top: 50%;
