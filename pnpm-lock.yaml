@@ -11,6 +11,9 @@ dependencies:
   '@fontsource/vidaloka':
     specifier: ^5.0.8
     version: 5.0.8
+  date-fns:
+    specifier: ^3.3.1
+    version: 3.3.1
   sharp:
     specifier: ^0.33.2
     version: 0.33.2
@@ -1818,6 +1821,10 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       index-array-by: 1.4.1
+    dev: false
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /debug@2.6.9:
