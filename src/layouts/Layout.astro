@@ -35,7 +35,11 @@ const { title, description } = Astro.props as Props;
     </script>
     <title>{title}</title>
   </head>
-  <body class="relative min-h-screen dark:bg-slate-800">
+  <body class="relative font-inter min-h-screen">
+    <div
+      class="bg-gradient-radial from-white to-slate-100 h-full w-full fixed top-0 left-0 dark:from-slate-700 dark:to-slate-900 -z-10"
+    >
+    </div>
     <Header />
     <slot />
     <Footer />
