@@ -6,7 +6,7 @@ import "@assets/styles/global.css";
 import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
 
-const { frontmatter } = Astro.props;
+const { title, description, image } = Astro.props;
 ---
 
 <!doctype html>
@@ -15,7 +15,7 @@ const { frontmatter } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="" />
+    <meta name="description" content={description} />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -30,11 +30,28 @@ const { frontmatter } = Astro.props;
 
       gtag("config", "G-7X79K0T33N");
     </script>
-    <title>Blog</title>
+    <title>Billy Le | {title}</title>
   </head>
-  <body class="relative min-h-screen dark:bg-slate-800">
+  <body class="relative font-inter min-h-screen">
+    <div
+      class="bg-gradient-radial from-white to-slate-100 h-full w-full fixed top-0 left-0 dark:from-slate-700 dark:to-slate-900 -z-10"
+    >
+    </div>
     <Header />
-    <slot />
-    <Footer />
+    <main class="">
+      <div class="sm:h-[512px] overflow-hidden">
+        <img
+          src={image.url}
+          alt={image.alt}
+          class="object-cover max-w-full mx-auto"
+        />
+      </div>
+      <div
+        class="py-8 px-4 prose sm:prose-xl sm:px-0 mx-auto dark:prose-invert"
+      >
+        <slot />
+      </div>
+    </main>
   </body>
+  <Footer />
 </html>

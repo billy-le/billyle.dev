@@ -1,8 +1,8 @@
 ---
-layout: ../../layouts/BlogLayout.astro
-title: "Blog 02"
-pubDate: 2024-02-21
+title: "Setting Up a Virtual Private Server"
+pubDate: 2024-02-22
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor euismod arcu, a elementum felis efficitur et. Donec vitae ultricies augue. Donec elementum rhoncus arcu, vitae mollis dui elementum a. Suspendisse potenti. Integer hendrerit fringilla scelerisque. Fusce eros ex, condimentum sagittis lacus ut, egestas tristique risus. Etiam non orci faucibus, hendrerit mi sed, accumsan ante."
+author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1665355307573-fdf3a2f79a83?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt: "The full Astro logo."
