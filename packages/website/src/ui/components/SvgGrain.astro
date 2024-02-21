@@ -1,7 +1,7 @@
 ---
 interface Props {
-  height?: number;
-  width?: number;
+  height?: number | string;
+  width?: number | string;
   className?: string;
 }
 
@@ -22,6 +22,9 @@ const { className = "", height, width } = Astro.props;
       numOctaves="3"
       stitchTiles="stitch"></feTurbulence>
   </filter>
-
-  <rect width="100%" height="100%" filter={`url(#svg-grain)`}></rect>
+  <rect
+    width="100%"
+    height="100%"
+    filter={`url(#svg-grain)`}
+    class="fill-slate-100 dark:fill-slate-700"></rect>
 </svg>

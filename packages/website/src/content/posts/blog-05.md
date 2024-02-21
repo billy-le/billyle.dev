@@ -1,12 +1,18 @@
 ---
-layout: ../../layouts/BlogLayout.astro
-title: "Blog 01"
-pubDate: 2024-02-20
+title: "Where to Find Assets For Your Website"
+pubDate: 2024-02-14
 description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor euismod arcu, a elementum felis efficitur et. Donec vitae ultricies augue. Donec elementum rhoncus arcu, vitae mollis dui elementum a. Suspendisse potenti. Integer hendrerit fringilla scelerisque. Fusce eros ex, condimentum sagittis lacus ut, egestas tristique risus. Etiam non orci faucibus, hendrerit mi sed, accumsan ante."
+author: "Billy Le"
 image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
-  alt: "The full Astro logo."
+  url: ""
+  alt: ""
+  className: ""
+cardImage:
+  url: "https://cdni.iconscout.com/illustration/free/thumb/free-software-engineer-2043023-1731282.png"
+  alt: "person holding a laptop"
+  className: "absolute -bottom-12 -right-8 h-60 w-60 -z-10"
 tags: ["astro", "blogging", "learning in public"]
+draft: true
 ---
 
 # My First Blog Post

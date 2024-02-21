@@ -1,21 +1,118 @@
 ---
 interface Props {
-  title: string;
-  description: string;
-  image: {
-    url: string;
-    alt: string;
-  };
-  link: string | undefined;
-  className?: string;
+  post?: undefined | Record<string, any>;
+  link?: string | undefined;
+  height?: string;
+  className?: string | undefined;
+  position: number;
 }
+import { Image } from "astro:assets";
+import SvgGrain from "./SvgGrain.astro";
+import { twMerge } from "tailwind-merge";
+import alligatorBalloons from "@assets/images/alligator_balloons.png";
+import camera from "@assets/images/camera.png";
+import dogFeeding from "@assets/images/dog_feeding.png";
+import happyCloud from "@assets/images/happy_cloud.png";
+import markerPin from "@assets/images/marker_pin.png";
+import trainCommute from "@assets/images/train_commute.png";
+import coding from "@assets/images/coding.png";
+import type { ImageMetadata } from "astro";
 
-const { className = "", title, link } = Astro.props;
+const imageMap: Record<
+  number,
+  { src: ImageMetadata; alt: string; className: string }
+> = {
+  0: {
+    src: alligatorBalloons,
+    alt: "balloons attached to an alligator",
+    className:
+      "h-[300px] w-[300px] absolute -top-20 -right-10 pointer-events-none",
+  },
+  1: {
+    src: camera,
+    alt: "camera",
+    className: "h-[200px] w-[200px] absolute top-1/2 -left-1/4",
+  },
+  2: {
+    src: dogFeeding,
+    alt: "dog being fed",
+    className: "h-[200px] w-[200px] absolute -top-[150px] right-0",
+  },
+  3: {
+    src: happyCloud,
+    alt: "a smiling cloud against a sun",
+    className: "h-[256px] w-[256px] absolute -bottom-12 -left-20",
+  },
+  4: {
+    src: markerPin,
+    alt: "a map of islands with a pin in the center",
+    className: "h-[200px] w-[200px] absolute top-[100px] right-0",
+  },
+  5: {
+    src: trainCommute,
+    alt: "a boy looking at his phone while commuting on a train",
+    className:
+      "h-[200px] w-[200px] absolute -bottom-6 left-1/2 -translate-x-1/2",
+  },
+  6: {
+    src: coding,
+    alt: "a person coding with 1's ans 0's on the screen",
+    className: "h-[200px] w-[200px] absolute -bottom-4 -right-10",
+  },
+};
+
+const { className = "", post, height, link, position } = Astro.props;
 ---
 
-<div class={`isolate relative overflow-hidden h-full ${className}`}>
-  <div class="relative p-10">
-    <h3 class="text-lg">{title}</h3>
-    {link && <a href={link}>{link}</a>}
+<div
+  class={`${height} isolate relative rounded-lg border-2 border-slate-200 bg-slate-50 
+              dark:bg-slate-600 dark:border-slate-950/10 dark:text-white
+              after:content-[""] after:absolute after:top-0 after:left-0 after:h-full
+              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded
+              `}
+>
+  <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+  <div class="absolute top-0 left-0 h-full w-full">
+    {
+      position != undefined && (
+        <Image
+          src={imageMap[position]!["src"]}
+          alt={imageMap[position]!["alt"]}
+          class={`h-40 w-40 ${imageMap[position]!["className"]}`}
+        />
+      )
+    }
   </div>
+  {
+    post && (
+      <div class={twMerge("relative h-full overflow-hidden", className)}>
+        <div class="p-5 h-full sm:p-10">
+          <h3 class="text-lg sm:text-xl xl:text-2xl line-clamp-2 font-semibold text-slate-700 dark:text-slate-100">
+            {post.title}
+          </h3>
+          {link && (
+            <a
+              href={link}
+              class="text-blue-400 absolute bottom-5 right-5 sm:bottom-5 sm:right-5 dark:text-blue-500 transition-transform duration-100 ease-linear hover:scale-110"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-10 h-10 inline-block fill-blue-300/40 dark:fill-blue-600/40"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    )
+  }
 </div>

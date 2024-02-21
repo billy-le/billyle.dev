@@ -13,9 +13,8 @@ const centralAngle = 90 / navLinks.length;
 ---
 
 <header
-  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 hover:bg-green-50 sm:block z-[1]
+  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/70 hover:bg-green-50 lg:block z-[1]
   dark:bg-slate-900/80 dark:text-slate-50"
-  transition:persist
 >
   <nav class="container">
     <ul
@@ -34,7 +33,7 @@ const centralAngle = 90 / navLinks.length;
 
       <li>
         <a
-          class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2 dark:bg-slate-700"
+          class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
           href="/documents/billy_le_resume.pdf"
           target="_blank"
         >
@@ -48,7 +47,7 @@ const centralAngle = 90 / navLinks.length;
   </nav>
 </header>
 
-<div class="sm:hidden">
+<div class="lg:hidden">
   <div class="p-4 fixed top-0 left-0 z-10">
     <ThemeToggle />
   </div>
@@ -69,7 +68,7 @@ const centralAngle = 90 / navLinks.length;
               >
                 <a
                   href={`/#${link.toLowerCase()}`}
-                  class="absolute"
+                  class="absolute capitalize"
                   style={`transform: rotate(0deg) skew(${skew}deg) translateY(30px)`}
                 >
                   <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
@@ -117,8 +116,9 @@ const centralAngle = 90 / navLinks.length;
 
 <style>
   a {
+    @apply font-inter;
+
     letter-spacing: -1px;
-    font-family: "Inter Variable", sans-serif;
     font-size: clamp(1.15rem, 1vw, 2rem);
     font-weight: 400;
   }
@@ -161,8 +161,9 @@ const centralAngle = 90 / navLinks.length;
 
   @media screen and (min-width: 640px) {
     .nav-link {
+      @apply font-inter;
+
       letter-spacing: -1px;
-      font-family: "Inter Variable", sans-serif;
       font-size: clamp(1.15rem, 1vw, 2rem);
       font-weight: 400;
       transition: font-weight 0.5s ease;
