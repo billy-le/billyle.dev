@@ -6,7 +6,7 @@ interface Props {
   className?: string | undefined;
   position: number;
 }
-import { Image } from "astro:assets";
+import { Image, Picture } from "astro:assets";
 import SvgGrain from "./SvgGrain.astro";
 import { twMerge } from "tailwind-merge";
 import alligatorBalloons from "@assets/images/alligator_balloons.png";
@@ -26,39 +26,51 @@ const imageMap: Record<
     src: alligatorBalloons,
     alt: "balloons attached to an alligator",
     className:
-      "h-[300px] w-[300px] absolute -top-20 -right-10 pointer-events-none",
+      "h-40 w-40 -top-32 -right-10 sm:top-20 xl:h-64 xl:w-64 xl:top-0 xl:-right-12",
   },
   1: {
     src: camera,
     alt: "camera",
-    className: "h-[200px] w-[200px] absolute top-1/2 -left-1/4",
+    className:
+      "h-24 w-24 -bottom-8 -left-8 xl:h-48 xl:w-48 xl:-bottom-10 xl:-left-20",
   },
   2: {
     src: dogFeeding,
     alt: "dog being fed",
-    className: "h-[200px] w-[200px] absolute -top-[150px] right-0",
+    className:
+      "h-24 w-24 -top-12 -right-6 sm:bottom-auto sm:-top-24 xl:h-48 xl:w-48 xl:-top-[150px] xl:right-0",
   },
   3: {
     src: happyCloud,
     alt: "a smiling cloud against a sun",
-    className: "h-[256px] w-[256px] absolute -bottom-12 -left-20",
+    className:
+      "h-28 w-28 -bottom-16 left-1/4 sm:bottom-auto sm:top-1/2 sm:-left-12 xl:h-64 xl:w-64 xl:top-auto xl:-bottom-12 xl:-left-20",
   },
   4: {
     src: markerPin,
     alt: "a map of islands with a pin in the center",
-    className: "h-[200px] w-[200px] absolute top-[100px] right-0",
+    className:
+      "h-32 w-32 sm:-bottom-10 sm:-right-8 xl:h-48 xl:w-48 xl:bottom-auto xl:top-[100px] xl:right-10",
   },
   5: {
     src: trainCommute,
     alt: "a boy looking at his phone while commuting on a train",
     className:
-      "h-[200px] w-[200px] absolute -bottom-6 left-1/2 -translate-x-1/2",
+      "h-32 w-32 -bottom-4 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 xl:-bottom-12",
   },
   6: {
     src: coding,
     alt: "a person coding with 1's ans 0's on the screen",
-    className: "h-[200px] w-[200px] absolute -bottom-4 -right-10",
+    className:
+      "h-32 w-32 top-1/2 -translate-y-1/2 -right-8 xl:h-56 xl:w-56 xl:top-auto xl:translate-y-0 xl:bottom-20 xl:-right-20",
   },
+};
+
+const blogCardMask: astroHTML.JSX.CSSProperties = {
+  maskImage: `url("/images/blog-card-mask.svg")`,
+  maskMode: "luminance",
+  maskSize: "cover",
+  maskComposite: "add",
 };
 
 const { className = "", post, height, link, position } = Astro.props;
@@ -68,7 +80,7 @@ const { className = "", post, height, link, position } = Astro.props;
   class={`${height} isolate relative rounded-lg border-2 border-slate-200 bg-slate-50 
               dark:bg-slate-600 dark:border-slate-950/10 dark:text-white
               after:content-[""] after:absolute after:top-0 after:left-0 after:h-full
-              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded
+              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded-lg
               `}
 >
   <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
@@ -78,22 +90,35 @@ const { className = "", post, height, link, position } = Astro.props;
         <Image
           src={imageMap[position]!["src"]}
           alt={imageMap[position]!["alt"]}
-          class={`h-40 w-40 ${imageMap[position]!["className"]}`}
+          class={`pointer-events-none absolute ${imageMap[position]!["className"]}`}
         />
       )
     }
   </div>
   {
-    post && (
+    post ? (
       <div class={twMerge("relative h-full overflow-hidden", className)}>
+        {post.image.url && (
+          <Picture
+            src={post.image.url}
+            alt={post.image.alt}
+            widths={[256]}
+            sizes="256px"
+            height={256}
+            width={256}
+            class="absolute h-full w-full object-cover -z-10 rounded-lg"
+            style={blogCardMask}
+          />
+        )}
         <div class="p-5 h-full sm:p-10">
-          <h3 class="text-lg sm:text-xl xl:text-2xl line-clamp-2 font-semibold text-slate-700 dark:text-slate-100">
+          <h3 class="text-lg sm:text-xl xl:text-2xl line-clamp-2 font-semibold text-gray-600 dark:text-gray-100 max-w-xs">
             {post.title}
           </h3>
           {link && (
             <a
+              data-astro-prefetch
               href={link}
-              class="text-blue-400 absolute bottom-5 right-5 sm:bottom-5 sm:right-5 dark:text-blue-500 transition-transform duration-100 ease-linear hover:scale-110"
+              class="text-blue-500 absolute bottom-5 right-5 sm:bottom-5 sm:right-5 transition-transform duration-100 ease-linear hover:scale-110 z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +126,7 @@ const { className = "", post, height, link, position } = Astro.props;
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="currentColor"
-                class="w-10 h-10 inline-block fill-blue-300/40 dark:fill-blue-600/40"
+                class="w-12 h-12 inline-block fill-blue-300/40 dark:fill-blue-700/40"
               >
                 <path
                   stroke-linecap="round"
@@ -113,6 +138,11 @@ const { className = "", post, height, link, position } = Astro.props;
           )}
         </div>
       </div>
+    ) : (
+      <div
+        class="absolute h-full w-full object-cover -z-10 rounded-lg bg-gray-400"
+        style={blogCardMask}
+      />
     )
   }
 </div>

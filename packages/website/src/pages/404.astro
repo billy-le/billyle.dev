@@ -2,16 +2,13 @@
 import { Image } from "astro:assets";
 
 import Layout from "@layouts/Layout.astro";
-import Header from "@ui/components/Header.astro";
-import Footer from "@ui/components/Footer.astro";
 
 import person404 from "@assets/images/404_person.svg";
 import landscape404 from "@assets/images/404_landscape.svg";
 ---
 
 <Layout title="Billy Le | Not Found" description="Not Found">
-  <Header />
-  <main class="min-h-[580px] md:min-h-[768px] grid place-items-center">
+  <div class="min-h-[580px] md:min-h-[768px] grid place-items-center">
     <div class="space-y-4">
       <h2 class="text-5xl text-slate-800 dark:text-emerald-300">Oh no!</h2>
       <p class="text-gray-600 dark:text-gray-300">
@@ -35,6 +32,5 @@ import landscape404 from "@assets/images/404_landscape.svg";
         </h4>
       </div>
     </div>
-  </main>
-  <Footer />
+  </div>
 </Layout>

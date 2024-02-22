@@ -13,8 +13,8 @@ const centralAngle = 90 / navLinks.length;
 ---
 
 <header
-  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/70 hover:bg-green-50 lg:block z-[1]
-  dark:bg-slate-900/80 dark:text-slate-50"
+  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 backdrop-blur-sm lg:block z-[1]
+  dark:bg-slate-900/50 dark:text-slate-50"
 >
   <nav class="container">
     <ul
@@ -24,7 +24,11 @@ const centralAngle = 90 / navLinks.length;
       {
         navLinks.map((link) => (
           <li class="relative">
-            <a class="nav-link" href={link === "blog" ? "/blog" : `/#${link}`}>
+            <a
+              data-astro-prefetch
+              class="nav-link"
+              href={link === "blog" ? "/blog" : `/#${link}`}
+            >
               <span class="capitalize px-2 py-1 xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
@@ -33,6 +37,7 @@ const centralAngle = 90 / navLinks.length;
 
       <li>
         <a
+          data-astro-prefetch
           class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
           href="/documents/billy_le_resume.pdf"
           target="_blank"
@@ -67,11 +72,14 @@ const centralAngle = 90 / navLinks.length;
                 style={`transform: rotate(-${angle}deg) skew(-${skew}deg); transform-origin: top right`}
               >
                 <a
-                  href={`/#${link.toLowerCase()}`}
+                  data-astro-prefetch
+                  href={link === "blog" ? "/blog" : `/#${link.toLowerCase()}`}
                   class="absolute capitalize"
                   style={`transform: rotate(0deg) skew(${skew}deg) translateY(30px)`}
                 >
-                  <span class="px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+                  <span data-menu-link={link} class="px-2 py-1 xl:px-4 xl:py-2">
+                    {link}
+                  </span>
                 </a>
               </li>
             );
@@ -257,6 +265,14 @@ const centralAngle = 90 / navLinks.length;
     menuMobile.classList.toggle("open");
     const isOpen = menuMobile.classList.contains("open");
     menuButton.ariaLabel = `${isOpen ? "Close" : "Open"} Menu`;
+  });
+
+  menuMobile.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.dataset["menuLink"]) {
+      menuMobile.classList.remove("open");
+      menuButton.ariaLabel = "Close";
+    }
   });
 
   header.addEventListener("mouseover", () => {
