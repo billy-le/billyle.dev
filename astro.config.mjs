@@ -7,4 +7,5 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: "https://billyle.dev",
   integrations: [tailwind(), sitemap()],
+  prefetch: true,
 });
