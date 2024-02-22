@@ -3,10 +3,9 @@ interface Props {
   className?: string;
 }
 
-import { getCollection } from "astro:content";
-import BlogCard from "@ui/components/BlogCard.astro";
 import { compareDesc } from "date-fns";
-const allPosts = await getCollection("posts");
+import { allPosts } from "@utils/getCollection";
+import BlogCard from "@ui/components/BlogCard.astro";
 
 const configuration = [
   ["h-80", "h-80"],
@@ -35,6 +34,7 @@ const { className = "" } = Astro.props;
     <h2 class="text-heading flex items-center gap-6">
       Blog.
       <a
+        data-astro-prefetch
         href="/blog"
         aria-label="view blog posts"
         class="flex items-center group"
