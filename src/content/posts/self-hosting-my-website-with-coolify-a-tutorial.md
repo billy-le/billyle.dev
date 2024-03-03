@@ -233,7 +233,9 @@ Then it will ask you to select a Destination. Just choose the only option which 
 
 ![coolify onboarding - server page](../../../public/images/blog/self-hosting/coolify-resource-destination.png)
 
-And lastly, it will ask you for the URL for the public repository. Find that and paste it into the field. It will get the meta data from the git repo and should populate all the necessary details. Remember to toggle the "Is it a static site" toggle if it applies to you.
+And lastly, it will ask you for the URL for the public repository. Find that and paste it into the field. It will get the meta data from the git repo and should populate all the necessary details.
+
+The important part here is the Publish Directory where the build output will be. Also toggle the "Is it a static site" toggle if it applies to you.
 
 ![coolify onboarding - server page](../../../public/images/blog/self-hosting/coolify-source-repo.png)
 
@@ -253,7 +255,7 @@ And tada! I can see my own site being served by Coolify on Hetzner.
 
 ![coolify onboarding - server page](../../../public/images/blog/self-hosting/coolify-app-website.png)
 
-Keep your Coolify page open for the next part as we still need to tinker with it.
+Keep your Coolify page open for the next part as we still need to tinker with it later.
 
 ## Proxy domain from Cloudflare to Coolify
 
