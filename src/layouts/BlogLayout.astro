@@ -21,6 +21,21 @@ const { title, description, image } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+
+    <!-- Open Graph tags -->
+    <meta property="og:site_name" content="Billy Le" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image.url} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="article:publisher" content="https://billyle.dev" />
+    <meta property="article:section" content="Coding" />
+    <meta property="article:tag" content="Coding" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content={image.url} />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
@@ -59,6 +74,7 @@ const { title, description, image } = Astro.props;
 
       <article
         class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
+        prose-code:before:hidden prose-code:after:hidden
         sm:prose-lg lg:prose-xl xl:prose-2xl
         `}
       >
@@ -67,4 +83,11 @@ const { title, description, image } = Astro.props;
     </main>
   </body>
   <Footer />
+  <style is:global>
+    code:not(pre code) {
+      @apply rounded-md p-2 !font-normal !text-blue-400;
+
+      background-color: #24292e;
+    }
+  </style>
 </html>
