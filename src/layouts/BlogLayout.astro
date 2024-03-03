@@ -9,7 +9,7 @@ import BackdropRadial from "@ui/components/BackdropRadial.astro";
 import { Picture } from "astro:assets";
 
 const defaultPicture =
-  "https://images.unsplash.com/photo-1620613908146-bb9a8bbb7eca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGFzaWFufGVufDB8fDB8fHww";
+  "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 const { title, description, image } = Astro.props;
 ---
@@ -42,13 +42,15 @@ const { title, description, image } = Astro.props;
     <main class="relative min-h-screen">
       <BackdropRadial />
       <section
-        class="relative max-w-7xl mx-auto h-96 -z-10
+        class="relative mx-auto max-w-7xl h-32 sm:h-[320px] -z-10
         border-b-4 border-emerald-400 border-solid
         after:content-[''] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20"
       >
         <Picture
           src={image.url || defaultPicture}
-          alt={image.alt || "Philippines"}
+          alt={image.alt || "aerial view of waves crashing onto a beach"}
+          sizes={"256px"}
+          widths={[256]}
           height={192}
           width={192}
           class="object-cover w-full h-full"
@@ -56,8 +58,8 @@ const { title, description, image } = Astro.props;
       </section>
 
       <article
-        class={`py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
-        sm:prose-lg lg:prose-xl
+        class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
+        sm:prose-lg lg:prose-xl xl:prose-2xl
         `}
       >
         <slot />

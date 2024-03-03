@@ -26,7 +26,7 @@ const imageMap: Record<
     src: alligatorBalloons,
     alt: "balloons attached to an alligator",
     className:
-      "h-40 w-40 -top-32 -right-10 sm:top-20 xl:h-64 xl:w-64 xl:top-0 xl:-right-12",
+      "h-40 w-40 -top-32 -right-10 sm:top-20 xl:h-64 xl:w-64 xl:top-0 xl:-right-24",
   },
   1: {
     src: camera,
@@ -38,7 +38,7 @@ const imageMap: Record<
     src: dogFeeding,
     alt: "dog being fed",
     className:
-      "h-24 w-24 -top-12 -right-6 sm:bottom-auto sm:-top-24 xl:h-48 xl:w-48 xl:-top-[150px] xl:right-0",
+      "h-24 w-24 -top-12 -right-6 sm:-top-20 xl:h-48 xl:w-48 xl:-top-[150px] xl:right-0",
   },
   3: {
     src: happyCloud,
@@ -110,8 +110,8 @@ const { className = "", post, height, link, position } = Astro.props;
             style={blogCardMask}
           />
         )}
-        <div class="p-5 h-full sm:p-10">
-          <h3 class="text-lg sm:text-xl xl:text-2xl line-clamp-2 font-semibold text-gray-600 dark:text-gray-100 max-w-xs">
+        <div class="p-5 h-full lg:p-10">
+          <h3 class="text-lg lg:text-xl xl:text-2xl line-clamp-2 font-semibold text-gray-600 dark:text-gray-100 max-w-xs">
             {post.title}
           </h3>
           {link && (
