@@ -3,7 +3,7 @@ import tailwind from "@astrojs/tailwind";
 
 import sitemap from "@astrojs/sitemap";
 
-// https://astro.build/config
+/** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
   site: "https://billyle.dev",
   integrations: [tailwind(), sitemap()],
