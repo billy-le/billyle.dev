@@ -11,9 +11,6 @@ dependencies:
   '@fontsource/vidaloka':
     specifier: ^5.0.8
     version: 5.0.8
-  astro-robots-txt:
-    specifier: ^1.0.0
-    version: 1.0.0
   date-fns:
     specifier: ^3.3.1
     version: 3.3.1
@@ -46,6 +43,9 @@ devDependencies:
   astro:
     specifier: ^4.3.7
     version: 4.3.7(@types/node@20.11.17)(typescript@5.3.3)
+  astro-robots-txt:
+    specifier: ^1.0.0
+    version: 1.0.0
   autoprefixer:
     specifier: ^10.4.17
     version: 10.4.17(postcss@8.4.35)
@@ -1213,7 +1213,7 @@ packages:
     dependencies:
       valid-filename: 4.0.0
       zod: 3.22.4
-    dev: false
+    dev: true
 
   /astro@4.3.7(@types/node@20.11.17)(typescript@5.3.3):
     resolution: {integrity: sha512-spdl+Ae6WZjQ0w8VBPq8ulN1hdN0m4EWvKG7ecgHjPQIHidMnzWJoZLEFEeKASqCGB1fDibqr7RDHoHkhZbp2Q==}
@@ -2147,7 +2147,7 @@ packages:
   /filename-reserved-regex@3.0.0:
     resolution: {integrity: sha512-hn4cQfU6GOT/7cFHXBqeBg2TbrMBgdD0kcjLhvSQYYwm3s4B6cjvBfb7nBALJLAXqmU5xajSa7X2NnUud/VCdw==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
+    dev: true
 
   /fill-range@7.0.1:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
@@ -4830,7 +4830,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       filename-reserved-regex: 3.0.0
-    dev: false
+    dev: true
 
   /vfile-location@5.0.2:
     resolution: {integrity: sha512-NXPYyxyBSH7zB5U6+3uDdd6Nybz6o6/od9rk8bp9H8GR3L+cm/fC0uUTbqBmUTnMCUDslAGBOIKNfvvb+gGlDg==}
@@ -5016,6 +5016,7 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
+    dev: true
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}

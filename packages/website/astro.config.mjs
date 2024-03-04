@@ -8,4 +8,7 @@ export default defineConfig({
   site: "https://billyle.dev",
   integrations: [tailwind(), sitemap(), robotsTxt()],
   prefetch: true,
+  redirects: {
+    "/posts": "/blog",
+  },
 });
