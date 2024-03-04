@@ -1,6 +1,11 @@
 ---
 import "@fontsource-variable/inter";
 import "@fontsource/vidaloka";
+import "@assets/styles/global.css";
+
+import Header from "@ui/components/Header.astro";
+import Footer from "@ui/components/Footer.astro";
+import BackdropRadial from "@ui/components/BackdropRadial.astro";
 
 export interface Props {
   title: string;
@@ -19,7 +24,6 @@ const { title, description } = Astro.props as Props;
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <title>{title}</title>
     <script defer src="https://www.googletagmanager.com/gtag/js?id=G-7X79K0T33N"
     ></script>
     <script defer>
@@ -31,77 +35,15 @@ const { title, description } = Astro.props as Props;
 
       gtag("config", "G-7X79K0T33N");
     </script>
+    <title>{title}</title>
   </head>
-  <body class="relative min-h-screen dark:bg-slate-800">
-    <slot />
-
-    <style is:global>
-      html {
-        @font-face {
-          font-family: "SpaceAndriodsItalic";
-          src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
-          font-weight: normal;
-          font-style: normal;
-          font-display: swap;
-        }
-
-        scroll-behavior: smooth;
-        font-family: "Inter Variable", sans-serif;
-
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      .text-heading {
-        @apply text-slate-800 opacity-0 mb-4 dark:text-white;
-
-        font-size: clamp(2rem, 5vw, 5rem);
-        font-family: "Vidaloka", sans-serif;
-      }
-
-      .text-body {
-        @apply text-gray-500 dark:text-gray-300;
-
-        opacity: 0;
-        font-size: clamp(1rem, 2vw, 1.5rem);
-      }
-
-      .link-hover {
-        position: relative;
-        width: max-content;
-
-        &::after {
-          display: block;
-          content: "";
-          position: absolute;
-          bottom: -0.1em;
-          height: 2px;
-          width: 0;
-          transition: width 0.2s ease-in;
-
-          @apply bg-gradient-to-r from-green-300 to-green-400;
-        }
-
-        &:hover::after {
-          width: 100%;
-        }
-      }
-
-      .no-js {
-        opacity: 1;
-      }
-
-      @keyframes text-fade-in {
-        0% {
-          opacity: 0;
-          transform: translateY(100%);
-        }
-        100% {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
+  <body class="relative font-inter">
+    <Header />
+    <main class="relative min-h-screen overflow-x-hidden">
+      <BackdropRadial />
+      <slot />
+    </main>
+    <Footer />
     <script>
       const noJs = document.querySelectorAll(".no-js");
       for (const el of noJs) {

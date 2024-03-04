@@ -1,0 +1,94 @@
+---
+import "@fontsource-variable/inter";
+import "@fontsource/vidaloka";
+import "@assets/styles/global.css";
+
+import Header from "@ui/components/Header.astro";
+import Footer from "@ui/components/Footer.astro";
+import BackdropRadial from "@ui/components/BackdropRadial.astro";
+import { Picture } from "astro:assets";
+
+const defaultPicture =
+  "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+const { title, description, image } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph tags -->
+    <meta property="og:site_name" content="Billy Le" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image.url} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="article:publisher" content="https://billyle.dev" />
+    <meta property="article:section" content="Coding" />
+    <meta property="article:tag" content="Coding" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content={image.url} />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-7X79K0T33N"
+    ></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7X79K0T33N");
+    </script>
+    <title>Billy Le | {title}</title>
+  </head>
+  <body class="relative font-inter">
+    <Header />
+    <main class="relative min-h-screen">
+      <BackdropRadial />
+      <section
+        class="relative mx-auto max-w-7xl h-32 sm:h-[320px] -z-10
+        border-b-4 border-emerald-400 border-solid
+        after:content-[''] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20"
+      >
+        <Picture
+          src={image.url || defaultPicture}
+          alt={image.alt || "aerial view of waves crashing onto a beach"}
+          sizes={"256px"}
+          widths={[256]}
+          height={192}
+          width={192}
+          class="object-cover w-full h-full"
+        />
+      </section>
+
+      <article
+        class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
+        prose-code:before:hidden prose-code:after:hidden
+        sm:prose-lg lg:prose-xl xl:prose-2xl
+        `}
+      >
+        <h1>{title}</h1>
+        <slot />
+      </article>
+    </main>
+  </body>
+  <Footer />
+  <style is:global>
+    code:not(pre code) {
+      @apply rounded-md p-2 !font-normal !text-blue-400;
+
+      background-color: #24292e;
+    }
+  </style>
+</html>

@@ -1,0 +1,94 @@
+---
+interface Props {
+  className?: string;
+}
+
+import { compareDesc } from "date-fns";
+import { allPosts } from "@utils/getCollection";
+import BlogCard from "@ui/components/BlogCard.astro";
+
+const configuration = [
+  ["h-80", "h-80"],
+  ["h-48", "h-64", "h-44"],
+  ["h-64", "h-96"],
+];
+
+const configPosition = configuration.flat().map((_, i) => i);
+
+const mostRecentPosts = allPosts
+  .sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate))
+  .slice(0, 7);
+
+const postsWithConfig = configuration.map((col) => {
+  return col.map((height) => {
+    const post = mostRecentPosts.shift();
+    return { post, height };
+  });
+});
+
+const { className = "" } = Astro.props;
+---
+
+<section id="blog" class={`relative ${className}`}>
+  <div class="container py-8">
+    <h2 class="text-heading flex items-center gap-6">
+      Blog.
+      <a
+        data-astro-prefetch
+        href="/blog"
+        aria-label="view blog posts"
+        class="flex items-center group"
+      >
+        <span
+          class="-translate-x-1/2 opacity-0 text-base lg:text-xl text-gray-500 transition-all duration-300 ease-in group-hover:w-auto group-hover:opacity-100 group-hover:translate-x-0 dark:text-gray-300"
+          >View More</span
+        >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="inline h-10 w-10 lg:h-16 lg:w-16 -translate-x-[175%] transition-all duration-300 ease-in group-hover:translate-x-0"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
+            class="stroke-emerald-400"></path>
+        </svg>
+      </a>
+    </h2>
+    <div class="hidden gap-4 isolate max-w-screen-2xl mx-auto sm:flex">
+      {
+        postsWithConfig.map((config) => (
+          <div class="flex-1 flex-shrink space-y-4">
+            {config.map(({ post, height }) => (
+              <BlogCard
+                {height}
+                link={"/posts/" + post?.slug}
+                post={post?.data}
+                position={configPosition.shift()!}
+              />
+            ))}
+          </div>
+        ))
+      }
+    </div>
+    <div class="flex flex-col gap-4 sm:hidden">
+      {
+        postsWithConfig
+          .flat()
+          .slice(0, 4)
+          .map(({ post }, i) => (
+            <BlogCard
+              link={post?.slug}
+              post={post?.data}
+              height="h-36"
+              position={i}
+            />
+          ))
+      }
+    </div>
+  </div>
+</section>

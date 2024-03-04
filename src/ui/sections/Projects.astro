@@ -1,5 +1,6 @@
 ---
-import Mound from "@ui/Mound.astro";
+import Mound from "@ui/components/Mound.astro";
+import SvgGrain from "@ui/components/SvgGrain.astro";
 
 interface Props {
   className?: string;
@@ -57,11 +58,9 @@ const projectsData = [
 const { className = "" } = Astro.props;
 ---
 
-<section class="relative">
-  <div class="w-full absolute bottom-[-1px]">
-    <Mound className="fill-slate-400 dark:fill-slate-900" />
-  </div>
-</section>
+<div class="w-full relative bottom-[-2px]">
+  <Mound className="fill-slate-400 dark:fill-slate-900" />
+</div>
 
 <section id="projects" class={`relative ${className}`}>
   <div class="container h-full flex flex-col py-8">
@@ -69,8 +68,12 @@ const { className = "" } = Astro.props;
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {
         projectsData.map(({ name, description, link, sourceCode, tags }) => (
-          <div class="w-full bg-slate-100 rounded-lg shadow p-8 flex flex-col gap-4 dark:bg-slate-800">
-            <div class="h-full space-y-3">
+          <div
+            class="relative w-full overflow-hidden bg-slate-100 rounded-lg shadow p-8 flex flex-col gap-4 border-2 border-slate-950/10
+          dark:bg-slate-800"
+          >
+            <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+            <div class="relative h-full space-y-3">
               <div class="flex justify-between">
                 <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
                   {name}
