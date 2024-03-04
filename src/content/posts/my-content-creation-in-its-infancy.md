@@ -8,7 +8,7 @@ image:
   alt: "aerial view of highway crossings"
   className: ""
 tags: ["blogging", "content creation"]
-draft: true
+draft: false
 ---
 
 After years of procrastination and hesitation, my blog is _finally_ online. It's been a long time coming ever since I began to learn how to code in 2015.
