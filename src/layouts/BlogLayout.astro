@@ -29,7 +29,7 @@ const dynamicOG = encodeURIComponent(
     <meta property="og:site_name" content="Billy Le" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={dynamicOG} />
+    <meta property="og:image" content={image.url} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
@@ -39,7 +39,7 @@ const dynamicOG = encodeURIComponent(
     <meta property="article:tag" content="Coding" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:image" content={dynamicOG} />
+    <meta property="twitter:image" content={image.url} />
     <meta property="twitter:domain" content="billyle.dev" />
     <meta property="twitter:url" content={Astro.url.href} />
     <meta name="twitter:title" content={title} />
