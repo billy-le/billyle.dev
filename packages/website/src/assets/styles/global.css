@@ -1,0 +1,68 @@
+:root {
+  --inter: "Inter Variable", sans-serif;
+  --vidaloka: "Vidaloka", sans-serif;
+  --space-android: "SpaceAndriodsItalic", system-ui, sans-serif;
+}
+
+html {
+  @font-face {
+    font-family: "SpaceAndriodsItalic";
+    src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.text-heading {
+  @apply font-vidaloka text-slate-800 opacity-0 mb-4 dark:text-white;
+
+  font-size: clamp(2rem, 5vw, 5rem);
+}
+
+.text-body {
+  @apply text-gray-500 dark:text-gray-300;
+
+  opacity: 0;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.link-hover {
+  position: relative;
+  width: max-content;
+
+  &::after {
+    display: block;
+    content: "";
+    position: absolute;
+    bottom: -0.1em;
+    height: 2px;
+    width: 0;
+    transition: width 0.2s ease-in;
+
+    @apply bg-gradient-to-r from-green-300 to-green-400;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+.no-js {
+  opacity: 1;
+}
+
+@keyframes text-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,27 +1,23 @@
 ---
 import Layout from "@layouts/Layout.astro";
-import Header from "@ui/Header.astro";
-import Home from "@ui/Home.astro";
-import Work from "@ui/Work.astro";
-import Skills from "@ui/Skills.astro";
-import Projects from "@ui/Projects.astro";
-import About from "@ui/About.astro";
-import Contact from "@ui/Contact.astro";
-import Footer from "@ui/Footer.astro";
+import Home from "@ui/sections/Home.astro";
+import Blog from "@ui/sections/Blog.astro";
+import Work from "@ui/sections/Work.astro";
+import Skills from "@ui/sections/Skills.astro";
+import Projects from "@ui/sections/Projects.astro";
+import About from "@ui/sections/About.astro";
+import Contact from "@ui/sections/Contact.astro";
 ---
 
 <Layout
   title="Billy Le | Personal Site"
   description="I'm a JavaScript full-stack developer with a focus on front-end development. I mainly work with React and have other technical skills which includes but not limited to Node, and NoSQL Databases. Find out more through my site."
 >
-  <Header />
-  <main>
-    <Home className="min-h-[580px] md:min-h-screen" />
-    <Work />
-    <About className="md:min-h-screen" />
-    <Skills className="md:min-h-[640px]" />
-    <Projects className="md:min-h-[640px] bg-slate-400 dark:bg-slate-900" />
-    <Contact className="md:min-h-[640px]" />
-  </main>
-  <Footer />
+  <Home className="min-h-[580px] md:min-h-[600px] xl:min-h-[800px]" />
+  <Blog className="md:min-h-[640px]" />
+  <Work />
+  <About className="md:min-h-[600px] xl:min-h-[800px]" />
+  <Skills className="md:min-h-[640px]" />
+  <Projects className="md:min-h-[640px] bg-slate-400 dark:bg-slate-900" />
+  <Contact className="md:min-h-[640px]" />
 </Layout>

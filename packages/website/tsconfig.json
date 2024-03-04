@@ -13,6 +13,8 @@
     "noEmit": true,
     // Enable strict type checking.
     "strict": true,
+    "alwaysStrict": true,
+    "strictNullChecks": true,
     // Report errors for fallthrough cases in switch statements
     "noFallthroughCasesInSwitch": true,
     // Force functions designed to override their parent class to be specified as `override`.
@@ -35,7 +37,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@assets/*": ["src/assets/*"],
       "@data/*": ["src/data/*"],
-      "@styles/*": ["src/styles/*"]
+      "@styles/*": ["src/styles/*"],
+      "@utils/*": ["src/utils/*"]
     },
     "types": ["astro/client"]
   }

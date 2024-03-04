@@ -42,13 +42,14 @@ const { className = "" } = Astro.props;
           <div class="flex justify-end space-x-2">
             <button
               type="submit"
-              class="px-3 py-1 rounded text-xl text-slate-50 bg-slate-900 dark:bg-slate-700"
+              class="px-3 py-1 rounded text-xl text-slate-50 bg-slate-900 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
               >Submit
             </button>
           </div>
         </form>
         <p class="text-gray-500 dark:text-gray-300">
           In a hurry? You can download <a
+            data-astro-prefetch
             target="_blank"
             href="/documents/billy_le_resume.pdf"
             download="billy_le_resume.pdf"
@@ -61,7 +62,7 @@ const { className = "" } = Astro.props;
   </div>
   <div
     id="globeViz"
-    class="hidden w-1/2 h-full md:block absolute top-0 right-0 -z-10"
+    class="hidden w-3/4 h-full absolute top-0 right-0 -z-10 md:block lg:w-1/2"
   >
   </div>
 </section>

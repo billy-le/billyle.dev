@@ -11,6 +11,16 @@ export default {
       },
       center: true,
     },
+    extend: {
+      fontFamily: {
+        inter: "var(--inter)",
+        vidaloka: "var(--vidaloka)",
+        "space-android": "var(--space-android)",
+      },
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+    },
   },
   plugins: [typography()],
 };

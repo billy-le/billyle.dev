@@ -1,0 +1,116 @@
+---
+export interface BlogPost {
+  title: string;
+  pubDate: Date;
+  description: string;
+  author: string;
+  image: { url: string; alt: string };
+  tags: string[];
+}
+
+import { compareDesc } from "date-fns";
+import { Image } from "astro:assets";
+import Layout from "@layouts/Layout.astro";
+
+import stirringCoffee from "@assets/images/stirring_coffee.png";
+import uiTesting from "@assets/images/ui_testing.png";
+import blob01 from "@assets/images/blog-blob-01.png";
+import blob02 from "@assets/images/blog-blob-02.png";
+import SvgGrain from "@ui/components/SvgGrain.astro";
+
+import { allPosts } from "@utils/getCollection";
+
+const descPosts = allPosts.sort((a, b) =>
+  compareDesc(a.data.pubDate, b.data.pubDate),
+);
+---
+
+<Layout title="Billy Le | Blog" description="My collection of posts">
+  <div class="relative container mx-auto py-16">
+    <div class="hidden absolute top-0 left-10 sm:block lg:top-20">
+      <div
+        class="absolute top-0 left-0 w-48 h-48 -z-10 opacity-15
+          xl:h-52 xl:w-52
+          2xl:h-80 2xl:w-80"
+      >
+        <Image
+          src={blob01}
+          alt=""
+          class="h-full w-full max-w-full"
+          aria-hidden="true"
+        />
+      </div>
+      <Image
+        src={stirringCoffee}
+        alt=""
+        widths={[128, 256, 512]}
+        sizes={`(max-width: 512px) 128px, (max-width: 512px) 256px, 512px`}
+        class="max-w-full w-48 h-48 xl:w-52 xl:h-52 2xl:w-80 2xl:h-80"
+      />
+    </div>
+
+    <div class="hidden absolute top-0 right-10 sm:block lg:top-20">
+      <div
+        class="absolute top-0 left-0 w-48 h-48 -z-10 opacity-15
+          xl:h-52 xl:w-52
+          2xl:h-80 2xl:w-80"
+      >
+        <Image
+          src={blob02}
+          alt=""
+          class="h-full w-full max-w-full"
+          aria-hidden="true"
+        />
+      </div>
+      <Image
+        src={uiTesting}
+        alt=""
+        widths={[128, 256, 512]}
+        sizes={`(max-width: 512px) 128px, (max-width: 512px) 256px, 512px`}
+        class="max-w-full w-48 h-48 xl:w-52 xl:h-52 2xl:w-80 2xl:h-80"
+      />
+    </div>
+
+    <h1
+      class="font-space-android text-3xl sm:text-5xl mb-6 sm:my-10 text-center leading-tight tracking-widest mx-auto text-slate-800 dark:text-slate-100"
+    >
+      <span
+        class="px-3 py-2 rounded-md bg-blue-400 text-slate-100 dark:text-slate-800 shadow-blue-900/30
+    shadow-md"
+      >
+        My blog
+      </span>
+    </h1>
+    <p
+      class="mb-14 sm:mb-20 max-w-3xl mx-auto font-inter font-bold text-lg sm:text-3xl tracking-wide text-center text-slate-600 dark:text-slate-200"
+    >
+      My creative outlet is a reflection of the experiences I've
+      encountered—whether in learning, facing setbacks, or achieving success—as
+      a software developer.
+    </p>
+    <section class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+      {
+        descPosts.map((post) => {
+          return (
+            <div>
+              <h3 class="text-xl text-emerald-500 font-vidaloka font-bold mb-4 dark:text-emerald-300">
+                {post.data.title}
+              </h3>
+              <p class="text-slate-600 dark:text-slate-300 mb-3">
+                {post.data.description}
+              </p>
+              <a
+                data-astro-prefetch
+                href={`/posts/${post.slug}`}
+                class="relative overflow-hidden float-right font-space-android text-slate-50 tracking-widest py-1 rounded-full bg-blue-400 shadow-md shadow-blue-950/30 ring-2 ring-slate-50 w-20 text-center"
+              >
+                <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-gradient-to-r from-blue-900" />
+                <span class="relative">Read</span>
+              </a>
+            </div>
+          );
+        })
+      }
+    </section>
+  </div>
+</Layout>

@@ -26,9 +26,9 @@ const date = new Date();
 >
   <div class="container flex flex-col py-6 space-y-4 text-gray-200">
     <div
-      class="h-full flex-grow flex flex-col md:divide-x md:divide-solid md:divide-slate-200 md:flex-row"
+      class="h-full flex-grow flex flex-col gap-8 md:gap-0 md:divide-x md:divide-solid md:divide-slate-200 md:flex-row"
     >
-      <div class="w-full py-4 md:pr-4 md:text-right">
+      <div class="w-full md:py-4 md:pr-4 md:text-right">
         <h4 class="mb-3 uppercase tracking-widest text-green-300 w-full">
           Get Around
         </h4>
@@ -49,7 +49,7 @@ const date = new Date();
                   {links.map((link) => (
                     <a
                       href={`/#${link.toLowerCase()}`}
-                      class="link-hover footer-link"
+                      class="capitalize link-hover footer-link"
                     >
                       {link}
                     </a>
@@ -60,7 +60,7 @@ const date = new Date();
           </div>
         </div>
       </div>
-      <div class="w-full py-4 md:pl-4">
+      <div class="w-full md:py-4 md:pl-4">
         <h5 class="mb-3 uppercase tracking-widest text-green-300 w-full">
           Stay in touch
         </h5>
