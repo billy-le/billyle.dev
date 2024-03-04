@@ -12,6 +12,9 @@ const defaultPicture =
   "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 const { title, description, image } = Astro.props;
+const dynamicOG = encodeURI(
+  `https://ogcdn.net/e4b8c678-7bd5-445d-ba03-bfaad510c686/v3/billyle.dev/${title}/${description}/${image.url}/og.png`,
+);
 ---
 
 <!doctype html>
@@ -26,15 +29,21 @@ const { title, description, image } = Astro.props;
     <meta property="og:site_name" content="Billy Le" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image.url} />
+    <meta property="og:image" content={dynamicOG} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="en_US" />
+
     <meta property="article:publisher" content="https://billyle.dev" />
     <meta property="article:section" content="Coding" />
     <meta property="article:tag" content="Coding" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:image" content={image.url} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:image" content={dynamicOG} />
+    <meta property="twitter:domain" content="billyle.dev" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
