@@ -11,8 +11,6 @@ tags: ["golang", "javascript", "learn-along"]
 draft: true
 ---
 
-# Learn-along - Golang for JavaScript Developers Pt. 1
-
 Welcome to this series! I'm glad to see your interest in learning Golang as a JavaScript developer. Picking up a new language is never easy which is why I'm writing these posts as I learn as well.
 
 I've been learning for the better part of about 3 months now so please be lenient on me if I do say something incorrect or misleading.
