@@ -11,8 +11,6 @@ tags: ["blogging", "content creation"]
 draft: true
 ---
 
-# My Content Creation In Its Infancy
-
 After years of procrastination and hesitation, my blog is _finally_ online. It's been a long time coming ever since I began to learn how to code in 2015.
 
 In that timeframe, I have used several blogging tools, ranging from easy to difficult - WordPress, GatsbyJS, and, daringly, Hugo (I had no Golang experience at the time). I hadn't committed to any because I was still exploring programming in general.
