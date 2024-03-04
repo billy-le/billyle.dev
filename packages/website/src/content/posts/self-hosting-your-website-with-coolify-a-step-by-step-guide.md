@@ -8,7 +8,7 @@ image:
   alt: '"breathe" neon sign hung against a wall of foliage'
   className: ""
 tags: ["self-hosting", "devops", "tutorial", "paas"]
-draft: true
+draft: false
 ---
 
 If you're thinking about hosting your own stuff but don't know where to start then you're not alone. I thought about what it meant to leave the safe walls of services like Netlify, Vercel, Render, etc. It was a tough decision because those are professional services that provide high security and technology which I have zero knowledge of.
