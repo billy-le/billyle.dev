@@ -140,9 +140,9 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"self-hosting-your-website-with-coolify-a-step-by-step-guide.md": {
-	id: "self-hosting-your-website-with-coolify-a-step-by-step-guide.md";
-  slug: "self-hosting-your-website-with-coolify-a-step-by-step-guide";
+"self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md": {
+	id: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md";
+  slug: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
