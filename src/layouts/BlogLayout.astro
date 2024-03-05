@@ -14,7 +14,7 @@ interface Props extends Post {}
 const defaultPicture =
   "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
-const { title, description, image } = Astro.props;
+const { title, description, image, pubDate, author } = Astro.props;
 
 function encodeString(str: string) {
   return encodeURIComponent(str);
@@ -37,11 +37,17 @@ const dynamicOG = `https://ogcdn.net/${templateId}/v${ogVersion}/${site}/${encod
 
     <!-- Open Graph tags -->
     <meta property="og:site_name" content="Billy Le" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={dynamicOG} />
+    <meta name="title" property="og:title" content={title} />
+    <meta name="description" property="og:description" content={description} />
+    <meta name="author" content={author} />
+    <meta name="image" property="og:image" content={dynamicOG} />
     <meta property="og:url" content={Astro.url.href} />
     <meta property="og:type" content="article" />
+    <meta
+      name="publish_date"
+      property="og:publish_date"
+      content={pubDate.toISOString()}
+    />
     <meta property="og:locale" content="en_US" />
 
     <meta property="article:publisher" content="https://billyle.dev" />
