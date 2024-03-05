@@ -7,7 +7,7 @@
 - [x] - main page
 - [x] - contact form
 - [x] - mobile navigation
-- [ ] - blog
+- [x] - blog
 - [x] - more recent picture
 - [ ] - more blobs and animation
 - [ ] - globe animation on contact submit
