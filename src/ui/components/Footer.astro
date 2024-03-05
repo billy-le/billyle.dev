@@ -48,7 +48,9 @@ const date = new Date();
                 <div class="flex flex-col gap-1">
                   {links.map((link) => (
                     <a
-                      href={`/#${link.toLowerCase()}`}
+                      href={
+                        link === "blog" ? "/blog" : `/#${link.toLowerCase()}`
+                      }
                       class="capitalize link-hover footer-link"
                     >
                       {link}
