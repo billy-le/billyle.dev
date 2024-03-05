@@ -14,7 +14,4 @@ export default defineConfig({
     robotsTxt(),
   ],
   prefetch: true,
-  redirects: {
-    "/posts": "/blog",
-  },
 });
