@@ -19,7 +19,6 @@
     "astro-robots-txt": "^1.0.0",
     "autoprefixer": "^10.4.17",
     "cssnano": "^6.0.3",
-    "postcss-import": "^16.0.0",
     "prettier": "^3.2.5",
     "prettier-plugin-astro": "^0.13.0",
     "tailwind-merge": "^2.2.1",
@@ -33,5 +32,6 @@
     "sharp": "^0.33.2",
     "three": "^0.161.0",
     "three-globe": "^2.30.3"
-  }
+  },
+  "type": "module"
 }
