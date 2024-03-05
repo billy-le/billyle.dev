@@ -82,7 +82,7 @@ const { className = "" } = Astro.props;
           .slice(0, 4)
           .map(({ post }, i) => (
             <BlogCard
-              link={post?.slug}
+              link={"/posts/" + post?.slug}
               post={post?.data}
               height="h-36"
               position={i}
