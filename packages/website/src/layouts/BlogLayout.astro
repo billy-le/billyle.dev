@@ -31,14 +31,14 @@ const dynamicOG = `https://ogcdn.net/${templateId}/v${ogVersion}/${site}/${encod
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
 
     <!-- Open Graph tags -->
     <meta property="og:site_name" content="Billy Le" />
-    <meta name="title" property="og:title" content={title} />
-    <meta name="description" property="og:description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <meta name="author" content={author} />
     <meta name="image" property="og:image" content={dynamicOG} />
     <meta property="og:url" content={Astro.url.href} />
@@ -49,11 +49,6 @@ const dynamicOG = `https://ogcdn.net/${templateId}/v${ogVersion}/${site}/${encod
       content={pubDate.toISOString()}
     />
     <meta property="og:locale" content="en_US" />
-
-    <meta property="article:publisher" content="https://billyle.dev" />
-    <meta property="article:section" content="Coding" />
-    <meta property="article:tag" content="Coding" />
-
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
