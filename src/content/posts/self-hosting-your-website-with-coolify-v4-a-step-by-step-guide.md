@@ -143,7 +143,7 @@ ssh root@<server_ip_address>
 
 Where `<server_ip_address>` is the one provided to you by Hetzner.
 
-The next prompt will ask you to add the ip to your known hosts list. Type in "yes" here. And then you will enter your passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
+The next prompt will ask you to add the IP to your known hosts list. Type in "yes" here. And then you will enter your passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
 
 ```
 The authenticity of host '162.55.37.168' can't be established.
@@ -211,7 +211,7 @@ You will be prompted a series of onboarding questions. Just keep clicking next u
 
 ![welcome to coolify page](../../../public/images/blog/self-hosting/coolify-welcome.png)
 
-You will select "Localhost" as that's where this instance of Coolify is installed.
+You will select "localhost" as that's where this instance of Coolify is installed.
 
 ![coolify onboarding - server type options](../../../public/images/blog/self-hosting/coolify-server-selection.png)
 
@@ -225,7 +225,7 @@ If you're deploying a static site, chances are, you only have one resource to de
 
 ![coolify create resource page](../../../public/images/blog/self-hosting/coolify-resource-add.png)
 
-When you click that, you will be asked which server you like to use. There should be only one and that's "Localhost" from before.
+When you click that, you will be asked which server you like to use. There should be only one and that's "localhost" from before.
 
 ![coolify resource select server option](../../../public/images/blog/self-hosting/coolify-resource-add-server.png)
 
