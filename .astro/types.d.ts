@@ -126,6 +126,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"adding-github-pull-request-preview-deployments-with-coolify.md": {
+	id: "adding-github-pull-request-preview-deployments-with-coolify.md";
+  slug: "adding-github-pull-request-preview-deployments-with-coolify";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "learning-golang-for-javascript-developers.md": {
 	id: "learning-golang-for-javascript-developers.md";
   slug: "learning-golang-for-javascript-developers";
