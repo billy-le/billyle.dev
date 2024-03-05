@@ -207,10 +207,12 @@ const { className = "" } = Astro.props;
         }
       }
 
+      &::after {
+        @apply bg-gradient-to-tr from-blue-900 to-slate-800;
+      }
+
       @screen lg {
         &::after {
-          @apply bg-gradient-to-tr from-blue-900 to-slate-800;
-
           display: block;
           content: "";
           position: absolute;
@@ -266,48 +268,32 @@ const { className = "" } = Astro.props;
       }
 
       &::before {
-        @apply bg-black bg-opacity-50 bg-gradient-to-b from-black/20;
+        @apply bg-black bg-opacity-50 bg-gradient-to-b from-black/20 lg:bg-transparent lg:bg-gradient-to-t lg:from-black;
 
         display: block;
         content: "";
         position: absolute;
         height: 100%;
         width: 100%;
-
-        @screen lg {
-          @apply bg-transparent bg-gradient-to-t from-black;
-        }
       }
 
       .work_title {
-        @apply tracking-widest text-green-500;
+        @apply tracking-widest text-green-500 lg:text-xl lg:top-1/2 xl:top-2/3;
 
         position: relative;
         text-transform: uppercase;
         text-align: center;
         top: 1rem;
-
-        @screen lg {
-          @apply text-xl;
-
-          top: 50%;
-        }
-
-        @screen xl {
-          top: 66.66%;
-        }
       }
 
       .work_description {
-        @apply text-xs text-slate-100 p-4;
+        @apply text-xs text-slate-100 p-4 lg:text-sm;
 
         position: relative;
         top: 4rem;
         text-align: center;
 
         @screen lg {
-          @apply text-sm;
-
           top: 50%;
           opacity: 0;
           transition: opacity 1s;
