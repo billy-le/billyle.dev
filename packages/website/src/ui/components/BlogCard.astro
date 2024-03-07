@@ -4,7 +4,7 @@ interface Props {
   link?: string | undefined;
   height?: string;
   className?: string | undefined;
-  position: number;
+  position: number | undefined;
 }
 import { Image, Picture } from "astro:assets";
 import SvgGrain from "./SvgGrain.astro";
@@ -12,7 +12,6 @@ import { twMerge } from "tailwind-merge";
 import alligatorBalloons from "@assets/images/alligator_balloons.png";
 import camera from "@assets/images/camera.png";
 import dogFeeding from "@assets/images/dog_feeding.png";
-import happyCloud from "@assets/images/happy_cloud.png";
 import markerPin from "@assets/images/marker_pin.png";
 import trainCommute from "@assets/images/train_commute.png";
 import coding from "@assets/images/coding.png";
@@ -32,19 +31,13 @@ const imageMap: Record<
     src: camera,
     alt: "camera",
     className:
-      "h-24 w-24 -bottom-8 -left-8 xl:h-48 xl:w-48 xl:-bottom-10 xl:-left-20",
+      "h-20 w-20 -bottom-4 -left-4 xl:h-48 xl:w-48 xl:-bottom-10 xl:-left-20",
   },
   2: {
     src: dogFeeding,
     alt: "dog being fed",
     className:
-      "h-24 w-24 -top-12 -right-6 sm:-top-20 xl:h-48 xl:w-48 xl:-top-[150px] xl:right-0",
-  },
-  3: {
-    src: happyCloud,
-    alt: "a smiling cloud against a sun",
-    className:
-      "h-28 w-28 -bottom-16 left-1/4 sm:bottom-auto sm:top-1/2 sm:-left-12 xl:h-64 xl:w-64 xl:top-auto xl:-bottom-12 xl:-left-20",
+      "h-28 w-28 -bottom-56 right-20 sm:bottom-auto sm:-top-20 xl:h-48 xl:w-48 xl:-top-[150px] xl:right-0",
   },
   4: {
     src: markerPin,
@@ -56,7 +49,7 @@ const imageMap: Record<
     src: trainCommute,
     alt: "a boy looking at his phone while commuting on a train",
     className:
-      "h-32 w-32 -bottom-4 left-1/2 -translate-x-1/2 xl:h-48 xl:w-48 xl:-bottom-12",
+      "h-32 w-32 -bottom-4 left-1/2 -translate-x-1/2 xl:h-44 xl:w-44 xl:-bottom-14",
   },
   6: {
     src: coding,
@@ -74,6 +67,7 @@ const blogCardMask: astroHTML.JSX.CSSProperties = {
 };
 
 const { className = "", post, height, link, position } = Astro.props;
+const illustration = position != undefined ? imageMap[position] : undefined;
 ---
 
 <div
@@ -86,11 +80,11 @@ const { className = "", post, height, link, position } = Astro.props;
   <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
   <div class="absolute top-0 left-0 h-full w-full">
     {
-      position != undefined && (
+      illustration && (
         <Image
-          src={imageMap[position]!["src"]}
-          alt={imageMap[position]!["alt"]}
-          class={`pointer-events-none absolute ${imageMap[position]!["className"]}`}
+          src={illustration["src"]}
+          alt={illustration["alt"]}
+          class={`pointer-events-none absolute ${illustration["className"]}`}
         />
       )
     }
@@ -118,7 +112,7 @@ const { className = "", post, height, link, position } = Astro.props;
             <a
               data-astro-prefetch
               href={link}
-              class="text-blue-500 absolute bottom-5 right-5 sm:bottom-5 sm:right-5 transition-transform duration-100 ease-linear hover:scale-110 z-10"
+              class="text-blue-500 absolute bottom-2 right-5 sm:bottom-5 transition-transform duration-100 ease-linear hover:scale-110 z-10"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
