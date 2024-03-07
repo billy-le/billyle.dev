@@ -11,27 +11,34 @@ tags: ["mobile development", "iOS"]
 draft: false
 ---
 
-I had trouble recently trying to find the "Developer Mode" settings on my iPhone. I tried viewing the Privacy Settings and scrolling down to the bottom only to find that it wasn't there.
+I had trouble recently trying to find the "Developer Mode" settings on my iPhone. I tried viewing the "Privacy & Security" settings and scrolling down to the bottom only to find that it wasn't there.
 
 ![screen of iphone where developer mode is not showing](../../../public/images/blog/developer-mode/developer-mode-invisible.jpg)
 
-Even the official documentation weren't helpful at all and users around the internet were saying to do the same thing.
+Even the official documentation was not helpful and users around the internet repeated the same instructions.
 
-It was until I found an obscure comment that helped me unlock "Developer Mode". Here are the steps to get "Developer Mode" to show.
+It was until I found an obscure comment that helped me unlock "Developer Mode". So now I'm going to share how I got "Developer Mode" to show.
 
-![xcode logo](../../../public/images/blog/developer-mode/xcode-logo.png)
+## How to enable "Developer Mode" for iPhone and Xcode
 
 1. [Download Xcode](https://developer.apple.com/xcode/) on your macOS device.
+   ![xcode logo](../../../public/images/blog/developer-mode/xcode-logo.png)
+
 2. Connect your iPhone to your macOS device and make sure to trust your device on your iPhone.
    ![trust computer prompt on iOS](../../../public/images/blog/developer-mode/trust-computer-prompt.jpeg)
+
 3. And enter your passcode on your iPhone
    ![enter passcode on iOS](../../../public/images/blog/developer-mode/enter-device-passcode.jpeg)
+
 4. Open Xcode and navigate to the settings "Product" > "Destination" > "Manage Run Destinations"
    ![menu navigation to "manage run destinations"](../../../public/images/blog/developer-mode/xcode-manage-run-destinations.png)
-5. You should see your device now but there's a warning banner that Developer Mode is not enabled.
+
+5. You should see your device now but there's a warning banner that "Developer Mode" is not enabled.
    ![destinations management showing banner that dev mode is not enabled](../../../public/images/blog/developer-mode/xcode-destinations-no-dev-mode.png)
+
 6. Head over to "Privacy & Security" in "Settings" on your iPhone and you should now see "Developer Mode".
    ![privacy and security menu](../../../public/images/blog/developer-mode/privacy-and-security.jpeg)
+
 7. Turn it on and it will ask you to "Restart" which is required.
    ![turning on dev mode](../../../public/images/blog/developer-mode/dev-mode-on.jpeg)
 
