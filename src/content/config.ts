@@ -10,6 +10,8 @@ const validTags = [
   "paas",
   "self-hosting",
   "tutorial",
+  "mobile development",
+  "iOS",
 ];
 
 const postSchema = z.object({

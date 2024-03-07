@@ -131,28 +131,35 @@ declare module 'astro:content' {
   slug: "adding-github-pull-request-preview-deployments-with-coolify";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
+} & { render(): Render[".md"] };
+"enabling-developer-mode-on-ios-17_3_1.md": {
+	id: "enabling-developer-mode-on-ios-17_3_1.md";
+  slug: "enabling-developer-mode-on-ios-17_3_1";
+  body: string;
+  collection: "posts";
+  data: any
 } & { render(): Render[".md"] };
 "learning-golang-for-javascript-developers.md": {
 	id: "learning-golang-for-javascript-developers.md";
   slug: "learning-golang-for-javascript-developers";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 "my-content-creation-in-its-infancy.md": {
 	id: "my-content-creation-in-its-infancy.md";
   slug: "my-content-creation-in-its-infancy";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md": {
 	id: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md";
   slug: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 };
 
@@ -164,5 +171,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	export type ContentConfig = typeof import("../src/content/config.js");
+	export type ContentConfig = never;
 }
