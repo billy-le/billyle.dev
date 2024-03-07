@@ -133,6 +133,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"enabling-developer-mode-on-ios-17_3_1.md": {
+	id: "enabling-developer-mode-on-ios-17_3_1.md";
+  slug: "enabling-developer-mode-on-ios-17_3_1";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "learning-golang-for-javascript-developers.md": {
 	id: "learning-golang-for-javascript-developers.md";
   slug: "learning-golang-for-javascript-developers";
