@@ -13,7 +13,9 @@ const configuration = [
   ["h-64", "h-96"],
 ];
 
-const configPosition = configuration.flat().map((_, i) => i);
+const configPosition = configuration
+  .flat()
+  .map((_, i) => (i == 3 ? undefined : i));
 
 const mostRecentPosts = allPosts
   .sort((a, b) => compareDesc(a.data.pubDate, b.data.pubDate))
@@ -68,7 +70,7 @@ const { className = "" } = Astro.props;
                 {height}
                 link={"/posts/" + post?.slug}
                 post={post?.data}
-                position={configPosition.shift()!}
+                position={configPosition.shift()}
               />
             ))}
           </div>
@@ -84,7 +86,7 @@ const { className = "" } = Astro.props;
             <BlogCard
               link={"/posts/" + post?.slug}
               post={post?.data}
-              height="h-36"
+              height={`h-36 ${i == 2 ? "z-10" : ""}`}
               position={i}
             />
           ))
