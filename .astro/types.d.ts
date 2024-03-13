@@ -133,6 +133,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"creating-custom-table-of-contents-for-astro-content-collections.md": {
+	id: "creating-custom-table-of-contents-for-astro-content-collections.md";
+  slug: "creating-custom-table-of-contents-for-astro-content-collections";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "enabling-developer-mode-on-ios-17_3_1.md": {
 	id: "enabling-developer-mode-on-ios-17_3_1.md";
   slug: "enabling-developer-mode-on-ios-17_3_1";
