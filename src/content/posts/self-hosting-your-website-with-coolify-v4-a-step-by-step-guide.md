@@ -108,7 +108,7 @@ When picking a server, there are some details you want to pay attention to:
 
 - lastly, your monthly budget
 
-#### Add your SSH key
+### Add your SSH key
 
 After your selection, you may want to include your SSH key. Skip this if you want Hetzner to email the password to you.
 
