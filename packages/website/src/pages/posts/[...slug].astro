@@ -4,16 +4,24 @@ import { allPosts } from "@utils/getCollection";
 import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
-  return allPosts.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  const headings = await Promise.all(
+    allPosts.map((entry) => entry.render().then((data) => data.headings)),
+  );
+
+  const posts = allPosts.map((entry, index) => {
+    return {
+      params: { slug: entry.slug },
+      props: { entry, headings: headings[index] },
+    };
+  });
+
+  return posts;
 }) satisfies GetStaticPaths;
 
-const { entry } = Astro.props;
+const { entry, headings } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BlogLayout {...entry.data}>
+<BlogLayout {...entry.data} {headings}>
   <Content />
 </BlogLayout>
