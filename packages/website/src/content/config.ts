@@ -12,6 +12,8 @@ const validTags = [
   "tutorial",
   "mobile development",
   "iOS",
+  "node",
+  "astro",
 ];
 
 const postSchema = z.object({
