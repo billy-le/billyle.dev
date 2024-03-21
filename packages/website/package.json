@@ -16,7 +16,6 @@
     "@types/node": "^20.11.17",
     "@types/three": "^0.161.2",
     "astro": "^4.3.7",
-    "astro-robots-txt": "^1.0.0",
     "autoprefixer": "^10.4.17",
     "cssnano": "^6.0.3",
     "prettier": "^3.2.5",
