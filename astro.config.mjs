@@ -1,7 +1,7 @@
+// @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import robotsTxt from "astro-robots-txt";
 
 /** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
@@ -11,7 +11,7 @@ export default defineConfig({
       nesting: true,
     }),
     sitemap(),
-    robotsTxt(),
   ],
   prefetch: true,
+  trailingSlash: "never",
 });
