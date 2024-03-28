@@ -1,7 +1,7 @@
 ---
 title: "Self-hosting Your Website with Coolify v4: A Step-by-Step Guide"
 pubDate: 2024-03-01
-description: "Ever wondered how you can self-host your own websites and web apps without the need for services like Netlify, Vercel and the like? I am venturing down that path and I want to share what I learned. In this tutorial, I will explain what I did to host a static website using Cloudflare, Hetzner, and Coolify."
+description: "Ever wondered how you can self-host your own websites and web apps without the need for services like Netlify, Vercel, and the like? I am venturing down that path and I want to share what I learned. In this tutorial, I will explain what I did to host a static website using Cloudflare, Hetzner, and Coolify."
 author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1502139214982-d0ad755818d8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -13,22 +13,22 @@ draft: false
 
 If you're thinking about hosting your own stuff but don't know where to start then you're not alone. I thought about what it meant to leave the safe walls of services like Netlify, Vercel, Render, etc. It was a tough decision because those are professional services that provide high security and technology which I have zero knowledge of.
 
-But after some considerations like listening to [Syntax's episode of self-hosted platform-as-a-service](https://syntax.fm/show/730/own-your-own-paas) (from here on out will refer this to as PaaS), wanting to host multiple websites and demo apps on a single server and reading the [viral reddit post](https://www.reddit.com/r/webdev/comments/1b14bty/netlify_just_sent_me_a_104k_bill_for_a_simple/) of Netlify charging a user for over $100k USD on a free tier, I wanted to try this out on my own.
+But after some considerations, from listening to [Syntax's episode of self-hosted platform-as-a-service](https://syntax.fm/show/730/own-your-own-paas) (from here on out will refer this to as PaaS), wanting to host multiple websites and demo apps on a single server, and reading the [viral Reddit post](https://www.reddit.com/r/webdev/comments/1b14bty/netlify_just_sent_me_a_104k_bill_for_a_simple/) of Netlify charging a user for over $100k USD on a free tier, I wanted to try this out on my own.
 
-After a lot of trial and errors, I detached my billyle.dev from Netlify and have it running on my own server! Now I'm going to teach you how I did it.
+After a lot of trial and error, I detached my billyle.dev from Netlify and have it running on my own server! Now I'm going to teach you how I did it.
 
 ## What you're going to need
 
 Here's what you're going to need if you're planning to do this:
 
 - A domain name (My domain is registered with Cloudflare)
-- A remote server you can SSH into (I used Hetzner and used the referral link from Coolify)
+- A remote server you can SSH into (I used Hetzner and the referral link from Coolify)
 - A git repository of what you're going to deploy
 - SSH public key on your device (optional)
 
 **Note:**
 
-It's worth noting that I had to fiddle the DNS around a lot near the end of this tutorial but I found that having your domain on Cloudflare is a better experience. Initially, I had my domain on NameCheap. While it was working, I was experiencing strange behaviors like slow load times on the desktop versus mobile.
+It's worth noting that I had to fiddle with the DNS around a lot near the end of this tutorial, but I found that having your domain on Cloudflare is a better experience. Initially, I had my domain on NameCheap. While it was working, I was experiencing strange behaviors like slow load times on the desktop versus mobile.
 
 Even running the page speed test, it was able to view the mobile but the desktop failed.
 
@@ -36,7 +36,7 @@ I figured it would all be easier if I paid the $10 USD transfer fee over to Clou
 
 ## Creating your SSH key
 
-If you want to use your own password for SSH'ing remotely onto your server, you will have to perform this step. Otherwise, you can just skip to the next section since Hetzner will email you the root password if you omit it. You can also skip this step if you already have an existing SSH key you want to use.
+If you want to use your password for SSH'ing remotely onto your server, you will have to perform this step. Otherwise, you can just skip to the next section since Hetzner will email you the root password if you omit it. You can also skip this step if you already have an existing SSH key you want to use.
 
 In your terminal, follow these commands:
 
@@ -51,14 +51,14 @@ Generating public/private rsa key pair.
 Enter file in which to save the key (/Users/billyle/.ssh/id_rsa):
 ```
 
-Hit enter and use the default path and then you will be asked to enter a passphrase twice. Once to enter, twice to confirm. I suggest you make it a strong password and save it to a secure location like an encrypted note on a password manager.
+Hit enter and use the default path, and then you will be asked to enter a passphrase twice. Once to enter, and twice to confirm. I suggest you make it a strong password and save it to a secure location like an encrypted note on a password manager.
 
 ```
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 ```
 
-Once you get pass that step, you have created your SSH key. You will see something similar below.
+Once you get past that step, you have created your SSH key. You will see something similar below.
 
 ```
 Your identification has been saved in /Users/billyle/.ssh/id_rsa
@@ -83,11 +83,11 @@ I will show you how to use this key in the next section.
 
 ## Shopping on Hetzner
 
-Let's say you have your domain ready and now you're for the next step - buying your own remote server. Hetzner was an obvious choice for me compared to other companies that charges quite a lot for the same offerings (looking at you Heroku and Digital Ocean). Hetzner is really cheap and seems like a popular choice among the Coolify crowd.
+Let's say you have your domain ready, and now you're for the next step - buying your remote server. Hetzner was an obvious choice for me compared to other companies that charge quite a lot for the same offerings (looking at you, Heroku and Digital Ocean). Hetzner is cheap and seems like a popular choice among the Coolify crowd.
 
 When picking a server, there are some details you want to pay attention to:
 
-- the location where you think most your traffic will come from (I chose Germany since it's a nice in-between Continental US and Asia)
+- the location where you think most of your traffic will come from (I chose Germany since it's a nice in-between Continental US and Asia)
 
 ![hetzner server location options](../../../public/images/blog/self-hosting/hetzner-location-selection.png)
 
@@ -101,7 +101,7 @@ When picking a server, there are some details you want to pay attention to:
 
 - the server resources like how many CPUs, RAM, and storage your sites and apps will consume. To run Coolify, these are the minimum requirements
   - 2 CPUs
-  - 2 GBs memory
+  - 2 GB memory
   - 30+ GB of storage for the docker images.
 
 ![hetzner review order](../../../public/images/blog/self-hosting/hetzner-server-selection.png)
@@ -112,7 +112,7 @@ When picking a server, there are some details you want to pay attention to:
 
 After your selection, you may want to include your SSH key. Skip this if you want Hetzner to email the password to you.
 
-Under the section titled "SSH keys", click on "Add SSH Key" and a modal will popup.
+Under the section titled "SSH keys", click on "Add SSH Key" and a modal will pop up.
 
 Back to the terminal now, we're going to copy our SSH key and paste it into the modal.
 
@@ -126,7 +126,7 @@ The `.pub` signifies that this is the public key and the output will look someth
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDbQj5IxxXslqfOl4Qv5Ux0RNbofCVy5EWbkosc2AnDj6XAFZSdLNwlPG1qnckhuWCeHveWmJAU80G9d4eTvV/W4bKOE8jj0iqVCFHLXdgOlbO+WQgpVDKjhAnRlaJfPNiLvAn0yNr/Sj1ESbMzBwNK4bjTBCMOalvq/NUqz+3bcewdlc3gDunvdmGf4RbfUydZ73rhO0Bg/r+u7NWT1pghcFW/E/E9f6OavBzyHRSSP0MJQYx3bnmgpFcmZlz/3O0gUaxLGXAmFAsaYxAZ7iZXz8AWw2DmcaNlf+lyAYOQ2TGVaZ4VAUwDQE/8u4zFaX+HooUScgTY3oUztIHFDFgyu6Q4N6ILj/aujnSiuv5fW9PiQ70Jce78IMTAlRSqVeBxRgK8Di5eHECFOH+chNp9UhThw+ZO4dHBwxngdZcbd7xmX3hczS1DnYgtOKUIWzx6rUGrN1wsMsdJS4GAWHvhtWMZITqvg4XXEsMdFtKZ8pJj8O8qjNyPEmfYg1upVmoGufcCCbIRY0CKzBeer3hpqD74EcGyB0TJmeHQezCMsmdBW9DJNPDtCfL/zMMXyqtyjsddkl8AbloZmlkgHDLtSscfWeLtMMX1DkT13LoekjL11ZCOMU5vAWvKiJGxU0NRFRStHU/AIpRqDBtD+VFPRWa0javzgXZTr3ALQun5jQ== billyle@mbp.local
 ```
 
-Highlight all of the output and paste it into the modal and then click save.
+Highlight all the output and then paste it into the modal and then click save.
 
 After that, you will want to review your Hetzner configuration before you complete the transaction. If all looks okay, go ahead and
 create it. It will take less than a minute to spin up your new server. If you mess up, you can always delete the server and start a new one since they charge by the hour.
@@ -135,7 +135,7 @@ create it. It will take less than a minute to spin up your new server. If you me
 
 Once your server is created, you will see an IP address for your remote server. This is how you will connect to it and configure your server to use Coolify.
 
-In your terminal, type in these command:
+In your terminal, type in these commands:
 
 ```bash
 ssh root@<server_ip_address>
@@ -143,7 +143,7 @@ ssh root@<server_ip_address>
 
 Where `<server_ip_address>` is the one provided to you by Hetzner.
 
-The next prompt will ask you to add the IP to your known hosts list. Type in "yes" here. And then you will enter your passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
+The next prompt will ask you to add the IP to your known hosts list. Type in "yes" here. Then you will enter the passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
 
 ```
 The authenticity of host '162.55.37.168' can't be established.
@@ -185,13 +185,13 @@ To check for new updates run: sudo apt update
 root@ubuntu-4gb-fsn1-1:~#
 ```
 
-If you go to [Coolify.io docs](https://coolify.io/docs/installation) and search for installation, you should see the install script which looks like this:
+If you go to [Coolify.io docs](https://coolify.io/docs/installation) and search for installation, you should see the installation script which looks like this:
 
 ```bash
 curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 ```
 
-Enter the command and let the install script do its thing. Once that's complete, you will see an output with an IP address where you can access the Coolify instance on your server, in my case it was `http://162.55.37.168:8000`.
+Enter the command and let the installation script do its thing. Once that's complete, you will see an output with an IP address where you can access the Coolify instance on your server, in my case it was `http://162.55.37.168:8000`.
 
 ![coolify installing in the terminal gif](/images/blog/self-hosting/coolify-installation.gif)
 
@@ -201,13 +201,13 @@ Copy the IP address along with the port and enter that in your browser's URL. Yo
 
 Coolify has a good onboarding experience as it will guide you through a series of steps to get up and running.
 
-When you follow the IP address from the Coolify installation, you will be taken to a registration page. You will use these credentials to login the Coolify instance where we will host it on your domain.
+When you follow the IP address from the Coolify installation, you will be taken to a registration page. You will use these credentials to log in to the Coolify instance where we will host it on your domain.
 
 Be sure to use a strong, unique password since this is how you will interface with Coolify on your custom domain.
 
 ![coolify onboarding registration form](../../../public/images/blog/self-hosting/coolify-registration.png)
 
-You will be prompted a series of onboarding questions. Just keep clicking next until you see the page, "Server".
+You will be prompted with a series of onboarding questions. Just keep clicking next until you see the page, "Server".
 
 ![welcome to coolify page](../../../public/images/blog/self-hosting/coolify-welcome.png)
 
@@ -233,9 +233,9 @@ Then it will ask you to select a Destination. Just choose the only option which 
 
 ![coolify resource select destination option](../../../public/images/blog/self-hosting/coolify-resource-destination.png)
 
-And lastly, it will ask you for the URL for the public repository. Find that and paste it into the field. It will get the meta data from the git repo and should populate all the necessary details.
+And lastly, it will ask you for the URL for the public repository. Find that and paste it into the field. It will get the metadata from the git repo and should populate all the necessary details.
 
-The important part here is the Publish Directory where the build output will be. Also toggle the "Is it a static site" toggle if it applies to you.
+The important part here is the Publish Directory where the build output will be. Also, toggle the "Is it a static site" toggle if it applies to you.
 
 ![coolify creating new application page](../../../public/images/blog/self-hosting/coolify-source-repo.png)
 
@@ -247,7 +247,7 @@ You will be taken to the Deployment page and your build logs will start appearin
 
 ![coolify deployment page](../../../public/images/blog/self-hosting/coolify-app-deploy.png)
 
-Now we can test to see if Coolify can serve the website. Click on the "Open Application" button and selected the auto-generated link to view your site.
+Now we can test to see if Coolify can serve the website. Click on the "Open Application" button and select the auto-generated link to view your site.
 
 ![opening deployment application on coolify](../../../public/images/blog/self-hosting/coolify-app-open.png)
 
@@ -261,7 +261,7 @@ Keep your Coolify page open for the next part as we still need to tinker with it
 
 Now all we need to do is some configuration between Cloudflare and Coolify. We need to point our domain in Cloudflare to our Hetzner server and Coolify will serve our applications.
 
-It took me a long time to figure this out so there might be some trial and errors on your part but I hope these next set of instructions just works for you.
+It took me a long time to figure this out so there might be some trial and error on your part, but I hope these next set of instructions just works for you.
 
 ### Enforce Strict SSL/TSL Mode
 
@@ -281,7 +281,7 @@ In your Cloudflare dashboard, go to the DNS Records Management page for your dom
 
 ![navigation menu showing how to get to cloudflare's dns records management](../../../public/images/blog/self-hosting/cloudflare-dns-management.png)
 
-Add a new "**A**" record, with the host name "**coolify**", and the value is the IP address of your remote server and click save.
+Add a new "**A**" record, with the hostname "**coolify\*\***", and the value is the IP address of your remote server, and click save.
 
 ![creating coolify instance dns record](../../../public/images/blog/self-hosting/cloudflare-dns-coolify.png)
 
@@ -289,7 +289,7 @@ Go back to Coolify, and go to the Settings page.
 
 ![navigation menu showing how to get to coolify's settings page](../../../public/images/blog/self-hosting/coolify-settings.png)
 
-In the "**Instance's Domain**" field, type out `https://coolify.<your_domain>`. Notice that we added https here. Coolify will automatically generated a SSL cert when it sees this configuration. Be sure to hit save.
+In the "**Instance's Domain**" field, type out `https://coolify.<your_domain>`. Notice that we added HTTPS here. Coolify will automatically generate a SSL cert when it sees this configuration. Be sure to hit save.
 
 ![configuring coolify's setting to point to instance domain](../../../public/images/blog/self-hosting/coolify-instance-url.png)
 
@@ -299,11 +299,11 @@ Head over to `https://coolify.<your_domain>` and check out your new Coolify on y
 
 ![live look of coolify instance in custom domain](../../../public/images/blog/self-hosting/coolify-domain.png)
 
-Now login with the credentials you used to register in the initial Coolify setup and you should now be at the Coolify dashboard.
+Now login with the credentials you used to register in the initial Coolify setup, and you should now be at the Coolify dashboard.
 
 ### Linking your Coolify website to your domain
 
-From the Coolify dashboard, navigate back to your project configuration dashboard. We're going to change the auto-generated domain that Coolify created to use our own domain.
+From the Coolify dashboard, navigate back to your project configuration dashboard. We're going to change the auto-generated domain that Coolify created to use our domain.
 
 Type in your domain and then click save. After you save, make sure to click "Redeploy" or else this won't work.
 
@@ -311,17 +311,17 @@ Type in your domain and then click save. After you save, make sure to click "Red
 
 Back to Cloudflare, we need to create more DNS records to make sure our domain is pointed to our server.
 
-So head on back to the Cloudflare DNS Management and enter a new "**A**" record, with the host name "**@**", and the value should be the Hetzner server IP address.
+So head on back to the Cloudflare DNS Management and enter a new "**A**" record, with the hostname "**@**", and the value should be the Hetzner server IP address.
 
 ![entering dns record for custom domain](../../../public/images/blog/self-hosting/cloudflare-dns-domain.png)
 
-Now give it a couple minutes and visit your domain. You should see live! How cool is that?
+Now give it a couple of minutes and visit your domain. You should see live! How cool is that?
 
 ![live look of custom domain running off cloudflare and coolify](../../../public/images/blog/self-hosting/custom-domain.png)
 
 ## Redirect www to non-www
 
-We're almost done in the long tutorial. I was really excited when I got this far and I hope you are too.
+We're almost done with the long tutorial. I was excited when I got this far and I hope you are too.
 
 This last part is the final section and what we're going to do is redirect our `www.<domain>` to just `<domain>`.
 
@@ -329,13 +329,13 @@ All of this will happen in Cloudflare so we don't need to mess around with Cooli
 
 In Cloudflare, back in our DNS management, we're going to add two records.
 
-The first one is an "**A**" record, with the name of "**www**", and the value of `192.0.2.1`. This is saying we are creating an ALIAS record that uses the `www` subdomain and we are pointing to a dummy IPv4 address.
+The first one is an "**A**" record, with the name of "**www**", and the value of `192.0.2.1`. This is saying we are creating an ALIAS record that uses the `www` subdomain, and we are pointing to a dummy IPv4 address.
 
 The dummy IPv4 address is insignificant since Cloudflare will redirect all traffic before reaching the IP address.
 
 ![entering dns record for ipv4](../../../public/images/blog/self-hosting/cloudflare-redirect-ipv4.png)
 
-And now we'll create the IPv6 version with another "**AAAA**" with the name same name but this time the IPv6 address is `100::`
+Now we'll create the IPv6 version with another "**AAAA**" with the name same name but this time the IPv6 address is `100::`
 
 ![entering dns record for ipv6](../../../public/images/blog/self-hosting/cloudflare-redirect-ipv6.png)
 
@@ -347,11 +347,11 @@ Head over to the Rules Redirect page
 
 Once there, click on "+ Create rule" where you'll be taken to a form.
 
-Add the name of your Redirect Rule. I named mines "www to apex".
+Add the name of your Redirect Rule. I named mine "www to apex".
 
 ![enter redirect rule name](../../../public/images/blog/self-hosting/cloudflare-redirect-name.png)
 
-Then click on "Edit epxression" where you'll type of a rule expression. Replace `billyle.dev` with your actual domain.
+Then click on "Edit expression" where you'll type in the rule expression. Replace `billyle.dev` with your actual domain.
 
 ![arrow showing how to edit expressions](../../../public/images/blog/self-hosting/cloudflare-redirect-edit-expression.png)
 
@@ -371,20 +371,20 @@ We want a "Dynamic", with a "301" permanent redirect and our expression will be:
 concat("https://","billyle.dev",http.request.uri.path)
 ```
 
-Again, replace `billyle.dev` with your actual domain and make sure "Preserve query string".
+Again, replace `billyle.dev` with your actual domain and make sure the "Preserve query string" is checked.
 
-Now test it out after a few minutes to see it works. Visit `www.<your_domain>` and see if it redirects you to the root domain.
+Now test it out after a few minutes to see if it works. Visit `www.<your_domain>` and see if it redirects you to the root domain.
 
 ## That's it! You're done!
 
-Wow, that was a lot! I'm glad you made it all the way through. I hope you're proud what you did here. This is our new journey down self-hosting PaaS.
+Wow, that was a lot! I'm glad you made it all the way through. I hope you're proud of what you did here. This is our new journey down self-hosting PaaS.
 
-The days of paying for a droplet and managed db is over for me.
+The days of paying for a droplet and managed db are over for me.
 
-You've learned how to create a remote server with Hetzner, SSH into it and install Coolify. Then you managed to link your domain to Coolify and deploy your website!
+You've learned how to create a remote server with Hetzner, SSH into it, and install Coolify. Then you managed to link your domain to Coolify and deploy your website!
 
-I think it's so cool that we now have our own server to deploy any application we want. Eventually I will create another tutorial when I start deploying my demo apps so people can use. So stay tuned for that.
+I think it's so cool that we now have our server to deploy any application we want. Eventually, I will create another tutorial when I start deploying my demo apps, so people can use it. So stay tuned for that.
 
-If you have any questions, feel free to send me an email or contact me through my social media links.
+If you have any questions, feel free to email me or contact me through my social media links.
 
 And thank you for reading! Hope you have a great rest of your day wherever you are.

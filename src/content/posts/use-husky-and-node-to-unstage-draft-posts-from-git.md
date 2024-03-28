@@ -1,7 +1,7 @@
 ---
 title: "Use Husky and Node to Unstage Draft Blog Posts From Git"
 pubDate: 2024-03-21
-description: "I had a problem where my draft blog posts were being commited to my GitHub repository. This might seem like an insignificant issue, but I didn't want a work-in-progress to be publicly viewable. So that's where I came up with a solution to use Husky and a Node script to prevent that."
+description: "I had a problem where my draft blog posts were being committed to my GitHub repository. This might seem like an insignificant issue, but I didn't want a work-in-progress to be publicly viewable. So that's where I came up with a solution to use Husky and a Node script to prevent that."
 author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -11,23 +11,23 @@ tags: ["blogging", "javascript", "node", "astro"]
 draft: false
 ---
 
-Astro allow us to only create static files during the build step for published work by filtering through collection and filtering out draft posts. But it doesn't prevent Git from knowing the context of your collection.
+Astro allows us to only create static files during the build step for published work by filtering through the collection and filtering out draft posts. But it doesn't prevent Git from knowing the context of your collection.
 
-So what ends up happening is you might check in your drafts into your Git history. From me, I didn't want my draft blog posts to be viewable until they are ready to be published.
+So what ends up happening is you might check in your drafts in your Git history. For me, I didn't want my draft blog posts to be viewable until they were ready to be published.
 
-I thought about adding my draft files into another folder and use gitignore but it wasn't an elegant solution since I have to manually move files from the drafts folder and into the proper folder each time I want to publish a blog.
+I thought about adding my draft files into another folder and using gitignore, but it wasn't an elegant solution since I have to manually move files from the drafts folder and into the proper folder each time I want to publish a blog.
 
-A solution I came up with was to use Husky to trigger pre-commit scripts and unstage all my markdown drafts. I'll show you exactly how I did that below.
+A solution I came up with was to use Husky to trigger pre-commit scripts and unstaged all my markdown drafts. I'll show you exactly how I did that below.
 
 ## What is Husky?
 
-If you don't know what Husky is, it's a program that will run during different lifecyles of your Git workflow. This is particularly useful for doing a bunch of things before and after committing files in your Git history.
+If you don't know what Husky is, it's a program that will run during different life cycles of your Git workflow. This is particularly useful for doing a bunch of things before and after committing files in your Git history.
 
-Usually you will see the `pre-commit` hook used often for performing linting, prettifying, or running tests on your project.
+Usually, you will see the `pre-commit` hook often used for performing linting, prettifying, or running tests on your project.
 
 ### List of Git Hooks Husky supports
 
-Husky supports all client-side Git hooks. There are 13 of them total.
+Husky supports all client-side Git hooks. There are 13 of them in total.
 
 - applypatch-msg
 - commit-msg
@@ -49,11 +49,11 @@ If you're interested in what Git hooks are, here is a list of all the different 
 
 To [install Husky](https://typicode.github.io/husky/), you need to have `Node` installed since you will use `npm`.
 
-I use `pnpm` but you can use any package manager supported in the link about.
+I use `pnpm`, but you can use any package manager supported in the link above.
 
 Run the command `pnpm add husky -D`. This will install Husky as a devDependency.
 
-Then run `pnpm exec husky init` so Husky can take care of the setup for you.
+Then run `pnpm exec husky init`, so Husky can take care of the setup for you.
 
 If you look in your project now, you should see a `.husky` folder. If you look inside, you will see a `pre-commit` file with the command `pnpm test` inside.
 
@@ -65,7 +65,7 @@ As a concept, if you tried to run `git add .` and `git commit -m "my message"` t
 
 Now we need a way to list out all the files that are staged in Git. Luckily for us, we can do that with this command, `git diff --name-status --staged`.
 
-This command is grabbing all staged files that were changed and returning the status mode and file names. This is how it would look in your terminal:
+This command grabs all staged files that were changed and returns the status mode and file names. This is how it would look in your terminal:
 
 ![list of files staged](../../../public/images/blog/husky-node-unstage/list-staged-files.png)
 
@@ -75,14 +75,14 @@ Press <kbd>q</kbd> to kill the process.
 
 Our next step requires us to write a Node script. Since my project is written in Typescript and I want to take advantage of the type system, so I am using `ts-node` to run the script.
 
-However, if you're just using Node, then you can change the file extension to `.js`, remove the types and it should work the same.
+However, if you're just using Node, then you can change the file extension to `.js`, and remove the types, and it should work the same.
 
 ### Prerequisites
 
 - Install `front-matter` and `ts-node` packages
 - Ensure you have a Post schema type
 
-We need a way to read from our front-matter in our `.md` files. I found this package, [front-matter](https://www.npmjs.com/package/front-matter), that easily allows us to get key-value pairs of our markdown.
+We need a way to read from our front matter in our `.md` files. I found this package, [front-matter](https://www.npmjs.com/package/front-matter), that easily allows us to get key-value pairs of our markdown.
 
 ### The meat of the script
 
@@ -163,7 +163,7 @@ import fm from "front-matter";
 import type { Post } from "src/content/config.ts";
 ```
 
-The command `git diff --name-status --staged` writes to out `stdout` so we can read from it in Node by using `process.stdin`.
+The command `git diff --name-status --staged` writes to out `stdout`, so we can read from it in Node by using `process.stdin`.
 
 Here we're listening to the event "readable" which is a stream of bytes. Then each chunk is appended in our `data` variable.
 
@@ -179,7 +179,7 @@ process.stdin.on("readable", () => {
 });
 ```
 
-We're going to `promisify()` our `childProcess.exec` so we can await it later.
+We're going to `promisify()` our `childProcess.exec`, so we can await it later.
 
 ```typescript
 const execPromise = util.promisify(childProcess.exec);
@@ -193,11 +193,11 @@ process.stdin.on("end", async () => {});
 
 I have two variables - one that will keep track of non-`.md` files and another to store markdown files, respectfully called `stagedFiles` and `markdownFiles`.
 
-I split the data by new lines and then filter valid entries. Then for each item in the array, I test some conditions to check the file is `.md` or not.
+I split the data by new lines and then filtered valid entries. Then for each item in the array, I test some conditions to check whether the file is `.md` or not.
 
-If it is a markdown file, we want to check if it's not a `D` status. The "D" status here means that I untracked the file that is previously tracked by Git and I don't want to unstage those changes.
+If it is a markdown file, we want to check if it's not a `D` status. The "D" status here means that I've untracked the file that was previously tracked by Git and I don't want to unstage those changes.
 
-If it not "D" then we push it the `markdownFiles`.
+If it is not "D" then we push it to the `markdownFiles`.
 
 ```typescript
 const stagedFiles: string[] = [];
@@ -218,7 +218,7 @@ data
   });
 ```
 
-After we have a list of our staged markdown files, we're going to process each file in a for loop and read from the front-matter. If the post is a draft, we update a counter and call `await execPromise()` to unstage it .
+After we have a list of our staged markdown files, we're going to process each file in a for loop and read from the front matter. If the post is a draft, we update a counter and call `await execPromise()` to unstage it.
 
 ```typescript
 let draftCount = 0;
@@ -258,9 +258,9 @@ The verboseness of the command above is important to Typescript and Node.
 If you're not using Typescript, it will look a lot simpler:
 `git diff --name-status --staged | node unstage-drafts.ts`
 
-## Untracking files already committed to history
+## Untracked files already committed to history
 
-There's one other important thing that I want to do -- removing my existing drafts in my Git history so they are no longer available in my public repo.
+There's one other important thing that I want to do -- removing my existing drafts in my Git history, so they are no longer available in my public repo.
 
 To do that, run the command `git rm --cached <path/to/file>`.
 
@@ -317,14 +317,14 @@ Untracked files:
         src/content/posts/use-husky-and-node-to-unstage-draft-posts-from-git.md
 ```
 
-Awesome! It worked! I can freely work on all my draft blog posts without ever checking it into Git again.
+Awesome! It worked! I can freely work on all my draft blog posts without ever checking them into Git again.
 
 ## The takeaway
 
 So if you're like me and want some bit of automation in your creative process, you can use this solution. I'm pretty sure there are better ones out there but if you like this approach, feel free to take it and use it as your own.
 
-In summary, we learned how to use Husky, piping the `git diff --name-status --staged` command output into Node, and letting our script unstage draft blog posts.
+In summary, we learned how to use Husky, piping the `git diff --name-status --staged` command output into Node, and letting our script unstaged draft blog posts.
 
-I hope you learned something today and if not, that's alright! I'm glad you took the time to read it anyways.
+I hope you learned something today and if not, that's alright! I'm glad you took the time to read it anyway.
 
 Well, until next time, happy coding!
