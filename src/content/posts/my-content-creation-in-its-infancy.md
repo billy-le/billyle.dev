@@ -25,7 +25,7 @@ It's 2024, and artificial intelligence is running rampant. People's attention sp
 
 Who dares to start a blog in this day and age?
 
-As someone who fancies an easy-going lifestyle, I couldn't care less about this environment. The joy and calmness that result from writing are therapeutic.
+As someone who fancies an easygoing lifestyle, I couldn't care less about this environment. The joy and calmness that result from writing are therapeutic.
 
 I'm mostly alone with my thoughts and equipped with a blinking cursor for the majority of my day. What better way could I lay out these unspoken feelings and thoughts into a post other than coding?
 
@@ -41,10 +41,10 @@ Slowly, but surely, I'll refine my process as I author dozens more posts like th
 
 I'm currently involved in building a startup as a solo founder in hopes of generating income. The world of startups is alien to me, and that is why I'm starting to blog. I want to document my journey in a safe environment.
 
-I don't know startup lingo. I don't have a social network. And I surely don't know how to launch a product. To sum it all up, I really don't know what I'm doing and am just trying things out until something sticks.
+I don't know startup lingo. Furthermore, I don't have a social network. And I surely don't know how to launch a product. To sum it all up, I don't know what I'm doing and am just trying things out until something sticks.
 
-So hopefully, I'm able to reveal to you cool articles, techniques, products, and more that I think you might be interested in along the way.
+So hopefully, I'll be able to reveal to you cool articles, techniques, products, and more that I think you might be interested in along the way.
 
-If you made it this far, thank you for taking your time to read this. And if you happen to enjoy this or encourage me to go on, please reach out. I would love to hear any feedback or advice you have to offer.
+If you made it this far, thank you for taking the time to read this. And if you happen to enjoy this or encourage me to go on, please reach out. I would love to hear any feedback or advice you have to offer.
 
 With that, I bid you farewell until next time.
