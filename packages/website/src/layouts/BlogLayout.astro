@@ -136,7 +136,7 @@ const hasToC = toc.length > 1;
             <div class="relative mx-auto px-4 prose dark:prose-invert xl:pt-10 2xl:px-0">
               <nav class="xl:sticky xl:top-20">
                 <h2 class="text-emerald-400">Table of Contents</h2>
-                <ul>
+                <ul class="toc-links marker:text-yellow-500">
                   {toc.map((heading) => (
                     <TOCHeading heading={heading} />
                   ))}
@@ -167,4 +167,33 @@ const hasToC = toc.length > 1;
       background-color: #24292e;
     }
   </style>
+  <script>
+    const articleSections =
+      document.querySelectorAll<HTMLDivElement>("article section");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const heading =
+          entry.target.querySelector<HTMLHeadingElement>("h2,h3,h4,h5");
+        if (!heading) return;
+        const id = heading.getAttribute("id");
+        if (!id) return;
+        const link = document.querySelector<HTMLAnchorElement>(
+          `.toc-links a[href="#${id}"]`,
+        );
+        if (!link) return;
+
+        const addRemove = entry.intersectionRatio > 0 ? "add" : "remove";
+        link.classList[addRemove]("text-blue-500", "dark:text-blue-400");
+      });
+    });
+
+    for (const section of articleSections) {
+      observer.observe(section);
+    }
+
+    window.document.addEventListener("beforeunload", () => {
+      observer.disconnect();
+    });
+  </script>
 </html>
