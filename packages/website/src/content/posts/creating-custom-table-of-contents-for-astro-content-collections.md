@@ -7,7 +7,7 @@ image:
   url: "https://images.unsplash.com/photo-1529473814998-077b4fec6770?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt: "book collections sorted by color on a bookshelf"
   className: ""
-tags: ["blogging", "content creation"]
+tags: ["blogging", "content creation", "astro"]
 draft: false
 ---
 

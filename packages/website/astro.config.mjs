@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
+import remarkSectionize from "remark-sectionize";
 
 /** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
@@ -14,4 +15,7 @@ export default defineConfig({
   ],
   prefetch: true,
   trailingSlash: "never",
+  markdown: {
+    remarkPlugins: [remarkSectionize],
+  },
 });
