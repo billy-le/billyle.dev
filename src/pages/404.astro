@@ -1,36 +1,68 @@
 ---
 import { Image } from "astro:assets";
-
-import Layout from "@layouts/Layout.astro";
+import Header from "@ui/components/Header.astro";
+import Footer from "@ui/components/Footer.astro";
+import BackdropRadial from "@ui/components/BackdropRadial.astro";
 
 import person404 from "@assets/images/404_person.svg";
 import landscape404 from "@assets/images/404_landscape.svg";
 ---
 
-<Layout title="Billy Le | Not Found" description="Not Found">
-  <div class="min-h-[580px] md:min-h-[768px] grid place-items-center">
-    <div class="space-y-4">
-      <h2 class="text-5xl text-slate-800 dark:text-emerald-300">Oh no!</h2>
-      <p class="text-gray-600 dark:text-gray-300">
-        Sorry the page you are looking for doesn't exist.
-      </p>
-      <div class="h-[400px]">
-        <Image
-          src={person404}
-          class="h-full w-full dark:hidden"
-          format="webp"
-          alt="Vector illustration of a man with binoculars"
-        />
-        <Image
-          src={landscape404}
-          class="hidden h-full w-full dark:block"
-          format="webp"
-          alt="Vector illustration of a nature landscape"
-        />
-        <h4 class="text-gray-500 text-xs link-hover dark:text-gray-100">
-          <a href="https://storyset.com/online">Image by storyset</a>
-        </h4>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="404 | Not Found" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href="/404.html" />
+    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-7X79K0T33N"
+    ></script>
+    <script defer>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7X79K0T33N");
+    </script>
+    <title>Billy Le | 404 Not Found</title>
+  </head>
+  <body class="relative font-inter">
+    <Header />
+    <main class="relative min-h-screen overflow-x-hidden">
+      <BackdropRadial />
+      <div class="min-h-[580px] md:min-h-[768px] grid place-items-center">
+        <div class="space-y-4">
+          <h2 class="text-5xl text-slate-800 dark:text-emerald-300">Oh no!</h2>
+          <p class="text-gray-600 dark:text-gray-300">
+            Sorry the page you are looking for doesn't exist.
+          </p>
+          <div class="h-[400px]">
+            <Image
+              src={person404}
+              class="h-full w-full dark:hidden"
+              format="webp"
+              alt="Vector illustration of a man with binoculars"
+            />
+            <Image
+              src={landscape404}
+              class="hidden h-full w-full dark:block"
+              format="webp"
+              alt="Vector illustration of a nature landscape"
+            />
+            <h4 class="text-gray-500 text-xs link-hover dark:text-gray-100">
+              <a href="https://storyset.com/online">Image by storyset</a>
+            </h4>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</Layout>
+    </main>
+    <Footer />
+  </body>
+</html>
