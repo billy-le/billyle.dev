@@ -4,8 +4,7 @@ import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
 import BackdropRadial from "@ui/components/BackdropRadial.astro";
 
-import person404 from "@assets/images/404_person.svg";
-import landscape404 from "@assets/images/404_landscape.svg";
+import img404NotFound from "@assets/images/404_not_found.png";
 ---
 
 <!doctype html>
@@ -33,33 +32,22 @@ import landscape404 from "@assets/images/404_landscape.svg";
     </script>
     <title>Billy Le | 404 Not Found</title>
   </head>
-  <body class="relative font-inter">
+  <body class="relative min-h-screen font-inter">
     <Header />
-    <main class="relative min-h-screen overflow-x-hidden">
+    <main class="py-40">
       <BackdropRadial />
-      <div class="min-h-[580px] md:min-h-[768px] grid place-items-center">
+      <div class="grid place-items-center">
         <div class="space-y-4">
           <h2 class="text-5xl text-slate-800 dark:text-emerald-300">Oh no!</h2>
           <p class="text-gray-600 dark:text-gray-300">
             Sorry the page you are looking for doesn't exist.
           </p>
-          <div class="h-[400px]">
-            <Image
-              src={person404}
-              class="h-full w-full dark:hidden"
-              format="webp"
-              alt="Vector illustration of a man with binoculars"
-            />
-            <Image
-              src={landscape404}
-              class="hidden h-full w-full dark:block"
-              format="webp"
-              alt="Vector illustration of a nature landscape"
-            />
-            <h4 class="text-gray-500 text-xs link-hover dark:text-gray-100">
-              <a href="https://storyset.com/online">Image by storyset</a>
-            </h4>
-          </div>
+          <Image
+            src={img404NotFound}
+            class="h-full max-w-80 mx-auto"
+            format="webp"
+            alt="404 not found"
+          />
         </div>
       </div>
     </main>
