@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "sync": "astro sync",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.0.5",
