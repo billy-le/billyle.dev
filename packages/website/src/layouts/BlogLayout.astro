@@ -30,7 +30,8 @@ const templateId = "e4b8c678-7bd5-445d-ba03-bfaad510c686";
 const ogVersion = "3";
 const site = "billyle.dev";
 const dynamicOG = `https://ogcdn.net/${templateId}/v${ogVersion}/${site}/${encodedTitle}/${encodedImage}/og.png`;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const newUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
 
 function createHeadingHierarchy(headings: MarkdownHeading[]) {
   const topLevelHeadings: HeadingHierarchy[] = [];

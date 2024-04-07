@@ -14,8 +14,17 @@ export default defineConfig({
     sitemap(),
   ],
   prefetch: true,
-  trailingSlash: "never",
   markdown: {
     remarkPlugins: [remarkSectionize],
+  },
+  redirects: {
+    "/posts": {
+      status: 301,
+      destination: "/blog",
+    },
+    "/posts/": {
+      status: 301,
+      destination: "/blog",
+    },
   },
 });
