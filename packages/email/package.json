@@ -18,6 +18,9 @@
     "@types/react": "^18.2.74"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0,"
+  },
+  "engines": {
+    "node": ">=21"
   }
 }
