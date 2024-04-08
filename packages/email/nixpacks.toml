@@ -1,4 +1,4 @@
-buildImage = "https://hub.docker.com/r/oven/bun:1.1.2-alpine"
+buildImage = "hub.docker.com/layers/oven/bun/1.1.2-alpine/images/sha256-c04cac0fa70738d8df5ac38f334a6bab63ee82fc5ae8c2c53fa015a9023822b7"
 
 [phases.build]
 cmds = ['bun install']
