@@ -11,30 +11,50 @@ const { className = "" } = Astro.props;
     <div class="flex flex-col flex-grow md:w-1/2">
       <h2 class="text-heading">Contact.</h2>
       <div class="space-y-8">
-        <form
-          class="flex flex-col space-y-4 max-w-md"
-          action="https://formsubmit.co/df1748045eb83625a870a914c769ee3c"
-          method="POST"
-        >
-          <input type="hidden" name="_next" value={Astro.url.href} />
-          <input type="hidden" name="_subject" value="New Message!" />
-          <input type="text" name="_honey" class="hidden" />
+        <form class="contact-form flex flex-col space-y-4 max-w-md">
           <input
             type="text"
             name="name"
+            class="buzzers"
+            placeholder="Name"
+            tabindex={-1}
+            aria-hidden="true"
+            autocomplete="off"
+          />
+          <input
+            type="email"
+            name="email"
+            class="buzzers"
+            placeholder="Email"
+            tabindex={-1}
+            aria-hidden="true"
+            autocomplete="off"
+          />
+          <textarea
+            name="message"
+            class="buzzers"
+            rows={5}
+            placeholder="What would you like to say?"
+            tabindex={-1}
+            aria-hidden="true"
+            autocomplete="off"></textarea>
+
+          <input
+            type="text"
+            name="name_c"
             class="h-10 px-3 rounded ring-2 ring-neutral-300"
             placeholder="Name"
             required
           />
           <input
             type="email"
-            name="email"
+            name="email_c"
             class="h-10 px-3 rounded ring-2 ring-neutral-300"
             placeholder="Email"
             required
           />
           <textarea
-            name="message"
+            name="message_c"
             class="px-3 py-2 rounded ring-2 ring-neutral-300"
             rows={5}
             placeholder="What would you like to say?"
@@ -67,7 +87,15 @@ const { className = "" } = Astro.props;
   </div>
 </section>
 
+<style>
+  .buzzers {
+    @apply opacity-0 absolute top-0 left-0 h-0 w-0 -z-10;
+  }
+</style>
+
 <script>
+  import { sleep } from "@utils/sleep";
+
   const contactsContainer = document.querySelector(
     "#contact",
   ) as HTMLDivElement;
@@ -159,4 +187,124 @@ const { className = "" } = Astro.props;
   });
 
   observer.observe(contactsContainer);
+
+  function createErrorMessage(message: string) {
+    const p = document.createElement("p");
+    p.className = "text-sm text-red-400";
+    p.dataset["error"] = "true";
+    p.textContent = message;
+    return p;
+  }
+
+  async function createToaster() {
+    const div = document.createElement("div");
+    const p = document.createElement("p");
+    div.className =
+      "fixed bottom-8 right-8 p-4 bg-slate-200 dark:bg-slate-700 shadoow-lg rounded-md opacity-0 transition-opacity duration-300 border-t-4 border-emerald-400 border-solid";
+    p.className = "text-xl text-slate-800 dark:text-slate-100";
+    p.textContent = "Your message has been sent!";
+    div.appendChild(p);
+    document.body.appendChild(div);
+
+    await sleep(100);
+    div.classList.remove("opacity-0");
+    await sleep(3000);
+    div.classList.add("opacity-0");
+    await sleep(200);
+    div.remove();
+  }
+
+  const contactForm =
+    contactsContainer.querySelector<HTMLFormElement>(".contact-form");
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formEl = e.target as HTMLFormElement;
+      const formData = new FormData(formEl);
+
+      const requestBody = {
+        name: formData.get("name_c"),
+        email: formData.get("email_c"),
+        message: formData.get("message_c"),
+      };
+
+      try {
+        const { message } = await fetch(
+          import.meta.env.PROD
+            ? "https://api.billyle.dev/send-email"
+            : "http://localhost:3000/send-email",
+          {
+            method: "POST",
+            body: JSON.stringify(requestBody),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          },
+        ).then((res) => res.json());
+
+        const nameInput = formEl.querySelector('input[name="name_c"]');
+        const emailInput = formEl.querySelector('input[name="email_c"]');
+        const messageInput = formEl.querySelector('textarea[name="message_c"]');
+
+        nameInput?.classList?.remove("ring-red-500");
+        emailInput?.classList?.remove("ring-red-500");
+        messageInput?.classList?.remove("ring-red-500");
+
+        const errorName = nameInput?.nextElementSibling as HTMLDivElement;
+        const errorEmail = emailInput?.nextElementSibling as HTMLDivElement;
+        const messageError = messageInput?.nextElementSibling as HTMLDivElement;
+
+        if (errorName?.dataset?.["error"]) {
+          errorName.remove();
+        }
+        if (errorEmail?.dataset?.["error"]) {
+          errorEmail.remove();
+        }
+        if (messageError?.dataset?.["error"]) {
+          messageError.remove();
+        }
+
+        switch (message) {
+          case "Success": {
+            formEl.reset();
+            createToaster();
+            break;
+          }
+          case "Name must be at least 3 characters": {
+            nameInput?.classList.add("ring-red-500");
+            const error = nameInput?.nextSibling as HTMLDivElement;
+            if (!error?.dataset?.["error"]) {
+              const div = createErrorMessage(message);
+              nameInput?.insertAdjacentElement("afterend", div);
+            }
+            break;
+          }
+          case "Invalid email format": {
+            emailInput?.classList.add("ring-red-500");
+            const error = emailInput?.nextSibling as HTMLDivElement;
+            if (!error?.dataset?.["error"]) {
+              const div = createErrorMessage(message);
+              emailInput?.insertAdjacentElement("afterend", div);
+            }
+            break;
+          }
+          case "Message should be at least 10 characters and max of 1024 characters": {
+            messageInput?.classList.add("ring-red-500");
+            const error = messageInput?.nextSibling as HTMLDivElement;
+            if (!error?.dataset?.["error"]) {
+              const div = createErrorMessage(message);
+              messageInput?.insertAdjacentElement("afterend", div);
+            }
+            break;
+          }
+        }
+      } catch (err) {
+        if (import.meta.env.DEV) {
+          console.log(err);
+        }
+      }
+    });
+  }
 </script>
