@@ -1,8 +1,8 @@
-[phases.setup]
-nixPkgs = ['bun']
+buildImage = "https://hub.docker.com/r/oven/bun:1.1.2-alpine"
 
-[phases.install]
+[phases.build]
 cmds = ['bun install']
 
 [start]
 cmd = 'bun run start'
+dependsOn = ["build"]
