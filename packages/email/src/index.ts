@@ -18,8 +18,11 @@ new Elysia()
       ],
     })
   )
+  .get("/ping", () => {
+    return "pong";
+  })
   .post(
-    "/send",
+    "/send-email",
     async (context) => {
       const { name, email, message } = context.body;
 
@@ -58,17 +61,19 @@ new Elysia()
             "Message should be at least 10 characters and max of 1024 characters",
         }),
       }),
-      error: ({ path, body, request: { method }, error }) => {
-        const errorMessage = `${method} ${path} ${
+      error: ({ path, body, request: { method, headers }, error, code }) => {
+        const errorMessage = `method=${method} path=${path} error=${
           error.message
-        } ${JSON.stringify(body)}`;
+        } body=${JSON.stringify(body)} userAgent=${headers.get("user-agent")}`;
         logger.error(errorMessage);
         return error;
       },
     }
   )
-  .onError(({ path, request: { method }, error }) => {
-    const errorMessage = `${method} ${path}`;
+  .onError(({ path, request: { method, headers }, error }) => {
+    const errorMessage = `method=${method} path=${path} userAgent=${headers.get(
+      "user-agent"
+    )}`;
     logger.error(errorMessage, error);
     return error;
   })
