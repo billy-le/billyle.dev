@@ -1,8 +1,0 @@
-buildImage = "oven/bun:1.1.2-alpine"
-
-[phases.build]
-cmds = ['bun install']
-
-[start]
-cmd = 'bun run start'
-dependsOn = ["build"]
