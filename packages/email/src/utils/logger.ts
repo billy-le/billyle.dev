@@ -5,6 +5,7 @@ const { errors, printf, combine, colorize, timestamp } = format;
 export const logger = winston.createLogger({
   level: "info",
   format: winston.format.json(),
+  transports: [new winston.transports.Console()],
 });
 
 if (process.env.NODE_ENV !== "production") {
