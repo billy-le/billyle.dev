@@ -6,6 +6,7 @@ import "@assets/styles/global.css";
 import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
 import BackdropRadial from "@ui/components/BackdropRadial.astro";
+import PageLoader from "@ui/components/PageLoader.astro";
 
 export interface Props {
   title: string;
@@ -35,6 +36,7 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
     <title>{title}</title>
   </head>
   <body class="relative font-inter">
+    <PageLoader />
     <Header />
     <main class="relative min-h-screen overflow-x-hidden">
       <BackdropRadial />

@@ -5,16 +5,10 @@ interface Props {
   className?: string;
 }
 
-const { className = "", height, width } = Astro.props;
+const { className = "" } = Astro.props;
 ---
 
-<svg
-  {height}
-  {width}
-  class={className}
-  viewBox="0 0"
-  xmlns="http://www.w3.org/2000/svg"
->
+<svg class={className} xmlns="http://www.w3.org/2000/svg">
   <filter id="svg-grain">
     <feTurbulence
       type="fractalNoise"

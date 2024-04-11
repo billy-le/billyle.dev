@@ -1,0 +1,25 @@
+---
+import "@assets/styles/loader.css";
+---
+
+<div
+  id="init-loader"
+  class="fixed top-0 left-0 h-full w-full text-neutral-500 bg-neutral-50 dark:bg-slate-800 dark:text-white z-50 flex flex-col items-center justify-center gap-4
+  transition-opacity duration-500 ease-in"
+>
+  <div class="loader"></div>
+  <p class="text-center text-2xl">Loading... please wait.</p>
+</div>
+<script>
+  import { sleep } from "@utils/sleep";
+
+  const loader = document.querySelector("#init-loader");
+
+  window.addEventListener("load", async () => {
+    if (loader) {
+      loader.classList.add("opacity-0");
+      await sleep(500);
+      loader.remove();
+    }
+  });
+</script>
