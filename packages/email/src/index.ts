@@ -26,23 +26,30 @@ new Elysia()
     async (context) => {
       const { name, email, message } = context.body;
 
-      const { error } = await resend.emails.send({
-        from: `${name} <${Bun.env.EMAIL_TO}>`,
-        to: [Bun.env.EMAIL_TO],
-        subject: `New Message Received From ${name}`,
-        react: EmailTemplate({ name, email, message }),
-      });
+      try {
+        const { error } = await resend.emails.send({
+          from: `${name} <${Bun.env.EMAIL_TO}>`,
+          to: [Bun.env.EMAIL_TO],
+          subject: `New Message Received From ${name}`,
+          react: EmailTemplate({ name, email, message }),
+        });
 
-      if (error) {
-        return context.error((error as any).statusCode, error);
+        if (error) {
+          return context.error((error as any).statusCode, error);
+        }
+
+        logger.info("New email received");
+        return new Response(JSON.stringify({ message: "Success" }), {
+          headers: {
+            "content-type": "application/json",
+          },
+        });
+      } catch (error) {
+        if (error instanceof Error) {
+          logger.error(error.message, error);
+        }
+        return context.error("Internal Server Error", error);
       }
-
-      logger.info("New email received");
-      return new Response(JSON.stringify({ message: "Success" }), {
-        headers: {
-          "content-type": "application/json",
-        },
-      });
     },
     {
       body: t.Object({
