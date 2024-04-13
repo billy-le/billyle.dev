@@ -188,32 +188,6 @@ const { className = "" } = Astro.props;
 
   observer.observe(contactsContainer);
 
-  function createErrorMessage(message: string) {
-    const p = document.createElement("p");
-    p.className = "text-sm text-red-400";
-    p.dataset["error"] = "true";
-    p.textContent = message;
-    return p;
-  }
-
-  async function createToaster() {
-    const div = document.createElement("div");
-    const p = document.createElement("p");
-    div.className =
-      "fixed bottom-8 right-8 p-4 bg-slate-200 dark:bg-slate-700 shadoow-lg rounded-md opacity-0 transition-opacity duration-300 border-t-4 border-emerald-400 border-solid";
-    p.className = "text-xl text-slate-800 dark:text-slate-100";
-    p.textContent = "Your message has been sent!";
-    div.appendChild(p);
-    document.body.appendChild(div);
-
-    await sleep(100);
-    div.classList.remove("opacity-0");
-    await sleep(3000);
-    div.classList.add("opacity-0");
-    await sleep(200);
-    div.remove();
-  }
-
   const contactForm =
     contactsContainer.querySelector<HTMLFormElement>(".contact-form");
 
@@ -244,9 +218,15 @@ const { className = "" } = Astro.props;
           },
         ).then((res) => res.json());
 
-        const nameInput = formEl.querySelector('input[name="name_c"]');
-        const emailInput = formEl.querySelector('input[name="email_c"]');
-        const messageInput = formEl.querySelector('textarea[name="message_c"]');
+        const nameInput = formEl.querySelector<HTMLInputElement>(
+          'input[name="name_c"]',
+        );
+        const emailInput = formEl.querySelector<HTMLInputElement>(
+          'input[name="email_c"]',
+        );
+        const messageInput = formEl.querySelector<HTMLTextAreaElement>(
+          'textarea[name="message_c"]',
+        );
 
         nameInput?.classList?.remove("ring-red-500");
         emailInput?.classList?.remove("ring-red-500");
@@ -266,38 +246,68 @@ const { className = "" } = Astro.props;
           messageError.remove();
         }
 
+        function createErrorMessage(message: string) {
+          const p = document.createElement("p");
+          p.className = "text-sm text-red-400";
+          p.dataset["error"] = "true";
+          p.textContent = message;
+          return p;
+        }
+
+        function insertErrorMessage(el: HTMLElement) {
+          const error = el?.nextSibling as HTMLDivElement;
+          if (!error?.dataset?.["error"]) {
+            const div = createErrorMessage(message);
+            el?.insertAdjacentElement("afterend", div);
+          }
+        }
+
+        async function createSuccessToaster() {
+          const div = document.createElement("div");
+          const p = document.createElement("p");
+          div.className =
+            "fixed bottom-8 right-8 p-4 bg-slate-200 dark:bg-slate-700 shadoow-lg rounded-md opacity-0 transition-opacity duration-300 border-t-4 border-emerald-400 border-solid";
+          p.className = "text-xl text-slate-800 dark:text-slate-100";
+          p.textContent = "Your message has been sent!";
+          div.appendChild(p);
+          document.body.appendChild(div);
+
+          await sleep(100);
+          div.classList.remove("opacity-0");
+          await sleep(3000);
+          div.classList.add("opacity-0");
+          await sleep(200);
+          div.remove();
+        }
+
         switch (message) {
           case "Success": {
             formEl.reset();
-            createToaster();
+            createSuccessToaster();
             break;
           }
           case "Name must be at least 3 characters": {
-            nameInput?.classList.add("ring-red-500");
-            const error = nameInput?.nextSibling as HTMLDivElement;
-            if (!error?.dataset?.["error"]) {
-              const div = createErrorMessage(message);
-              nameInput?.insertAdjacentElement("afterend", div);
+            if (nameInput) {
+              insertErrorMessage(nameInput);
             }
             break;
           }
           case "Invalid email format": {
-            emailInput?.classList.add("ring-red-500");
-            const error = emailInput?.nextSibling as HTMLDivElement;
-            if (!error?.dataset?.["error"]) {
-              const div = createErrorMessage(message);
-              emailInput?.insertAdjacentElement("afterend", div);
+            if (emailInput) {
+              insertErrorMessage(emailInput);
             }
             break;
           }
           case "Message should be at least 10 characters and max of 1024 characters": {
-            messageInput?.classList.add("ring-red-500");
-            const error = messageInput?.nextSibling as HTMLDivElement;
-            if (!error?.dataset?.["error"]) {
-              const div = createErrorMessage(message);
-              messageInput?.insertAdjacentElement("afterend", div);
+            if (messageInput) {
+              insertErrorMessage(messageInput);
             }
             break;
+          }
+          default: {
+            if (import.meta.env.DEV) {
+              console.log("Unknown message: ", message);
+            }
           }
         }
       } catch (err) {
