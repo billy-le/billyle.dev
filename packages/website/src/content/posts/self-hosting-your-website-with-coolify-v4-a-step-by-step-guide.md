@@ -261,7 +261,7 @@ Keep your Coolify page open for the next part as we still need to tinker with it
 
 Now all we need to do is some configuration between Cloudflare and Coolify. We need to point our domain in Cloudflare to our Hetzner server and Coolify will serve our applications.
 
-It took me a long time to figure this out so there might be some trial and error on your part, but I hope these next set of instructions just works for you.
+It took me a long time to figure this out so there might be some trial and error on your part, but I hope this next set of instructions just works for you.
 
 ### Enforce Strict SSL/TSL Mode
 
@@ -275,7 +275,7 @@ By default, SSL will be on Flexible mode and if you had this on, both Coolify an
 
 ![selecting full strict option in cloudflare ssl/tls page](../../../public/images/blog/self-hosting/cloudflare-ssl-full-strict.png)
 
-### Access the Coolify instance from our domain
+### Access Coolify from our domain
 
 In your Cloudflare dashboard, go to the DNS Records Management page for your domain. We want to add a subdomain for our Coolify instance.
 
@@ -301,7 +301,7 @@ Head over to `https://coolify.<your_domain>` and check out your new Coolify on y
 
 Now login with the credentials you used to register in the initial Coolify setup, and you should now be at the Coolify dashboard.
 
-### Linking your Coolify website to your domain
+### Linking Coolify app to your domain
 
 From the Coolify dashboard, navigate back to your project configuration dashboard. We're going to change the auto-generated domain that Coolify created to use our domain.
 

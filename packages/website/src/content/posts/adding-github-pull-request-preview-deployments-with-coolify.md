@@ -21,7 +21,7 @@ Let's cover what we're going to do:
 4. Deploy a resource and configure our application to use Pull Request Previews
 5. Test Pull Request Previews by creating a Pull Request on GitHub
 
-## Update DNS Records for Wildcard Subdomains
+## Update DNS for Wildcard Subdomains
 
 I’m using Cloudflare but whatever you’re using should likely be the same. All you need to do is go to your DNS Records dashboard and enter the details below.
 
@@ -158,7 +158,7 @@ I had to adjust the Branch to "master" because the dropdown list is ordered alph
 
 This next section should be familiar if you followed my other tutorial when I set up self-hosting for this website.
 
-## Configuring the application for Preview Deployments
+## Configuring for Preview Deployments
 
 Notice how in the "Domains" field, we see the Coolify wildcard domain being auto-generated with the domain we gave it earlier in the ["localhost" server configuration](#allow-coolify-to-create-wildcard-domains).
 
@@ -178,7 +178,7 @@ These next steps can be ignored if you don't want to set resource limits for you
 
 ![navigation to the advanced settings page](../../../public/images/blog/pull-request-previews/coolify-turn-on-preview-deployments.png)
 
-## Limit resources for your application (optional)
+## Limit resources for your app (optional)
 
 Under the "Resource Limits" menu, we will find several fields we can set to limit resources for the application. You can follow the link when you hover the asterisk in the field label to get more information.
 
