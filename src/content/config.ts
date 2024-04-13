@@ -13,6 +13,7 @@ const validTags = [
   "mobile development",
   "iOS",
   "node",
+  "bun",
   "astro",
 ];
 
