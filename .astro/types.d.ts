@@ -133,6 +133,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"configure-a-contact-form-email-server-with-resend-for-your-website.md": {
+	id: "configure-a-contact-form-email-server-with-resend-for-your-website.md";
+  slug: "configure-a-contact-form-email-server-with-resend-for-your-website";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "creating-custom-table-of-contents-for-astro-content-collections.md": {
 	id: "creating-custom-table-of-contents-for-astro-content-collections.md";
   slug: "creating-custom-table-of-contents-for-astro-content-collections";

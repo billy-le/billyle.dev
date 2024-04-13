@@ -129,10 +129,10 @@ const hasToC = toc.length > 1;
       >
         {
           hasToC && (
-            <div class="relative mx-auto px-4 prose dark:prose-invert xl:pt-10 2xl:px-0">
+            <div class="relative mx-auto px-4 prose dark:prose-invert xl:pt-10 2xl:px-0 xl:pb-10">
               <nav class="xl:sticky xl:top-20">
                 <h2 class="text-emerald-400">Table of Contents</h2>
-                <ul class="toc-links marker:text-yellow-500">
+                <ul class="toc-links marker:text-yellow-500 xl:max-h-[calc(100dvh_-_20dvh)] xl:overflow-y-auto">
                   {toc.map((heading) => (
                     <TOCHeading heading={heading} />
                   ))}
@@ -145,7 +145,7 @@ const hasToC = toc.length > 1;
         <article
           class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
         prose-code:before:hidden prose-code:after:hidden
-        sm:prose-lg lg:prose-xl
+        sm:prose-lg lg:prose-xl lg:max-w-4xl
         ${hasToC ? "lg:col-span-3" : ""}
         `}
         >
