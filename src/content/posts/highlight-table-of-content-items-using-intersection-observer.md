@@ -72,7 +72,7 @@ Here are the steps I'll need to complete it:
 4. Inside the callback, find the heading element of that section, map it to the ToC, and toggle on/off the class `active` as they enter or leave.
 5. Loop over the `<section>` tags from Step 1 and use the Intersection Observer we created to observe each section.
 
-### What is the Intersection Observer API?
+### The Intersection Observer API
 
 If you have never used or heard of [Intersection Observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API), it's a Web API that allows us to listen to events and trigger functions when an element is entering or leaving the viewport.
 
@@ -117,7 +117,7 @@ Here is the code:
 </script>
 ```
 
-### Let's break the code down one by one to understand what it is doing.
+### Breaking the code down
 
 ```typescript
 const articleSections =

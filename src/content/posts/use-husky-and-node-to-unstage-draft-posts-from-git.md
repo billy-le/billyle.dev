@@ -258,7 +258,7 @@ The verboseness of the command above is important to Typescript and Node.
 If you're not using Typescript, it will look a lot simpler:
 `git diff --name-status --staged | node unstage-drafts.ts`
 
-## Untracked files already committed to history
+## Untracked files committed to history
 
 There's one other important thing that I want to do -- removing my existing drafts in my Git history, so they are no longer available in my public repo.
 

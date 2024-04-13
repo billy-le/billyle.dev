@@ -33,7 +33,7 @@ You can send transactional emails, start a marketing campaign, and create beauti
 
 You can also add your custom domain where the "from" field will be sent from your domain.
 
-## Resend Domain Configuration and API Key
+## Resend Domain Config and API Key
 
 Sign up for Resend and verify your email. There are two steps we're going to complete here. You can skip the Custom Domain instructions if that doesn't apply to you.
 
@@ -113,7 +113,7 @@ You'll need a basic contact form markup:
 </form>
 ```
 
-### Basic setup when a form submission is fired
+### Basic Form Event Handler
 
 In a script tag, we'll need to target the form and listen for events.
 
@@ -143,7 +143,7 @@ In a script tag, we'll need to target the form and listen for events.
 
 You might be using React or some other framework but the idea here is to prepare our front-end code to start sending requests.
 
-### Checking the form submission event handler is working
+### Test form submission
 
 This is all we're going to need for the time being. Fire up your frontend server then fill out your contact form and hit submit. You should see a log in the dev console with your input.
 
@@ -518,7 +518,7 @@ Go ahead and add a new Resource and you will see this next page.
 
 From there keep selecting the server you want to host it from, and then the destination.
 
-### Configuring the application settings
+### Configuring the app settings
 
 When you get to the Configuration page, you would want to choose the `Nixpacks` build pack. It will automatically detect your stack and deploy a container for you.
 
