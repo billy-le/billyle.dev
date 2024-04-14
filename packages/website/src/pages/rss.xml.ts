@@ -14,7 +14,7 @@ export function GET(context: AstroGlobal) {
   allPosts;
 
   return rss({
-    title: "Billy's Blog",
+    title: "Billy Le | Blog",
     description:
       "My creative outlet is a reflection of the experiences I've encountered—whether in learning, facing setbacks, or achieving success—as a software developer.",
     site: context.site,
