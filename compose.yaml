@@ -8,14 +8,14 @@
 # database or a cache. For examples, see the Awesome Compose repository:
 # https://github.com/docker/awesome-compose
 services:
-  server:
-    container_name: server
-    image: server
+  app:
+    container_name: app
+    image: app
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 8080:8080
+      - 4321:4321
 
 
 # The commented out section below is an example of how to define a PostgreSQL
