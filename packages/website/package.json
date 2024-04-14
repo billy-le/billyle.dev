@@ -1,7 +1,22 @@
 {
-  "name": "@example/basics",
+  "name": "billyle.dev",
+  "author": {
+    "name": "Billy le",
+    "email": "hi@billyle.dev",
+    "url": "https://billyle.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/billy-le/billyle.dev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/billy-le/billyle.dev/issues",
+    "email": "hi@billyle.dev"
+  },
   "version": "0.0.1",
   "private": true,
+  "type": "module",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,6 +25,15 @@
     "astro": "astro",
     "sync": "astro sync",
     "prepare": "husky || true"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.5",
+    "@fontsource-variable/inter": "^5.0.17",
+    "@fontsource/vidaloka": "^5.0.8",
+    "date-fns": "^3.6.0",
+    "sharp": "^0.33.3",
+    "three": "^0.161.0",
+    "three-globe": "^2.31.0"
   },
   "devDependencies": {
     "@astrojs/sitemap": "^3.1.2",
@@ -29,14 +53,5 @@
     "tailwindcss": "^3.4.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.4"
-  },
-  "dependencies": {
-    "@fontsource-variable/inter": "^5.0.17",
-    "@fontsource/vidaloka": "^5.0.8",
-    "date-fns": "^3.6.0",
-    "sharp": "^0.33.3",
-    "three": "^0.161.0",
-    "three-globe": "^2.31.0"
-  },
-  "type": "module"
+  }
 }

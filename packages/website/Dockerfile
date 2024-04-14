@@ -55,4 +55,4 @@ RUN pnpm run build
 FROM nginx:stable-alpine3.17 as final
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 4321
