@@ -2,7 +2,6 @@
 title: "Configure a Contact Form Email Server with Resend for Your Website"
 pubDate: 2024-04-13
 description: "This tutorial covers how to hook up your front-end contact form to a back-end email server using Resend. You can apply the concepts discussed in this post to any front-end or back-end framework. If you're using a form provider like FormSpree or FormSubmit and want to move away from them, then this blog post is for you."
-author: "Billy Le"
 image:
   url: "https://images.pexels.com/photos/1777792/pexels-photo-1777792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
   alt: "a man jump running in casual clothing"
@@ -27,7 +26,7 @@ But there is one other solution I found that is least talked about but it's quic
 
 Resend is a startup aimed at making sending emails easier for developers.
 
-![Resend homepage - hero section](../../../public/images/blog/resend-email-server/resend-homepage.png)
+![Resend homepage - hero section](./_images/resend-email-server/resend-homepage.png)
 
 You can send transactional emails, start a marketing campaign, and create beautiful emails using React. And this all comes with a generous free tier.
 
@@ -41,13 +40,13 @@ Sign up for Resend and verify your email. There are two steps we're going to com
 
 Once you're verified and logged into Resend, head over to the Domains page in the left panel. You should see a similar page to the one below.
 
-![Resend Domains page](../../../public/images/blog/resend-email-server/resend-domains-page.png)
+![Resend Domains page](./_images/resend-email-server/resend-domains-page.png)
 
 I already have mine set up but click on "+ Add Domain" and you'll enter your Custom domain and a region.
 
 After that, you need to go to your DNS provider and enter all the DNS records that Resend provides you on the following page. I have Cloudflare as my DNS provider.
 
-![Resend Domains DNS records](../../../public/images/blog/resend-email-server/resend-dns-records.png)
+![Resend Domains DNS records](./_images/resend-email-server/resend-dns-records.png)
 
 There will be a button for you to verify your DNS records. My recommendation is to wait for an hour and then try to verify that your DNS records are correctly configured with your provider.
 
@@ -57,7 +56,7 @@ You should see all green "Verified" badges next to all the records you need to a
 
 Once that's done, head over to the API Keys page for Resend. Here I'm redacting my API Key for security purposes but I'll run you through setting up a new API Key with your custom domain.
 
-![Resend API Keys page](../../../public/images/blog/resend-email-server/resend-api-keys-page.png)
+![Resend API Keys page](./_images/resend-email-server/resend-api-keys-page.png)
 
 Click on "+ Create API Key" and a dialog will pop up.
 
@@ -66,7 +65,7 @@ Click on "+ Create API Key" and a dialog will pop up.
 3. In the Domain dropdown, select your verified custom domain.
 4. Finish by clicking "Add"
 
-![Resend Create API Key dialog](../../../public/images/blog/resend-email-server/resend-create-api-key.png)
+![Resend Create API Key dialog](./_images/resend-email-server/resend-create-api-key.png)
 
 And that's all! Now onto the coding part.
 
@@ -147,8 +146,7 @@ You might be using React or some other framework but the idea here is to prepare
 
 This is all we're going to need for the time being. Fire up your frontend server then fill out your contact form and hit submit. You should see a log in the dev console with your input.
 
-![Contact form filled out](../../../public/images/blog/resend-email-server/contact-form-filled.png)
-
+![Contact form filled out](./_images/resend-email-server/contact-form-filled.png)
 
 ```javascript
 {
@@ -163,6 +161,7 @@ This is all we're going to need for the time being. Fire up your frontend server
 I'm using Bun, which is a JavaScript run-time like Node. You should get very similar results if you're using Node and a web app framework like Express. If you need in that regard, feel free to reach out.
 
 ### Create a `.env` file
+
 Create a `.env` file. Use the template below since it is what I'm using these properties that will be used by our server.
 
 You'll need to install the [dot-env](https://www.npmjs.com/package/dot-env) package if you're using Node. The link will show you how to set it up.
@@ -194,6 +193,7 @@ const { error } = await resend.emails.send({
 ```
 
 ### Creating our Bun server
+
 We'll be creating our server next.
 
 If you're unfamiliar with Bun, there is a web app framework called [ElysiaJS](https://elysiajs.com/) which is similar to ExpressJS. It comes with some cool features like validation which I'm using below.
@@ -331,6 +331,7 @@ Now, if everything seems okay, we're going to attempt to send an email to Resend
 Pretty simple right?
 
 ## Front-end meets Back-end
+
 Back on our front end, we're going to make a fetch request to our server listening on Port 3000. My AstroJS server is running on PORT 4321 so make sure you distinguish the two.
 
 In the event listener on form submission, we'll update our code to use `fetch()` as a POST request to our email server.
@@ -339,148 +340,147 @@ Please not the comments in the following code.
 
 ```astro
 <script>
-const contactForm =
+  const contactForm =
     contactsContainer.querySelector<HTMLFormElement>(".contact-form");
 
-if (contactForm) {
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const formEl = e.target as HTMLFormElement;
-    const formData = new FormData(formEl);
+      const formEl = e.target as HTMLFormElement;
+      const formData = new FormData(formEl);
 
-    const requestBody = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
-    };
+      const requestBody = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
 
-    try {
-      const { message } = await fetch(
-        import.meta.env.PROD
-          ? "https://api.mycustomdomain.com/send-email" // host a production server with your custom domain
-          : "http://localhost:3000/send-email",
-        {
-          method: "POST",
-          body: JSON.stringify(requestBody),
-          headers: {
-            "Content-Type": "application/json",
+      try {
+        const { message } = await fetch(
+          import.meta.env.PROD
+            ? "https://api.mycustomdomain.com/send-email" // host a production server with your custom domain
+            : "http://localhost:3000/send-email",
+          {
+            method: "POST",
+            body: JSON.stringify(requestBody),
+            headers: {
+              "Content-Type": "application/json",
+            },
           },
-        },
-      ).then((res) => res.json());
+        ).then((res) => res.json());
 
-      // store input elements in a variable for later use
-      const nameInput = formEl.querySelector<HTMLInputElement>(
-        'input[name="name"]',
-      );
-      const emailInput = formEl.querySelector<HTMLInputElement>(
-        'input[name="email"]',
-      );
-      const messageInput = formEl.querySelector<HTMLTextAreaElement>(
-        'textarea[name="message"]',
-      );
+        // store input elements in a variable for later use
+        const nameInput =
+          formEl.querySelector<HTMLInputElement>('input[name="name"]');
+        const emailInput = formEl.querySelector<HTMLInputElement>(
+          'input[name="email"]',
+        );
+        const messageInput = formEl.querySelector<HTMLTextAreaElement>(
+          'textarea[name="message"]',
+        );
 
-      // remove all error classes from the inputs
-      nameInput?.classList?.remove("ring-red-500");
-      emailInput?.classList?.remove("ring-red-500");
-      messageInput?.classList?.remove("ring-red-500");
+        // remove all error classes from the inputs
+        nameInput?.classList?.remove("ring-red-500");
+        emailInput?.classList?.remove("ring-red-500");
+        messageInput?.classList?.remove("ring-red-500");
 
-      // store adjacent siblings to see if they are error divs
-      const errorName = nameInput?.nextElementSibling as HTMLDivElement;
-      const errorEmail = emailInput?.nextElementSibling as HTMLDivElement;
-      const messageError = messageInput?.nextElementSibling as HTMLDivElement;
+        // store adjacent siblings to see if they are error divs
+        const errorName = nameInput?.nextElementSibling as HTMLDivElement;
+        const errorEmail = emailInput?.nextElementSibling as HTMLDivElement;
+        const messageError = messageInput?.nextElementSibling as HTMLDivElement;
 
-      // each if statement checks the input adjacent sibling and removes them from the DOM
-      // if they have the `data-error="true"` attribute
-      if (errorName?.dataset?.["error"]) {
-        errorName.remove();
-      }
-      if (errorEmail?.dataset?.["error"]) {
-        errorEmail.remove();
-      }
-      if (messageError?.dataset?.["error"]) {
-        messageError.remove();
-      }
-
-      // create the error div with the data-error="true" attribute
-      function createErrorMessage(message: string) {
-        const p = document.createElement("p");
-        p.className = "text-sm text-red-400";
-        p.dataset["error"] = "true";
-        p.textContent = message;
-        return p;
-      }
-
-      // insert the error divs after to the input element
-      function insertErrorMessage(el: HTMLElement) {
-        const error = el?.nextSibling as HTMLDivElement;
-        if (!error?.dataset?.["error"]) {
-          const div = createErrorMessage(message);
-          el?.insertAdjacentElement("afterend", div);
+        // each if statement checks the input adjacent sibling and removes them from the DOM
+        // if they have the `data-error="true"` attribute
+        if (errorName?.dataset?.["error"]) {
+          errorName.remove();
         }
-      }
+        if (errorEmail?.dataset?.["error"]) {
+          errorEmail.remove();
+        }
+        if (messageError?.dataset?.["error"]) {
+          messageError.remove();
+        }
 
-      // create a toaster message upon success
-      async function createSuccessToaster() {
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        div.className =
-          "fixed bottom-8 right-8 p-4 bg-slate-200 dark:bg-slate-700 shadoow-lg rounded-md opacity-0 transition-opacity duration-300 border-t-4 border-emerald-400 border-solid";
-        p.className = "text-xl text-slate-800 dark:text-slate-100";
-        p.textContent = "Your message has been sent!";
-        div.appendChild(p);
-        document.body.appendChild(div);
+        // create the error div with the data-error="true" attribute
+        function createErrorMessage(message: string) {
+          const p = document.createElement("p");
+          p.className = "text-sm text-red-400";
+          p.dataset["error"] = "true";
+          p.textContent = message;
+          return p;
+        }
 
-        // using sleep to animate the toaster
-        await sleep(100);
-        div.classList.remove("opacity-0");
-        await sleep(3000);
-        div.classList.add("opacity-0");
-        await sleep(200);
-        div.remove();
-      }
-
-      // message could be success or errors
-      switch (message) {
-        case "Success": {
-          // reset the form on success and show a toaster
-          formEl.reset();
-          createSuccessToaster();
-          break;
-        }
-        case "Name must be at least 3 characters": {
-          if (nameInput) {
-            insertErrorMessage(nameInput);
-          }
-          break;
-        }
-        case "Invalid email format": {
-          if (emailInput) {
-            insertErrorMessage(emailInput);
-          }
-          break;
-        }
-        case "Message should be at least 10 characters and max of 1024 characters": {
-          if (messageInput) {
-            insertErrorMessage(messageInput);
-          }
-          break;
-        }
-        default: {
-          // if message is received, log it out in the dev console
-          if (import.meta.env.DEV) {
-            console.log("Unknown message: ", message);
+        // insert the error divs after to the input element
+        function insertErrorMessage(el: HTMLElement) {
+          const error = el?.nextSibling as HTMLDivElement;
+          if (!error?.dataset?.["error"]) {
+            const div = createErrorMessage(message);
+            el?.insertAdjacentElement("afterend", div);
           }
         }
+
+        // create a toaster message upon success
+        async function createSuccessToaster() {
+          const div = document.createElement("div");
+          const p = document.createElement("p");
+          div.className =
+            "fixed bottom-8 right-8 p-4 bg-slate-200 dark:bg-slate-700 shadoow-lg rounded-md opacity-0 transition-opacity duration-300 border-t-4 border-emerald-400 border-solid";
+          p.className = "text-xl text-slate-800 dark:text-slate-100";
+          p.textContent = "Your message has been sent!";
+          div.appendChild(p);
+          document.body.appendChild(div);
+
+          // using sleep to animate the toaster
+          await sleep(100);
+          div.classList.remove("opacity-0");
+          await sleep(3000);
+          div.classList.add("opacity-0");
+          await sleep(200);
+          div.remove();
+        }
+
+        // message could be success or errors
+        switch (message) {
+          case "Success": {
+            // reset the form on success and show a toaster
+            formEl.reset();
+            createSuccessToaster();
+            break;
+          }
+          case "Name must be at least 3 characters": {
+            if (nameInput) {
+              insertErrorMessage(nameInput);
+            }
+            break;
+          }
+          case "Invalid email format": {
+            if (emailInput) {
+              insertErrorMessage(emailInput);
+            }
+            break;
+          }
+          case "Message should be at least 10 characters and max of 1024 characters": {
+            if (messageInput) {
+              insertErrorMessage(messageInput);
+            }
+            break;
+          }
+          default: {
+            // if message is received, log it out in the dev console
+            if (import.meta.env.DEV) {
+              console.log("Unknown message: ", message);
+            }
+          }
+        }
+      } catch (err) {
+        // if anything else happens during sending, log it out in the dev console
+        if (import.meta.env.DEV) {
+          console.log(err);
+        }
       }
-    } catch (err) {
-      // if anything else happens during sending, log it out in the dev console
-      if (import.meta.env.DEV) {
-        console.log(err);
-      }
-    }
-  });
-}
+    });
+  }
 </script>
 ```
 
@@ -502,7 +502,7 @@ I have a Hetzner VPS with Coolify installed so I'll be using this configuration.
 
 In the Coolify admin page, create a New Project as usual.
 
-![Creating a new project in Coolify](../../../public/images/blog/resend-email-server/coolify-new-project.png)
+![Creating a new project in Coolify](./_images/resend-email-server/coolify-new-project.png)
 
 Then select the "Production" environment on the following page.
 
@@ -514,7 +514,7 @@ If you don't have this configured yet, don't fret. You can just copy the GitHub 
 
 Go ahead and add a new Resource and you will see this next page.
 
-![Creating a new resource in Coolify](../../../public/images/blog/resend-email-server/coolify-new-resource.png)
+![Creating a new resource in Coolify](./_images/resend-email-server/coolify-new-resource.png)
 
 From there keep selecting the server you want to host it from, and then the destination.
 
@@ -535,20 +535,19 @@ There should be 4 variables to create:
 
 If you're running a server different from the front-end server, you'll need to use the `ALLOWED_ORIGIN` and enter your front-end domain value. This will help with CORS and allow your server to accept requests from your custom domain.
 
-![Coolify environment variables page](../../../public/images/blog/resend-email-server/coolify-environment-variables.png)
+![Coolify environment variables page](./_images/resend-email-server/coolify-environment-variables.png)
 
 Then back on the main configuration page, we want to add a Start command to run after our build finishes.
 
 Add `NODE_ENV=production bun run start`
 
-![Coolify start command input](../../../public/images/blog/resend-email-server/coolify-start-command.png)
-
+![Coolify start command input](./_images/resend-email-server/coolify-start-command.png)
 
 Then in the Domain field, add a custom domain name. I have Coolify set up to use subdomains so here I'm using `https://test-email.billyle.dev`.
 
 So my front-end application will now make POST requests to `https://test-email.billyle.dev/send-email`.
 
-![Coolify custom subdomain](../../../public/images/blog/resend-email-server/coolify-custom-subdomain.png)
+![Coolify custom subdomain](./_images/resend-email-server/coolify-custom-subdomain.png)
 
 Click save and deploy your application.
 
@@ -575,22 +574,21 @@ const { message } = await fetch(
 
 From the Contact Form, enter all the details and click Submit.
 
-![contact form filled to test integration](../../../public/images/blog/resend-email-server/contact-form-test.png)
-
+![contact form filled to test integration](./_images/resend-email-server/contact-form-test.png)
 
 If it's successfully submitted, hopefully, you have a way of displaying to your users that it was successful. Here is my toast message that shows that.
 
-![Success Toast message](../../../public/images/blog/resend-email-server/toaster-message.png)
+![Success Toast message](./_images/resend-email-server/toaster-message.png)
 
 From your Resend dashboard, you can all the emails that flowed through by checking the "Emails" page.
 
-![Resend Emails page](../../../public/images/blog/resend-email-server/resend-emails.png)
+![Resend Emails page](./_images/resend-email-server/resend-emails.png)
 
 I can see the "Jane Doe" email I sent earlier which is a good thing.
 
 And then in your inbox, you should see your test email as below.
 
-![Email inbox showing test message](../../../public/images/blog/resend-email-server/email-inbox.png)
+![Email inbox showing test message](./_images/resend-email-server/email-inbox.png)
 
 Congratulations! It's all working! Now you can deploy your front-end and do the same testing to see if it works in production.
 

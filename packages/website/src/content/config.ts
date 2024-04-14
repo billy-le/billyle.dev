@@ -21,7 +21,15 @@ const postSchema = z.object({
   title: z.string(),
   pubDate: z.date(),
   description: z.string().min(200),
-  author: z.string().default("Billy Le"),
+  author: z
+    .object({
+      name: z.string(),
+      email: z.string().email(),
+    })
+    .default({
+      name: "Billy Le",
+      email: "hi@billyle.dev",
+    }),
   image: z.object({
     url: z.string(),
     alt: z.string(),
