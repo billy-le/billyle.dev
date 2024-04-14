@@ -17,14 +17,4 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkSectionize],
   },
-  redirects: {
-    "/posts": {
-      status: 301,
-      destination: "/blog",
-    },
-    "/posts/": {
-      status: 301,
-      destination: "/blog",
-    },
-  },
 });
