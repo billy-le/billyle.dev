@@ -154,6 +154,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"fix-missing-404-pages-for-coolify-static-site-deployments.md": {
+	id: "fix-missing-404-pages-for-coolify-static-site-deployments.md";
+  slug: "fix-missing-404-pages-for-coolify-static-site-deployments";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "highlight-table-of-content-items-using-intersection-observer.md": {
 	id: "highlight-table-of-content-items-using-intersection-observer.md";
   slug: "highlight-table-of-content-items-using-intersection-observer";
