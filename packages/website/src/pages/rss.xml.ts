@@ -1,17 +1,11 @@
 import rss from "@astrojs/rss";
-import sanitizeHtml from "sanitize-html";
-import MarkdownIt from "markdown-it";
 import { allPosts } from "@utils/getCollection";
 import type { AstroGlobal } from "astro";
-
-const parser = new MarkdownIt();
 
 export function GET(context: AstroGlobal) {
   if (!context.site) {
     throw Error("site not set");
   }
-
-  allPosts;
 
   return rss({
     title: "Billy Le | Blog",
