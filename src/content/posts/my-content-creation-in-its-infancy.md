@@ -2,7 +2,6 @@
 title: "My Content Creation In Its Infancy"
 pubDate: 2024-02-22
 description: "Embarking on something new can be both frightening and exciting. In my case, it's a mix of both. Creating content involves putting myself out there for the world to see. I'm starting small with the hope that it will blossom into a consistent flow of creativity. In this post, I share my thoughts on the reasons behind the existence of this blog."
-author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1496055401924-5e7fdc885742?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt: "aerial view of highway crossings"
