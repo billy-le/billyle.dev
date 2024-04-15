@@ -1,0 +1,30 @@
+---
+import { siRss } from "simple-icons";
+import { cn } from "@utils/cn";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<a
+  href="https://billyle.dev/rss.xml"
+  class={cn(
+    "group flex items-center w-fit px-2 py-1 sm:px-6 sm:py-2 text-sm sm:text-base gap-4 rounded-lg bg-orange-400 text-orange-100 shadow-md transition duration-100 ease-linear hover:bg-orange-500 hover:shadow-lg hover:text-orange-50 focus:bg-orange-500 focus:shadow-lg no-underline",
+    className,
+  )}
+>
+  <svg
+    role="img"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-4 w-4"
+  >
+    <title>RSS icon</title>
+    <path d={siRss.path} class="fill-orange-200 group-hover:fill-orange-100"
+    ></path>
+  </svg>
+  <span class="font-semibold">Subscribe</span>
+</a>
