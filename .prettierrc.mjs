@@ -1,6 +1,9 @@
 /** @type {import("prettier").Config} */
 export default {
-  plugins: ["prettier-plugin-astro"],
+  plugins: [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss", // MUST come last
+  ],
   overrides: [
     {
       files: "*.astro",
@@ -10,4 +13,6 @@ export default {
     },
   ],
   astroAllowShorthand: true,
+  tailwindConfig: "./tailwind.config.mjs",
+  tailwindFunctions: ["twMerge", "clsx", "cn"],
 };
