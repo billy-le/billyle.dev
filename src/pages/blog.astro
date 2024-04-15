@@ -17,6 +17,7 @@ import uiTesting from "@assets/images/ui_testing.png";
 import blob01 from "@assets/images/blog-blob-01.png";
 import blob02 from "@assets/images/blog-blob-02.png";
 import SvgGrain from "@ui/components/SvgGrain.astro";
+import RssFeedButton from "@ui/components/RssFeedButton.astro";
 
 import { allPosts } from "@utils/getCollection";
 
@@ -72,22 +73,22 @@ const descPosts = allPosts.sort((a, b) =>
     </div>
 
     <h1
-      class="font-space-android text-3xl sm:text-5xl mb-6 sm:my-10 text-center leading-tight tracking-widest mx-auto text-slate-800 dark:text-slate-100"
+      class="font-space-android text-3xl sm:text-6xl mb-6 sm:my-10 text-center leading-tight tracking-widest mx-auto text-slate-800 dark:text-slate-100"
     >
-      <span
-        class="px-3 py-2 rounded-md bg-blue-400 text-slate-100 dark:text-slate-800 shadow-blue-900/30
-    shadow-md"
-      >
+      <span class="px-3 py-2 text-glow text-slate-100 dark:text-slate-800">
         My blog
       </span>
     </h1>
     <p
-      class="mb-14 sm:mb-20 max-w-3xl mx-auto font-inter font-bold text-lg sm:text-3xl tracking-wide text-center text-slate-600 dark:text-slate-200"
+      class="mb-8 sm:mb-16 max-w-3xl mx-auto font-inter font-bold text-lg sm:text-3xl tracking-wide text-center text-slate-600 dark:text-slate-200"
     >
       My creative outlet is a reflection of the experiences I've
       encountered—whether in learning, facing setbacks, or achieving success—as
       a software developer.
     </p>
+
+    <RssFeedButton className="mx-auto mb-8" />
+
     <section class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
       {
         descPosts.map((post) => {
@@ -114,3 +115,12 @@ const descPosts = allPosts.sort((a, b) =>
     </section>
   </div>
 </Layout>
+
+<style>
+  .text-glow {
+    @apply text-white dark:text-slate-950;
+    -webkit-text-stroke: 1px rgb(96 165 250);
+    text-shadow: 0px 1px 4px rgb(96 165 250);
+    font-family: var(--space-android);
+  }
+</style>
