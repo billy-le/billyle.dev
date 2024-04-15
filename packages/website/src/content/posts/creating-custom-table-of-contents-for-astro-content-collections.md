@@ -2,7 +2,6 @@
 title: "Creating Custom Table of Contents for Astro Content Collections"
 pubDate: 2024-03-13
 description: "There isn't a well-documented source on how you can create a custom Table of Contents from your markdown with the Astro Content Collection API. The 'remark-toc' plugin does the job but offers little control over where you can place it. In this post, I'll show you how I created my ToC for my blog."
-author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1529473814998-077b4fec6770?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt: "book collections sorted by color on a bookshelf"
@@ -17,11 +16,11 @@ Having a Table of Contents (ToC) for your blog is nice because it allows users t
 
 I tried to do this with the plugin, **'remark-toc'**, which is mentioned in the Astro documentation. What I didn't like about it is that if I wanted to include a ToC, I would have to manually add it to the top of all my `.md` files.
 
-![remark-toc display output on the blog post](../../../public/images/blog/creating-toc/remark-toc-static.png)
+![remark-toc display output on the blog post](./_images/creating-toc/remark-toc-static.png)
 
 Another note is that wherever I included it in the markdown, the ToC sits statically and to style it, I would have to target the `id` and fight my existing blog layout.
 
-![using remark-toc in a markdown file](../../../public/images/blog/creating-toc/remark-toc-md.png)
+![using remark-toc in a markdown file](./_images/creating-toc/remark-toc-md.png)
 
 This is not ideal for me. I had to figure out a better way to do this.
 

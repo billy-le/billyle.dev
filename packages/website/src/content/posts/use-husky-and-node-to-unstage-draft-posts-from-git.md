@@ -2,7 +2,6 @@
 title: "Use Husky and Node to Unstage Draft Blog Posts From Git"
 pubDate: 2024-03-21
 description: "I had a problem where my draft blog posts were being committed to my GitHub repository. This might seem like an insignificant issue, but I didn't want a work-in-progress to be publicly viewable. So that's where I came up with a solution to use Husky and a Node script to prevent that."
-author: "Billy Le"
 image:
   url: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   alt: "silhouettes of three people on stage"
@@ -57,7 +56,7 @@ Then run `pnpm exec husky init`, so Husky can take care of the setup for you.
 
 If you look in your project now, you should see a `.husky` folder. If you look inside, you will see a `pre-commit` file with the command `pnpm test` inside.
 
-![husky post setup files](../../../public/images/blog/husky-node-unstage/husky-post-setup.png)
+![husky post setup files](./_images/husky-node-unstage/husky-post-setup.png)
 
 As a concept, if you tried to run `git add .` and `git commit -m "my message"` the pre-commit hook will trigger and run `pnpm test`. If your test happens to fail, then it won't commit anything and your Git history remains untouched otherwise you're golden.
 
@@ -67,7 +66,7 @@ Now we need a way to list out all the files that are staged in Git. Luckily for 
 
 This command grabs all staged files that were changed and returns the status mode and file names. This is how it would look in your terminal:
 
-![list of files staged](../../../public/images/blog/husky-node-unstage/list-staged-files.png)
+![list of files staged](./_images/husky-node-unstage/list-staged-files.png)
 
 Press <kbd>q</kbd> to kill the process.
 
@@ -251,7 +250,7 @@ Back in our `.husky/pre-commit` file where we had a single line of `pnpm test`, 
 
 Replace `pnpm test` with `git diff --name-status --staged | node --import 'data:text/javascript,import { register } from "node:module"; import { pathToFileURL } from "node:url"; register("ts-node/esm", pathToFileURL("./"));' unstage-drafts.ts`
 
-![content of the pre-commit to use node script](../../../public/images/blog/husky-node-unstage/pre-commit-piping-script.png)
+![content of the pre-commit to use node script](./_images/husky-node-unstage/pre-commit-piping-script.png)
 
 The verboseness of the command above is important to Typescript and Node.
 
@@ -268,7 +267,7 @@ I have one file, `learning-golang-for-javascript-developers.md`, that is a draft
 
 Now the file is labeled as Untracked by Git.
 
-![showing files that were untracked](../../../public/images/blog/husky-node-unstage/untrack-files.png)
+![showing files that were untracked](./_images/husky-node-unstage/untrack-files.png)
 
 ## Seeing the pre-commit hook in action
 
