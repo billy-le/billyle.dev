@@ -1,0 +1,23 @@
+---
+import type { SimpleIcon } from "simple-icons";
+
+import { cn } from "@utils/cn";
+
+interface Props {
+  icon: SimpleIcon;
+  svgClassName?: string;
+  pathClassName?: string;
+}
+
+const { icon, svgClassName, pathClassName } = Astro.props;
+---
+
+<svg
+  role="img"
+  viewBox="0 0 24 24"
+  xmlns="http://www.w3.org/2000/svg"
+  class={cn("h-4 w-4", svgClassName)}
+>
+  <title>{icon.title}</title>
+  <path d={icon.path} class={pathClassName}></path>
+</svg>
