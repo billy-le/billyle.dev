@@ -4,6 +4,8 @@ interface Props {
 }
 
 import { navLinks } from "./Header.astro";
+import { siTelegram, siGithub, siDiscord } from "simple-icons";
+import SiIcon from "./SiIcon.astro";
 
 const linksOfThree: string[][] = [];
 for (let i = 0; i < navLinks.length; i++) {
@@ -24,12 +26,12 @@ const date = new Date();
   id="footer"
   class={`bg-slate-500 opacity-90 dark:bg-slate-900 ${className}`}
 >
-  <div class="container flex flex-col py-6 space-y-4 text-gray-200">
+  <div class="container flex flex-col space-y-4 py-6 text-gray-200">
     <div
-      class="h-full flex-grow flex flex-col gap-8 md:gap-0 md:divide-x md:divide-solid md:divide-slate-200 md:flex-row"
+      class="flex h-full flex-grow flex-col gap-8 md:flex-row md:gap-0 md:divide-x md:divide-solid md:divide-slate-200"
     >
       <div class="w-full md:py-4 md:pr-4 md:text-right">
-        <h4 class="mb-3 uppercase tracking-widest text-green-300 w-full">
+        <h4 class="mb-3 w-full uppercase tracking-widest text-green-300">
           Get Around
         </h4>
         <div class="w-max md:ml-auto">
@@ -51,7 +53,7 @@ const date = new Date();
                       href={
                         link === "blog" ? "/blog" : `/#${link.toLowerCase()}`
                       }
-                      class="capitalize link-hover footer-link"
+                      class="link-hover footer-link capitalize"
                     >
                       {link}
                     </a>
@@ -63,7 +65,7 @@ const date = new Date();
         </div>
       </div>
       <div class="w-full md:py-4 md:pl-4">
-        <h5 class="mb-3 uppercase tracking-widest text-green-300 w-full">
+        <h5 class="mb-3 w-full uppercase tracking-widest text-green-300">
           Stay in touch
         </h5>
         <div class="flex flex-col gap-10 lg:flex-row">
@@ -76,7 +78,7 @@ const date = new Date();
             </a>
           </div>
           <div
-            class="w-full flex items-center justify-center space-x-4 sm:justify-start lg:justify-end"
+            class="flex w-full items-center justify-center space-x-4 sm:justify-start lg:justify-end"
           >
             <a
               href="https://github.com/billy-le"
@@ -84,23 +86,12 @@ const date = new Date();
               rel="noopener noreferer"
               aria-label="Link to Github Profile"
             >
-              <svg
-                class="h-10 w-10 fill-slate-800 2xl:h-12 2xl:w-12 transition-all duration-300 ease-out hover:fill-slate-900 hover:translate-y-[-10%]
-                dark:fill-slate-700 dark:hover:fill-slate-800"
-                viewBox="0 0 128 128"
-              >
-                <g
-                  ><path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M64 5.103c-33.347 0-60.388 27.035-60.388 60.388 0 26.682 17.303 49.317 41.297 57.303 3.017.56 4.125-1.31 4.125-2.905 0-1.44-.056-6.197-.082-11.243-16.8 3.653-20.345-7.125-20.345-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.48-3.748.413-3.67.413-3.67 6.063.425 9.257 6.223 9.257 6.223 5.386 9.23 14.127 6.562 17.573 5.02.542-3.903 2.107-6.568 3.834-8.076-13.413-1.525-27.514-6.704-27.514-29.843 0-6.593 2.36-11.98 6.223-16.21-.628-1.52-2.695-7.662.584-15.98 0 0 5.07-1.623 16.61 6.19C53.7 35 58.867 34.327 64 34.304c5.13.023 10.3.694 15.127 2.033 11.526-7.813 16.59-6.19 16.59-6.19 3.287 8.317 1.22 14.46.593 15.98 3.872 4.23 6.215 9.617 6.215 16.21 0 23.194-14.127 28.3-27.574 29.796 2.167 1.874 4.097 5.55 4.097 11.183 0 8.08-.07 14.583-.07 16.572 0 1.607 1.088 3.49 4.148 2.897 23.98-7.994 41.263-30.622 41.263-57.294C124.388 32.14 97.35 5.104 64 5.104z"
-                  ></path><path
-                    d="M26.484 91.806c-.133.3-.605.39-1.035.185-.44-.196-.685-.605-.543-.906.13-.31.603-.395 1.04-.188.44.197.69.61.537.91zm2.446 2.729c-.287.267-.85.143-1.232-.28-.396-.42-.47-.983-.177-1.254.298-.266.844-.14 1.24.28.394.426.472.984.17 1.255zM31.312 98.012c-.37.258-.976.017-1.35-.52-.37-.538-.37-1.183.01-1.44.373-.258.97-.025 1.35.507.368.545.368 1.19-.01 1.452zm3.261 3.361c-.33.365-1.036.267-1.552-.23-.527-.487-.674-1.18-.343-1.544.336-.366 1.045-.264 1.564.23.527.486.686 1.18.333 1.543zm4.5 1.951c-.147.473-.825.688-1.51.486-.683-.207-1.13-.76-.99-1.238.14-.477.823-.7 1.512-.485.683.206 1.13.756.988 1.237zm4.943.361c.017.498-.563.91-1.28.92-.723.017-1.308-.387-1.315-.877 0-.503.568-.91 1.29-.924.717-.013 1.306.387 1.306.88zm4.598-.782c.086.485-.413.984-1.126 1.117-.7.13-1.35-.172-1.44-.653-.086-.498.422-.997 1.122-1.126.714-.123 1.354.17 1.444.663zm0 0"
-                  ></path>
-                </g>
-              </svg>
+              <SiIcon
+                icon={siGithub}
+                svgClassName="h-10 w-10 fill-slate-800 transition-all duration-300 ease-out hover:translate-y-[-10%] hover:fill-slate-900 dark:fill-slate-700 dark:hover:fill-slate-800 2xl:h-12 2xl:w-12"
+              />
             </a>
-            <p class="text-gray-200 text-4xl" aria-hidden="true">/</p>
+            <p class="text-4xl text-gray-200" aria-hidden="true">/</p>
             <a
               href="https://t.me/billyle"
               target="_blank"
@@ -108,16 +99,12 @@ const date = new Date();
               class="group"
               aria-label="Link to Telegram Profile"
             >
-              <svg
-                class="h-10 w-10 fill-slate-800 2xl:h-12 2xl:w-12 transition-all duration-300 ease-out group-hover:fill-slate-900 group-hover:translate-y-[-10%] dark:fill-slate-700 dark:group-hover:fill-slate-800"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-                ><path
-                  d="m12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12c0-6.627-5.373-12-12-12zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"
-                ></path>
-              </svg>
+              <SiIcon
+                icon={siTelegram}
+                svgClassName="h-10 w-10 fill-slate-800 transition-all duration-300 ease-out hover:translate-y-[-10%] hover:fill-slate-900 dark:fill-slate-700 dark:hover:fill-slate-800 2xl:h-12 2xl:w-12"
+              />
             </a>
-            <p class="text-gray-200 text-4xl" aria-hidden="true">/</p>
+            <p class="text-4xl text-gray-200" aria-hidden="true">/</p>
             <a
               href="https://discordapp.com/users/billyle#0480"
               target="_blank"
@@ -125,34 +112,10 @@ const date = new Date();
               class="group"
               aria-label="Link to Discord Profile"
             >
-              <svg
-                class="h-10 w-10 fill-slate-800 2xl:h-12 2xl:w-12 transition-all duration-300 ease-out group-hover:fill-slate-900 group-hover:translate-y-[-10%] dark:fill-slate-700 dark:group-hover:fill-slate-800"
-                viewBox="0 0 1024 1024"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle cx="512" cy="512" r="512"></circle>
-                <path
-                  d="M689.43 349a422.21 422.21 0 0 0-104.22-32.32 1.58 1.58 0 0 0-1.68.79 294.11 294.11 0 0 0-13 26.66 389.78 389.78 0 0 0-117.05 0 269.75 269.75 0 0 0-13.18-26.66 1.64 1.64 0 0 0-1.68-.79A421 421 0 0 0 334.44 349a1.49 1.49 0 0 0-.69.59c-66.37 99.17-84.55 195.9-75.63 291.41a1.76 1.76 0 0 0 .67 1.2 424.58 424.58 0 0 0 127.85 64.63 1.66 1.66 0 0 0 1.8-.59 303.45 303.45 0 0 0 26.15-42.54 1.62 1.62 0 0 0-.89-2.25 279.6 279.6 0 0 1-39.94-19 1.64 1.64 0 0 1-.16-2.72c2.68-2 5.37-4.1 7.93-6.22a1.58 1.58 0 0 1 1.65-.22c83.79 38.26 174.51 38.26 257.31 0a1.58 1.58 0 0 1 1.68.2c2.56 2.11 5.25 4.23 8 6.24a1.64 1.64 0 0 1-.14 2.72 262.37 262.37 0 0 1-40 19 1.63 1.63 0 0 0-.87 2.28 340.72 340.72 0 0 0 26.13 42.52 1.62 1.62 0 0 0 1.8.61 423.17 423.17 0 0 0 128-64.63 1.64 1.64 0 0 0 .67-1.18c10.68-110.44-17.88-206.38-75.7-291.42a1.3 1.3 0 0 0-.63-.63zM427.09 582.85c-25.23 0-46-23.16-46-51.6s20.38-51.6 46-51.6c25.83 0 46.42 23.36 46 51.6.02 28.44-20.37 51.6-46 51.6zm170.13 0c-25.23 0-46-23.16-46-51.6s20.38-51.6 46-51.6c25.83 0 46.42 23.36 46 51.6.01 28.44-20.17 51.6-46 51.6z"
-                  class="fill-slate-500 fill-opacity-90 dark:fill-slate-900"
-                ></path>
-              </svg>
-            </a>
-            <p class="text-gray-200 text-4xl" aria-hidden="true">/</p>
-            <a
-              href="https://www.linkedin.com/in/billyledev"
-              target="_blank"
-              rel="noopener noreferer"
-              class="group"
-              aria-label="Link to LinkedIn Profile"
-            >
-              <svg
-                viewBox="0 0 128 128"
-                class="h-10 w-10 fill-slate-800 2xl:h-12 2xl:w-12 transition-all duration-300 ease-out group-hover:fill-slate-900 group-hover:translate-y-[-10%] dark:fill-slate-700 dark:group-hover:fill-slate-800"
-              >
-                <path
-                  d="M116 3H12a8.91 8.91 0 00-9 8.8v104.42a8.91 8.91 0 009 8.78h104a8.93 8.93 0 009-8.81V11.77A8.93 8.93 0 00116 3zM39.17 107H21.06V48.73h18.11zm-9-66.21a10.5 10.5 0 1110.49-10.5 10.5 10.5 0 01-10.54 10.48zM107 107H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53V48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75z"
-                ></path>
-              </svg>
+              <SiIcon
+                icon={siDiscord}
+                svgClassName="h-10 w-10 fill-slate-500 bg-slate-800 rounded-full p-2 transition-all duration-300 ease-out hover:bg-slate-900 hover:translate-y-[-10%] dark:fill-slate-900 dark:bg-slate-700 dark:hover:bg-slate-800 2xl:h-12 2xl:w-12"
+              />
             </a>
           </div>
         </div>
