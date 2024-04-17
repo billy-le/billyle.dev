@@ -19,7 +19,7 @@ html {
 }
 
 .text-heading {
-  @apply font-vidaloka text-slate-800 opacity-0 mb-4 dark:text-white;
+  @apply mb-4 font-vidaloka text-slate-800 opacity-0 dark:text-white;
 
   font-size: clamp(2rem, 5vw, 5rem);
 }
