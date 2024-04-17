@@ -168,6 +168,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"keep-astro-content-collection-types-in-sync-on-git-commit.md": {
+	id: "keep-astro-content-collection-types-in-sync-on-git-commit.md";
+  slug: "keep-astro-content-collection-types-in-sync-on-git-commit";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "my-content-creation-in-its-infancy.md": {
 	id: "my-content-creation-in-its-infancy.md";
   slug: "my-content-creation-in-its-infancy";
