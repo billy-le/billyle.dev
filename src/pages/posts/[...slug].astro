@@ -5,7 +5,7 @@ import type { GetStaticPaths } from "astro";
 
 export const getStaticPaths = (async () => {
   const headings = await Promise.all(
-    allPosts.map((entry) => entry.render().then((data) => data.headings)),
+    allPosts.map((entry) => entry.render().then(({ headings }) => headings)),
   );
 
   const posts = allPosts.map((entry, index) => {
@@ -19,9 +19,14 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry, headings } = Astro.props;
-const { Content } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await entry.render();
 ---
 
-<BlogLayout {...entry.data} {headings}>
+<BlogLayout
+  {...entry.data}
+  {headings}
+  readingTime={remarkPluginFrontmatter.readingTime}
+  lastDateModified={remarkPluginFrontmatter.lastDateModified}
+>
   <Content />
 </BlogLayout>
