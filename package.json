@@ -27,7 +27,6 @@
     "prepare": "husky || true"
   },
   "dependencies": {
-    "@astrojs/partytown": "^2.0.4",
     "@astrojs/rss": "^4.0.5",
     "@fontsource-variable/inter": "^5.0.17",
     "@fontsource/vidaloka": "^5.0.8",
