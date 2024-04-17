@@ -1,0 +1,10 @@
+{
+  "name": "Soil Life",
+  "description": "I developed an informational website aimed at educating the public about soil life, employing the JAMStack architecture. Initially, the project began as a monolithic stack with static pages served from an Express Node server using Embedded JavaScript Templates (ejs). Eventually, the final product transitioned to React, leveraging Google Sheets as the CMS.",
+  "link": "https://soillife.org",
+  "images": [],
+  "sourceCode": [
+    { "link": "https://github.com/SoilLife/soil-life-web", "host": "github" }
+  ],
+  "tags": ["react", "nextjs", "netlify", "tailwind"]
+}

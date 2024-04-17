@@ -3,46 +3,11 @@ import SiIcon from "@ui/components/SiIcon.astro";
 import Mound from "@ui/components/Mound.astro";
 import SvgGrain from "@ui/components/SvgGrain.astro";
 import { siGithub } from "simple-icons";
+import { allProjects } from "@utils/getCollection";
 
 interface Props {
   className?: string;
 }
-
-const projectsData = [
-  {
-    name: "Soil Life",
-    description:
-      "I developed an informational website aimed at educating the public about soil life, employing the JAMStack architecture. Initially, the project began as a monolithic stack with static pages served from an Express Node server using Embedded JavaScript Templates (ejs). Eventually, the final product transitioned to React, leveraging Google Sheets as the CMS.",
-    link: "https://soillife.org",
-    images: [],
-    sourceCode: [
-      { link: "https://github.com/SoilLife/soil-life-web", host: "github" },
-    ],
-    tags: ["react", "nextjs", "netlify", "tailwind"],
-  },
-  {
-    name: "Converse",
-    description:
-      "Converse is a real-time web chat app utilizing WebRTC and Socket.io. It boasts features such as public chatrooms, live video and audio streaming, the ability to change input/output media devices, and invitation link sharing. I initiated this project with the primary goal of enhancing my knowledge in real-time web communications and protocols.",
-    link: "https://converse.billyle.dev",
-    images: [],
-    sourceCode: [
-      { link: "https://github.com/billy-le/converse", host: "github" },
-    ],
-    tags: ["node", "express", "liquidjs", "web-rtc", "socket.io"],
-  },
-  {
-    name: "Eventlulu",
-    description:
-      "Eventlulu is an online event management platform for hotels. It features a dashboard with important metrics, creating proposals from leads, and an admin page to inventory products and services offered. I started this project to assist the daily operations of a hotel where majority of their sales pipeline is done by paper and hand.",
-    link: "https://eventlulu.billyle.dev",
-    images: [],
-    sourceCode: [
-      { link: "https://github.com/billy-le/eventlulu", host: "github" },
-    ],
-    tags: ["node", "trpc", "typescript", "tailwindcss", "react"],
-  },
-];
 
 const { className = "" } = Astro.props;
 ---
@@ -56,30 +21,48 @@ const { className = "" } = Astro.props;
     <h2 class="text-heading">Projects.</h2>
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {
-        projectsData.map(({ name, description, link, sourceCode, tags }) => (
-          <div
-            class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-8 shadow
+        allProjects.map(
+          ({ data: { name, description, link, sourceCode, tags } }) => (
+            <div
+              class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-8 shadow
           dark:bg-slate-800"
-          >
-            <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
-            <div class="relative h-full space-y-3">
-              <div class="flex justify-between">
-                <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
-                  {name}
-                </h3>
-                <a
-                  href={link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  class="h-6 w-6 md:hidden"
-                  aria-label={`Link to ${name} App`}
-                >
+            >
+              <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+              <div class="relative h-full space-y-3">
+                <div class="flex justify-between">
+                  <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
+                    {name}
+                  </h3>
+                  <a
+                    href={link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="h-6 w-6 md:hidden"
+                    aria-label={`Link to ${name} App`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      class="h-6 w-6 stroke-blue-400"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <h4 class="hidden items-center space-x-2 md:flex">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke-width="1.5"
-                    class="h-6 w-6 stroke-blue-400"
+                    stroke="currentColor"
+                    class="h-4 w-4 stroke-blue-400"
                   >
                     <path
                       stroke-linecap="round"
@@ -87,79 +70,63 @@ const { className = "" } = Astro.props;
                       d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
                     />
                   </svg>
-                </a>
+                  <a
+                    href={link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="link-hover text-xs text-gray-500 dark:text-gray-200"
+                  >
+                    {link}
+                  </a>
+                </h4>
+                <p class="text-sm text-gray-500 dark:text-gray-200">
+                  {description}
+                </p>
               </div>
-              <h4 class="hidden items-center space-x-2 md:flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="h-4 w-4 stroke-blue-400"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-                  />
-                </svg>
-                <a
-                  href={link}
-                  rel="noopener noreferrer"
-                  target="_blank"
-                  class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                >
-                  {link}
-                </a>
-              </h4>
-              <p class="text-sm text-gray-500 dark:text-gray-200">
-                {description}
-              </p>
-            </div>
-            <div>
-              <ul class="space-y-1">
-                {sourceCode.map(({ host, link }) => (
-                  <li class="flex items-center space-x-2">
-                    {host === "github" && (
-                      <SiIcon
-                        icon={siGithub}
-                        svgClassName="h-5 w-5 dark:fill-gray-600"
-                      />
-                    )}
-                    <h4 class="leading-none">
-                      <a
-                        href={link}
-                        rel="noopener noreferrer"
-                        target="_blank"
-                        class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                      >
-                        {link}
-                      </a>
-                    </h4>
-                  </li>
+              <div>
+                <ul class="space-y-1">
+                  {sourceCode.map(({ host, link }) => (
+                    <li class="flex items-center space-x-2">
+                      {host === "github" && (
+                        <SiIcon
+                          icon={siGithub}
+                          svgClassName="h-5 w-5 dark:fill-gray-600"
+                        />
+                      )}
+                      <h4 class="leading-none">
+                        <a
+                          href={link}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          class="link-hover text-xs text-gray-500 dark:text-gray-200"
+                        >
+                          {link}
+                        </a>
+                      </h4>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="flex flex-wrap gap-2">
+                {tags.slice(0, 3).map((tag) => (
+                  <div class="grid place-items-center rounded-full bg-blue-500 bg-opacity-10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
+                    {tag}
+                  </div>
                 ))}
-              </ul>
+                {tags.slice(3).length > 0 && (
+                  <div class="group relative grid place-items-center rounded-full bg-blue-500 bg-opacity-10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
+                    <span>+ {tags.slice(3).length}</span>
+                    <ul class="absolute left-full ml-2 hidden space-y-0.5 rounded bg-slate-100 p-3 text-xs shadow-md group-hover:block dark:bg-slate-700">
+                      {tags.slice(3).map((tag) => (
+                        <li>{tag}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             </div>
-            <div class="flex flex-wrap gap-2">
-              {tags.slice(0, 3).map((tag) => (
-                <div class="grid place-items-center rounded-full bg-blue-500 bg-opacity-10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
-                  {tag}
-                </div>
-              ))}
-              {tags.slice(3).length > 0 && (
-                <div class="group relative grid place-items-center rounded-full bg-blue-500 bg-opacity-10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
-                  <span>+ {tags.slice(3).length}</span>
-                  <ul class="absolute left-full ml-2 hidden space-y-0.5 rounded bg-slate-100 p-3 text-xs shadow-md group-hover:block dark:bg-slate-700">
-                    {tags.slice(3).map((tag) => (
-                      <li>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </div>
-        ))
+          ),
+        )
       }
     </div>
   </div>

@@ -3,7 +3,7 @@ import "@fontsource-variable/inter";
 import "@fontsource/vidaloka";
 import "@assets/styles/global.css";
 
-import type { Post } from "src/content/config";
+import type { Post } from "src/content/_schemas/post";
 import type { MarkdownHeading } from "astro";
 import type { HeadingHierarchy } from "@ui/components/TOCHeading.astro";
 interface Props extends Post {
@@ -117,9 +117,9 @@ const hasToC = toc.length > 1;
     <main class="relative min-h-screen">
       <BackdropRadial />
       <section
-        class="relative mx-auto max-w-7xl h-32 sm:h-[320px] -z-10
-        border-b-4 border-emerald-400 border-solid
-        after:content-[''] after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20"
+        class="relative -z-10 mx-auto h-32 max-w-7xl border-b-4
+        border-solid border-emerald-400 after:absolute
+        after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20 after:content-[''] sm:h-[320px]"
       >
         <Picture
           src={image.url || defaultPicture}
@@ -128,7 +128,7 @@ const hasToC = toc.length > 1;
           widths={[256]}
           height={192}
           width={192}
-          class="object-cover w-full h-full"
+          class="h-full w-full object-cover"
         />
       </section>
       <section
@@ -136,9 +136,9 @@ const hasToC = toc.length > 1;
       >
         {
           hasToC && (
-            <div class="relative mx-auto px-4 w-fit pt-10 text-slate-500 dark:text-slate-400 xl:pt-20 2xl:px-0">
+            <div class="relative mx-auto w-fit px-4 pt-10 text-slate-500 dark:text-slate-400 xl:pt-20 2xl:px-0">
               <nav class="xl:sticky xl:top-20">
-                <h2 class="text-emerald-400 text-3xl font-semibold mb-4">
+                <h2 class="mb-4 text-3xl font-semibold text-emerald-400">
                   Table of Contents
                 </h2>
                 <ul class="toc-links leading-relaxed">

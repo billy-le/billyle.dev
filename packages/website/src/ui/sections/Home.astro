@@ -19,20 +19,25 @@ const { className = "" } = Astro.props;
 
 <section id="home" class={`relative flex items-center ${className}`}>
   <Particles />
-  <div class="relative container w-full flex flex-col justify-center">
+  <div class="container relative flex w-full flex-col justify-center">
     <Picture
       src={blob}
-      widths={[320, 640, 768, 1024]}
+      widths={[320, 640, 768]}
       format="webp"
       class="blob dark:opacity-20"
       alt=""
       aria-hidden="true"
       loading="lazy"
+      role="presentation"
     />
     <h2 class="text-heading dark:text-white">Hello. I'm Billy.</h2>
-    <div class="p-fade space-y-2">
-      {jumboText.map((text) => <p class="text-body no-js">{text}</p>)}
-    </div>
+    <h1 class="p-fade space-y-2">
+      {
+        jumboText.map((text) => (
+          <span class="text-body no-js block">{text}</span>
+        ))
+      }
+    </h1>
   </div>
 </section>
 <style>

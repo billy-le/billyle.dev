@@ -2,7 +2,7 @@ import fs from "node:fs/promises";
 import childProcess from "node:child_process";
 import util from "node:util";
 import fm from "front-matter";
-import type { Post } from "src/content/config.ts";
+import type { Post } from "src/content/_schemas/post";
 
 const execPromise = util.promisify(childProcess.exec);
 
