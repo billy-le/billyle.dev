@@ -68,7 +68,9 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
         entries.forEach((entry) => {
           const target = entry.target as HTMLElement;
           if (entry.isIntersecting) {
-            const paragraphs = target.querySelectorAll("p");
+            const paragraphs = target.querySelectorAll(
+              "p,span",
+            ) as NodeListOf<HTMLElement>;
             for (let i = 0; i < paragraphs.length; i++) {
               const paragraph = paragraphs[i];
               if (paragraph) {
