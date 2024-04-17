@@ -150,7 +150,7 @@ const brushStrokes: Record<string, string> = {
 ---
 
 <section id="skills" class={`relative ${className}`}>
-  <div class="container h-full flex flex-col py-8">
+  <div class="container flex h-full flex-col py-8">
     <h2 class="text-heading">Skills.</h2>
     <ul class="space-y-10">
       {
@@ -158,21 +158,21 @@ const brushStrokes: Record<string, string> = {
           return (
             <li class="space-y-10">
               <div
-                class={`brush relative inline-block p-5 before:content-[""] before:absolute before:h-full before:w-full before:top-0 before:left-0 before:-z-10 ${
+                class={`brush relative inline-block p-5 before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:content-[""] ${
                   brushStrokes[skill.category]
                 }`}
               >
-                <h2 class="text-3xl uppercase text-slate-50 drop-shadow px-10">
+                <h2 class="px-10 text-3xl uppercase text-slate-50 drop-shadow">
                   {skill.category}
                 </h2>
               </div>
 
-              <ul class="flex flex-wrap sm:grid sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6 gap-10 pb-10">
+              <ul class="flex flex-wrap gap-10 pb-10 sm:grid sm:grid-cols-3 lg:grid-cols-5 2xl:grid-cols-6">
                 {skill.tech
                   .sort((a, b) => b.level - a.level)
                   .map((skill) => (
                     <li>
-                      <div class="flex items-center gap-2 mb-2">
+                      <div class="mb-2 flex items-center gap-2">
                         <img
                           src={skill.icon}
                           alt={`${skill.name} logo`}
@@ -192,7 +192,7 @@ const brushStrokes: Record<string, string> = {
                             })}
                         </div>
                         <div
-                          class="absolute top-0 left-0 bg-gradient-to-r from-emerald-300 to-blue-400 h-6 -z-10"
+                          class="absolute left-0 top-0 -z-10 h-6 bg-gradient-to-r from-emerald-300 to-blue-400"
                           style={{ width: `${(skill.level / 5) * 100}%` }}
                         />
                       </div>
