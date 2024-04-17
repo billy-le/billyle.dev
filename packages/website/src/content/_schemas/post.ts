@@ -51,4 +51,7 @@ export const postsCollection = defineCollection({
   schema: postSchema,
 });
 
-export type Post = z.infer<typeof postSchema>;
+export type Post = z.infer<typeof postSchema> & {
+  readingTime: string;
+  lastDateModified: string;
+};
