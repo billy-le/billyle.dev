@@ -10,11 +10,15 @@ tags: ["self-hosting", "devops", "tutorial", "paas"]
 draft: false
 ---
 
-If you're thinking about hosting your own stuff but don't know where to start then you're not alone. I thought about what it meant to leave the safe walls of services like Netlify, Vercel, Render, etc. It was a tough decision because those are professional services that provide high security and technology which I have zero knowledge of.
+If you're thinking about self-hosting your own apps but don't know where to start then you're not alone.
 
-But after some considerations, from listening to [Syntax's episode of self-hosted platform-as-a-service](https://syntax.fm/show/730/own-your-own-paas) (from here on out will refer this to as PaaS), wanting to host multiple websites and demo apps on a single server, and reading the [viral Reddit post](https://www.reddit.com/r/webdev/comments/1b14bty/netlify_just_sent_me_a_104k_bill_for_a_simple/) of Netlify charging a user for over $100k USD on a free tier, I wanted to try this out on my own.
+Leaving services like Netlify, Vercel, Render, etc. can be scary. These are professional services that provide high security and convenience.
 
-After a lot of trial and error, I detached my billyle.dev from Netlify and have it running on my own server! Now I'm going to teach you how I did it.
+But it's not so bad once you self-host with Coolify.
+
+After a lot of trial and error, I detached my billyle.dev from Netlify and have it running on my server.
+
+Now I'm going to walk you through the steps to do the same.
 
 ## What you're going to need
 
@@ -28,10 +32,6 @@ Here's what you're going to need if you're planning to do this:
 **Note:**
 
 It's worth noting that I had to fiddle with the DNS around a lot near the end of this tutorial, but I found that having your domain on Cloudflare is a better experience. Initially, I had my domain on NameCheap. While it was working, I was experiencing strange behaviors like slow load times on the desktop versus mobile.
-
-Even running the page speed test, it was able to view the mobile but the desktop failed.
-
-I figured it would all be easier if I paid the $10 USD transfer fee over to Cloudflare and that's exactly what I did.
 
 ## Creating your SSH key
 
@@ -82,28 +82,30 @@ I will show you how to use this key in the next section.
 
 ## Shopping on Hetzner
 
-Let's say you have your domain ready, and now you're for the next step - buying your remote server. Hetzner was an obvious choice for me compared to other companies that charge quite a lot for the same offerings (looking at you, Heroku and Digital Ocean). Hetzner is cheap and seems like a popular choice among the Coolify crowd.
+Have your domain ready for the next step. You'll be renting a private server.
+
+Hetzner is a great choice for me compared to other companies that charge quite a lot for the same offerings. Hetzner is cheap and seems like a popular choice among the Coolify crowd.
 
 When picking a server, there are some details you want to pay attention to:
 
 - the location where you think most of your traffic will come from (I chose Germany since it's a nice in-between Continental US and Asia)
 
-![hetzner server location options](./_images/self-hosting/hetzner-location-selection.png)
+![hHetzner server location options](./_images/self-hosting/hetzner-location-selection.png)
 
 - the image you want to use on the server (Ubuntu is a great choice)
 
-![hetzner images options](./_images/self-hosting/hetzner-image-selection.png)
+![Hetzner images options](./_images/self-hosting/hetzner-image-selection.png)
 
 - whether you will need shared or dedicated vCPU (shared is the best price/performance)
 
-![hetzner cpu options](./_images/self-hosting/hetzner-server-type-selection.png)
+![Hetzner CPU options](./_images/self-hosting/hetzner-server-type-selection.png)
 
-- the server resources like how many CPUs, RAM, and storage your sites and apps will consume. To run Coolify, these are the minimum requirements
-  - 2 CPUs
-  - 2 GB memory
-  - 30+ GB of storage for the docker images.
+- the server resources like how many CPUs, RAM, and storage your sites and apps will consume. To run Coolify, these are the **minimum requirements**
+  - **2 CPUs**
+  - **2 GB memory**
+  - **30+ GB of storage for the docker images**
 
-![hetzner review order](./_images/self-hosting/hetzner-server-selection.png)
+![Hetzner review order](./_images/self-hosting/hetzner-server-selection.png)
 
 - lastly, your monthly budget
 
@@ -127,12 +129,15 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDbQj5IxxXslqfOl4Qv5Ux0RNbofCVy5EWbkosc2AnD
 
 Highlight all the output and then paste it into the modal and then click save.
 
-After that, you will want to review your Hetzner configuration before you complete the transaction. If all looks okay, go ahead and
-create it. It will take less than a minute to spin up your new server. If you mess up, you can always delete the server and start a new one since they charge by the hour.
+After that, you will want to review your Hetzner configuration before you complete the transaction.
+
+If all looks okay, go ahead and create it. It will take less than a minute to spin up your new server.
+
+If you mess up, you can always delete the server and start a new one since they charge by the hour.
 
 ## Installing Coolify
 
-Once your server is created, you will see an IP address for your remote server. This is how you will connect to it and configure your server to use Coolify.
+Once your server is created, you will see an IP address for your remote server. You will connect to it and configure your server to use Coolify.
 
 In your terminal, type in these commands:
 
@@ -142,7 +147,11 @@ ssh root@<server_ip_address>
 
 Where `<server_ip_address>` is the one provided to you by Hetzner.
 
-The next prompt will ask you to add the IP to your known hosts list. Type in "yes" here. Then you will enter the passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
+The next prompt will ask you to add the IP to your known hosts list.
+
+Type in "yes" here.
+
+Then you will enter the passphrase that you used to create the SSH key or the password that Hetzner sent to you by email.
 
 ```
 The authenticity of host '162.55.37.168' can't be established.
@@ -192,67 +201,77 @@ curl -fsSL https://cdn.coollabs.io/coolify/install.sh | bash
 
 Enter the command and let the installation script do its thing. Once that's complete, you will see an output with an IP address where you can access the Coolify instance on your server, in my case it was `http://162.55.37.168:8000`.
 
-![coolify installing in the terminal gif](/images/blog/self-hosting/coolify-installation.gif)
+![Coolify installing in the terminal gif](/images/coolify-installation.gif)
 
 Copy the IP address along with the port and enter that in your browser's URL. You will be directed to the registration screen for Coolify.
 
 ## Coolify Onboarding Experience
 
-Coolify has a good onboarding experience as it will guide you through a series of steps to get up and running.
+When you follow the IP address from the Coolify installation, you will be taken to a registration page.
 
-When you follow the IP address from the Coolify installation, you will be taken to a registration page. You will use these credentials to log in to the Coolify instance where we will host it on your domain.
+Sign up to log in to the Coolify instance where we will host it on your domain.
 
 Be sure to use a strong, unique password since this is how you will interface with Coolify on your custom domain.
 
-![coolify onboarding registration form](./_images/self-hosting/coolify-registration.png)
+![Coolify onboarding registration form](./_images/self-hosting/coolify-registration.png)
 
 You will be prompted with a series of onboarding questions. Just keep clicking next until you see the page, "Server".
 
-![welcome to coolify page](./_images/self-hosting/coolify-welcome.png)
+![Welcome to the Coolify page](./_images/self-hosting/coolify-welcome.png)
 
 You will select "localhost" as that's where this instance of Coolify is installed.
 
-![coolify onboarding - server type options](./_images/self-hosting/coolify-server-selection.png)
+![Coolify onboarding - server-type options](./_images/self-hosting/coolify-server-selection.png)
 
 Then you will create your first project. These projects are a way to organize your resources under one umbrella. Here you will be adding your first project so click on "Let's create a new one". This will create a project called, "My first project" for you.
 
-![coolify onboarding - project selection](./_images/self-hosting/coolify-project-selection.png)
+![Coolify onboarding - project selection](./_images/self-hosting/coolify-project-selection.png)
 
 After that, the next page says something about adding resources. Resources are things that your app or website needs such as databases, servers, etc. Click on the "Let's do it!" button.
 
-If you're deploying a static site, chances are, you only have one resource to deploy. For me, it was a Public Git Repository resource that I had to add.
+If you're deploying a static site, chances are, you only have one resource to deploy. Select the "Public Repository" resource.
 
-![coolify create resource page](./_images/self-hosting/coolify-resource-add.png)
+![Coolify - create a resource page](./_images/self-hosting/coolify-resource-add.png)
 
 When you click that, you will be asked which server you like to use. There should be only one and that's "localhost" from before.
 
-![coolify resource select server option](./_images/self-hosting/coolify-resource-add-server.png)
+![Coolify resource select server option](./_images/self-hosting/coolify-resource-add-server.png)
 
 Then it will ask you to select a Destination. Just choose the only option which should be a Standalone Docker instance called "localhost-coolify".
 
-![coolify resource select destination option](./_images/self-hosting/coolify-resource-destination.png)
+![Coolify resource select destination option](./_images/self-hosting/coolify-resource-destination.png)
 
-And lastly, it will ask you for the URL for the public repository. Find that and paste it into the field. It will get the metadata from the git repo and should populate all the necessary details.
+And lastly, it will ask you for the URL for the public repository. Paste the URL of your public repo into the field.
 
-The important part here is the Publish Directory where the build output will be. Also, toggle the "Is it a static site" toggle if it applies to you.
+It will get the metadata from the Git repo and should populate all the necessary details.
 
-![coolify creating new application page](./_images/self-hosting/coolify-source-repo.png)
+The important part here is the **Publish Directory** where the build output will be.
 
-You should now see a configuration page for the resource you just created. There's a lot on this screen but we're going to focus solely on deploying to see if we can get Coolify to build our application. On the top right corner, click "Deploy"
+Also, toggle the "Is it a static site" toggle if it applies to you.
 
-![coolify application configuration page](./_images/self-hosting/coolify-resource-config.png)
+![Coolify - creating a new application page](./_images/self-hosting/coolify-source-repo.png)
 
-You will be taken to the Deployment page and your build logs will start appearing. Hopefully, there won't be any errors and you will see a "New container started" as the last log entry and your deployment says "Finished".
+You should now see a configuration page for the resource you just created.
 
-![coolify deployment page](./_images/self-hosting/coolify-app-deploy.png)
+There's a lot on this screen but we're going to focus solely on deploying to see if we can get Coolify to build our application.
 
-Now we can test to see if Coolify can serve the website. Click on the "Open Application" button and select the auto-generated link to view your site.
+On the top right corner, click "Deploy"
 
-![opening deployment application on coolify](./_images/self-hosting/coolify-app-open.png)
+![Coolify's application configuration page](./_images/self-hosting/coolify-resource-config.png)
 
-And tada! I can see my own site being served by Coolify on Hetzner.
+You will be taken to the Deployment page and your build logs will start appearing.
 
-![my website live on url that coolify provided](./_images/self-hosting/coolify-app-website.png)
+Hopefully, there won't be any errors and you will see a "New container started" as the last log entry and your deployment says "Finished".
+
+![Coolify's deployment page](./_images/self-hosting/coolify-app-deploy.png)
+
+To test to see if Coolify can serve the website, click on the "Open Application" button and select the auto-generated link to view your site.
+
+![opening deployment application on Coolify](./_images/self-hosting/coolify-app-open.png)
+
+You should see your site being served by Coolify.
+
+![my website live on URL that Coolify provided](./_images/self-hosting/coolify-app-website.png)
 
 Keep your Coolify page open for the next part as we still need to tinker with it later.
 
@@ -266,57 +285,63 @@ It took me a long time to figure this out so there might be some trial and error
 
 This next part is important! Navigate to the SSL/TLS page in Cloudflare.
 
-![navigation menu showing how to get to cloudflare's ssl overview](./_images/self-hosting//cloudflare-ssl.png)
+![navigation menu showing how to get to Cloudflare's SSL overview](./_images/self-hosting//cloudflare-ssl.png)
 
 We want to turn on SSL Full (strict) mode to allow Coolify to serve HTTPS for us.
 
 By default, SSL will be on Flexible mode and if you had this on, both Coolify and Cloudflare will be stuck in a redirect loop causing the page to throw a "Too many redirects" error.
 
-![selecting full strict option in cloudflare ssl/tls page](./_images/self-hosting/cloudflare-ssl-full-strict.png)
+![selecting the Full Strict option in Cloudflare SSL/TLS page](./_images/self-hosting/cloudflare-ssl-full-strict.png)
 
 ### Access Coolify from our domain
 
 In your Cloudflare dashboard, go to the DNS Records Management page for your domain. We want to add a subdomain for our Coolify instance.
 
-![navigation menu showing how to get to cloudflare's dns records management](./_images/self-hosting/cloudflare-dns-management.png)
+![navigation menu showing how to get to Cloudflare's DNS records management](./_images/self-hosting/cloudflare-dns-management.png)
 
 Add a new "**A**" record, with the hostname "**coolify\*\***", and the value is the IP address of your remote server, and click save.
 
-![creating coolify instance dns record](./_images/self-hosting/cloudflare-dns-coolify.png)
+![creating Coolify instance DNS record](./_images/self-hosting/cloudflare-dns-coolify.png)
 
 Go back to Coolify, and go to the Settings page.
 
-![navigation menu showing how to get to coolify's settings page](./_images/self-hosting/coolify-settings.png)
+![navigation menu showing how to get to Coolify's settings page](./_images/self-hosting/coolify-settings.png)
 
-In the "**Instance's Domain**" field, type out `https://coolify.<your_domain>`. Notice that we added HTTPS here. Coolify will automatically generate a SSL cert when it sees this configuration. Be sure to hit save.
+In the "**Instance's Domain**" field, type out `https://coolify.<your_domain>`.
 
-![configuring coolify's setting to point to instance domain](./_images/self-hosting/coolify-instance-url.png)
+Notice that we added HTTPS here. Coolify will automatically generate an SSL cert when it sees this configuration. Be sure to hit save.
+
+![configuring Coolify's setting to point to the domain](./_images/self-hosting/coolify-instance-url.png)
 
 Let's see if we can now access our Coolify instance from our domain instead of the Hetzner server IP address.
 
-Head over to `https://coolify.<your_domain>` and check out your new Coolify on your domain! If it doesn't load yet, wait a few moments until the DNS propagates.
+Head over to `https://coolify.<your_domain>` and check out your new Coolify on your domain!
 
-![live look of coolify instance in custom domain](./_images/self-hosting/coolify-domain.png)
+If it doesn't load yet, wait a few moments until the DNS propagates.
+
+![Custom domain website hosting Coolify](./_images/self-hosting/coolify-domain.png)
 
 Now login with the credentials you used to register in the initial Coolify setup, and you should now be at the Coolify dashboard.
 
-### Linking Coolify app to your domain
+### Link the Coolify app to your domain
 
-From the Coolify dashboard, navigate back to your project configuration dashboard. We're going to change the auto-generated domain that Coolify created to use our domain.
+From the Coolify dashboard, navigate back to your project configuration dashboard.
+
+We're going to change the auto-generated domain that Coolify created to use our domain.
 
 Type in your domain and then click save. After you save, make sure to click "Redeploy" or else this won't work.
 
-![configuring custom domain in coolify application configuration page](./_images/self-hosting/coolify-custom-domain.png)
+![configuring custom domain in Coolify's application configuration page](./_images/self-hosting/coolify-custom-domain.png)
 
 Back to Cloudflare, we need to create more DNS records to make sure our domain is pointed to our server.
 
 So head on back to the Cloudflare DNS Management and enter a new "**A**" record, with the hostname "**@**", and the value should be the Hetzner server IP address.
 
-![entering dns record for custom domain](./_images/self-hosting/cloudflare-dns-domain.png)
+![entering DNS record for custom domain](./_images/self-hosting/cloudflare-dns-domain.png)
 
 Now give it a couple of minutes and visit your domain. You should see live! How cool is that?
 
-![live look of custom domain running off cloudflare and coolify](./_images/self-hosting/custom-domain.png)
+![Custom domain running off Cloudflare and Coolify](./_images/self-hosting/custom-domain.png)
 
 ## Redirect www to non-www
 
@@ -328,27 +353,29 @@ All of this will happen in Cloudflare so we don't need to mess around with Cooli
 
 In Cloudflare, back in our DNS management, we're going to add two records.
 
-The first one is an "**A**" record, with the name of "**www**", and the value of `192.0.2.1`. This is saying we are creating an ALIAS record that uses the `www` subdomain, and we are pointing to a dummy IPv4 address.
+The first one is an "**A**" record, with the name of "**www**", and the value of `192.0.2.1`.
+
+This is saying we are creating an ALIAS record that uses the `www` subdomain, and we are pointing to a dummy IPv4 address.
 
 The dummy IPv4 address is insignificant since Cloudflare will redirect all traffic before reaching the IP address.
 
-![entering dns record for ipv4](./_images/self-hosting/cloudflare-redirect-ipv4.png)
+![entering DNS record for ipv4](./_images/self-hosting/cloudflare-redirect-ipv4.png)
 
 Now we'll create the IPv6 version with another "**AAAA**" with the name same name but this time the IPv6 address is `100::`
 
-![entering dns record for ipv6](./_images/self-hosting/cloudflare-redirect-ipv6.png)
+![entering DNS record for ipv6](./_images/self-hosting/cloudflare-redirect-ipv6.png)
 
 While that's being propagated, we need to set up the actual redirect rules in Cloudflare.
 
 Head over to the Rules Redirect page
 
-![navigation menu showing how to get to cloudflare's redirect rules](./_images/self-hosting/cloudflare-redirect-rules.png)
+![navigation menu showing how to get to Cloudflare's redirect rules](./_images/self-hosting/cloudflare-redirect-rules.png)
 
 Once there, click on "+ Create rule" where you'll be taken to a form.
 
 Add the name of your Redirect Rule. I named mine "www to apex".
 
-![enter redirect rule name](./_images/self-hosting/cloudflare-redirect-name.png)
+![enter the redirect rule name](./_images/self-hosting/cloudflare-redirect-name.png)
 
 Then click on "Edit expression" where you'll type in the rule expression. Replace `billyle.dev` with your actual domain.
 
@@ -376,13 +403,11 @@ Now test it out after a few minutes to see if it works. Visit `www.<your_domain>
 
 ## That's it! You're done!
 
-Wow, that was a lot! I'm glad you made it all the way through. I hope you're proud of what you did here. This is our new journey down self-hosting PaaS.
+Wow, that was a lot! I'm glad you made it all the way through. I hope you're proud of what you did here.
 
-The days of paying for a droplet and managed db are over for me.
+This is our new journey down self-hosting PaaS. The days of paying for a droplet and managed DB are over for me.
 
 You've learned how to create a remote server with Hetzner, SSH into it, and install Coolify. Then you managed to link your domain to Coolify and deploy your website!
-
-I think it's so cool that we now have our server to deploy any application we want. Eventually, I will create another tutorial when I start deploying my demo apps, so people can use it. So stay tuned for that.
 
 If you have any questions, feel free to email me or contact me through my social media links.
 
