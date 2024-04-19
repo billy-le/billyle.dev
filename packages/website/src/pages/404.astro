@@ -29,6 +29,20 @@ import img404NotFound from "@assets/images/404_not_found.png";
       defer
       data-domain="billyle.dev"
       src="https://plausible.billyle.dev/js/script.js"></script>
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        window.plausible("404", {
+          props: { path: document.location.pathname },
+        });
+      });
+    </script>
     <title>Billy Le | 404 Not Found</title>
   </head>
   <body class="relative min-h-screen font-inter">
@@ -43,7 +57,7 @@ import img404NotFound from "@assets/images/404_not_found.png";
           </p>
           <Image
             src={img404NotFound}
-            class="h-full max-w-80 mx-auto"
+            class="mx-auto h-full max-w-80"
             format="webp"
             alt="404 not found"
           />
