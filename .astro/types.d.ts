@@ -189,6 +189,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"registering-for-apple-and-google-developer-accounts.md": {
+	id: "registering-for-apple-and-google-developer-accounts.md";
+  slug: "registering-for-apple-and-google-developer-accounts";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md": {
 	id: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md";
   slug: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide";
