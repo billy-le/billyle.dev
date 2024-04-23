@@ -80,50 +80,23 @@ ARG NODE_VERSION=21.4.0
 ARG PNPM_VERSION=8.12.0
 
 FROM node:${NODE_VERSION}-alpine as base
-
 WORKDIR /usr/src/app
-
 RUN --mount=type=cache,target=/root/.npm \
     npm install -g pnpm@${PNPM_VERSION}
 
-FROM base as deps
-
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=pnpm-lock.yaml,target=pnpm-lock.yaml \
-    --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install --prod --frozen-lockfile
-
-FROM deps as build
-
-RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=pnpm-lock.yaml,target=pnpm-lock.yaml \
-    --mount=type=cache,target=/root/.local/share/pnpm/store \
-    pnpm install --frozen-lockfile
-
+FROM base as build
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm run build
 
-################################################################################
-# Create a new stage to run the application with minimal runtime dependencies
-# where the necessary files are copied from the build stage.
 FROM nginx:stable-alpine3.17 as final
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /usr/src/app/dist /usr/share/nginx/html
 EXPOSE 4321
 ```
 
-<br />
-
-The final stage is what I had modified for my project.
-
-```docker
-FROM nginx:stable-alpine3.17 as final
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist /usr/share/nginx/html
-EXPOSE 4321
-```
-
-I am pulling the latest Nginx image from DockerHub with the 'alpine' tag.
+In the last step, I am pulling the latest Nginx image from DockerHub with the 'alpine' tag.
 
 Then I'm copying over my `nginx.conf` file, which we'll create later, into the Nginx directory where it will be used as configuration.
 
@@ -135,7 +108,7 @@ And finally exposing Port 4321, because that's what the local AstroJS developmen
 
 ## Create the nginx.conf file
 
-At the root of your directory, create a `nginx.conf` file.
+At the root of your project directory, create a `nginx.conf` file.
 
 The contents of this file will be something similar below for a static site.
 
