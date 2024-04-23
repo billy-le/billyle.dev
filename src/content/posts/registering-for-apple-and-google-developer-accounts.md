@@ -39,25 +39,26 @@ I didn't want to limit myself to one platform so I chose to target both platform
 
 ## Registration Experience
 
-On both platforms, the registration was pretty straightforward. There are a few screens where it will ask you what type you're applying for and what you plan to make.
+On both platforms, the registration was pretty straightforward.
 
-I found that Google asked more questions about you and the type of apps you're going to make.
+There are a few screens where they will ask you what kind of app you're building.
 
-The following screenshots are redacted and incomplete but it gives you an idea of what the process would look like.
+The following screenshots are redacted and incomplete but it should give you an idea of what the process would look like.
 
 ### Apple Developer Program
 
 To get started with the [Apple Developer Program](https://developer.apple.com/programs/enroll/), you will start on their enrollment page.
 
 ![Apple enrollment page](./_images/developer-account-registrations/apple-enrollment-page.jpeg)
-Click "Enroll" and you'll asked to sign in. And then it will be followed by these next few pages.
+Click "Enroll" and you'll be asked to sign in. After signing in, you'll see these next few pages.
 
 ![Apple enrollment - continue to web](./_images/developer-account-registrations/apple-enrollment-web.jpeg)
 
 ![Apple account type](./_images/developer-account-registrations/apple-enrollment-type.jpeg)
 
-I chose the Sole Proprietor account since I want to practice publishing to both stores.
+I chose the Sole Proprietor account since I am not at the point where I need to form an LLC.
 ![Apple enrollment purchase page](./_images/developer-account-registrations/apple-enrollment-purchase.jpeg)
+This should be the last step but if not, you'll have to enter your payment details.
 
 ### Google Play Console
 
@@ -74,6 +75,15 @@ You would create a new Payment Profile if you never had one.
 
 ![Google Play Console - Terms page](./_images/developer-account-registrations/google-play-terms.jpeg)
 And lastly, you'll come to the Terms page. You can see all the steps on the left-hand side that you'll have to complete.
+
+## Approval process time
+Google **immediately** activated my account. After activation, you still need to verify with them before you can publish any apps.
+
+Google will ask you to verify by uploading a valid ID or using a physical Android device.
+
+For Apple, I thought the approval would take longer. I've read that it may take up to 5 weeks for them to approve them but that wasn't the case for me.
+
+It only took Apple **one day** to approve my account.
 
 ## Wrap-Up
 
