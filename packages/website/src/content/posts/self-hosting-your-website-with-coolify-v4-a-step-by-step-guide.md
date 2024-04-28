@@ -16,9 +16,11 @@ Leaving services like Netlify, Vercel, Render, etc. can be scary. These are prof
 
 But it's not so bad once you self-host with Coolify.
 
-After a lot of trial and error, I detached my billyle.dev from Netlify and have it running on my server.
+And after a lot of trial and error, I detached my billyle.dev domain from Netlify and have it running on my server.
 
-Now I'm going to walk you through the steps to do the same.
+Down below, I will guide you through the same steps on how to get started with Coolify.
+
+If you prefer video, check out [Self-host 101 - Set up Coolify | Self Hosted PaaS with Zero Config Deployments by CJ from Syntax.fm](https://www.youtube.com/watch?v=taJlPG82Ucw)
 
 ## What you're going to need
 
