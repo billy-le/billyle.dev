@@ -4,7 +4,7 @@ interface Props {
 }
 
 import { navLinks } from "./Header.astro";
-import { siTelegram, siGithub, siDiscord } from "simple-icons";
+import { siTelegram, siGithub, siDiscord, siLinkedin } from "simple-icons";
 import SiIcon from "./SiIcon.astro";
 
 const linksOfThree: string[][] = [];
@@ -115,6 +115,19 @@ const date = new Date();
               <SiIcon
                 icon={siDiscord}
                 svgClassName="h-10 w-10 fill-slate-500 bg-slate-800 rounded-full p-2 transition-all duration-300 ease-out hover:bg-slate-900 hover:translate-y-[-10%] dark:fill-slate-900 dark:bg-slate-700 dark:hover:bg-slate-800 2xl:h-12 2xl:w-12"
+              />
+            </a>
+            <p class="text-4xl text-gray-200" aria-hidden="true">/</p>
+            <a
+              href="https://www.linkedin.com/in/billyledev/"
+              target="_blank"
+              rel="noopener noreferer"
+              class="group"
+              aria-label="Link to Linkedin Profile"
+            >
+              <SiIcon
+                icon={siLinkedin}
+                svgClassName="h-10 w-10 fill-slate-800 transition-all duration-300 ease-out hover:translate-y-[-10%] hover:fill-slate-900 dark:fill-slate-700 dark:hover:fill-slate-800 2xl:h-12 2xl:w-12"
               />
             </a>
           </div>
