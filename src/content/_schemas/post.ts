@@ -17,6 +17,7 @@ const validTags = [
   "bun",
   "astro",
   "startup",
+  "docker",
 ];
 
 const postSchema = z.object({
