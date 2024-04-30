@@ -175,6 +175,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"how-docker-breathes-new-life-into-my-workflow.md": {
+	id: "how-docker-breathes-new-life-into-my-workflow.md";
+  slug: "how-docker-breathes-new-life-into-my-workflow";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "keep-astro-content-collection-types-in-sync-on-git-commit.md": {
 	id: "keep-astro-content-collection-types-in-sync-on-git-commit.md";
   slug: "keep-astro-content-collection-types-in-sync-on-git-commit";
