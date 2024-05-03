@@ -6,8 +6,8 @@ import remarkSectionize from "remark-sectionize";
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time";
 import { remarkLastDateModified } from "./remark-plugins/remark-last-date-modified";
 
-/** @type {import('astro/config').AstroUserConfig} */
 // https://astro.build/config
+/** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
   site: "https://billyle.dev",
   integrations: [
