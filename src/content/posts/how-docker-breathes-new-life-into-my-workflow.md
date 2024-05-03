@@ -42,7 +42,7 @@ There are several ways I'm using Docker at the moment. These include:
 2. Interacting with the [Docker Client CLI](https://docs.docker.com/reference/cli/docker/)
 3. Docker as a Version Manager
 
-Of these three listed, I'm primarily use #2. Usually, I run `docker compose` commands to build and run my images in one go.
+Of these three listed, I primarily use #2. Usually, I run `docker compose` commands to build and run my images in one go.
 
 I'll briefly describe how I use them below.
 
