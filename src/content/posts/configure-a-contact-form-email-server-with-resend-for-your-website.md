@@ -3,7 +3,7 @@ title: "Configure a Contact Form Email Server with Resend for Your Website"
 pubDate: 2024-04-13
 description: "This tutorial covers how to hook up your front-end contact form to a back-end email server using Resend. You can apply the concepts discussed in this post to any front-end or back-end framework. If you're using a form provider like FormSpree or FormSubmit and want to move away from them, then this blog post is for you."
 image:
-  url: "https://images.pexels.com/photos/1777792/pexels-photo-1777792.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  url: "https://images.pexels.com/photos/1777792/pexels-photo-1777792.jpeg"
   alt: "a man jump running in casual clothing"
   className: ""
 tags: ["blogging", "astro", "bun", "node"]
@@ -80,31 +80,31 @@ I'm using AstroJS and Tailwind for styling, but you can use vanilla or another f
 You'll need a basic contact form markup:
 
 ```astro
-<form class="contact-form flex flex-col space-y-4 max-w-md">
+<form class="contact-form flex max-w-md flex-col space-y-4">
   <input
     type="text"
     name="name"
-    class="h-10 px-3 rounded ring-2 ring-neutral-300"
+    class="h-10 rounded px-3 ring-2 ring-neutral-300"
     placeholder="Name"
     required
   />
   <input
     type="email"
     name="email"
-    class="h-10 px-3 rounded ring-2 ring-neutral-300"
+    class="h-10 rounded px-3 ring-2 ring-neutral-300"
     placeholder="Email"
     required
   />
   <textarea
     name="message"
-    class="px-3 py-2 rounded ring-2 ring-neutral-300"
+    class="rounded px-3 py-2 ring-2 ring-neutral-300"
     rows={5}
     placeholder="What would you like to say?"
     required></textarea>
   <div class="flex justify-end space-x-2">
     <button
       type="submit"
-      class="px-3 py-1 rounded text-xl text-slate-50 bg-slate-900 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
+      class="rounded bg-slate-900 px-3 py-1 text-xl text-slate-50 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
     >
       Submit
     </button>

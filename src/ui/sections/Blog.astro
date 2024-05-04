@@ -39,11 +39,11 @@ const { className = "" } = Astro.props;
         data-astro-prefetch
         href="/blog"
         aria-label="view blog posts"
-        class="flex items-center group"
+        class="group flex items-center"
       >
         <span
           id="view-more"
-          class="-translate-x-1/2 opacity-0 text-base lg:text-xl text-gray-500 transition-all duration-300 ease-in group-hover:w-auto group-hover:opacity-100 group-hover:translate-x-0 dark:text-gray-300"
+          class="-translate-x-1/2 text-base text-gray-500 opacity-0 transition-all duration-300 ease-in group-hover:w-auto group-hover:translate-x-0 group-hover:opacity-100 dark:text-gray-300 lg:text-xl"
           >View More</span
         >
         <svg
@@ -52,7 +52,7 @@ const { className = "" } = Astro.props;
           viewBox="0 0 24 24"
           stroke-width="1.5"
           stroke="currentColor"
-          class="inline h-10 w-10 lg:h-16 lg:w-16 -translate-x-[175%] transition-all duration-300 ease-in group-hover:translate-x-0"
+          class="inline h-10 w-10 -translate-x-[175%] transition-all duration-300 ease-in group-hover:translate-x-0 lg:h-16 lg:w-16"
           aria-labelledby="view-more"
         >
           <path
@@ -63,7 +63,7 @@ const { className = "" } = Astro.props;
         </svg>
       </a>
     </h2>
-    <div class="hidden gap-4 isolate max-w-screen-2xl mx-auto sm:flex">
+    <div class="isolate mx-auto hidden max-w-screen-2xl gap-4 sm:flex">
       {
         postsWithConfig.map((config) => (
           <div class="flex-1 flex-shrink space-y-4">

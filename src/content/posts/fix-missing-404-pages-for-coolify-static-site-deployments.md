@@ -3,7 +3,7 @@ title: "Fix Missing 404 Pages for Coolify Static Site Deployments"
 pubDate: 2024-04-15
 description: "Every time I went to a non-existent URL, it would redirect me to the home page. I couldn't see my 404 page unless I went to /404 directly! Thankfully, I was able to find a solution after tinkering with Docker and Nginx. If you're in this situation, then this solution might be for you."
 image:
-  url: "https://images.unsplash.com/photo-1610337673044-720471f83677?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8NDA0fGVufDB8MHwwfHx8MA%3D%3D"
+  url: "https://images.unsplash.com/photo-1610337673044-720471f83677"
   alt: "a digital screen glitching"
   className: ""
 tags: ["paas", "self-hosting", "devops"]
