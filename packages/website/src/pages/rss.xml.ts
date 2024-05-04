@@ -8,8 +8,9 @@ import type { AstroGlobal } from "astro";
 import type { RSSFeedItem } from "@astrojs/rss";
 const markdownParser = new MarkdownIt();
 
+// get dynamic import of images as a map collection
 const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/content/posts/_images/**/*.{jpeg,jpg,png,gif}",
+  "/src/content/posts/_images/**/*.{jpeg,jpg,png,gif}", // add more image formats if needed
 );
 
 export async function GET(context: AstroGlobal) {
@@ -20,22 +21,30 @@ export async function GET(context: AstroGlobal) {
   const feed: RSSFeedItem[] = [];
 
   for (const post of allPosts) {
+    // convert markdown to html string
     const body = markdownParser.render(post.body);
+    // convert html string to DOM-like structure
     const html = htmlParser.parse(body);
+    // hold all img tags in variable images
     const images = html.querySelectorAll("img");
 
     for (const img of images) {
       const src = img.getAttribute("src")!;
 
-      // Relative paths will be optimized by Astro build
+      // Relative paths that are optimized by Astro build
       if (src.startsWith("./")) {
+        // remove prefix of `./`
         const prefixRemoved = src.replace("./", "");
-        const imagePrefix = `/src/content/posts/${prefixRemoved}`;
-        const imagePath = await imagesGlob[imagePrefix]?.()?.then(
+        // create prefix absolute path from root dir
+        const imagePathPrefix = `/src/content/posts/${prefixRemoved}`;
+
+        // call the dynamic import and return the module
+        const imagePath = await imagesGlob[imagePathPrefix]?.()?.then(
           (res) => res.default,
         );
 
         if (imagePath) {
+          // set the correct path
           img.setAttribute(
             "src",
             context.site + imagePath.src.replace("/", ""),
@@ -56,6 +65,7 @@ export async function GET(context: AstroGlobal) {
       pubDate: post.data.pubDate,
       categories: post.data.tags,
       link: `/posts/${post.slug}`,
+      // sanitize the new html string with corrected image paths
       content: sanitizeHtml(html.toString(), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),

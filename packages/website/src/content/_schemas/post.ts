@@ -42,7 +42,9 @@ const postSchema = z.object({
     .array(
       z.string().refine(
         (tag) => validTags.includes(tag),
-        (tag) => ({ message: `'${tag}' is not a valid tag` }),
+        (tag) => ({
+          message: `'${tag}' is not a valid tag.\nAllowed tags are [ ${validTags.join(", ")} ]\nYou can add more tags in ${import.meta.filename}`,
+        }),
       ),
     )
     .nonempty(),
