@@ -323,7 +323,7 @@ Check the contents of your `_dist` folder and look for your RSS XML file.
 
 🥳 Yes! It's looking good and seems to be pointing to the path correctly.
 
-Okay, time to push to live and test Feedly and dev.to.
+Okay, time to push it live and test Feedly and dev.to.
 
 ## Verifying fix on supported platforms
 
