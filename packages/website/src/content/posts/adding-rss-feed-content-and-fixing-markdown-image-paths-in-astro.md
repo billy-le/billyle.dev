@@ -149,6 +149,7 @@ import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 import { allPosts } from "@utils/getCollection";
 import { parse as htmlParser } from "node-html-parser";
+import { getImage } from "astro:assets";
 
 import type { AstroGlobal } from "astro";
 import type { RSSFeedItem } from "@astrojs/rss";
@@ -190,10 +191,11 @@ export async function GET(context: AstroGlobal) {
         );
 
         if (imagePath) {
-          // set the correct path
+          const optimizedImg = await getImage({ src: imagePath });
+          // set the correct path to the optimized image
           img.setAttribute(
             "src",
-            context.site + imagePath.src.replace("/", ""),
+            context.site + optimizedImg.src.replace("/", ""),
           );
         }
       } else if (src.startsWith("/images")) {
@@ -295,10 +297,11 @@ if (src.startsWith("./")) {
   );
 
   if (imagePath) {
-    // set the correct path
+    const optimizedImg = await getImage({ src: imagePath });
+    // set the correct path to the optimized image
     img.setAttribute(
       "src",
-      context.site + imagePath.src.replace("/", ""),
+      context.site + optimizedImg.src.replace("/", ""),
     );
   }
 }
@@ -318,13 +321,7 @@ Check the contents of your `_dist` folder and look for your RSS XML file.
 
 ![Corrected image path in RSS feed](./_images/rss-feed-content-fix/astro-correct-image-path.png)
 
-🥳 Yes! It's looking good and seems to be pointing the the path correctly.
-
-\*\* **Note** \*\*
-
-Since we're doing it this way, we're not actually using the optimized images that Astro outputs which is the `webp` format.
-
-I have yet to explore how to dynamically get the correct path to the `webp` version.
+🥳 Yes! It's looking good and seems to be pointing to the path correctly.
 
 Okay, time to push to live and test Feedly and dev.to.
 
@@ -332,7 +329,7 @@ Okay, time to push to live and test Feedly and dev.to.
 
 If you had an RSS feed on Feedly before adding content, they won't update as the [date is encoded on their servers](https://groups.google.com/g/feedly-cloud/c/3evZeYOnS2I).
 
-Only new content will be updated with the new RSS changes or you change your feed URL.
+Only new content will be updated with the new RSS changes or when you change your feed URL.
 
 Viewing from Feedly, I only have one item that correctly shows the contents of my blog post.
 
@@ -352,7 +349,7 @@ And now, I see that all the contents are there ready to be published!
 
 ![Dev.to draft posts with content](./_images/rss-feed-content-fix/dev-to-content.png)
 
-## Conclusion and improvements
+## Conclusion
 
 With the RSS feed content in place, we can now grab our blog posts into platforms that support fetching RSS feeds.
 
@@ -364,11 +361,7 @@ To fix this, we had to convert the markdown to HTML and modify the image src to 
 
 After verifying our fix, we can view places like Feedly and dev.to, to continue sharing our posts.
 
-Some improvements that I plan to include in the future are:
-
-1. Add a featured blog image like how [Web Reaper explained in his blog](https://webreaper.dev/posts/astro-rss-feed-blog-post-images/)
-2. Automate the blog posting on dev.to
-3. Find a way to target the `webp` version of the image for the RSS feed
+If you want to see how you can add a featured image per blog post for your RSS. Check out [Web Reaper's blog post]((https://webreaper.dev/posts/astro-rss-feed-blog-post-images/)) on how you can do that.
 
 Well, that's all I can think of. Let me know what you think and if there is anything I can add.
 
