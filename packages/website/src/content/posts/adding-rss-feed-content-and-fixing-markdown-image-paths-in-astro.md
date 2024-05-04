@@ -3,7 +3,7 @@ title: "Adding RSS Feed Content and Fixing Markdown Image Paths in Astro"
 pubDate: 2024-05-04
 description: "I recently added an RSS feed to my website and wanted to cross-post my writings from my blog to other platforms like dev.to. Following the official docs was fine, however, there was one issue if you were using relative paths in your markdown for your image assets. The images were not correctly pointing to the URL where it was hosted. I did find a way to fix this in this post."
 image:
-  url: "https://images.unsplash.com/photo-1464131878849-80cd5cd9055a?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzd8fHBhdGh8ZW58MHwwfDB8fHwy"
+  url: "https://images.unsplash.com/photo-1464131878849-80cd5cd9055a"
   alt: "a large tunnel in a forest"
   className: ""
 tags: ["blogging", "content creation", "astro"]

@@ -3,7 +3,7 @@ title: "Use Husky and Node to Unstage Draft Blog Posts From Git"
 pubDate: 2024-03-21
 description: "I had a problem where my draft blog posts were being committed to my GitHub repository. This might seem like an insignificant issue, but I didn't want a work-in-progress to be publicly viewable. So that's where I came up with a solution to use Husky and a Node script to prevent that."
 image:
-  url: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1503095396549-807759245b35"
   alt: "silhouettes of three people on stage"
   className: ""
 tags: ["blogging", "javascript", "node", "astro"]

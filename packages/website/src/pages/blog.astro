@@ -1,13 +1,4 @@
 ---
-export interface BlogPost {
-  title: string;
-  pubDate: Date;
-  description: string;
-  author: string;
-  image: { url: string; alt: string };
-  tags: string[];
-}
-
 import { compareDesc, format as dateFormat } from "date-fns";
 import { Image } from "astro:assets";
 import Layout from "@layouts/Layout.astro";
