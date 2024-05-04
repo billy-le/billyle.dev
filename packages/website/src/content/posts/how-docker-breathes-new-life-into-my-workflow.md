@@ -3,7 +3,7 @@ title: "How Docker Breathes New Life into My Workflow"
 pubDate: 2024-04-30
 description: "If there's one thing I wish I had learned earlier in my career, it would be to use Docker. Docker has been such a blast to work with that I've been using it daily in my work. It's easy to get started with all the available offerings they have, and the learning curve gradually increases, which makes it an exciting challenge to master."
 image:
-  url: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1498084393753-b411b2d26b34"
   alt: "Ottawa road in the evening"
   className: ""
 tags: ["docker", "devops"]

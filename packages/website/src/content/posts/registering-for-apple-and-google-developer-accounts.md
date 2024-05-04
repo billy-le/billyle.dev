@@ -3,7 +3,7 @@ title: "Registering for Apple and Google Developer Accounts"
 pubDate: 2024-04-23
 description: "Last week I said I was going to form an LLC but decided not to. I finally took the plunge into mobile development and signed up for Apple and Google Developer Accounts under my name. I believe the web is still the most accessible platform there is out there but something about developing for mobile is appealing."
 image:
-  url: "https://images.unsplash.com/photo-1574417836112-fda6a03dae97?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1574417836112-fda6a03dae97"
   alt: "a slice of lemon dropped into a body of water"
   className: ""
 tags: ["blogging", "mobile development", "iOS", "android"]
@@ -77,6 +77,7 @@ You would create a new Payment Profile if you never had one.
 And lastly, you'll come to the Terms page. You can see all the steps on the left-hand side that you'll have to complete.
 
 ## Approval process time
+
 Google **immediately** activated my account. After activation, you still need to verify with them before you can publish any apps.
 
 Google will ask you to verify by uploading a valid ID or using a physical Android device.

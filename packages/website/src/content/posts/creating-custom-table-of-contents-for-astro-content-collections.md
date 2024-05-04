@@ -3,7 +3,7 @@ title: "Creating Custom Table of Contents for Astro Content Collections"
 pubDate: 2024-03-13
 description: "There isn't a well-documented source on how you can create a custom Table of Contents from your markdown with the Astro Content Collection API. The 'remark-toc' plugin does the job but offers little control over where you can place it. In this post, I'll show you how I created my ToC for my blog."
 image:
-  url: "https://images.unsplash.com/photo-1529473814998-077b4fec6770?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1529473814998-077b4fec6770"
   alt: "book collections sorted by color on a bookshelf"
   className: ""
 tags: ["blogging", "content creation", "astro"]
@@ -166,9 +166,9 @@ Rendering is fairly straightforward in Astro. I have a `TOCHeading.astro` compon
 If you're going to use a sticky ToC, be sure that the parent component has a `position: relative` and that there is no `overflow` property on it. If your parent is a `flex` or `grid` parent, you need to wrap your `position: sticky` ToC with a container so that it will properly work.
 
 ```jsx
-<section class={`${hasToC ? "max-w-7xl mx-auto lg:grid lg:grid-cols-4" : ""}`}>
+<section class={`${hasToC ? "mx-auto max-w-7xl lg:grid lg:grid-cols-4" : ""}`}>
   {hasToC && (
-    <div class="relative mx-auto px-4 prose dark:prose-invert xl:pt-10 2xl:px-0">
+    <div class="prose relative mx-auto px-4 dark:prose-invert xl:pt-10 2xl:px-0">
       <nav class="xl:sticky xl:top-20">
         <h2 class="text-emerald-400">Table of Contents</h2>
         <ul>
@@ -181,9 +181,9 @@ If you're going to use a sticky ToC, be sure that the parent component has a `po
   )}
 
   <article
-    class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
-            prose-code:before:hidden prose-code:after:hidden
-            sm:prose-lg lg:prose-xl
+    class={`prose mx-auto px-4 py-10 dark:prose-invert sm:prose-lg lg:prose-xl
+            prose-h1:font-vidaloka prose-code:before:hidden
+            prose-code:after:hidden sm:py-20
             ${hasToC ? "lg:col-span-3" : ""}
         `}
   >

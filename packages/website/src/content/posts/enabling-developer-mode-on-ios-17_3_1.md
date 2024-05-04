@@ -3,7 +3,7 @@ title: "Enabling Developer Mode on iOS 17.3.1"
 pubDate: 2024-03-07
 description: "If you have trouble finding the Developer Mode settings on your iPhone, I may have the fix for you. The official documentation was outdated and other users' comments around the internet echoed what the docs said. "
 image:
-  url: "https://images.unsplash.com/photo-1598170845055-806a9e9f3f72?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1598170845055-806a9e9f3f72"
   alt: "a pile of fresh red apples"
   className: ""
 tags: ["mobile development", "iOS"]

@@ -3,7 +3,7 @@ title: "Adding GitHub Pull Request Preview Deployments with Coolify"
 pubDate: 2024-03-05
 description: "Pull Request Preview Deployments are a neat feature where you receive a shareable link so you can showcase a feature before merging it into production. In this post, I'll show you how you can set up your Coolify to create those magical Pull Request Preview Deploys just like Netlify."
 image:
-  url: "https://images.unsplash.com/photo-1475706398693-8250350bc704?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHVsbHxlbnwwfDB8MHx8fDA%3D"
+  url: "https://images.unsplash.com/photo-1475706398693-8250350bc704"
   alt: "a top-down view of a man pulling a thick rope"
   className: ""
 tags: ["self-hosting", "devops", "tutorial", "paas"]

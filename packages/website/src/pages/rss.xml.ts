@@ -69,6 +69,10 @@ export async function GET(context: AstroGlobal) {
       content: sanitizeHtml(html.toString(), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
+      customData: `<media:content
+      medium="image"
+      url="${new URL(post.data.image.url).href}" />
+  `,
     });
   }
 
@@ -81,6 +85,7 @@ export async function GET(context: AstroGlobal) {
     stylesheet: "/pretty-feed-v3.xsl",
     xmlns: {
       atom: "http://www.w3.org/2005/Atom",
+      media: "http://search.yahoo.com/mrss/",
     },
     customData: [
       "<language>en-us</language>",
