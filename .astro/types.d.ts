@@ -133,6 +133,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"adding-rss-feed-content-and-fixing-markdown-image-paths-in-astro.md": {
+	id: "adding-rss-feed-content-and-fixing-markdown-image-paths-in-astro.md";
+  slug: "adding-rss-feed-content-and-fixing-markdown-image-paths-in-astro";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "configure-a-contact-form-email-server-with-resend-for-your-website.md": {
 	id: "configure-a-contact-form-email-server-with-resend-for-your-website.md";
   slug: "configure-a-contact-form-email-server-with-resend-for-your-website";
