@@ -328,7 +328,7 @@ I have yet to explore how to dynamically get the correct path to the `webp` vers
 
 Okay, time to push to live and test Feedly and dev.to.
 
-## Feedly and dev.to cross-post
+## Verifying fix on supported platforms
 
 If you had an RSS feed on Feedly before adding content, they won't update as the [date is encoded on their servers](https://groups.google.com/g/feedly-cloud/c/3evZeYOnS2I).
 
