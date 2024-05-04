@@ -3,6 +3,7 @@ import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 import { allPosts } from "@utils/getCollection";
 import { parse as htmlParser } from "node-html-parser";
+import { getImage } from "astro:assets";
 
 import type { AstroGlobal } from "astro";
 import type { RSSFeedItem } from "@astrojs/rss";
@@ -44,14 +45,15 @@ export async function GET(context: AstroGlobal) {
         );
 
         if (imagePath) {
-          // set the correct path
+          const optimizedImg = await getImage({ src: imagePath });
+          // set the correct path to the optimized image
           img.setAttribute(
             "src",
-            context.site + imagePath.src.replace("/", ""),
+            context.site + optimizedImg.src.replace("/", ""),
           );
         }
       } else if (src.startsWith("/images")) {
-        // images starting with `/images/` is the public dir
+        // images starting with `/images` is the public dir
         img.setAttribute("src", context.site + src.replace("/", ""));
       } else {
         throw Error("src unknown");
@@ -71,7 +73,7 @@ export async function GET(context: AstroGlobal) {
       }),
       customData: `<media:content
       medium="image"
-      url="${new URL(post.data.image.url).href}" />
+      url="${post.data.image.url}" />
   `,
     });
   }
