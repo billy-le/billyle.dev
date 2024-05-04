@@ -3,7 +3,7 @@ title: "Keep Astro Content Collection Types in Sync on Git Commit"
 pubDate: 2024-04-17
 description: "Sometimes you may find your .astro type definitions out of sync of your content configuration file. I don't know why this happens but I wanted to fix this since I want to rely on Typescript whenever I'm accessing properties from my collections. The fix is relatively simple by utilizing Husky."
 image:
-  url: "https://images.unsplash.com/photo-1472722266948-a898ab5ff257?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+  url: "https://images.unsplash.com/photo-1472722266948-a898ab5ff257"
   alt: "a group of people forming a star with their legs"
   className: ""
 tags: ["blogging", "content creation", "javascript", "node", "astro"]

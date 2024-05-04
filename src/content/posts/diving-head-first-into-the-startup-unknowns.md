@@ -3,7 +3,7 @@ title: "Diving Head First into the Startup Unknowns"
 pubDate: 2024-04-18
 description: "This year, I'm going to try to launch projects that will hopefully generate income. It's always been a dream of mine to pursue exciting ideas that I'm passionate about. In doing so, there are so many raised questions about what I need to do."
 image:
-  url: "https://images.pexels.com/photos/19421180/pexels-photo-19421180/free-photo-of-man-jumping-to-sea-at-golden-hour.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+  url: "https://images.pexels.com/photos/19421180/pexels-photo-19421180/free-photo-of-man-jumping-to-sea-at-golden-hour.jpeg"
   alt: "a man jumping off an ocean cliff"
   className: ""
 tags: ["blogging", "startup"]
