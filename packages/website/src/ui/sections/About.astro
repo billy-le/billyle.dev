@@ -5,7 +5,7 @@ interface Props {
 
 import { Picture } from "astro:assets";
 
-import blobOffset from "@assets/images/blob-offset.webp";
+import blobOffset from "@assets/images/blob-offset.png";
 import mePic from "@assets/images/me.png";
 
 const about = [
@@ -22,17 +22,17 @@ const { className = "" } = Astro.props;
     <h2 class="text-heading no-js no-js">About.</h2>
     <div class="relative h-full">
       <div class="grid gap-8 md:grid-cols-5 lg:grid-cols-3">
-        <div
-          class="relative mx-auto h-[320px] w-[320px] md:col-span-3 md:h-[600px] md:w-[600px] lg:col-span-2"
-        >
+        <div class="relative mx-auto md:col-span-3 lg:col-span-2">
           <Picture
             src={blobOffset}
-            widths={[320]}
+            height={500}
+            width={500}
             format="webp"
             class="dark:opacity-15"
             alt=""
             aria-hidden="true"
             role="presentation"
+            loading="lazy"
           />
           <Picture
             src={mePic}

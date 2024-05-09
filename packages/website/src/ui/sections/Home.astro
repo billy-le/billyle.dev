@@ -6,7 +6,7 @@ interface Props {
 import { Picture } from "astro:assets";
 
 import Particles from "@ui/components/Particles.astro";
-import blob from "@assets/images/blob.webp";
+import blob from "@assets/images/blob.png";
 
 const jumboText = [
   "I'm a front-end developer who transforms simple code into complex applications.",
@@ -22,7 +22,8 @@ const { className = "" } = Astro.props;
   <div class="container relative flex w-full flex-col justify-center">
     <Picture
       src={blob}
-      widths={[320]}
+      height={320}
+      width={320}
       format="webp"
       class="blob dark:opacity-20"
       alt=""
