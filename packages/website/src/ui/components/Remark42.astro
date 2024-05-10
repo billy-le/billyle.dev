@@ -1,0 +1,48 @@
+---
+const host = import.meta.env.PUBLIC_REMARK42_URL;
+---
+
+<script async data-remark-host={host}>
+  const remarkHost =
+    document.querySelector("[data-remark-host]").dataset["remarkHost"];
+
+  // keep as var to keep in global scope
+  var remark_config = {
+    host: remarkHost,
+    site_id: "billyle.dev",
+    components: ["embed"],
+    theme: window.localStorage.getItem("theme") ?? "dark",
+    locale: "en",
+    show_email_subscription: true,
+    show_rss_subscription: false,
+    no_footer: true,
+  };
+</script>
+
+<script>
+  function createRemark42Script(components: string[], doc: Document) {
+    for (let i = 0; i < components.length; i++) {
+      let scriptEl: HTMLScriptElement = doc.createElement("script");
+      let ext = ".js";
+      let headOrBodyEl = doc.head || doc.body;
+
+      if ("noModule" in scriptEl && !scriptEl.noModule) {
+        scriptEl.type = "module";
+        ext = ".mjs";
+      } else {
+        scriptEl.async = true;
+        scriptEl.defer = true;
+      }
+      scriptEl.src = `${window.remark_config.host}/web/${components[i]}${ext}`;
+
+      headOrBodyEl.appendChild(scriptEl);
+    }
+  }
+
+  createRemark42Script(window.remark_config.components || ["embed"], document);
+</script>
+
+<div id="remark42"></div>
+<noscript
+  >Please enable JavaScript to view the comments powered by Remark42.</noscript
+>
