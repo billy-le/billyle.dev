@@ -78,6 +78,9 @@ const illustration = position != undefined ? imageMap[position] : undefined;
           role="presentation"
           aria-hidden="true"
           class={`pointer-events-none absolute ${illustration["className"]}`}
+          format="avif"
+          loading="lazy"
+          quality="low"
         />
       )
     }
@@ -95,6 +98,8 @@ const illustration = position != undefined ? imageMap[position] : undefined;
             width={256}
             class="absolute -z-10 h-full w-full rounded-lg object-cover"
             style={blogCardMask}
+            format="avif"
+            loading="lazy"
           />
         )}
         <div class="h-full p-5 lg:p-10">

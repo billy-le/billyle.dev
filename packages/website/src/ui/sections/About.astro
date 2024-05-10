@@ -27,12 +27,13 @@ const { className = "" } = Astro.props;
             src={blobOffset}
             height={500}
             width={500}
-            format="webp"
+            format="avif"
             class="dark:opacity-15"
             alt=""
             aria-hidden="true"
             role="presentation"
             loading="lazy"
+            quality="low"
           />
           <Picture
             src={mePic}
@@ -40,6 +41,8 @@ const { className = "" } = Astro.props;
             class="absolute top-0 max-h-full object-contain"
             alt="Billy Le smiling in a gray t-shirt"
             loading="lazy"
+            format="avif"
+            quality="low"
           />
         </div>
 
