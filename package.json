@@ -27,7 +27,7 @@
     "prepare": "husky || true"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.5",
+    "@astrojs/rss": "^4.0.6",
     "@fontsource-variable/inter": "^5.0.18",
     "@fontsource/vidaloka": "^5.0.12",
     "clsx": "^2.1.1",
@@ -50,7 +50,7 @@
     "@types/node": "^20.12.8",
     "@types/sanitize-html": "^2.11.0",
     "@types/three": "^0.161.2",
-    "astro": "^4.7.1",
+    "astro": "^4.8.4",
     "autoprefixer": "^10.4.19",
     "cssnano": "^6.1.2",
     "front-matter": "^4.0.2",
