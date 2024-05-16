@@ -140,6 +140,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"common-errors-for-new-flutter-developers-tips-and-fixes.md": {
+	id: "common-errors-for-new-flutter-developers-tips-and-fixes.md";
+  slug: "common-errors-for-new-flutter-developers-tips-and-fixes";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "configure-a-contact-form-email-server-with-resend-for-your-website.md": {
 	id: "configure-a-contact-form-email-server-with-resend-for-your-website.md";
   slug: "configure-a-contact-form-email-server-with-resend-for-your-website";
