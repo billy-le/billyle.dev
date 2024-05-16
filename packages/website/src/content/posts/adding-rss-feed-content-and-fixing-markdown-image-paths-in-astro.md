@@ -241,13 +241,13 @@ export async function GET(context: AstroGlobal) {
 
 I littered the code with comments but I'll try to break this down to make more sense of it.
 
-The most important thing part is the `import.meta.glob()`.
+The most important part is the `import.meta.glob()`.
 
 Thanks to Henri Fournier, from the Astro Lounge Discord Support Channel, for this tip.
 
 You can read more about [dynamically importing your images](https://docs.astro.build/en/recipes/dynamically-importing-images/) and the `import.meta.glob()` in more detail.
 
-The `imagesGlob` variable holds an object that holds the key as the path, and the value as a dynamic import function.
+The `imagesGlob` variable is an object that stores keys as the paths, and the values as dynamic import functions.
 
 ```
 const imagesGlob = {
@@ -272,7 +272,7 @@ export interface ImageMetadata {
 
 With that ready to go, I loop over all my blog posts and convert them to HTML using the `node-html-parser`.
 
-```
+```typescript
 const body = markdownParser.render(post.body);
 const html = htmlParser.parse(body);
 const images = html.querySelectorAll("img");
@@ -325,7 +325,7 @@ Check the contents of your `_dist` folder and look for your RSS XML file.
 
 Okay, time to push it live and test Feedly and dev.to.
 
-## Verifying fix on supported platforms
+## Verify fix on supported platforms
 
 If you had an RSS feed on Feedly before adding content, they won't update as the [date is encoded on their servers](https://groups.google.com/g/feedly-cloud/c/3evZeYOnS2I).
 
@@ -341,8 +341,6 @@ That's awesome!
 
 Over on dev.to, I deleted all my drafts with no content.
 
-I kind of wish they added a multi-select action on this part but it is what it is.
-
 Once I removed all my old draft posts, I fetched my updated RSS feed using the "Fetch feed now" button.
 
 And now, I see that all the contents are there ready to be published!
@@ -351,9 +349,9 @@ And now, I see that all the contents are there ready to be published!
 
 ## Conclusion
 
-With the RSS feed content in place, we can now grab our blog posts into platforms that support fetching RSS feeds.
+With the RSS feed content in place, we can now fetch our blog posts on platforms that support RSS feeds.
 
-This is great because we can benefit by sharing our blog with platforms and give our readers a choice where they get updates and read new content.
+This is great because we can benefit by sharing our blog with different platforms and give our readers a choice where they receive updates and read new content.
 
 In this post, I've gone over the issue of the incorrect image path when creating an RSS feed from markdown to XML with AstroJS.
 
@@ -361,7 +359,7 @@ To fix this, we had to convert the markdown to HTML and modify the image src to 
 
 After verifying our fix, we can view places like Feedly and dev.to, to continue sharing our posts.
 
-If you want to see how you can add a featured image per blog post for your RSS. Check out [Web Reaper's blog post]((https://webreaper.dev/posts/astro-rss-feed-blog-post-images/)) on how you can do that.
+If you want to see how you can add a featured image per blog post for your RSS. Check out [Web Reaper's blog post](<(https://webreaper.dev/posts/astro-rss-feed-blog-post-images/)>) on how you can do that.
 
 Well, that's all I can think of. Let me know what you think and if there is anything I can add.
 
