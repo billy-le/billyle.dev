@@ -71,10 +71,7 @@ export async function GET(context: AstroGlobal) {
       content: sanitizeHtml(html.toString(), {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
-      customData: `<media:content
-      medium="image"
-      url="${post.data.image.url}" />
-  `,
+      customData: `<media:content medium="image" width="600" url="${post.data.image.url}" type="avif" />`,
     });
   }
 
