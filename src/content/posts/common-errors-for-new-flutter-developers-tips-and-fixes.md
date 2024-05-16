@@ -30,6 +30,21 @@ Somewhere along the way, the `dart` executable wasn't in my path and unsure wher
 
 So if you're starting your journey with Flutter, I suggest installing by downloading the zip file and carefully following the instructions.
 
+## Clean and repair cache
+
+When I find that something goes wrong with Flutter, this is usually my first approach. I run these commands in order before I start researching for a solution.
+
+Usually, it's a hit or miss but it gives me peace-of-mind that Flutter might not be the culprit and it could be something else like Xcode or a misconfigured setting.
+
+If you don't have a build_runner, you can skip steps 3 & 4.
+
+1. `flutter clean`
+2. `flutter pub cache repair`
+3. `dart run build_runner clean`
+4. `dart run build_runner build -d`
+5. `flutter pub get`
+6. `flutter doctor`
+
 ## Cocoapods errors
 
 Cocoapods is a dependency manager used by Xcode and it's a requirement if you plan to build any apps for Apple.
@@ -141,7 +156,7 @@ In `android/local.properties` file, add the `flutter.minSdkVersion` on a new lin
 flutter.minSdkVersion=21
 ```
 
-For iOS, goto `ios/Podfile` file and uncomment where it says, `platform :ios, '<version>'` and specify the version.
+For iOS, go to `ios/Podfile` file and uncomment where it says, `platform :ios, '<version>'` and specify the version.
 
 ```
 # Uncomment this line to define a global platform for your project
@@ -208,7 +223,7 @@ For example, `billyle.dev` becomes `dev.billyle` as my App ID.
 
 When you create a new Flutter project either by the command line or by VSCode, it will default the name of your App ID to be `com.example.<YOUR_PROJECT_NAME>`.
 
-This is kind of annoying since I don't like seeing the "example" in there and it's not a real representation of what I'm creating.
+I don't like seeing the "example" in there and it's not a real representation of what I'm creating.
 
 Instead, when starting a new Flutter project use this command and replace `com.yourdomain` and `app_name` to your liking.
 
