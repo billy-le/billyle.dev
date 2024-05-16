@@ -18,6 +18,9 @@ export default defineConfig({
   ],
   prefetch: true,
   markdown: {
+    shikiConfig: {
+      wrap: true,
+    },
     remarkPlugins: [
       remarkSectionize,
       remarkReadingTime,
