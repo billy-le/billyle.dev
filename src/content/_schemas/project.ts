@@ -15,6 +15,12 @@ const project = z.object({
     .default([]),
   sourceCode: z.array(z.object({ link: z.string().url(), host: z.string() })),
   tags: z.array(z.string()).default([]),
+  ranking: z
+    .string()
+    .refine(
+      (value) => ["high", "mid", "low"].includes(value),
+      'ranking must be one of ["high", "mid", "low"]',
+    ),
 });
 
 export const projectCollections = defineCollection({
