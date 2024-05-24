@@ -165,6 +165,42 @@ platform :ios, '16.0'
 
 If you're deploying to other platforms, say Windows or macOS, you will need to search the internet on how to update those values.
 
+## Use --verbose for pod commands
+
+When using pod commands, sometimes the process is running but nothing is showing up in your terminal.
+
+To get some sort of feedback that the process didn't hang, use the `--verbose` flag.
+
+For example, while in the `/ios` folder, you can run to update your Podfile.lock:
+
+```bash
+pod update --verbose
+```
+
+## Kotlin requires a newer version
+
+You might see this error when you're required to use a newer version of Kotlin in your project:
+
+```
+BUILD FAILED in 8s
+[!] Your project requires a newer version of the Kotlin Gradle plugin.
+    Find the latest version on https://kotlinlang.org/docs/gradle.html#plugin-and-versions, then update project/android/build.gradle:
+    ext.kotlin_version = '<latest-version>'
+Exception: Gradle task assembleDebug failed with exit code 1
+```
+
+To find out where you can update your `kotlin_version`, you'll have to go to `/android/settings.gradle` in your project.
+
+Find the `plugins` config and update the `org.jetbrains.kotlin.android` field with a higher version that's listed in the error message above.
+
+```
+plugins {
+    id "dev.flutter.flutter-plugin-loader" version "1.0.0"
+    id "com.android.application" version "7.3.0" apply false
+    id "org.jetbrains.kotlin.android" version "2.0.0" apply false
+}
+```
+
 ## Launch the simulator from VS Code
 
 This one was a bit tricky. When developing for Flutter in VSCode, you'll be using the debugger tool. When you start the debugging tool to launch your Flutter app, the device will often change.
@@ -238,6 +274,10 @@ A thing I am starting to do is replace `app_name` with specific platform names l
 If you find that you're knee-deep in an existing project but your App ID still contains the `com.example` name, you can use this [rename-cli](https://pub.dev/packages/rename) to rename your App ID.
 
 The instructions are straightforward to use.
+
+## Additional resources
+
+- [Flutter tips and tricks](https://github.com/vandadnp/flutter-tips-and-tricks) from Vandad.
 
 ## Keeping this updated
 
