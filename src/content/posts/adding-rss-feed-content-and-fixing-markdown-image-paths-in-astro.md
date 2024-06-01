@@ -359,7 +359,7 @@ To fix this, we had to convert the markdown to HTML and modify the image src to 
 
 After verifying our fix, we can view places like Feedly and dev.to, to continue sharing our posts.
 
-If you want to see how you can add a featured image per blog post for your RSS. Check out [Web Reaper's blog post](<(https://webreaper.dev/posts/astro-rss-feed-blog-post-images/)>) on how you can do that.
+If you want to see how you can add a featured image per blog post for your RSS. Check out [Web Reaper's blog post](https://webreaper.dev/posts/astro-rss-feed-blog-post-images/) on how you can do that.
 
 Well, that's all I can think of. Let me know what you think and if there is anything I can add.
 
