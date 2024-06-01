@@ -224,6 +224,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"sqlite-basics.md": {
+	id: "sqlite-basics.md";
+  slug: "sqlite-basics";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "use-husky-and-node-to-unstage-draft-posts-from-git.md": {
 	id: "use-husky-and-node-to-unstage-draft-posts-from-git.md";
   slug: "use-husky-and-node-to-unstage-draft-posts-from-git";
