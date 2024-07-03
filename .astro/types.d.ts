@@ -140,6 +140,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"catching-up-with-artificial-intelligence-and-life.md": {
+	id: "catching-up-with-artificial-intelligence-and-life.md";
+  slug: "catching-up-with-artificial-intelligence-and-life";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "common-errors-for-new-flutter-developers-tips-and-fixes.md": {
 	id: "common-errors-for-new-flutter-developers-tips-and-fixes.md";
   slug: "common-errors-for-new-flutter-developers-tips-and-fixes";
@@ -220,13 +227,6 @@ declare module 'astro:content' {
 "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md": {
 	id: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide.md";
   slug: "self-hosting-your-website-with-coolify-v4-a-step-by-step-guide";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"sqlite-basics.md": {
-	id: "sqlite-basics.md";
-  slug: "sqlite-basics";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
