@@ -246,6 +246,11 @@ declare module 'astro:content' {
 		"_schemas": {
 };
 "projects": {
+"clearbank": {
+	id: "clearbank";
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+};
 "converse": {
 	id: "converse";
   collection: "projects";
