@@ -217,6 +217,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"regain-access-to-hetzner-vps-from-a-new-machine.md": {
+	id: "regain-access-to-hetzner-vps-from-a-new-machine.md";
+  slug: "regain-access-to-hetzner-vps-from-a-new-machine";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "registering-for-apple-and-google-developer-accounts.md": {
 	id: "registering-for-apple-and-google-developer-accounts.md";
   slug: "registering-for-apple-and-google-developer-accounts";
