@@ -142,6 +142,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"case-study-building-dotted.md": {
+	id: "case-study-building-dotted.md";
+  slug: "case-study-building-dotted";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "catching-up-with-artificial-intelligence-and-life.md": {
 	id: "catching-up-with-artificial-intelligence-and-life.md";
   slug: "catching-up-with-artificial-intelligence-and-life";
