@@ -3,7 +3,7 @@ import { z, defineCollection } from "astro:content";
 const project = z.object({
   name: z.string(),
   description: z.string(),
-  link: z.string().url(),
+  link: z.string().url().nullable(),
   images: z
     .array(
       z.object({
