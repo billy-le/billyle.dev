@@ -1,0 +1,12 @@
+{
+    "name": "ClearBank",
+    "description": "ClearBank is a financial banking app that uses Plaid to connect to your bank accounts and shows your current balance, transaction history, and spending budget. It uses Dwolla to transfer funds from one account to another via a shareable link.",
+    "link": "https://clearbank.billyle.dev",
+    "images": [],
+    "sourceCode": [
+      { "link": "https://github.com/billy-le/clearbank", "host": "github" }
+    ],
+    "tags": ["nextjs", "react", "plaid", "dwolla", "tailwind"],
+    "ranking": "low"
+  }
+  

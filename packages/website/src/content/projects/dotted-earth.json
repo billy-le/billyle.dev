@@ -1,0 +1,11 @@
+{
+  "name": "Dotted",
+  "description": "An AI-powered mobile application built using Flutter, Supabase, and Node. The app generates an itinerary for users based on their profiles. The AI takes into account their recreational activities, diet, favorite cuisines, and food allergies to create a personalized schedule. Users can then view the itinerary, which displays each location and route on Google Maps.",
+  "link": "https://billyle.dev/posts/case-study-building-dotted",
+  "images": [],
+  "sourceCode": [
+    { "link": "https://github.com/dotted-earth", "host": "github" }
+  ],
+  "tags": ["flutter", "dart", "ai", "supabase", "node", "python"],
+  "ranking": "low"
+}

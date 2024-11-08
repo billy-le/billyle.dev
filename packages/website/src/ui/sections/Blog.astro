@@ -6,6 +6,7 @@ interface Props {
 import { compareDesc } from "date-fns";
 import { allPosts } from "@utils/getCollection";
 import BlogCard from "@ui/components/BlogCard.astro";
+import type { Post } from "src/content/_schemas/post";
 
 const configuration = [
   ["h-80", "h-80"],
@@ -71,7 +72,7 @@ const { className = "" } = Astro.props;
               <BlogCard
                 {height}
                 link={"/posts/" + post?.slug}
-                post={post?.data}
+                post={post?.data as Post}
                 position={configPosition.shift()}
               />
             ))}
@@ -87,7 +88,7 @@ const { className = "" } = Astro.props;
           .map(({ post }, i) => (
             <BlogCard
               link={"/posts/" + post?.slug}
-              post={post?.data}
+              post={post?.data as Post}
               height={`h-36 ${i == 2 ? "z-10" : ""}`}
               position={i}
             />

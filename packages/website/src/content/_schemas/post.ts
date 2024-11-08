@@ -18,6 +18,8 @@ const validTags = [
   "astro",
   "startup",
   "docker",
+  "flutter",
+  "case study",
 ];
 
 const postSchema = z.object({

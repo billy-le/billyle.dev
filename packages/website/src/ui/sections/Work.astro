@@ -109,7 +109,7 @@ const { className = "" } = Astro.props;
 
 <section id="work" class={`relative py-8  ${className}`}>
   <h2 class="text-heading container">Work.</h2>
-  <div class="flex flex-col isolate max-w-screen-2xl mx-auto lg:flex-row">
+  <div class="isolate mx-auto flex max-w-screen-2xl flex-col lg:flex-row">
     {
       workExp.map((exp) => (
         <div class="work_container">
@@ -117,10 +117,11 @@ const { className = "" } = Astro.props;
             <Picture
               src={exp.image}
               widths={[320, 640, 768]}
-              format="webp"
+              format="avif"
               class="work_img"
               alt={exp.imageAlt}
               loading="lazy"
+              quality="low"
             />
           </div>
           <h3 class="work_year">
@@ -227,7 +228,7 @@ const { className = "" } = Astro.props;
     }
 
     .work_year {
-      @apply font-vidaloka text-slate-100 border-slate-100 py-3;
+      @apply border-slate-100 py-3 font-vidaloka text-slate-100;
 
       position: absolute;
       top: 4rem;
@@ -278,7 +279,7 @@ const { className = "" } = Astro.props;
       }
 
       .work_title {
-        @apply tracking-widest text-green-500 top-4 lg:text-xl lg:top-1/2 xl:top-2/3;
+        @apply top-4 tracking-widest text-green-500 lg:top-1/2 lg:text-xl xl:top-2/3;
 
         position: relative;
         text-transform: uppercase;
@@ -286,7 +287,7 @@ const { className = "" } = Astro.props;
       }
 
       .work_description {
-        @apply text-xs text-slate-100 p-4 lg:text-sm;
+        @apply p-4 text-xs text-slate-100 lg:text-sm;
 
         position: relative;
         top: 4rem;

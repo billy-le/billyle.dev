@@ -3,7 +3,7 @@ import { z, defineCollection } from "astro:content";
 const project = z.object({
   name: z.string(),
   description: z.string(),
-  link: z.string().url(),
+  link: z.string().url().nullable(),
   images: z
     .array(
       z.object({
@@ -15,6 +15,12 @@ const project = z.object({
     .default([]),
   sourceCode: z.array(z.object({ link: z.string().url(), host: z.string() })),
   tags: z.array(z.string()).default([]),
+  ranking: z
+    .string()
+    .refine(
+      (value) => ["high", "mid", "low"].includes(value),
+      'ranking must be one of ["high", "mid", "low"]',
+    ),
 });
 
 export const projectCollections = defineCollection({

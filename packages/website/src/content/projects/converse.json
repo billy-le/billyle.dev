@@ -6,5 +6,6 @@
   "sourceCode": [
     { "link": "https://github.com/billy-le/converse", "host": "github" }
   ],
-  "tags": ["node", "express", "liquidjs", "web-rtc", "socket.io"]
+  "tags": ["node", "express", "liquidjs", "web-rtc", "socket.io"],
+  "ranking": "low"
 }

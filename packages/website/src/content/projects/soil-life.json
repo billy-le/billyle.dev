@@ -6,5 +6,6 @@
   "sourceCode": [
     { "link": "https://github.com/SoilLife/soil-life-web", "host": "github" }
   ],
-  "tags": ["react", "nextjs", "netlify", "tailwind"]
+  "tags": ["react", "nextjs", "netlify", "tailwind"],
+  "ranking": "mid"
 }
