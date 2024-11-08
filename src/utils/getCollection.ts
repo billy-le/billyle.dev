@@ -23,4 +23,16 @@ export const allPosts = await getCollection("posts", ({ data }) => {
   return import.meta.env.PROD ? data.draft !== true : true;
 });
 
-export const allProjects = await getCollection("projects");
+const ranking = {
+  high: 1,
+  mid: 2,
+  low: 3,
+};
+
+export const allProjects = await getCollection("projects").then((projects) =>
+  projects.sort(
+    (a, b) =>
+      ranking[a.data.ranking as keyof typeof ranking] -
+      ranking[b.data.ranking as keyof typeof ranking],
+  ),
+);
