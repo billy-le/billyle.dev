@@ -1,21 +1,24 @@
 ---
 interface Props {
-  post?: undefined | Record<string, any>;
+  post?: Post;
   link?: string | undefined;
   height?: string;
   className?: string | undefined;
   position: number | undefined;
 }
 import { Image, Picture } from "astro:assets";
-import SvgGrain from "./SvgGrain.astro";
 import { twMerge } from "tailwind-merge";
+import SvgGrain from "./SvgGrain.astro";
 import alligatorBalloons from "@assets/images/alligator_balloons.png";
 import camera from "@assets/images/camera.png";
 import dogFeeding from "@assets/images/dog_feeding.png";
 import markerPin from "@assets/images/marker_pin.png";
 import trainCommute from "@assets/images/train_commute.png";
 import coding from "@assets/images/coding.png";
+import { format as dateFormat } from "date-fns";
+
 import type { ImageMetadata } from "astro";
+import type { Post } from "src/content/_schemas/post";
 
 const imageMap: Record<number, { src: ImageMetadata; className: string }> = {
   0: {
@@ -65,7 +68,7 @@ const illustration = position != undefined ? imageMap[position] : undefined;
   class={`${height} isolate relative rounded-lg border-2 border-slate-200 bg-slate-50 
               dark:bg-slate-600 dark:border-slate-950/10 dark:text-white
               after:content-[""] after:absolute after:top-0 after:left-0 after:h-full
-              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded-lg
+              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded-[calc(0.5rem_-_2px)]
               `}
 >
   <SvgGrain className="absolute left-0 top-0 h-full w-full opacity-15" />
@@ -78,6 +81,9 @@ const illustration = position != undefined ? imageMap[position] : undefined;
           role="presentation"
           aria-hidden="true"
           class={`pointer-events-none absolute ${illustration["className"]}`}
+          format="avif"
+          loading="lazy"
+          quality="low"
         />
       )
     }
@@ -93,10 +99,15 @@ const illustration = position != undefined ? imageMap[position] : undefined;
             sizes="256px"
             height={256}
             width={256}
-            class="absolute -z-10 h-full w-full rounded-lg object-cover"
+            class="absolute -z-10 h-full w-full rounded-[calc(0.5rem_-_2px)] object-cover"
             style={blogCardMask}
+            format="avif"
+            loading="lazy"
           />
         )}
+        <span class="absolute right-0 top-0 -z-20 font-vidaloka text-6xl opacity-80 dark:opacity-100 xl:text-9xl">
+          {dateFormat(post.pubDate, "M/dd")}
+        </span>
         <div class="h-full p-5 lg:p-10">
           <h3 class="line-clamp-2 max-w-xs text-lg font-semibold text-gray-600 dark:text-gray-100 lg:text-xl xl:line-clamp-3 xl:text-2xl">
             {post.title}
