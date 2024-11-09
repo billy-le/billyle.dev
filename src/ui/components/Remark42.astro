@@ -1,15 +1,8 @@
----
-const host = import.meta.env.PUBLIC_REMARK42_URL;
----
-
-<script async data-remark-host={host}>
-  const remarkHost =
-    document.querySelector("[data-remark-host]").dataset["remarkHost"];
-
+<script>
   // keep as var to keep in global scope
   var remark_config = {
-    host: remarkHost,
-    site_id: "billyle.dev",
+    host: import.meta.env.PUBLIC_REMARK_URL,
+    site_id: import.meta.env.PUBLIC_SITE,
     components: ["embed"],
     theme: window.localStorage.getItem("theme") ?? "dark",
     locale: "en",
@@ -17,9 +10,9 @@ const host = import.meta.env.PUBLIC_REMARK42_URL;
     show_rss_subscription: false,
     no_footer: true,
   };
-</script>
 
-<script>
+  window.remark_config = remark_config;
+
   function createRemark42Script(components: string[], doc: Document) {
     for (let i = 0; i < components.length; i++) {
       let scriptEl: HTMLScriptElement = doc.createElement("script");
@@ -33,13 +26,17 @@ const host = import.meta.env.PUBLIC_REMARK42_URL;
         scriptEl.async = true;
         scriptEl.defer = true;
       }
-      scriptEl.src = `${window.remark_config.host}/web/${components[i]}${ext}`;
 
+      scriptEl.src = `${window.remark_config.host}/web/${components[i]}${ext}`;
       headOrBodyEl.appendChild(scriptEl);
     }
   }
-
-  createRemark42Script(window.remark_config.components || ["embed"], document);
+  if ("remark_config" in window) {
+    createRemark42Script(
+      window.remark_config.components || ["embed"],
+      document,
+    );
+  }
 </script>
 
 <div id="remark42"></div>

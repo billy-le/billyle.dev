@@ -141,6 +141,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
+"adding-a-comment-engine-to-your-website-with-remark42.md": {
+	id: "adding-a-comment-engine-to-your-website-with-remark42.md";
+  slug: "adding-a-comment-engine-to-your-website-with-remark42";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "adding-github-pull-request-preview-deployments-with-coolify.md": {
 	id: "adding-github-pull-request-preview-deployments-with-coolify.md";
   slug: "adding-github-pull-request-preview-deployments-with-coolify";
