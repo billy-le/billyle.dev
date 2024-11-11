@@ -1,4 +1,9 @@
 <script>
+  /* import {
+   * cssPropertiesLight,
+   * cssPropertiesDark,
+   * } from "@utils/remarkCustomCssProperties";
+   */
   // keep as var to keep in global scope
   var remark_config = {
     host: import.meta.env.PUBLIC_REMARK_URL,
@@ -9,6 +14,7 @@
     show_email_subscription: true,
     show_rss_subscription: false,
     no_footer: true,
+    __colors__: {},
   };
 
   window.remark_config = remark_config;
