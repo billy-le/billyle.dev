@@ -1,5 +1,5 @@
 <button
-  class="theme-toggle p-1 h-8 w-8 rounded-full bg-emerald-200 border border-solid border-emerald-400 dark:bg-emerald-100"
+  class="theme-toggle h-8 w-8 rounded-full border border-solid border-emerald-400 bg-emerald-200 p-1 dark:bg-emerald-100"
 >
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +7,7 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="hidden stroke-emerald-400 fill-yellow-200 dark:block"
+    class="hidden fill-yellow-200 stroke-emerald-400 dark:block"
   >
     <path
       stroke-linecap="round"
@@ -21,7 +21,7 @@
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="stroke-emerald-400 fill-white dark:hidden"
+    class="fill-white stroke-emerald-400 dark:hidden"
   >
     <path
       stroke-linecap="round"
@@ -33,39 +33,39 @@
 
 <script>
   const themeToggles = document.querySelectorAll(".theme-toggle");
+  const theme = localStorage.getItem("theme");
+
+  function setTheme(themeColor: string, themeRootEl: Element) {
+    document.documentElement.classList[
+      themeColor === "dark" ? "add" : "remove"
+    ]("dark");
+
+    localStorage.setItem("theme", themeColor);
+    if (themeRootEl) {
+      themeRootEl.ariaLabel = `toggle ${themeColor === "dark" ? "light" : "dark"} mode`;
+    }
+    if ("REMARK42" in window) {
+      window.REMARK42.changeTheme(themeColor);
+    }
+  }
 
   for (const themeToggle of themeToggles) {
     themeToggle.addEventListener("click", () => {
       const theme = localStorage.getItem("theme");
       if (theme === "dark") {
-        localStorage.setItem("theme", "light");
-        document.documentElement.classList.remove("dark");
-        if (themeToggle) {
-          themeToggle.ariaLabel = "toggle dark mode";
-        }
+        setTheme("light", themeToggle);
       } else {
-        localStorage.setItem("theme", "dark");
-        document.documentElement.classList.add("dark");
-        if (themeToggle) {
-          themeToggle.ariaLabel = "toggle light mode";
-        }
+        setTheme("dark", themeToggle);
       }
     });
 
     if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+      theme === "dark" ||
+      (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
     ) {
-      document.documentElement.classList.add("dark");
-      if (themeToggle) {
-        themeToggle.ariaLabel = "toggle light mode";
-      }
+      setTheme("dark", themeToggle);
     } else {
-      document.documentElement.classList.remove("dark");
-      if (themeToggle) {
-        themeToggle.ariaLabel = "toggle dark mode";
-      }
+      setTheme("light", themeToggle);
     }
   }
 </script>

@@ -1,0 +1,56 @@
+services:
+  frontend:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PUBLIC_REMARK_URL: ${PUBLIC_REMARK_URL}
+        PUBLIC_SITE: ${PUBLIC_SITE}
+    container_name: "frontend"
+    ports:
+     - "4321:4321"
+    networks:
+      - app
+    environment:
+      - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
+      - PUBLIC_SITE=${PUBLIC_SITE}
+    env_file: 
+      - .env
+  remark42:
+    image: umputun/remark42:latest
+    container_name: remark42
+    hostname: remark42
+    restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    ports:
+      - "8080:8080"
+    networks:
+      - app 
+    environment:
+      - REMARK_URL=${PUBLIC_REMARK_URL}
+      - SITE=${PUBLIC_SITE}
+      - SECRET=${REMARK_SECRET}
+      - AUTH_GOOGLE_CID=${AUTH_GOOGLE_CID}
+      - AUTH_GOOGLE_CSEC=${AUTH_GOOGLE_CSEC}
+      - AUTH_GITHUB_CID=${AUTH_GITHUB_CID}
+      - AUTH_GITHUB_CSEC=${AUTH_GITHUB_CSEC}
+      - AUTH_TELEGRAM=true
+      - NOTIFY_ADMINS=telegram
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - NOTIFY_TELEGRAM_CHAN=${NOTIFY_TELEGRAM_CHAN}
+      - DEBUG=true
+      - ALLOWED_HOSTS=${REMARK_ALLOWED_HOSTS}
+    env_file:
+      - .env
+    volumes:
+      - remark42:/srv/var
+
+networks:
+  app:
+
+volumes:
+  remark42:
