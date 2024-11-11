@@ -1,0 +1,51 @@
+<script>
+  /* import {
+   * cssPropertiesLight,
+   * cssPropertiesDark,
+   * } from "@utils/remarkCustomCssProperties";
+   */
+  // keep as var to keep in global scope
+  var remark_config = {
+    host: import.meta.env.PUBLIC_REMARK_URL,
+    site_id: import.meta.env.PUBLIC_SITE,
+    components: ["embed"],
+    theme: window.localStorage.getItem("theme") ?? "dark",
+    locale: "en",
+    show_email_subscription: true,
+    show_rss_subscription: false,
+    no_footer: true,
+    __colors__: {},
+  };
+
+  window.remark_config = remark_config;
+
+  function createRemark42Script(components: string[], doc: Document) {
+    for (let i = 0; i < components.length; i++) {
+      let scriptEl: HTMLScriptElement = doc.createElement("script");
+      let ext = ".js";
+      let headOrBodyEl = doc.head || doc.body;
+
+      if ("noModule" in scriptEl && !scriptEl.noModule) {
+        scriptEl.type = "module";
+        ext = ".mjs";
+      } else {
+        scriptEl.async = true;
+        scriptEl.defer = true;
+      }
+
+      scriptEl.src = `${window.remark_config.host}/web/${components[i]}${ext}`;
+      headOrBodyEl.appendChild(scriptEl);
+    }
+  }
+  if ("remark_config" in window) {
+    createRemark42Script(
+      window.remark_config.components || ["embed"],
+      document,
+    );
+  }
+</script>
+
+<div id="remark42"></div>
+<noscript
+  >Please enable JavaScript to view the comments powered by Remark42.</noscript
+>
