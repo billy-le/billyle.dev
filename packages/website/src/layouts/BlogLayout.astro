@@ -18,7 +18,7 @@ import BackdropRadial from "@ui/components/BackdropRadial.astro";
 import TOCHeading from "@ui/components/TOCHeading.astro";
 import { Picture } from "astro:assets";
 import RssFeedButton from "@ui/components/RssFeedButton.astro";
-import Remark42 from "@ui/components/Remark42.astro";
+// import Remark42 from "@ui/components/Remark42.astro";
 
 const defaultPicture =
   "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
@@ -168,9 +168,6 @@ const hasToC = toc.length > 1;
                   {toc.map((heading) => (
                     <TOCHeading heading={heading} />
                   ))}
-                  <a href={"#remark42"} class="no-underline">
-                    Comments
-                  </a>
                 </ul>
               </nav>
             </div>
@@ -263,9 +260,6 @@ const hasToC = toc.length > 1;
                     {toc.map((heading) => (
                       <TOCHeading heading={heading} />
                     ))}
-                    <a href={"#remark42"} class="no-underline">
-                      Comments
-                    </a>
                   </ul>
                 </nav>
               </div>
@@ -273,7 +267,7 @@ const hasToC = toc.length > 1;
           }
           <slot />
           <RssFeedButton className="mb-8 ml-auto mt-20" />
-          <Remark42 />
+          {/*<Remark42 />*/}
         </article>
       </section>
     </main>
@@ -290,6 +284,19 @@ const hasToC = toc.length > 1;
     document.addEventListener("DOMContentLoaded", () => {
       const articleSections =
         document.querySelectorAll<HTMLDivElement>("article section");
+
+      if ("REMARK42" in window) {
+        const tocLists = document.querySelectorAll(".toc-links");
+        const listItem = document.createElement("li");
+        const anchor = document.createElement("a");
+        anchor.href = "#remark42";
+        anchor.className = "no-underline";
+        anchor.textContent = "Comments";
+        listItem.appendChild(anchor);
+        for (const list of tocLists) {
+          list.appendChild(listItem);
+        }
+      }
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
