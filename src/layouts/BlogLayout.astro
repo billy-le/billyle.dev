@@ -55,7 +55,7 @@ function createHeadingHierarchy(headings: MarkdownHeading[]) {
   headings.forEach((heading) => {
     if (heading.depth > 3) {
       throw Error(
-        `Depths greater than 3 not allowed:\n${JSON.stringify(heading, null, 2)}`
+        `Depths greater than 3 not allowed:\n${JSON.stringify(heading, null, 2)}`,
       );
     }
     const h = {
@@ -168,6 +168,9 @@ const hasToC = toc.length > 1;
                   {toc.map((heading) => (
                     <TOCHeading heading={heading} />
                   ))}
+                  <a href={"#remark42"} class="no-underline">
+                    Comments
+                  </a>
                 </ul>
               </nav>
             </div>
@@ -260,13 +263,16 @@ const hasToC = toc.length > 1;
                     {toc.map((heading) => (
                       <TOCHeading heading={heading} />
                     ))}
+                    <a href={"#remark42"} class="no-underline">
+                      Comments
+                    </a>
                   </ul>
                 </nav>
               </div>
             )
           }
           <slot />
-          <RssFeedButton className="ml-auto mt-20" />
+          <RssFeedButton className="mb-8 ml-auto mt-20" />
           <Remark42 />
         </article>
       </section>
@@ -293,7 +299,7 @@ const hasToC = toc.length > 1;
           const id = heading.getAttribute("id");
           if (!id) return;
           const link = document.querySelector<HTMLAnchorElement>(
-            `.toc-links a[href="#${id}"]`
+            `.toc-links a[href="#${id}"]`,
           );
           if (!link) return;
 
@@ -336,7 +342,7 @@ const hasToC = toc.length > 1;
         shareButton.addEventListener("click", async () => {
           const url = new URL(location.href);
           const descriptionTag = document.head.querySelector<HTMLMetaElement>(
-            'meta[name="description"]'
+            'meta[name="description"]',
           )!;
           const shareData: ShareData = {
             title: document.title,
