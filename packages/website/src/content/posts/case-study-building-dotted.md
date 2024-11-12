@@ -1,6 +1,6 @@
 ---
 title: "Case Study - Building Dotted"
-pubDate: 2024-08-13
+pubDate: 2024-08-12
 description: "I developed an AI mobile app aimed at making it easy to generate travel itineraries. Having zero experience in mobile and AI development, it was quite a challenge. In this case study, I want to share the process of how I was able to build Dotted."
 image:
   url: "https://images.unsplash.com/photo-1511068797325-6083f0f872b1"
