@@ -43,9 +43,58 @@
       document,
     );
   }
+
+  const observer = new MutationObserver((mutations, obs) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if ("REMARK42" in window && node instanceof HTMLIFrameElement) {
+          const commentsHeading = document.createElement("h2");
+          commentsHeading.id = "comments";
+          commentsHeading.textContent = "Comments";
+          const remarkContainer = document.getElementById("remark42");
+          if (remarkContainer) {
+            remarkContainer.prepend(commentsHeading);
+            const io = new IntersectionObserver((entries) => {
+              for (const entry of entries) {
+                const addRemove =
+                  entry.intersectionRatio > 0 ? "add" : "remove";
+                const links = document.querySelectorAll("a[href='#comments']");
+                for (const link of links) {
+                  link.classList[addRemove](
+                    "text-blue-500",
+                    "dark:text-blue-400",
+                  );
+                }
+              }
+            });
+            io.observe(remarkContainer);
+          }
+          const tocLists = document.querySelectorAll(".toc-links");
+          for (const list of tocLists) {
+            const listItem = document.createElement("li");
+            const anchor = document.createElement("a");
+            anchor.href = "#comments";
+            anchor.className = "no-underline";
+            anchor.textContent = "Comments";
+            listItem.appendChild(anchor);
+            list.appendChild(listItem);
+          }
+          obs.disconnect();
+        }
+      }
+    }
+  });
+  const remarkContainer = document.getElementById("remark42");
+  if (remarkContainer) {
+    observer.observe(remarkContainer, { childList: true, subtree: true });
+  }
+
+  document.addEventListener("beforeunload", () => {
+    observer.disconnect();
+  });
 </script>
 
-<div id="remark42"></div>
+<section id="remark42"></section>
 <noscript
   >Please enable JavaScript to view the comments powered by Remark42.</noscript
 >
