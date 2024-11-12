@@ -44,7 +44,6 @@ services:
       - NOTIFY_ADMINS=telegram
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
       - NOTIFY_TELEGRAM_CHAN=${NOTIFY_TELEGRAM_CHAN}
-      - DEBUG=true
       - ALLOWED_HOSTS=${REMARK_ALLOWED_HOSTS}
     env_file:
       - .env
