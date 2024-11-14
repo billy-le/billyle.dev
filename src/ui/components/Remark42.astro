@@ -38,10 +38,12 @@
     }
   }
   if ("remark_config" in window) {
-    createRemark42Script(
-      window.remark_config.components || ["embed"],
-      document,
-    );
+    window.addEventListener("DOMContentLoaded", () => {
+      createRemark42Script(
+        window.remark_config.components || ["embed"],
+        document,
+      );
+    });
   }
 
   const observer = new MutationObserver((mutations, obs) => {
