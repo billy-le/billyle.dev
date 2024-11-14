@@ -169,6 +169,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"comments-for-all-add-remark42-with-coolify-to-your-website.md": {
+	id: "comments-for-all-add-remark42-with-coolify-to-your-website.md";
+  slug: "comments-for-all-add-remark42-with-coolify-to-your-website";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "common-errors-for-new-flutter-developers-tips-and-fixes.md": {
 	id: "common-errors-for-new-flutter-developers-tips-and-fixes.md";
   slug: "common-errors-for-new-flutter-developers-tips-and-fixes";
