@@ -168,7 +168,7 @@ You'll need to install the [dot-env](https://www.npmjs.com/package/dot-env) pack
 
 Be sure to enter your Resend API key here.
 
-```env
+```dotenv
 SERVER_PORT=3000
 RESEND_API_KEY=<API Key from Resend>
 EMAIL_TO=hi@billyle.dev

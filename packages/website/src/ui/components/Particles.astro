@@ -1,5 +1,7 @@
 <canvas id="canvas-particles" class="dark:opacity-20"></canvas>
 <script>
+  import { debounce } from "@utils/debounce";
+
   document.addEventListener("DOMContentLoaded", () => {
     const hasReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -187,36 +189,54 @@
             connect();
           }
 
-          window.addEventListener("resize", () => {
+          function resize(_: Event) {
             canvas.width = canvas?.parentElement?.clientWidth ?? innerWidth;
             canvas.height = canvas?.parentElement?.clientHeight ?? innerHeight;
             mouse.radius = getMouseRadius();
             init();
-          });
+          }
 
-          window.addEventListener("mousemove", (e) => {
-            mouse.x = e.pageX;
-            mouse.y = e.pageY;
-          });
-
-          window.addEventListener("mouseout", () => {
-            mouse.x = null;
-            mouse.y = null;
-          });
-
-          window.addEventListener("scroll", () => {
+          function scroll(_: Event) {
             if (scrollY > canvas.height && animationId != null) {
               window.cancelAnimationFrame(animationId);
               animationId = null;
             } else if (scrollY < canvas.height && animationId == null) {
               animate();
             }
-          });
+          }
+
+          function mouseMove(e: MouseEvent) {
+            mouse.x = e.pageX;
+            mouse.y = e.pageY;
+          }
+          function mouseOut() {
+            mouse.x = null;
+            mouse.y = null;
+          }
+          const [debouncedResize, clearDebouncedResize] = debounce(resize, 100);
+          const [debouncedScroll, clearDebouncedScroll] = debounce(scroll, 100);
+
+          window.addEventListener("resize", debouncedResize);
+
+          window.addEventListener("mousemove", mouseMove);
+
+          window.addEventListener("mouseout", mouseOut);
+
+          window.addEventListener("scroll", debouncedScroll);
 
           init();
           animate();
 
           observer.disconnect();
+
+          window.addEventListener("beforeunload", () => {
+            clearDebouncedResize();
+            clearDebouncedScroll();
+            window.removeEventListener("resize", debouncedResize);
+            window.removeEventListener("scroll", debouncedScroll);
+            window.removeEventListener("mousemove", mouseMove);
+            window.removeEventListener("mouseout", mouseOut);
+          });
         }
       }
     });
