@@ -25,7 +25,7 @@ const { className = "" } = Astro.props;
         allProjects.map(
           ({ data: { name, description, link, sourceCode, tags, images } }) => (
             <div
-              class="flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800
+              class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800
           lg:p-8"
             >
               <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
