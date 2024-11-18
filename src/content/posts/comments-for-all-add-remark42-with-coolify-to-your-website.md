@@ -133,7 +133,7 @@ For each OAuth provider you choose, you must provide the correct callback so Rem
 
 The callback URL looks like:
 
-```plain/text
+```plaintext
 https://yourwebsite.com/remark/auth/<provider>/callback
 ```
 
@@ -153,7 +153,7 @@ The available options are: Slack, email, and Telegram.
 
 I've chose Telegram because it's incredibly easy to set up.
 
-You need [a Telegram account](telegram.org) to get an API Key.
+You need [a Telegram account](https://telegram.org) to get an API Key.
 
 Once you do that, you'll have to message `@BotFather` with `/newbot`
 
@@ -650,7 +650,7 @@ Coolify will load your `docker-compose.yaml` file and now you should see two fie
 
 Add the port number of your frontend application from your `nginx.conf` to your domain.
 
-```plain/text
+```plaintext
 https://yourwebsite.com:4321
 ```
 
