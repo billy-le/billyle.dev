@@ -34,10 +34,15 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
       title="Billy Le | Blog"
       href={`${Astro.site}rss.xml`}
     />
-    <script
-      defer
-      data-domain="billyle.dev"
-      src="https://plausible.billyle.dev/js/script.js"></script>
+    {
+      import.meta.env.PROD && (
+        <script
+          defer
+          data-domain="billyle.dev"
+          src="https://plausible.billyle.dev/js/script.js"
+        />
+      )
+    }
     <script>
       window.plausible =
         window.plausible ||

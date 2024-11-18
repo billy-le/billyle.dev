@@ -4,6 +4,7 @@ import Mound from "@ui/components/Mound.astro";
 import SvgGrain from "@ui/components/SvgGrain.astro";
 import { siGithub } from "simple-icons";
 import { allProjects } from "@utils/getCollection";
+import { Image } from "astro:assets";
 
 interface Props {
   className?: string;
@@ -22,12 +23,12 @@ const { className = "" } = Astro.props;
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {
         allProjects.map(
-          ({ data: { name, description, link, sourceCode, tags } }) => (
+          ({ data: { name, description, link, sourceCode, tags, images } }) => (
             <div
-              class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800
+              class="flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800
           lg:p-8"
             >
-              <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+              <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
               <div class="relative h-full space-y-3">
                 <div class="flex justify-between">
                   <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
@@ -87,30 +88,59 @@ const { className = "" } = Astro.props;
                   {description}
                 </p>
               </div>
-              <div>
-                <ul class="space-y-1">
-                  {sourceCode.map(({ host, link }) => (
-                    <li class="flex items-center space-x-2">
-                      {host === "github" && (
-                        <SiIcon
-                          icon={siGithub}
-                          svgClassName="h-5 w-5 dark:fill-gray-600"
-                        />
-                      )}
-                      <h4 class="leading-none">
-                        <a
-                          href={link}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                          class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                        >
-                          {link}
-                        </a>
-                      </h4>
-                    </li>
+              <>
+                <div
+                  class="project-images flex gap-2"
+                  data-sources={images.map((image) => image.src.src).join(",")}
+                >
+                  {images.slice(0, 4).map((image, i) => (
+                    <button
+                      data-index={i}
+                      class="overflow-cip h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                    >
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
+                      />
+                    </button>
                   ))}
-                </ul>
-              </div>
+                  {images.slice(4).length > 0 && (
+                    <button
+                      data-index={4}
+                      class="h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                    >
+                      <div class="pointer-events-none grid h-full place-items-center bg-blue-400/20 text-3xl text-blue-400">
+                        {images.slice(4).length}
+                      </div>
+                    </button>
+                  )}
+                </div>
+                <div>
+                  <ul class="space-y-1">
+                    {sourceCode.map(({ host, link }) => (
+                      <li class="flex items-center space-x-2">
+                        {host === "github" && (
+                          <SiIcon
+                            icon={siGithub}
+                            svgClassName="h-5 w-5 dark:fill-gray-600"
+                          />
+                        )}
+                        <h4 class="leading-none">
+                          <a
+                            href={link}
+                            rel="noopener noreferrer"
+                            target="_blank"
+                            class="link-hover text-xs text-gray-500 dark:text-gray-200"
+                          >
+                            {link}
+                          </a>
+                        </h4>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
               <div class="flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <div class="grid place-items-center rounded-full bg-blue-500 bg-opacity-10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600 dark:bg-opacity-20 dark:text-blue-300">
@@ -129,9 +159,316 @@ const { className = "" } = Astro.props;
                 )} */}
               </div>
             </div>
-          )
+          ),
         )
       }
     </div>
   </div>
 </section>
+
+<dialog
+  class="h-full w-full bg-transparent backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
+>
+  <div class="flex h-full w-full flex-col items-center justify-center gap-4">
+    <div
+      id="selected-image"
+      class="inline-flex h-full max-h-[70dvh] w-full flex-1 items-center justify-center overflow-clip"
+    >
+    </div>
+    <div class="flex items-center justify-center gap-4">
+      <button
+        id="previous-image"
+        class="grid h-10 w-10 place-items-center rounded-full bg-emerald-300 p-0 text-emerald-700"
+        aria-label="previous"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-left"
+          ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg
+        >
+      </button>
+      <button
+        id="close-gallery"
+        class="grid h-10 place-items-center rounded-full bg-emerald-300 p-0 px-4 text-emerald-700"
+        >Close (Esc)</button
+      >
+      <button
+        id="next-image"
+        class="grid h-10 w-10 place-items-center rounded-full bg-emerald-300 p-0 text-emerald-700"
+        aria-label="next"
+        autofocus
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-right"
+          ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+        >
+      </button>
+    </div>
+    <div class="relative">
+      <div
+        id="image-gallery-selected"
+        class="absolute left-0 top-0 z-10 h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out"
+      >
+      </div>
+      <div
+        id="image-gallery"
+        class="inline-flex flex-nowrap items-center justify-center gap-4"
+      >
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<style>
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      transform: translateY(1rem);
+    }
+    to {
+      transform: translateY(0rem);
+    }
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(-1rem);
+    }
+    to {
+      transform: translateY(0rem);
+    }
+  }
+
+  @keyframes slide-out-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-1rem);
+    }
+  }
+
+  @keyframes slide-out-right {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(1rem);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(-1rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(1rem);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+</style>
+<script>
+  // open image gallery
+  window.addEventListener("DOMContentLoaded", () => {
+    const dialog = document.querySelector("dialog") as HTMLDialogElement;
+    const previous = document.querySelector(
+      "button#previous-image",
+    ) as HTMLButtonElement;
+    const close = document.querySelector(
+      "button#close-gallery",
+    ) as HTMLButtonElement;
+    const next = document.querySelector(
+      "button#next-image",
+    ) as HTMLButtonElement;
+    const gallerySelected = document.querySelector(
+      "#image-gallery-selected",
+    ) as HTMLDivElement;
+
+    let images: HTMLImageElement[] = [];
+
+    close.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("close", closeImageGallery);
+
+    function openImageGallery(
+      el: HTMLImageElement,
+      gallery: HTMLImageElement[],
+    ) {
+      const img = new Image();
+      img.src = el.src;
+      img.className = "opacity-0 object-contain max-h-full max-w-full";
+      const selectedImage = dialog.querySelector(
+        "#selected-image",
+      ) as HTMLDivElement;
+      const imageGallery = dialog.querySelector(
+        "#image-gallery",
+      ) as HTMLDivElement;
+      selectedImage.append(img);
+      imageGallery.append(...gallery);
+      img.style.animation =
+        "500ms ease 50ms fade-in forwards, 1s ease 50ms slide-up forwards";
+    }
+
+    function closeImageGallery() {
+      document.body.classList.remove("overflow-hidden");
+      const selectedImage = dialog.querySelector(
+        "#selected-image",
+      ) as HTMLDivElement;
+      const imageGallery = dialog.querySelector(
+        "#image-gallery",
+      ) as HTMLDivElement;
+      images = [];
+      selectedImage.innerHTML = "";
+      imageGallery.innerHTML = "";
+    }
+
+    function setGotoIndices(currIndex: number, images: HTMLImageElement[]) {
+      next.setAttribute(
+        "data-goto",
+        String(currIndex + 1 === images.length ? 0 : currIndex + 1),
+      );
+      previous.setAttribute(
+        "data-goto",
+        String(currIndex == 0 ? images.length - 1 : currIndex - 1),
+      );
+
+      gallerySelected.style.transform = `translateX(${currIndex * 80 + currIndex * 16}px)`;
+    }
+
+    function prevImage() {
+      const index = Number.parseInt(
+        previous.getAttribute("data-goto") as string,
+        10,
+      );
+
+      const selectedImage = dialog.querySelector(
+        "#selected-image",
+      ) as HTMLDivElement;
+      const ingoingImage = images[index]!.cloneNode() as HTMLImageElement;
+      ingoingImage.className = "opacity-0 object-contain max-h-full max-w-full";
+      ingoingImage.style.animation =
+        "500ms ease slide-in-right forwards, 500ms ease fade-in forwards";
+      const outgoingImg = selectedImage.firstChild as HTMLImageElement;
+      outgoingImg.style.animation =
+        "250ms ease slide-out-right forwards, 250ms ease fade-out forwards";
+      setGotoIndices(index, images);
+      setTimeout(() => {
+        if (dialog.open) {
+          selectedImage.replaceChildren(ingoingImage);
+        }
+      }, 250);
+    }
+
+    function nextImage() {
+      const index = Number.parseInt(
+        next.getAttribute("data-goto") as string,
+        10,
+      );
+
+      const selectedImage = dialog.querySelector(
+        "#selected-image",
+      ) as HTMLDivElement;
+      const ingoingImage = images[index]!.cloneNode() as HTMLImageElement;
+      ingoingImage.className = "opacity-0 object-contain max-h-full max-w-full";
+      ingoingImage.style.animation =
+        "500ms ease slide-in-left forwards, 500ms ease fade-in forwards";
+      const outgoingImg = selectedImage.firstChild as HTMLImageElement;
+      outgoingImg.style.animation =
+        "250ms ease slide-out-left forwards, 250ms ease fade-out forwards";
+      setGotoIndices(index, images);
+      setTimeout(() => {
+        if (dialog.open) {
+          selectedImage.replaceChildren(ingoingImage);
+        }
+      }, 250);
+    }
+    async function onProjectImagesClick(event: MouseEvent) {
+      const target = event.target as HTMLDivElement;
+      if (!(target instanceof HTMLButtonElement)) return;
+      document.body.classList.add("overflow-hidden");
+      const parent = target.closest(".project-images") as HTMLDivElement;
+      const sources = (parent.getAttribute("data-sources") as string).split(
+        ",",
+      );
+      const buttons = Array.from(parent.children) as HTMLButtonElement[];
+
+      const index = buttons.indexOf(target);
+
+      images = sources.map((src, i) => {
+        const img = new Image();
+        img.src = src;
+        img.alt = "";
+        img.className = "h-20 w-20 object-cover rounded-md drop-shadow-lg";
+        img.setAttribute("data-index", i.toString());
+        return img;
+      });
+
+      dialog.showModal();
+
+      if (images[index]) {
+        openImageGallery(images[index], images);
+        setGotoIndices(index, images);
+      }
+    }
+
+    const projectImages = Array.from(
+      document.getElementsByClassName("project-images"),
+    ) as HTMLDivElement[];
+
+    for (const imageRow of projectImages) {
+      imageRow.addEventListener("click", onProjectImagesClick);
+    }
+    previous.addEventListener("click", prevImage);
+    next.addEventListener("click", nextImage);
+
+    window.addEventListener("beforeunload", () => {
+      for (const imageRow of projectImages) {
+        imageRow.removeEventListener("click", onProjectImagesClick);
+      }
+      previous.removeEventListener("click", prevImage);
+      next.removeEventListener("click", nextImage);
+      dialog.removeEventListener("close", closeImageGallery);
+    });
+  });
+</script>

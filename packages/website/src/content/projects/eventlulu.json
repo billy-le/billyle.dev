@@ -1,11 +1,32 @@
 {
-  "name": "Eventlulu",
-  "description": "Eventlulu is an online event management platform for hotels. It features a dashboard with important metrics, creating proposals from leads, and an admin page to inventory products and services offered. I started this project to assist the daily operations of a hotel where majority of their sales pipeline is done by paper and hand.",
-  "link": "https://eventlulu.billyle.dev",
-  "images": [],
-  "sourceCode": [
-    { "link": "https://github.com/billy-le/eventlulu", "host": "github" }
-  ],
-  "tags": ["node", "trpc", "typescript", "tailwindcss", "react"],
-  "ranking": "high"
+	"name": "Eventlulu",
+	"description": "Eventlulu is an online event management platform for hotels. It features a dashboard with important metrics, creating proposals from leads, and an admin page to inventory products and services offered. I started this project to assist the daily operations of a hotel where majority of their sales pipeline is done by paper and hand.",
+	"link": "https://eventlulu.billyle.dev",
+	"images": [
+		{
+			"src": "./_images/eventlulu-home.png",
+			"alt": "eventlulu home page"
+		},
+		{
+			"src": "./_images/eventlulu-dashboard.png",
+			"alt": "eventlulu dashboard page"
+		},
+		{
+			"src": "./_images/eventlulu-charts.png",
+			"alt": "eventlulu charst"
+		},
+		{
+			"src": "./_images/eventlulu-lead-form.png",
+			"alt": "eventlulu lead form"
+		},
+		{
+			"src": "./_images/eventlulu-leads.png",
+			"alt": "eventlulu leads table"
+		}
+	],
+	"sourceCode": [
+		{ "link": "https://github.com/billy-le/eventlulu", "host": "github" }
+	],
+	"tags": ["node", "trpc", "typescript", "tailwindcss", "react"],
+	"ranking": "high"
 }

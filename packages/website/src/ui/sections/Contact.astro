@@ -95,7 +95,7 @@ const { className = "" } = Astro.props;
 
 <script>
   import { sleep } from "@utils/sleep";
-
+  import { debounce } from "@utils/debounce";
   const contactsContainer = document.querySelector(
     "#contact",
   ) as HTMLDivElement;
@@ -166,7 +166,11 @@ const { className = "" } = Astro.props;
             renderer.render(scene, camera);
           }
 
-          window.addEventListener("scroll", () => {
+          function resize() {
+            setSize(globeDiv, camera, renderer);
+          }
+
+          function scroll() {
             const threshold =
               contactsContainer.offsetTop - contactsContainer.clientHeight;
             if (scrollY < threshold) {
@@ -174,10 +178,18 @@ const { className = "" } = Astro.props;
             } else if (scrollY >= threshold) {
               renderer.setAnimationLoop(start);
             }
-          });
+          }
 
-          window.addEventListener("resize", () => {
-            setSize(globeDiv, camera, renderer);
+          const [debouncedResize, clearDebouncedResize] = debounce(resize, 100);
+          const [debouncedScroll, clearDebouncedScroll] = debounce(scroll, 100);
+          window.addEventListener("scroll", debouncedScroll);
+          window.addEventListener("resize", debouncedResize);
+
+          window.addEventListener("beforeunload", () => {
+            clearDebouncedResize();
+            clearDebouncedScroll();
+            window.removeEventListener("scroll", debouncedScroll);
+            window.removeEventListener("resize", debouncedResize);
           });
         });
 
