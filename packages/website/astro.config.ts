@@ -9,22 +9,25 @@ import { remarkLastDateModified } from "./remark-plugins/remark-last-date-modifi
 // https://astro.build/config
 /** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
-  site: "https://billyle.dev",
-  integrations: [
-    tailwind({
-      nesting: true,
-    }),
-    sitemap(),
-  ],
-  prefetch: true,
-  markdown: {
-    shikiConfig: {
-      wrap: true,
-    },
-    remarkPlugins: [
-      remarkSectionize,
-      remarkReadingTime,
-      remarkLastDateModified,
-    ],
-  },
+	site: "https://billyle.dev",
+	integrations: [
+		tailwind({
+			nesting: true,
+		}),
+		sitemap(),
+	],
+	prefetch: true,
+	markdown: {
+		shikiConfig: {
+			wrap: true,
+		},
+		remarkPlugins: [
+			remarkSectionize,
+			remarkReadingTime,
+			remarkLastDateModified,
+		],
+	},
+	redirects: {
+		"/posts": "/blog",
+	},
 });
