@@ -7,7 +7,7 @@ import type { Post } from "src/content/_schemas/post";
 import type { MarkdownHeading } from "astro";
 import type { HeadingHierarchy } from "@ui/components/TOCHeading.astro";
 interface Props extends Post {
-	headings: MarkdownHeading[] | undefined;
+  headings: MarkdownHeading[] | undefined;
 }
 
 import { format as dateFormat, isSameDay } from "date-fns";
@@ -21,25 +21,25 @@ import RssFeedButton from "@ui/components/RssFeedButton.astro";
 import Remark42 from "@ui/components/Remark42.astro";
 
 const defaultPicture =
-	"https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  "https://images.unsplash.com/photo-1503197979108-c824168d51a8?q=80&w=1933&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
 
 const {
-	title,
-	description,
-	image,
-	pubDate,
-	author,
-	headings,
-	readingTime,
-	lastDateModified,
+  title,
+  description,
+  image,
+  pubDate,
+  author,
+  headings,
+  readingTime,
+  lastDateModified,
 } = Astro.props;
 const publishedDate = dateFormat(pubDate, "MMM do, yyyy");
 const lastDateModifiedFormatted = lastDateModified
-	? dateFormat(lastDateModified, "MMM do, yyyy")
-	: null;
+  ? dateFormat(lastDateModified, "MMM do, yyyy")
+  : null;
 
 function encodeString(str: string) {
-	return encodeURIComponent(str);
+  return encodeURIComponent(str);
 }
 const encodedTitle = encodeString(title);
 const encodedImage = encodeString(image.url);
@@ -51,30 +51,30 @@ const newUrl = new URL(Astro.url.pathname, Astro.site);
 const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
 
 function createHeadingHierarchy(headings: MarkdownHeading[]) {
-	const topLevelHeadings: HeadingHierarchy[] = [];
+  const topLevelHeadings: HeadingHierarchy[] = [];
 
-	headings.forEach((heading) => {
-		if (heading.depth > 3) {
-			throw Error(
-				`Depths greater than 3 not allowed:\n${JSON.stringify(heading, null, 2)}`,
-			);
-		}
-		const h = {
-			...heading,
-			subheadings: [],
-		};
+  headings.forEach((heading) => {
+    if (heading.depth > 3) {
+      throw Error(
+        `Depths greater than 3 not allowed:\n${JSON.stringify(heading, null, 2)}`,
+      );
+    }
+    const h = {
+      ...heading,
+      subheadings: [],
+    };
 
-		if (h.depth === 2) {
-			topLevelHeadings.push(h);
-		} else {
-			let parent = topLevelHeadings[topLevelHeadings.length - 1];
-			if (parent) {
-				parent.subheadings.push(h);
-			}
-		}
-	});
+    if (h.depth === 2) {
+      topLevelHeadings.push(h);
+    } else {
+      let parent = topLevelHeadings[topLevelHeadings.length - 1];
+      if (parent) {
+        parent.subheadings.push(h);
+      }
+    }
+  });
 
-	return topLevelHeadings;
+  return topLevelHeadings;
 }
 
 const toc: HeadingHierarchy[] = createHeadingHierarchy(headings ?? []);
@@ -83,246 +83,240 @@ const hasToC = toc.length > 1;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={description} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
 
-		<!-- Open Graph tags -->
-		<meta property="og:site_name" content="Billy Le" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta name="author" content={author.name} />
-		<meta name="image" property="og:image" content={dynamicOG} />
-		<meta property="og:url" content={Astro.url.href} />
-		<meta property="og:type" content="article" />
-		<meta
-			name="publish_date"
-			property="og:publish_date"
-			content={pubDate.toISOString()}
-		/>
-		<meta property="og:locale" content="en_US" />
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={dynamicOG} />
-		<meta property="twitter:domain" content="billyle.dev" />
-		<meta property="twitter:url" content={Astro.url.href} />
-		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-		<link rel="manifest" href="/site.webmanifest" />
-		<link rel="canonical" href={canonicalURL} />
-		<link
-			rel="alternate"
-			type="application/rss+xml"
-			title="Billy Le | Blog"
-			href={`${Astro.site}rss.xml`}
-		/>
-		{
-			import.meta.env.PROD && (
-				<script
-					defer
-					data-domain="billyle.dev"
-					src="https://plausible.billyle.dev/js/script.js"
-				/>
-			)
-		}
-		<script>
-			window.plausible =
-				window.plausible ||
-				function () {
-					(window.plausible.q = window.plausible.q || []).push(arguments);
-				};
-		</script>
-		<title>{title}</title>
-	</head>
-	<body class="relative font-inter">
-		<Header />
-		<main class="relative min-h-screen">
-			<BackdropRadial />
-			<section
-				class="relative -z-10 mx-auto h-32 max-w-7xl border-b-4
-				border-solid border-emerald-400 after:absolute
-				after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20 after:content-[''] sm:h-[320px]"
-			>
-				<Picture
-					src={image.url || defaultPicture}
-					alt={image.alt || "aerial view of waves crashing onto a beach"}
-					sizes={"256px"}
-					widths={[256]}
-					height={192}
-					width={192}
-					class="h-full w-full object-cover"
-					loading="eager"
-					format="avif"
-					quality="low"
-				/>
-			</section>
-			<section
-				class={`${hasToC ? "max-w-7xl mx-auto lg:grid lg:grid-cols-4" : ""}`}
-			>
-				{
-					hasToC && (
-						<div class="relative hidden  pt-20 text-slate-500 dark:text-slate-400 xl:block">
-							<nav class="sticky top-20">
-								<h2 class="mb-4 text-3xl font-semibold text-emerald-400">
-									Table of Contents
-								</h2>
-								<ul class="toc-links leading-relaxed">
-									{toc.map((heading) => (
-										<TOCHeading heading={heading} />
-									))}
-								</ul>
-							</nav>
-						</div>
-					)
-				}
-				<article
-					class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert
-prose-code:before:hidden prose-code:after:hidden prose-h1:mb-0 marker:text-emerald-400
-sm:prose-lg lg:prose-xl lg:max-w-4xl
-${hasToC ? "lg:col-span-3" : ""}
-`}
-				>
-					<h1>{title}</h1>
-					<div
-						id="post-meta"
-						class="not-prose flex flex-wrap items-center gap-2 py-4 text-sm xl:gap-4"
-					>
-						<p
-							class="inline-flex items-center gap-2 rounded-lg bg-emerald-500/20 px-3 py-2"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="inline h-6 w-6"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
-								></path>
-							</svg>
-							<span class="text-emerald-500">{publishedDate}</span>
-						</p>
+    <!-- Open Graph tags -->
+    <meta property="og:site_name" content="Billy Le" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="author" content={author.name} />
+    <meta name="image" property="og:image" content={dynamicOG} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="article" />
+    <meta
+      name="publish_date"
+      property="og:publish_date"
+      content={pubDate.toISOString()}
+    />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={dynamicOG} />
+    <meta property="twitter:domain" content="billyle.dev" />
+    <meta property="twitter:url" content={Astro.url.href} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="canonical" href={canonicalURL} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Billy Le | Blog"
+      href={`${Astro.site}rss.xml`}
+    />
+    {
+      import.meta.env.PROD && (
+        <script
+          defer
+          data-domain="billyle.dev"
+          src="https://plausible.billyle.dev/js/script.js"
+        />
+      )
+    }
+    <script>
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+    <title>{title}</title>
+  </head>
+  <body class="relative font-inter">
+    <Header />
+    <main class="relative min-h-screen">
+      <BackdropRadial />
+      <section
+        class="relative -z-10 mx-auto h-32 max-w-7xl border-b-4 border-solid border-emerald-400 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20 after:content-[''] sm:h-[320px]"
+      >
+        <Picture
+          src={image.url || defaultPicture}
+          alt={image.alt || "aerial view of waves crashing onto a beach"}
+          sizes={"256px"}
+          widths={[256]}
+          height={192}
+          width={192}
+          class="h-full w-full object-cover"
+          loading="eager"
+          format="avif"
+          quality="low"
+        />
+      </section>
+      <section
+        class={`${hasToC ? "max-w-7xl mx-auto lg:grid lg:grid-cols-4" : ""}`}
+      >
+        {
+          hasToC && (
+            <div class="relative hidden  pt-20 text-slate-500 dark:text-slate-400 xl:block">
+              <nav class="sticky top-20">
+                <h2 class="mb-4 text-3xl font-semibold text-emerald-400">
+                  Table of Contents
+                </h2>
+                <ul class="toc-links leading-relaxed">
+                  {toc.map((heading) => (
+                    <TOCHeading heading={heading} />
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          )
+        }
+        <article
+          class={`py-10 sm:py-20 px-4 mx-auto prose prose-h1:font-vidaloka dark:prose-invert prose-code:before:hidden prose-code:after:hidden prose-h1:mb-0 marker:text-emerald-400 sm:prose-lg lg:prose-xl lg:max-w-4xl ${hasToC ? "lg:col-span-3" : ""}`}
+        >
+          <h1>{title}</h1>
+          <div
+            id="post-meta"
+            class="not-prose flex flex-wrap items-center gap-2 py-4 text-sm xl:gap-4"
+          >
+            <p
+              class="inline-flex items-center gap-2 rounded-lg bg-emerald-500/20 px-3 py-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="inline h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+                ></path>
+              </svg>
+              <span class="text-emerald-500">{publishedDate}</span>
+            </p>
 
-						<p
-							class="inline-flex items-center gap-2 rounded-lg bg-emerald-500/20 px-3 py-2"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="inline h-6 w-6"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
-							</svg>
-							<span class="text-emerald-500">
-								{readingTime}
-							</span>
-						</p>
-						{
-							lastDateModified && !isSameDay(pubDate, lastDateModified) && (
-								<p class="inline-flex items-center gap-2 rounded-lg bg-yellow-500/20 px-3 py-2">
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke-width="1.5"
-										stroke="currentColor"
-										class="inline h-6 w-6"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-										/>
-									</svg>
-									<span class="text-yellow-500">
-										{lastDateModifiedFormatted}
-									</span>
-								</p>
-							)
-						}
-					</div>
-					{
-						hasToC && (
-							<div class="not-prose rounded border border-slate-300 p-2 text-slate-500 dark:text-slate-400 xl:hidden">
-								<nav>
-									<h2 class="mb-4 text-xl font-semibold text-emerald-400">
-										Table of Contents
-									</h2>
-									<ul class="toc-links leading-relaxed">
-										{toc.map((heading) => (
-											<TOCHeading heading={heading} />
-										))}
-									</ul>
-								</nav>
-							</div>
-						)
-					}
-					<slot />
-					<RssFeedButton className="mb-8 ml-auto mt-20" />
-					<Remark42 />
-				</article>
-			</section>
-		</main>
-	</body>
-	<Footer />
-	<style is:global>
-		code:not(pre code) {
-			@apply rounded-md px-2 py-1.5 !font-normal !text-blue-400;
+            <p
+              class="inline-flex items-center gap-2 rounded-lg bg-emerald-500/20 px-3 py-2"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="inline h-6 w-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"></path>
+              </svg>
+              <span class="text-emerald-500">
+                {readingTime}
+              </span>
+            </p>
+            {
+              lastDateModified && !isSameDay(pubDate, lastDateModified) && (
+                <p class="inline-flex items-center gap-2 rounded-lg bg-yellow-500/20 px-3 py-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="inline h-6 w-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                    />
+                  </svg>
+                  <span class="text-yellow-500">
+                    {lastDateModifiedFormatted}
+                  </span>
+                </p>
+              )
+            }
+          </div>
+          {
+            hasToC && (
+              <div class="not-prose rounded border border-slate-300 p-2 text-slate-500 dark:text-slate-400 xl:hidden">
+                <nav>
+                  <h2 class="mb-4 text-xl font-semibold text-emerald-400">
+                    Table of Contents
+                  </h2>
+                  <ul class="toc-links leading-relaxed">
+                    {toc.map((heading) => (
+                      <TOCHeading heading={heading} />
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            )
+          }
+          <slot />
+          <RssFeedButton className="mb-8 ml-auto mt-20" />
+          <Remark42 />
+        </article>
+      </section>
+    </main>
+  </body>
+  <Footer />
+  <style is:global>
+    code:not(pre code) {
+      @apply rounded-md px-2 py-1.5 !font-normal !text-blue-400;
 
-			background-color: #24292e;
-		}
-	</style>
-	<script>
-		document.addEventListener("DOMContentLoaded", () => {
-			const articleSections =
-				document.querySelectorAll<HTMLDivElement>("article section");
+      background-color: #24292e;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const articleSections =
+        document.querySelectorAll<HTMLDivElement>("article section");
 
-			const observer = new IntersectionObserver((entries) => {
-				entries.forEach((entry) => {
-					const heading =
-						entry.target.querySelector<HTMLHeadingElement>("h2,h3,h4,h5");
-					if (!heading) return;
-					const id = heading.getAttribute("id");
-					if (!id) return;
-					const link = document.querySelector<HTMLAnchorElement>(
-						`.toc-links a[href="#${id}"]`,
-					);
-					if (!link) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const heading =
+            entry.target.querySelector<HTMLHeadingElement>("h2,h3,h4,h5");
+          if (!heading) return;
+          const id = heading.getAttribute("id");
+          if (!id) return;
+          const link = document.querySelector<HTMLAnchorElement>(
+            `.toc-links a[href="#${id}"]`,
+          );
+          if (!link) return;
 
-					const addRemove = entry.intersectionRatio > 0 ? "add" : "remove";
-					link.classList[addRemove]("text-blue-500", "dark:text-blue-400");
-				});
-			});
+          const addRemove = entry.intersectionRatio > 0 ? "add" : "remove";
+          link.classList[addRemove]("text-blue-500", "dark:text-blue-400");
+        });
+      });
 
-			for (const section of articleSections) {
-				observer.observe(section);
-			}
+      for (const section of articleSections) {
+        observer.observe(section);
+      }
 
-			document.addEventListener("beforeunload", () => {
-				observer.disconnect();
-			});
+      document.addEventListener("beforeunload", () => {
+        observer.disconnect();
+      });
 
-			// share button
-			if ("share" in navigator) {
-				const postMeta = document.querySelector<HTMLDivElement>("#post-meta")!;
-				const shareButton = document.createElement("button");
-				shareButton.ariaLabel = "share";
-				shareButton.className = "p-2 rounded-lg bg-blue-500/20";
-				shareButton.innerHTML = `
+      // share button
+      if ("share" in navigator) {
+        const postMeta = document.querySelector<HTMLDivElement>("#post-meta")!;
+        const shareButton = document.createElement("button");
+        shareButton.ariaLabel = "share";
+        shareButton.className = "p-2 rounded-lg bg-blue-500/20";
+        shareButton.innerHTML = `
 <svg
 	xmlns="http://www.w3.org/2000/svg"
 	fill="none"
@@ -339,23 +333,23 @@ ${hasToC ? "lg:col-span-3" : ""}
 </svg>
 `;
 
-				shareButton.addEventListener("click", async () => {
-					const url = new URL(location.href);
-					const descriptionTag = document.head.querySelector<HTMLMetaElement>(
-						'meta[name="description"]',
-					)!;
-					const shareData: ShareData = {
-						title: document.title,
-						text: descriptionTag.content,
-						url: url.href,
-					};
-					if (navigator.canShare(shareData)) {
-						await navigator.share(shareData);
-					}
-				});
+        shareButton.addEventListener("click", async () => {
+          const url = new URL(location.href);
+          const descriptionTag = document.head.querySelector<HTMLMetaElement>(
+            'meta[name="description"]',
+          )!;
+          const shareData: ShareData = {
+            title: document.title,
+            text: descriptionTag.content,
+            url: url.href,
+          };
+          if (navigator.canShare(shareData)) {
+            await navigator.share(shareData);
+          }
+        });
 
-				postMeta.appendChild(shareButton);
-			}
-		});
-	</script>
+        postMeta.appendChild(shareButton);
+      }
+    });
+  </script>
 </html>
