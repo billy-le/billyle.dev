@@ -27,29 +27,29 @@ const postSchema = z.object({
   pubDate: z.date(),
   description: z.string().min(200),
   author: z
-    .object({
-      name: z.string(),
-      email: z.string().email(),
-    })
-    .default({
-      name: "Billy Le",
-      email: "hi@billyle.dev",
-    }),
+  .object({
+    name: z.string(),
+    email: z.string().email(),
+  })
+  .default({
+    name: "Billy Le",
+    email: "hi@billyle.dev",
+  }),
   image: z.object({
     url: z.string(),
     alt: z.string(),
     className: z.string().optional(),
   }),
   tags: z
-    .array(
-      z.string().refine(
-        (tag) => validTags.includes(tag),
-        (tag) => ({
-          message: `'${tag}' is not a valid tag.\nAllowed tags are [ ${validTags.join(", ")} ]\nYou can add more tags in ${import.meta.filename}`,
-        }),
-      ),
-    )
-    .nonempty(),
+  .array(
+    z.string().refine(
+      (tag) => validTags.includes(tag),
+      (tag) => ({
+        message: `'${tag}' is not a valid tag.\nAllowed tags are [ ${validTags.join(", ")} ]\nYou can add more tags in ${import.meta.filename}`,
+      }),
+    ),
+  )
+  .nonempty(),
   draft: z.boolean(),
 });
 
