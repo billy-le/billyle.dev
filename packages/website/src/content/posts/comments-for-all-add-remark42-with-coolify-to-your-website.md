@@ -48,7 +48,7 @@ I wanted something free and have a robust authentication flow.
 
 The tool of choice?
 
-[Remark42](www.remark42.com).
+[Remark42](https://www.remark42.com).
 
 ![remark42 demo](./_images/comments-for-all-remark42/remark42-demo.png)
 
