@@ -218,6 +218,13 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
+"from-vscode-to-neovim.md": {
+	id: "from-vscode-to-neovim.md";
+  slug: "from-vscode-to-neovim";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".md"] };
 "highlight-table-of-content-items-using-intersection-observer.md": {
 	id: "highlight-table-of-content-items-using-intersection-observer.md";
   slug: "highlight-table-of-content-items-using-intersection-observer";
