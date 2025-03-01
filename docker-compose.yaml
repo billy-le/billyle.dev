@@ -4,8 +4,8 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        PUBLIC_REMARK_URL: ${PUBLIC_REMARK_URL}
-        PUBLIC_SITE: ${PUBLIC_SITE}
+        - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
+        - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "frontend"
     ports:
      - "4321:4321"
