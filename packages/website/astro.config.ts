@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkSectionize from "remark-sectionize";
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time";
@@ -12,10 +12,10 @@ import sentry from "@sentry/astro";
 /** @type {import('astro/config').AstroUserConfig} */
 export default defineConfig({
   site: "https://billyle.dev",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
-    tailwind({
-      nesting: true,
-    }),
     sitemap(),
     sentry({
       dsn: "https://00989e74aa26bc5066973c592ab89a34@o4507544338694144.ingest.us.sentry.io/4508280812601344",
@@ -40,4 +40,3 @@ export default defineConfig({
     "/posts": "/blog",
   },
 });
-

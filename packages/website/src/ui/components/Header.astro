@@ -13,13 +13,12 @@ const centralAngle = 90 / navLinks.length;
 ---
 
 <header
-  class="hidden group py-4 fixed w-full top-0 overflow-x-hidden transition-all duration-300 ease-in-out text-slate-800 border-b border-emerald-400 bg-emerald-50/50 backdrop-blur-sm lg:block z-[1]
-  dark:bg-slate-900/50 dark:text-slate-50"
+  class="group fixed top-0 z-[1] hidden w-full overflow-x-hidden border-b border-emerald-400 bg-emerald-50/50 py-4 text-slate-800 backdrop-blur-sm transition-all duration-300 ease-in-out lg:block dark:bg-slate-900/50 dark:text-slate-50"
 >
   <nav class="container">
     <ul
       id="nav-links"
-      class="flex items-center justify-end gap-4 transform transition-all duration-700 ease-in-out group-hover:transform-none group-hover:opacity-100"
+      class="flex transform items-center justify-end gap-4 transition-all duration-700 ease-in-out group-hover:translate-x-0 group-hover:opacity-100"
     >
       {
         navLinks.map((link) => (
@@ -29,7 +28,7 @@ const centralAngle = 90 / navLinks.length;
               class="nav-link"
               href={link === "blog" ? "/blog" : `/#${link}`}
             >
-              <span class="capitalize px-2 py-1 xl:px-4 xl:py-2">{link}</span>
+              <span class="px-2 py-1 capitalize xl:px-4 xl:py-2">{link}</span>
             </a>
           </li>
         ))
@@ -38,7 +37,7 @@ const centralAngle = 90 / navLinks.length;
       <li>
         <a
           data-astro-prefetch
-          class="bg-slate-900 text-slate-50 rounded px-2 py-1 xl:px-4 xl:py-2 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
+          class="rounded bg-slate-900 px-2 py-1 text-slate-50 xl:px-4 xl:py-2 dark:bg-slate-700 dark:ring-2 dark:ring-slate-50"
           href="/documents/billy_le_resume.pdf"
           target="_blank"
         >
@@ -53,12 +52,12 @@ const centralAngle = 90 / navLinks.length;
 </header>
 
 <div class="lg:hidden">
-  <div class="p-4 fixed top-0 left-0 z-10">
+  <div class="fixed top-0 left-0 z-10 p-4">
     <ThemeToggle />
   </div>
   <div
     id="menu-mobile"
-    class="isolate bg-green-200 text-slate-800 overflow-hidden fixed top-0 right-0 -translate-y-1/2 translate-x-1/2 z-[1] h-[10rem] w-[10rem]"
+    class="fixed top-0 right-0 isolate z-[1] h-[10rem] w-[10rem] -translate-y-1/2 translate-x-1/2 overflow-hidden bg-green-200 text-slate-800"
   >
     <nav class="absolute bottom-0 left-0 h-1/2 w-1/2">
       <ul id="nav-links-mobile" class="relative h-full w-full">
@@ -91,7 +90,7 @@ const centralAngle = 90 / navLinks.length;
   <button
     id="menu-button"
     aria-label="Open Menu"
-    class="fixed top-4 right-4 text-slate-800 z-[1] h-8 w-8"
+    class="fixed top-4 right-4 z-[1] h-8 w-8 text-slate-800"
   >
     <svg
       class="menu-open-icon"
@@ -123,10 +122,11 @@ const centralAngle = 90 / navLinks.length;
 </div>
 
 <style>
-  a {
-    @apply font-inter;
+  @reference '@assets/styles/global.css';
 
+  a {
     letter-spacing: -1px;
+    font-family: var(--font-inter);
     font-size: clamp(1.15rem, 1vw, 2rem);
     font-weight: 400;
   }
@@ -169,11 +169,10 @@ const centralAngle = 90 / navLinks.length;
 
   @media screen and (min-width: 640px) {
     .nav-link {
-      @apply font-inter;
-
       letter-spacing: -1px;
       font-size: clamp(1.15rem, 1vw, 2rem);
       font-weight: 400;
+      font-family: var(--font-inter);
       transition: font-weight 0.5s ease;
 
       &:hover {

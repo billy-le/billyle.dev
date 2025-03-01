@@ -1,6 +1,4 @@
 ---
-import "@fontsource-variable/inter";
-import "@fontsource/vidaloka";
 import "@assets/styles/global.css";
 
 import Header from "@ui/components/Header.astro";
@@ -52,7 +50,7 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
     </script>
     <title>{title}</title>
   </head>
-  <body class="relative font-inter">
+  <body class="font-inter relative">
     <Header />
     <main class="relative min-h-screen overflow-x-hidden">
       <BackdropRadial />
