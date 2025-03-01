@@ -8,7 +8,7 @@ const { className = "" } = Astro.props;
 
 <section id="contact" class={`relative overflow-hidden py-8 ${className}`}>
   <div class="container">
-    <div class="flex flex-grow flex-col md:w-1/2">
+    <div class="flex grow flex-col md:w-1/2">
       <h2 class="text-heading">Contact.</h2>
       <div class="space-y-8">
         <form class="contact-form flex max-w-md flex-col space-y-4">
@@ -82,14 +82,16 @@ const { className = "" } = Astro.props;
   </div>
   <div
     id="globeViz"
-    class="absolute right-0 top-0 -z-10 hidden h-full w-3/4 md:block lg:w-1/2"
+    class="absolute top-0 right-0 -z-10 hidden h-full w-3/4 md:block lg:w-1/2"
   >
   </div>
 </section>
 
 <style>
+  @reference "@assets/styles/global.css";
+
   .buzzers {
-    @apply absolute left-0 top-0 -z-10 h-0 w-0 opacity-0;
+    @apply absolute top-0 left-0 -z-10 h-0 w-0 opacity-0;
   }
 </style>
 
