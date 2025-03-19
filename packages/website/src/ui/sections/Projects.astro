@@ -24,7 +24,7 @@ const { className = "" } = Astro.props;
       {
         allProjects.map(
           ({ data: { name, description, link, sourceCode, tags, images } }) => (
-            <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow lg:p-8 dark:bg-slate-800">
+            <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800 lg:p-8">
               <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
               <div class="relative h-full space-y-3">
                 <div class="flex justify-between">
@@ -85,59 +85,59 @@ const { className = "" } = Astro.props;
                   {description}
                 </p>
               </div>
-              <>
-                <div
-                  class="project-images flex gap-2"
-                  data-sources={images.map((image) => image.src.src).join(",")}
-                >
-                  {images.slice(0, 4).map((image, i) => (
-                    <button
-                      data-index={i}
-                      class="overflow-cip h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
-                    >
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
-                      />
-                    </button>
+              <div
+                class="project-images flex gap-2"
+                data-sources={images.map((image) => image.src.src).join(",")}
+              >
+                {images.slice(0, 4).map((image, i) => (
+                  <button
+                    data-index={i}
+                    class="overflow-cip h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                  >
+                    <Image
+                      src={image.src}
+                      alt={image.alt}
+                      class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
+                      quality={25}
+                      loading="lazy"
+                    />
+                  </button>
+                ))}
+                {images.slice(4).length > 0 && (
+                  <button
+                    data-index={4}
+                    class="h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                  >
+                    <div class="pointer-events-none grid h-full place-items-center bg-blue-400/20 text-3xl text-blue-400">
+                      {images.slice(4).length}
+                    </div>
+                  </button>
+                )}
+              </div>
+              <div>
+                <ul class="space-y-1">
+                  {sourceCode.map(({ host, link }) => (
+                    <li class="flex items-center space-x-2">
+                      {host === "github" && (
+                        <SiIcon
+                          icon={siGithub}
+                          svgClassName="h-5 w-5 dark:fill-gray-600"
+                        />
+                      )}
+                      <h4 class="leading-none">
+                        <a
+                          href={link}
+                          rel="noopener noreferrer"
+                          target="_blank"
+                          class="link-hover text-xs text-gray-500 dark:text-gray-200"
+                        >
+                          {link}
+                        </a>
+                      </h4>
+                    </li>
                   ))}
-                  {images.slice(4).length > 0 && (
-                    <button
-                      data-index={4}
-                      class="h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
-                    >
-                      <div class="pointer-events-none grid h-full place-items-center bg-blue-400/20 text-3xl text-blue-400">
-                        {images.slice(4).length}
-                      </div>
-                    </button>
-                  )}
-                </div>
-                <div>
-                  <ul class="space-y-1">
-                    {sourceCode.map(({ host, link }) => (
-                      <li class="flex items-center space-x-2">
-                        {host === "github" && (
-                          <SiIcon
-                            icon={siGithub}
-                            svgClassName="h-5 w-5 dark:fill-gray-600"
-                          />
-                        )}
-                        <h4 class="leading-none">
-                          <a
-                            href={link}
-                            rel="noopener noreferrer"
-                            target="_blank"
-                            class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                          >
-                            {link}
-                          </a>
-                        </h4>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
+                </ul>
+              </div>
               <div class="flex flex-wrap gap-2">
                 {tags.map((tag) => (
                   <div class="grid place-items-center rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600/20 dark:text-blue-300">
@@ -211,7 +211,7 @@ const { className = "" } = Astro.props;
     <div class="relative">
       <div
         id="image-gallery-selected"
-        class="absolute top-0 left-0 z-10 h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out"
+        class="absolute left-0 top-0 z-10 h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out"
       >
       </div>
       <div
