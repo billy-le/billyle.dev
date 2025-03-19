@@ -1,18 +1,18 @@
-:root {
-  --inter: "Inter Variable", sans-serif;
-  --vidaloka: "Vidaloka", sans-serif;
-  --space-android: "SpaceAndriodsItalic", system-ui, sans-serif;
-}
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@import "@fontsource-variable/inter";
+@import "@fontsource/vidaloka";
+@custom-variant dark (&:where(.dark, .dark *));
 
-html {
-  @font-face {
-    font-family: "SpaceAndriodsItalic";
+@font-face {
+    font-family: "SpaceAndroidsItalic";
     src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+}
 
+html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -20,8 +20,9 @@ html {
 }
 
 .text-heading {
-  @apply mb-4 font-vidaloka text-slate-800 opacity-0 dark:text-white;
+  @apply mb-4 text-slate-800 opacity-0 dark:text-white;
 
+  font-family: var(--font-vidaloka);
   font-size: clamp(2rem, 5vw, 5rem);
 }
 
@@ -45,7 +46,7 @@ html {
     width: 0;
     transition: width 0.2s ease-in;
 
-    @apply bg-gradient-to-r from-green-300 to-green-400;
+    @apply bg-linear-to-r from-green-300 to-green-400;
   }
 
   &:hover::after {
@@ -67,3 +68,15 @@ html {
     transform: translateY(0);
   }
 }
+
+@theme {
+  --font-inter: "Inter Variable", "sans-serif";
+  --font-vidaloka: "Vidaloka", "sans-serif"; 
+  --font-space-android: "SpaceAndroidsItalic";
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+

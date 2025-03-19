@@ -4,7 +4,8 @@ interface Props {
 }
 
 import { navLinks } from "./Header.astro";
-import { siTelegram, siGithub, siDiscord, siLinkedin } from "simple-icons";
+import { siTelegram, siGithub, siDiscord, siSimpleicons } from "simple-icons";
+
 import SiIcon from "./SiIcon.astro";
 
 const linksOfThree: string[][] = [];
@@ -28,10 +29,10 @@ const date = new Date();
 >
   <div class="container flex flex-col space-y-4 py-6 text-gray-200">
     <div
-      class="flex h-full flex-grow flex-col gap-8 md:flex-row md:gap-0 md:divide-x md:divide-solid md:divide-slate-200"
+      class="flex h-full grow flex-col gap-8 md:flex-row md:gap-0 md:divide-x md:divide-solid md:divide-slate-200"
     >
       <div class="w-full md:py-4 md:pr-4 md:text-right">
-        <h4 class="mb-3 w-full uppercase tracking-widest text-green-300">
+        <h4 class="mb-3 w-full tracking-widest text-green-300 uppercase">
           Get Around
         </h4>
         <div class="w-max md:ml-auto">
@@ -65,7 +66,7 @@ const date = new Date();
         </div>
       </div>
       <div class="w-full md:py-4 md:pl-4">
-        <h5 class="mb-3 w-full uppercase tracking-widest text-green-300">
+        <h5 class="mb-3 w-full tracking-widest text-green-300 uppercase">
           Stay in touch
         </h5>
         <div class="flex flex-col gap-10 lg:flex-row">
@@ -125,10 +126,15 @@ const date = new Date();
               class="group"
               aria-label="Link to Linkedin Profile"
             >
-              <SiIcon
-                icon={siLinkedin}
-                svgClassName="h-10 w-10 fill-slate-800 transition-all duration-300 ease-out hover:translate-y-[-10%] hover:fill-slate-900 dark:fill-slate-700 dark:hover:fill-slate-800 2xl:h-12 2xl:w-12"
-              />
+              <svg viewBox="0 0 128 128">
+                <path
+                  class="h-10 w-10 fill-slate-800 transition-all duration-300 ease-out hover:translate-y-[-10%] hover:fill-slate-900 2xl:h-12 2xl:w-12 dark:fill-slate-700 dark:hover:fill-slate-800"
+                  d="M116 3H12a8.91 8.91 0 00-9 8.8v104.42a8.91 8.91 0 009 8.78h104a8.93 8.93 0 009-8.81V11.77A8.93 8.93 0 00116 3z"
+                ></path><path
+                  fill="#fff"
+                  d="M21.06 48.73h18.11V107H21.06zm9.06-29a10.5 10.5 0 11-10.5 10.49 10.5 10.5 0 0110.5-10.49M50.53 48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75v32H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53z"
+                ></path>
+              </svg>
             </a>
           </div>
         </div>
@@ -171,6 +177,8 @@ const date = new Date();
   </div>
 </footer>
 <style>
+  @reference "@assets/styles/global.css";
+
   .footer-link {
     @apply block text-sm;
   }

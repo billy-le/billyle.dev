@@ -18,12 +18,10 @@ const descPosts = allPosts.sort((a, b) =>
 ---
 
 <Layout title="Billy Le | Blog" description="My collection of blog posts">
-  <div class="container relative mx-auto py-16">
-    <div class="absolute left-10 top-0 hidden sm:block lg:top-20">
+  <div class="relative container mx-auto py-16">
+    <div class="absolute top-0 left-10 hidden sm:block lg:top-20">
       <div
-        class="absolute left-0 top-0 -z-10 h-48 w-48 opacity-15
-          xl:h-52 xl:w-52
-          2xl:h-80 2xl:w-80"
+        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
       >
         <Image
           src={blob01}
@@ -45,11 +43,9 @@ const descPosts = allPosts.sort((a, b) =>
       />
     </div>
 
-    <div class="absolute right-10 top-0 hidden sm:block lg:top-20">
+    <div class="absolute top-0 right-10 hidden sm:block lg:top-20">
       <div
-        class="absolute left-0 top-0 -z-10 h-48 w-48 opacity-15
-          xl:h-52 xl:w-52
-          2xl:h-80 2xl:w-80"
+        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
       >
         <Image
           src={blob02}
@@ -72,14 +68,14 @@ const descPosts = allPosts.sort((a, b) =>
     </div>
 
     <h1
-      class="mx-auto mb-6 text-center font-space-android text-3xl leading-tight tracking-widest text-slate-800 dark:text-slate-100 sm:my-10 sm:text-6xl"
+      class="font-space-android mx-auto mb-6 text-center text-3xl leading-tight tracking-widest text-slate-800 sm:my-10 sm:text-6xl dark:text-slate-100"
     >
       <span class="text-glow px-3 py-2 text-slate-100 dark:text-slate-800">
         My blog
       </span>
     </h1>
     <p
-      class="mx-auto mb-8 max-w-3xl text-center font-inter text-lg font-bold tracking-wide text-slate-600 dark:text-slate-200 sm:mb-16 sm:text-3xl"
+      class="font-inter mx-auto mb-8 max-w-3xl text-center text-lg font-bold tracking-wide text-slate-600 sm:mb-16 sm:text-3xl dark:text-slate-200"
     >
       My creative outlet is a reflection of the experiences I've
       encountered—whether in learning, facing setbacks, or achieving success—as
@@ -96,7 +92,7 @@ const descPosts = allPosts.sort((a, b) =>
 
           return (
             <div>
-              <h3 class="mb-2 font-vidaloka text-xl font-bold text-emerald-500 dark:text-emerald-300">
+              <h3 class="font-vidaloka mb-2 text-xl font-bold text-emerald-500 dark:text-emerald-300">
                 {post.data.title}
               </h3>
               <div class="mb-4 flex items-center gap-8 text-sm">
@@ -140,9 +136,9 @@ const descPosts = allPosts.sort((a, b) =>
               <a
                 data-astro-prefetch
                 href={`/posts/${post.slug}`}
-                class="relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center font-space-android tracking-widest text-slate-50 shadow-md shadow-blue-950/30 ring-2 ring-slate-50"
+                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 ring-2 shadow-md shadow-blue-950/30 ring-slate-50"
               >
-                <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-gradient-to-r from-blue-900" />
+                <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-linear-to-r from-blue-900" />
                 <span class="relative">Read</span>
               </a>
             </div>
@@ -154,10 +150,12 @@ const descPosts = allPosts.sort((a, b) =>
 </Layout>
 
 <style>
+  @reference "@assets/styles/global.css";
+
   .text-glow {
     @apply text-white dark:text-slate-950;
     -webkit-text-stroke: 1px rgb(96 165 250);
     text-shadow: 0px 1px 4px rgb(96 165 250);
-    font-family: var(--space-android);
+    font-family: var(--font-space-android);
   }
 </style>
