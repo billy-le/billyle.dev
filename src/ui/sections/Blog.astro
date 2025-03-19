@@ -44,7 +44,7 @@ const { className = "" } = Astro.props;
       >
         <span
           id="view-more"
-          class="-translate-x-1/2 text-base text-gray-500 opacity-0 transition-all duration-300 ease-in group-hover:w-auto group-hover:translate-x-0 group-hover:opacity-100 dark:text-gray-300 lg:text-xl"
+          class="-translate-x-1/2 text-base text-gray-500 opacity-0 transition-all duration-300 ease-in group-hover:w-auto group-hover:translate-x-0 group-hover:opacity-100 lg:text-xl dark:text-gray-300"
           >View More</span
         >
         <svg
@@ -67,7 +67,7 @@ const { className = "" } = Astro.props;
     <div class="isolate mx-auto hidden max-w-screen-2xl gap-4 sm:flex">
       {
         postsWithConfig.map((config) => (
-          <div class="flex-1 flex-shrink space-y-4">
+          <div class="flex-1 shrink space-y-4">
             {config.map(({ post, height }) => (
               <BlogCard
                 {height}

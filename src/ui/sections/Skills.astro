@@ -161,11 +161,11 @@ const levelMap: Record<number, string> = {
 };
 const brushStrokes: Record<string, string> = {
   "Front-end":
-    "before:bg-gradient-to-tr before:from-yellow-200 before:to-orange-500",
+    "before:bg-linear-to-tr before:from-yellow-200 before:to-orange-500",
   "Back-end":
-    "before:bg-gradient-to-tr before:from-purple-200 before:to-pink-400",
-  Tools: "before:bg-gradient-to-tr before:from-violet-200 before:to-indigo-500",
-  Mobile: "before:bg-gradient-to-tr before:from-sky-200 before:to-blue-500",
+    "before:bg-linear-to-tr before:from-purple-200 before:to-pink-400",
+  Tools: "before:bg-linear-to-tr before:from-violet-200 before:to-indigo-500",
+  Mobile: "before:bg-linear-to-tr before:from-sky-200 before:to-blue-500",
 };
 ---
 
@@ -178,11 +178,11 @@ const brushStrokes: Record<string, string> = {
           return (
             <li class="space-y-10">
               <div
-                class={`brush relative inline-block p-5 before:absolute before:left-0 before:top-0 before:-z-10 before:h-full before:w-full before:content-[""] ${
+                class={`brush relative inline-block p-5 before:absolute before:top-0 before:left-0 before:-z-10 before:h-full before:w-full before:content-[""] ${
                   brushStrokes[skill.category]
                 }`}
               >
-                <h2 class="px-10 text-3xl uppercase text-slate-50 drop-shadow">
+                <h2 class="px-10 text-3xl text-slate-50 uppercase drop-shadow">
                   {skill.category}
                 </h2>
               </div>
@@ -212,7 +212,7 @@ const brushStrokes: Record<string, string> = {
                             })}
                         </div>
                         <div
-                          class="absolute left-0 top-0 -z-10 h-6 bg-gradient-to-r from-emerald-300 to-blue-400"
+                          class="absolute top-0 left-0 -z-10 h-6 bg-linear-to-r from-emerald-300 to-blue-400"
                           style={{ width: `${(skill.level / 5) * 100}%` }}
                         />
                       </div>
@@ -259,11 +259,13 @@ const brushStrokes: Record<string, string> = {
 </section>
 
 <style>
+  @reference "@assets/styles/global.css";
+
   .text-glow {
     @apply text-white dark:text-slate-950;
     -webkit-text-stroke: 1px rgb(110 231 183);
     text-shadow: 0px 1px 4px rgb(110 231 183);
-    font-family: var(--space-android);
+    font-family: var(--font-space-android);
   }
 
   .brush:before {

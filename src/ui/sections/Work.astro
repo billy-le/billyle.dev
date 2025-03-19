@@ -139,6 +139,8 @@ const { className = "" } = Astro.props;
   </div>
 </section>
 <style>
+  @reference "@assets/styles/global.css";
+
   h4 {
     font-size: clamp(1.15rem, 1vw, 2.5rem);
   }
@@ -148,7 +150,7 @@ const { className = "" } = Astro.props;
     overflow: hidden;
     height: 200px;
 
-    @screen lg {
+    @variant lg {
       height: 400px;
       flex-basis: 20%;
       transition: flex-basis 0.5s;
@@ -158,12 +160,12 @@ const { className = "" } = Astro.props;
       }
     }
 
-    @screen xl {
+    @variant xl {
       height: 600px;
     }
 
     &:hover {
-      @screen lg {
+      @variant lg {
         .work_img_container {
           &::after {
             background-image: none;
@@ -184,11 +186,11 @@ const { className = "" } = Astro.props;
       }
 
       .work_year {
-        @screen lg {
+        @variant lg {
           top: 30%;
         }
 
-        @screen xl {
+        @variant xl {
           top: 50%;
         }
       }
@@ -202,17 +204,17 @@ const { className = "" } = Astro.props;
         height: 100%;
         width: 100%;
 
-        @screen lg {
+        @variant lg {
           filter: grayscale(1) blur(0.5px);
           transition: filter 0.5s;
         }
       }
 
       &::after {
-        @apply bg-gradient-to-tr from-blue-900 to-slate-800;
+        @apply bg-linear-to-tr from-blue-900 to-slate-800;
       }
 
-      @screen lg {
+      @variant lg {
         &::after {
           display: block;
           content: "";
@@ -228,7 +230,9 @@ const { className = "" } = Astro.props;
     }
 
     .work_year {
-      @apply border-slate-100 py-3 font-vidaloka text-slate-100;
+      @apply border-slate-100 py-3 text-slate-100;
+
+      font-family: var(--font-vidaloka);
 
       position: absolute;
       top: 4rem;
@@ -240,7 +244,7 @@ const { className = "" } = Astro.props;
       text-align: center;
       min-width: 60px;
 
-      @screen lg {
+      @variant lg {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -251,7 +255,7 @@ const { className = "" } = Astro.props;
         border-bottom-style: solid;
       }
 
-      @screen xl {
+      @variant xl {
         top: 75%;
       }
     }
@@ -263,13 +267,13 @@ const { className = "" } = Astro.props;
       height: 100%;
       width: 100%;
 
-      @screen lg {
+      @variant lg {
         transform: translateY(100%);
         transition: transform 0.5s;
       }
 
       &::before {
-        @apply bg-black bg-opacity-50 bg-gradient-to-b from-black/20 lg:bg-transparent lg:bg-gradient-to-t lg:from-black;
+        @apply bg-black/50 bg-linear-to-b from-black/20 lg:bg-transparent lg:bg-linear-to-t lg:from-black;
 
         display: block;
         content: "";
@@ -293,14 +297,14 @@ const { className = "" } = Astro.props;
         top: 4rem;
         text-align: center;
 
-        @screen lg {
+        @variant lg {
           top: 50%;
           opacity: 0;
           transition: opacity 1s;
           text-align: left;
         }
 
-        @screen xl {
+        @variant xl {
           top: 66.66%;
         }
       }

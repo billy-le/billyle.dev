@@ -68,11 +68,11 @@ const illustration = position != undefined ? imageMap[position] : undefined;
   class={`${height} isolate relative rounded-lg border-2 border-slate-200 bg-slate-50 
               dark:bg-slate-600 dark:border-slate-950/10 dark:text-white
               after:content-[""] after:absolute after:top-0 after:left-0 after:h-full
-              after:w-full after:bg-gradient-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded-[calc(0.5rem_-_2px)]
+              after:w-full after:bg-linear-to-bl after:from-slate-200 dark:after:from-slate-900 after:-z-10 after:rounded-[calc(0.5rem_-_2px)]
               `}
 >
-  <SvgGrain className="absolute left-0 top-0 h-full w-full opacity-15" />
-  <div class="absolute left-0 top-0 h-full w-full">
+  <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15" />
+  <div class="absolute top-0 left-0 h-full w-full">
     {
       illustration && (
         <Image
@@ -105,18 +105,18 @@ const illustration = position != undefined ? imageMap[position] : undefined;
             loading="lazy"
           />
         )}
-        <span class="absolute right-0 top-0 -z-20 font-vidaloka text-6xl opacity-80 dark:opacity-100 xl:text-9xl">
+        <span class="font-vidaloka absolute top-0 right-0 -z-20 text-6xl opacity-80 xl:text-9xl dark:opacity-100">
           {dateFormat(post.pubDate, "M/dd")}
         </span>
         <div class="h-full p-5 lg:p-10">
-          <h3 class="line-clamp-2 max-w-xs text-lg font-semibold text-gray-600 dark:text-gray-100 lg:text-xl xl:line-clamp-3 xl:text-2xl">
+          <h3 class="line-clamp-2 max-w-xs text-lg font-semibold text-gray-600 lg:text-xl xl:line-clamp-3 xl:text-2xl dark:text-gray-100">
             {post.title}
           </h3>
           {link && (
             <a
               data-astro-prefetch
               href={link}
-              class="absolute bottom-2 right-5 z-10 text-blue-500 transition-transform duration-100 ease-linear hover:scale-110 sm:bottom-5"
+              class="absolute right-5 bottom-2 z-10 text-blue-500 transition-transform duration-100 ease-linear hover:scale-110 sm:bottom-5"
               aria-label={`read blog post: ${post.title}`}
             >
               <svg

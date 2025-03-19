@@ -1,6 +1,4 @@
 ---
-import "@fontsource-variable/inter";
-import "@fontsource/vidaloka";
 import "@assets/styles/global.css";
 
 import type { Post } from "src/content/_schemas/post";
@@ -138,12 +136,12 @@ const hasToC = toc.length > 1;
     </script>
     <title>{title}</title>
   </head>
-  <body class="relative font-inter">
+  <body class="font-inter relative">
     <Header />
     <main class="relative min-h-screen">
       <BackdropRadial />
       <section
-        class="relative -z-10 mx-auto h-32 max-w-7xl border-b-4 border-solid border-emerald-400 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-gradient-to-t after:from-slate-900/20 after:content-[''] sm:h-[320px]"
+        class="relative -z-10 mx-auto h-32 max-w-7xl border-b-4 border-solid border-emerald-400 after:absolute after:top-0 after:left-0 after:h-full after:w-full after:bg-linear-to-t after:from-slate-900/20 after:content-[''] sm:h-[320px]"
       >
         <Picture
           src={image.url || defaultPicture}
@@ -163,7 +161,7 @@ const hasToC = toc.length > 1;
       >
         {
           hasToC && (
-            <div class="relative hidden  pt-20 text-slate-500 dark:text-slate-400 xl:block">
+            <div class="relative hidden pt-20 text-slate-500 xl:block dark:text-slate-400">
               <nav class="sticky top-20">
                 <h2 class="mb-4 text-3xl font-semibold text-emerald-400">
                   Table of Contents
@@ -251,7 +249,7 @@ const hasToC = toc.length > 1;
           </div>
           {
             hasToC && (
-              <div class="not-prose rounded border border-slate-300 p-2 text-slate-500 dark:text-slate-400 xl:hidden">
+              <div class="not-prose rounded border border-slate-300 p-2 text-slate-500 xl:hidden dark:text-slate-400">
                 <nav>
                   <h2 class="mb-4 text-xl font-semibold text-emerald-400">
                     Table of Contents
@@ -266,7 +264,7 @@ const hasToC = toc.length > 1;
             )
           }
           <slot />
-          <RssFeedButton className="mb-8 ml-auto mt-20" />
+          <RssFeedButton className="mt-20 mb-8 ml-auto" />
           <Remark42 />
         </article>
       </section>
@@ -274,6 +272,8 @@ const hasToC = toc.length > 1;
   </body>
   <Footer />
   <style is:global>
+    @reference "@assets/styles/global.css";
+
     code:not(pre code) {
       @apply rounded-md px-2 py-1.5 !font-normal !text-blue-400;
 
