@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
 @import "@fontsource/vidaloka";
 @custom-variant dark (&:where(.dark, .dark *));
