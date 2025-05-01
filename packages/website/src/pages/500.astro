@@ -1,4 +1,6 @@
 ---
+import "@assets/styles/global.css";
+
 import { Image } from "astro:assets";
 import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
@@ -64,7 +66,7 @@ if (error instanceof Error) {
     </script>
     <title>Billy Le | 500 Internal Server Error</title>
   </head>
-  <body class="relative min-h-screen font-inter">
+  <body class="font-inter relative min-h-screen">
     <Header />
     <main class="py-40">
       <BackdropRadial />
