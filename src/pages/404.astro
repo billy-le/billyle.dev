@@ -1,4 +1,6 @@
 ---
+import "@assets/styles/global.css";
+
 import { Image } from "astro:assets";
 import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
@@ -50,7 +52,7 @@ import img404NotFound from "@assets/images/404_not_found.png";
     </script>
     <title>Billy Le | 404 Not Found</title>
   </head>
-  <body class="relative min-h-screen font-inter">
+  <body class="font-inter relative min-h-screen">
     <Header />
     <main class="py-40">
       <BackdropRadial />
