@@ -104,95 +104,105 @@ const { className = "" } = Astro.props;
   const observer = new IntersectionObserver(async (entries) => {
     for (const entry of entries) {
       if (entry.isIntersecting) {
-        await Promise.all([
-          import("three"),
-          import("three-globe"),
-          import("src/assets/data/countries.json"),
-        ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
-          const globeDiv = document.getElementById(
-            "globeViz",
-          ) as HTMLDivElement;
+        try {
+          await Promise.all([
+            import("three"),
+            import("three-globe"),
+            import("src/assets/data/countries.json"),
+          ]).then(([THREE, { default: ThreeGlobe }, countries]) => {
+            const globeDiv = document.getElementById(
+              "globeViz",
+            ) as HTMLDivElement;
 
-          const renderer = new THREE.WebGLRenderer({
-            alpha: true,
-            antialias: true,
-          });
-          const clock = new THREE.Clock();
-          const scene = new THREE.Scene();
-          const camera = new THREE.PerspectiveCamera();
-          const directionalLight = new THREE.DirectionalLight("white", 4);
-          const ambientLight = new THREE.AmbientLight("white");
-          const radiansPerSecond = THREE.MathUtils.degToRad(15);
+            const renderer = new THREE.WebGLRenderer({
+              alpha: true,
+              antialias: true,
+            });
+            const clock = new THREE.Clock();
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera();
+            const directionalLight = new THREE.DirectionalLight("white", 4);
+            const ambientLight = new THREE.AmbientLight("white");
+            const radiansPerSecond = THREE.MathUtils.degToRad(15);
 
-          renderer.setPixelRatio(window.devicePixelRatio);
-          directionalLight.position.set(-10, 0, 10);
-          camera.position.z = 300;
+            renderer.setPixelRatio(window.devicePixelRatio);
+            directionalLight.position.set(-10, 0, 10);
+            camera.position.z = 300;
 
-          const Globe = new ThreeGlobe({})
-            .atmosphereColor("LightSlateGray")
-            .globeImageUrl("/images/map-texture.png")
-            .polygonsData(
-              countries.features.filter((d) => d.properties.ISO_A2 !== "AQ"),
-            )
-            .polygonCapColor(() => "#d1fae5")
-            .polygonSideColor(() => "rgba(148, 163, 184, 1)")
-            .polygonStrokeColor(() => "#1E293B")
-            .polygonAltitude(() => 0.025);
+            const Globe = new ThreeGlobe({})
+              .atmosphereColor("LightSlateGray")
+              .globeImageUrl("/images/map-texture.png")
+              .polygonsData(
+                countries.features.filter((d) => d.properties.ISO_A2 !== "AQ"),
+              )
+              .polygonCapColor(() => "#d1fae5")
+              .polygonSideColor(() => "rgba(148, 163, 184, 1)")
+              .polygonStrokeColor(() => "#1E293B")
+              .polygonAltitude(() => 0.025);
 
-          function setSize(
-            container: HTMLDivElement,
-            camera: THREE.PerspectiveCamera,
-            renderer: THREE.WebGLRenderer,
-          ) {
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-          }
-
-          setSize(globeDiv, camera, renderer);
-          scene.add(Globe, directionalLight, ambientLight);
-          globeDiv.append(renderer.domElement);
-
-          function tick(delta: number) {
-            Globe.rotation.y += delta * radiansPerSecond;
-          }
-
-          function nextTick() {
-            const delta = clock.getDelta();
-            tick(delta);
-          }
-
-          function start() {
-            nextTick();
-            renderer.render(scene, camera);
-          }
-
-          function resize() {
-            setSize(globeDiv, camera, renderer);
-          }
-
-          function scroll() {
-            const threshold =
-              contactsContainer.offsetTop - contactsContainer.clientHeight;
-            if (scrollY < threshold) {
-              renderer.setAnimationLoop(null);
-            } else if (scrollY >= threshold) {
-              renderer.setAnimationLoop(start);
+            function setSize(
+              container: HTMLDivElement,
+              camera: THREE.PerspectiveCamera,
+              renderer: THREE.WebGLRenderer,
+            ) {
+              camera.aspect = container.clientWidth / container.clientHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(container.clientWidth, container.clientHeight);
             }
-          }
 
-          const [debouncedResize, clearDebouncedResize] = debounce(resize, 100);
-          const [debouncedScroll, clearDebouncedScroll] = debounce(scroll, 100);
-          window.addEventListener("scroll", debouncedScroll);
-          window.addEventListener("resize", debouncedResize);
+            setSize(globeDiv, camera, renderer);
+            scene.add(Globe, directionalLight, ambientLight);
+            globeDiv.append(renderer.domElement);
 
-          window.addEventListener("beforeunload", () => {
-            clearDebouncedResize();
-            clearDebouncedScroll();
-            window.removeEventListener("scroll", debouncedScroll);
-            window.removeEventListener("resize", debouncedResize);
+            function tick(delta: number) {
+              Globe.rotation.y += delta * radiansPerSecond;
+            }
+
+            function nextTick() {
+              const delta = clock.getDelta();
+              tick(delta);
+            }
+
+            function start() {
+              nextTick();
+              renderer.render(scene, camera);
+            }
+
+            function resize() {
+              setSize(globeDiv, camera, renderer);
+            }
+
+            function scroll() {
+              const threshold =
+                contactsContainer.offsetTop - contactsContainer.clientHeight;
+              if (scrollY < threshold) {
+                renderer.setAnimationLoop(null);
+              } else if (scrollY >= threshold) {
+                renderer.setAnimationLoop(start);
+              }
+            }
+
+            const [debouncedResize, clearDebouncedResize] = debounce(
+              resize,
+              100,
+            );
+            const [debouncedScroll, clearDebouncedScroll] = debounce(
+              scroll,
+              100,
+            );
+            window.addEventListener("scroll", debouncedScroll);
+            window.addEventListener("resize", debouncedResize);
+
+            window.addEventListener("beforeunload", () => {
+              clearDebouncedResize();
+              clearDebouncedScroll();
+              window.removeEventListener("scroll", debouncedScroll);
+              window.removeEventListener("resize", debouncedResize);
+            });
           });
-        });
+        } catch (err) {
+          console.log(err);
+        }
 
         observer.disconnect();
       }
