@@ -18,10 +18,10 @@ import img404NotFound from "@assets/images/404_not_found.png";
     <meta name="description" content="404 | Not Found" />
     <script is:inline>
       const theme =
-        (localStorage.getItem("theme") ??
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.getItem("theme") ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
-          : "light";
+          : "light");
       document.documentElement.dataset.theme = theme;
     </script>
     <link rel="sitemap" href="/sitemap-index.xml" />
