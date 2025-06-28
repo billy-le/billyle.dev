@@ -33,12 +33,9 @@
 
 <script>
   const themeToggles = document.querySelectorAll(".theme-toggle");
-  const theme = localStorage.getItem("theme");
 
   function setTheme(themeColor: string, themeRootEl: Element) {
-    document.documentElement.classList[
-      themeColor === "dark" ? "add" : "remove"
-    ]("dark");
+    document.documentElement.dataset.theme = themeColor;
 
     localStorage.setItem("theme", themeColor);
     if (themeRootEl) {
@@ -58,14 +55,5 @@
         setTheme("dark", themeToggle);
       }
     });
-
-    if (
-      theme === "dark" ||
-      (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setTheme("dark", themeToggle);
-    } else {
-      setTheme("light", themeToggle);
-    }
   }
 </script>
