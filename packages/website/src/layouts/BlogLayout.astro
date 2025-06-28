@@ -109,10 +109,10 @@ const hasToC = toc.length > 1;
     <meta property="twitter:url" content={Astro.url.href} />
     <script is:inline>
       const theme =
-        (localStorage.getItem("theme") ??
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+        localStorage.getItem("theme") ??
+        (window.matchMedia("(prefers-color-scheme: dark)").matches
           ? "dark"
-          : "light";
+          : "light");
       document.documentElement.dataset.theme = theme;
     </script>
     <link rel="sitemap" href="/sitemap-index.xml" />
