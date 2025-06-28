@@ -2,14 +2,14 @@
 @plugin "@tailwindcss/typography";
 @import "@fontsource-variable/inter";
 @import "@fontsource/vidaloka";
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @font-face {
-    font-family: "SpaceAndroidsItalic";
-    src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "SpaceAndroidsItalic";
+  src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 html {
@@ -71,7 +71,7 @@ html {
 
 @theme {
   --font-inter: "Inter Variable", "sans-serif";
-  --font-vidaloka: "Vidaloka", "sans-serif"; 
+  --font-vidaloka: "Vidaloka", "sans-serif";
   --font-space-android: "SpaceAndroidsItalic";
 }
 
@@ -79,4 +79,3 @@ html {
   margin-inline: auto;
   padding-inline: 1rem;
 }
-
