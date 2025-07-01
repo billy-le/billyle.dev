@@ -1,16 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import "@fontsource-variable/inter";
-@import "@fontsource/vidaloka";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
-
-@font-face {
-  font-family: "SpaceAndroidsItalic";
-  src: url("/fonts/SpaceAndroidsItalic.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 html {
   scroll-behavior: smooth;
