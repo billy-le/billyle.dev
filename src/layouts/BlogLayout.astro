@@ -1,9 +1,8 @@
 ---
-import "@assets/styles/global.css";
-
 import type { Post } from "src/content/_schemas/post";
 import type { MarkdownHeading } from "astro";
 import type { HeadingHierarchy } from "@ui/components/TOCHeading.astro";
+
 interface Props extends Post {
   headings: MarkdownHeading[] | undefined;
 }
@@ -277,8 +276,7 @@ const hasToC = toc.length > 1;
         </article>
       </section>
     </main>
-  </body>
-  <Footer />
+  </body><Footer />
   <style is:global>
     @reference "@assets/styles/global.css";
 

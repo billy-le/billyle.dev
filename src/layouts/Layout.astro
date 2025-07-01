@@ -1,14 +1,20 @@
 ---
+import "@fontsource/vidaloka/400.css";
+import "@fontsource-variable/inter";
 import "@assets/styles/global.css";
+
+import { join } from "node:path";
 
 import Header from "@ui/components/Header.astro";
 import Footer from "@ui/components/Footer.astro";
 import BackdropRadial from "@ui/components/BackdropRadial.astro";
+import { AstroFont } from "astro-font";
 
 export interface Props {
   title: string;
   description: string;
 }
+
 const { title, description } = Astro.props as Props;
 const newUrl = new URL(Astro.url.pathname, Astro.site);
 const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
@@ -29,6 +35,28 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
           : "light");
       document.documentElement.dataset.theme = theme;
     </script>
+    <AstroFont
+      config={[
+        {
+          name: "SpaceAndroidsItalic",
+          src: [
+            {
+              style: "normal",
+              weight: "400",
+              path: join(
+                process.cwd(),
+                "public",
+                "fonts",
+                "SpaceAndroidsItalic.ttf",
+              ),
+            },
+          ],
+          preload: false,
+          display: "swap",
+          fallback: "sans-serif",
+        },
+      ]}
+    />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />

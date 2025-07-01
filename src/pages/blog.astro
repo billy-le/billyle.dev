@@ -70,9 +70,7 @@ const descPosts = allPosts.sort((a, b) =>
     <h1
       class="font-space-android mx-auto mb-6 text-center text-3xl leading-tight tracking-widest text-slate-800 sm:my-10 sm:text-6xl dark:text-slate-100"
     >
-      <span class="text-glow px-3 py-2 text-slate-100 dark:text-slate-800">
-        My blog
-      </span>
+      <span class="text-glow px-3 py-2">My blog</span>
     </h1>
     <p
       class="font-inter mx-auto mb-8 max-w-3xl text-center text-lg font-bold tracking-wide text-slate-600 sm:mb-16 sm:text-3xl dark:text-slate-200"
@@ -136,7 +134,7 @@ const descPosts = allPosts.sort((a, b) =>
               <a
                 data-astro-prefetch
                 href={`/posts/${post.slug}`}
-                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 ring-2 shadow-md shadow-blue-950/30 ring-slate-50"
+                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 shadow-md ring-2 shadow-blue-950/30 ring-slate-50"
               >
                 <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-linear-to-r from-blue-900" />
                 <span class="relative">Read</span>
