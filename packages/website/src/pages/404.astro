@@ -39,27 +39,10 @@ import img404NotFound from "@assets/images/404_not_found.png";
     />
     {
       import.meta.env.PROD && (
-        <script
-          defer
-          data-domain="billyle.dev"
-          src="https://plausible.billyle.dev/js/script.js"
-        />
+          <script defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
+          <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
       )
     }
-    <script>
-      window.plausible =
-        window.plausible ||
-        function () {
-          (window.plausible.q = window.plausible.q || []).push(arguments);
-        };
-    </script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        window.plausible("404", {
-          props: { path: document.location.pathname },
-        });
-      });
-    </script>
     <title>Billy Le | 404 Not Found</title>
   </head>
   <body class="font-inter relative min-h-screen">
