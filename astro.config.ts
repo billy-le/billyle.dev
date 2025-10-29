@@ -18,11 +18,9 @@ export default defineConfig({
   integrations: [
     sitemap(),
     sentry({
-      dsn: "https://00989e74aa26bc5066973c592ab89a34@o4507544338694144.ingest.us.sentry.io/4508280812601344",
-      sourceMapsUploadOptions: {
-        project: "javascript-astro",
-        authToken: process.env.SENTRY_AUTH_TOKEN,
-      },
+      project: "javascript-astro",
+      org: "billy-gr",
+      authToken: process.env.SENTRY_AUTH_TOKEN,
     }),
   ],
   prefetch: true,
