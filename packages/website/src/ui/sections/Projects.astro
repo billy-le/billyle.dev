@@ -24,7 +24,7 @@ const { className = "" } = Astro.props;
       {
         allProjects.map(
           ({ data: { name, description, link, sourceCode, tags, images } }) => (
-            <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow dark:bg-slate-800 lg:p-8">
+            <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow lg:p-8 dark:bg-slate-800">
               <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
               <div class="relative h-full space-y-3">
                 <div class="flex justify-between">
@@ -360,7 +360,10 @@ const { className = "" } = Astro.props;
         String(currIndex == 0 ? images.length - 1 : currIndex - 1),
       );
 
-      gallerySelected.style.transform = `translateX(${currIndex * 80 + currIndex * 16}px)`;
+      const translateX = currIndex * 100 + "px";
+      const gap = currIndex * 1 + "rem";
+
+      gallerySelected.style.transform = `translateX(calc(${translateX} + ${gap}))`;
     }
 
     function prevImage() {
