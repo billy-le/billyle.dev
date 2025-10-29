@@ -131,8 +131,8 @@ const hasToC = toc.length > 1;
     />
     {
       import.meta.env.PROD && (
-          <script defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
-          <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+          <script is:inline defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
+          <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
       )
     }
     <title>{title}</title>
@@ -270,7 +270,8 @@ const hasToC = toc.length > 1;
         </article>
       </section>
     </main>
-  </body><Footer />
+  </body>
+  <Footer />
   <style is:global>
     @reference "@assets/styles/global.css";
 
@@ -315,7 +316,7 @@ const hasToC = toc.length > 1;
         const postMeta = document.querySelector<HTMLDivElement>("#post-meta")!;
         const shareButton = document.createElement("button");
         shareButton.ariaLabel = "share";
-        shareButton.className = "p-2 rounded-lg bg-blue-500/20";
+        shareButton.className = "p-2 cursor-pointer rounded-lg bg-blue-500/20";
         shareButton.innerHTML = `
           <svg
 	    xmlns="http://www.w3.org/2000/svg"
