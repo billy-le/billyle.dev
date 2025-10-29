@@ -70,8 +70,8 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
     />
     {
       import.meta.env.PROD && (
-          <script defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
-          <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+          <script is:inline defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
+          <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
       )
     }
     <title>{title}</title>
@@ -83,7 +83,8 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
       <slot />
     </main>
     <Footer />
-    <script>
+      </body>
+  <script>
       const noJs = document.querySelectorAll(".no-js");
       for (const el of noJs) {
         el.classList.remove("no-js");
@@ -127,5 +128,4 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
         paragraphsObserver.observe(section);
       }
     </script>
-  </body>
-</html>
+  </html>
