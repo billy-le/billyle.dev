@@ -7,6 +7,7 @@ import { remarkReadingTime } from "./remark-plugins/remark-reading-time";
 import { remarkLastDateModified } from "./remark-plugins/remark-last-date-modified";
 
 import sentry from "@sentry/astro";
+import path from "node:path";
 
 // https://astro.build/config
 /** @type {import('astro/config').AstroUserConfig} */
@@ -14,15 +15,18 @@ export default defineConfig({
   site: "https://billyle.dev",
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        "@ui": path.resolve("./src/ui"),
+        "@layouts": path.resolve("./src/layouts"),
+        "@assets": path.resolve("./src/assets"),
+        "@data": path.resolve("./src/data"),
+        "@styles": path.resolve("./src/styles"),
+        "@utils": path.resolve("./src/utils"),
+      },
+    },
   },
-  integrations: [
-    sitemap(),
-    sentry({
-      project: "javascript-astro",
-      org: "billy-gr",
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-    }),
-  ],
+  integrations: [sitemap(), sentry()],
   prefetch: true,
   markdown: {
     shikiConfig: {
