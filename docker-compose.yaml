@@ -9,8 +9,6 @@ services:
     container_name: "frontend"
     expose:
      - "80"
-    networks:
-      - app
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.rule=Host(`${PUBLIC_SITE}`)"
@@ -34,8 +32,6 @@ services:
         max-file: "5"
     expose:
       - "8080"
-    networks:
-      - app
     labels:
       - "traefik.enable=true"
       # ROUTE 1: The API and everything else
@@ -76,10 +72,6 @@ services:
       - .env
     volumes:
       - remark42:/srv/var
-
-networks:
-  app:
-    driver: bridge
 
 volumes:
   remark42:
