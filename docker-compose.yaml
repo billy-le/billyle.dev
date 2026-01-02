@@ -7,12 +7,16 @@ services:
         - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
         - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "frontend"
-    ports:
-     - "4321:4321"
     expose:
-     - "4321"
+     - "80"
     networks:
       - app
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.frontend.rule=Host(`${PUBLIC_SITE}`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=letsencrypt"
+      - "traefik.http.services.frontend.loadbalancer.server.port=80"
     environment:
       - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
       - PUBLIC_SITE=${PUBLIC_SITE}
@@ -28,10 +32,29 @@ services:
       options:
         max-size: "10m"
         max-file: "5"
-    ports:
-      - "8081:8080"
+    expose:
+      - "8080"
     networks:
-      - app 
+      - app
+    labels:
+      - "traefik.enable=true"
+      # ROUTE 1: The API and everything else
+      - "traefik.http.routers.remark.rule=Host(`${PUBLIC_SITE}`) && PathPrefix(`/remark`)"
+      - "traefik.http.routers.remark.priority=10"
+      
+      # ROUTE 2: The Blocker for the Web UI (Higher Priority)
+      - "traefik.http.routers.remark-blocker.rule=Host(`${PUBLIC_SITE}`) && (Path(`/remark/web`) || Path(`/remark/web/`))"
+      - "traefik.http.routers.remark-blocker.priority=20"
+      - "traefik.http.routers.remark-blocker.service=noop@internal"
+
+      # SHARED SETTINGS
+      - "traefik.http.routers.remark.entrypoints=websecure"
+      - "traefik.http.routers.remark.tls.certresolver=letsencrypt"
+      - "traefik.http.services.remark.loadbalancer.server.port=8080"
+      
+      # Strip the /remark prefix before sending to Remark42
+      - "traefik.http.middlewares.remark-strip.stripprefix.prefixes=/remark"
+      - "traefik.http.routers.remark.middlewares=remark-strip"
     environment:
       - REMARK_URL=${PUBLIC_REMARK_URL}
       - SITE=${PUBLIC_SITE}
@@ -42,8 +65,8 @@ services:
       - AUTH_GITHUB_CID=${AUTH_GITHUB_CID}
       - AUTH_GITHUB_CSEC=${AUTH_GITHUB_CSEC}
       - AUTH_TELEGRAM=true
-      - SENTRY_ORG=billy-gr
-      - SENTRY_PROJECT=javascript-astro
+      - SENTRY_ORG=${SENTRY_ORG}
+      - SENTRY_PROJECT=${SENTRY_PROJECT}
       - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
       - NOTIFY_ADMINS=telegram
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
@@ -56,6 +79,7 @@ services:
 
 networks:
   app:
+    driver: bridge
 
 volumes:
   remark42:
