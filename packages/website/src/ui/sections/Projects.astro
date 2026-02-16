@@ -483,12 +483,13 @@ const { className = "" } = Astro.props;
         return img;
       });
 
-      dialog.showModal();
-
-      if (images[index]) {
-        openImageGallery(images[index], images);
-        setGotoIndices(index, images);
-      }
+      setTimeout(() => {
+        if (images[index]) {
+          dialog.showModal();
+          openImageGallery(images[index], images);
+          setGotoIndices(index, images);
+        }
+      }, 50);
     }
 
     const projectImages = Array.from(
