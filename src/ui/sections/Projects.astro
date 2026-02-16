@@ -155,10 +155,13 @@ const { className = "" } = Astro.props;
 
 <dialog
   id="project-gallery"
-  class="m-auto bg-transparent backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
+  class="mx-auto h-dvh max-h-none w-dvw max-w-none bg-transparent p-0 backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
+  closedby="any"
 >
-  <div class="h-full w-full flex-col items-center justify-center gap-4 md:flex">
-    <div class="sticky top-0 z-10 flex justify-end md:hidden">
+  <div
+    class="relative z-50 flex h-full w-full flex-col items-center justify-center gap-4"
+  >
+    <div class="sticky top-0 z-10 flex w-full justify-end pr-4 pt-4 md:hidden">
       <button
         aria-label="close image gallery"
         command="close"
@@ -231,7 +234,7 @@ const { className = "" } = Astro.props;
         >
       </button>
     </div>
-    <div class="p-4 sm:relative md:p-0">
+    <div class="h-full p-4 md:relative md:h-auto md:p-0">
       <div
         id="image-gallery-selected"
         class="absolute left-0 top-0 z-10 hidden h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out md:block"
@@ -239,7 +242,7 @@ const { className = "" } = Astro.props;
       </div>
       <div
         id="image-gallery"
-        class="flex flex-col items-center justify-center gap-4 md:inline-flex md:flex-row"
+        class="flex flex-col items-center justify-center gap-4 py-4 md:inline-flex md:flex-row md:py-0"
       >
       </div>
     </div>
