@@ -86,7 +86,7 @@ const { className = "" } = Astro.props;
                 </p>
               </div>
               <div
-                class="project-images flex gap-2"
+                class="project-images flex flex-wrap gap-2"
                 data-sources={images.map((image) => image.src.src).join(",")}
               >
                 {images.slice(0, 4).map((image, i) => (
@@ -98,7 +98,7 @@ const { className = "" } = Astro.props;
                       src={image.src}
                       alt={image.alt}
                       class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
-                      quality={25}
+                      quality={10}
                       loading="lazy"
                     />
                   </button>
@@ -156,13 +156,15 @@ const { className = "" } = Astro.props;
 <dialog
   class="h-full w-full bg-transparent backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
 >
-  <div class="flex h-full w-full flex-col items-center justify-center gap-4">
+  <div
+    class="h-full w-full flex-col items-center justify-center gap-4 p-4 sm:flex sm:p-0"
+  >
     <div
       id="selected-image"
-      class="inline-flex h-full max-h-[70dvh] w-full flex-1 items-center justify-center overflow-clip"
+      class="hidden h-full w-full flex-1 items-center justify-center overflow-clip sm:inline-flex sm:max-h-[70dvh]"
     >
     </div>
-    <div class="flex items-center justify-center gap-4">
+    <div class="hidden items-center justify-center gap-4 sm:flex">
       <button
         id="previous-image"
         class="grid h-10 w-10 place-items-center rounded-full bg-emerald-300 p-0 text-emerald-700"
@@ -208,15 +210,15 @@ const { className = "" } = Astro.props;
         >
       </button>
     </div>
-    <div class="relative">
+    <div class="sm:relative">
       <div
         id="image-gallery-selected"
-        class="absolute left-0 top-0 z-10 h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out"
+        class="absolute left-0 top-0 z-10 hidden h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out sm:block"
       >
       </div>
       <div
         id="image-gallery"
-        class="inline-flex flex-nowrap items-center justify-center gap-4"
+        class="flex flex-col items-center justify-center gap-4 sm:inline-flex sm:flex-row"
       >
       </div>
     </div>
@@ -331,10 +333,10 @@ const { className = "" } = Astro.props;
       const imageGallery = dialog.querySelector(
         "#image-gallery",
       ) as HTMLDivElement;
-      selectedImage.append(img);
-      imageGallery.append(...gallery);
       img.style.animation =
         "500ms ease 50ms fade-in forwards, 1s ease 50ms slide-up forwards";
+      selectedImage.append(img);
+      imageGallery.append(...gallery);
     }
 
     function closeImageGallery() {
@@ -360,7 +362,7 @@ const { className = "" } = Astro.props;
         String(currIndex == 0 ? images.length - 1 : currIndex - 1),
       );
 
-      const translateX = currIndex * 100 + "px";
+      const translateX = currIndex * images[0]!.clientWidth + "px";
       const gap = currIndex * 1 + "rem";
 
       gallerySelected.style.transform = `translateX(calc(${translateX} + ${gap}))`;
@@ -429,8 +431,34 @@ const { className = "" } = Astro.props;
         const img = new Image();
         img.src = src;
         img.alt = "";
-        img.className = "h-20 w-20 object-cover rounded-md drop-shadow-lg";
+        img.className =
+          "w-full object-cover rounded-md drop-shadow-lg sm:size-20";
         img.setAttribute("data-index", i.toString());
+        return img;
+      });
+
+      images = images.map((img, index) => {
+        img.onclick = function () {
+          const selectedImage = dialog.querySelector(
+            "#selected-image",
+          ) as HTMLDivElement;
+          if (img.src === (selectedImage.children[0] as HTMLImageElement).src)
+            return;
+          const ingoingImage = img.cloneNode() as HTMLImageElement;
+          ingoingImage.className =
+            "opacity-0 object-contain max-h-full max-w-full";
+          ingoingImage.style.animation =
+            "500ms ease slide-in-left forwards, 500ms ease fade-in forwards";
+          const outgoingImg = selectedImage.firstChild as HTMLImageElement;
+          outgoingImg.style.animation =
+            "250ms ease slide-out-left forwards, 250ms ease fade-out forwards";
+          setGotoIndices(index, images);
+          setTimeout(() => {
+            if (dialog.open) {
+              selectedImage.replaceChildren(ingoingImage);
+            }
+          }, 250);
+        };
         return img;
       });
 
