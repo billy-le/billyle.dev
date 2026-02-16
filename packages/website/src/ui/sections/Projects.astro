@@ -154,17 +154,38 @@ const { className = "" } = Astro.props;
 </section>
 
 <dialog
-  class="h-full w-full bg-transparent backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
+  id="project-gallery"
+  class="m-auto bg-transparent backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
 >
-  <div
-    class="h-full w-full flex-col items-center justify-center gap-4 p-4 sm:flex sm:p-0"
-  >
+  <div class="h-full w-full flex-col items-center justify-center gap-4 md:flex">
+    <div class="sticky top-0 z-10 flex justify-end md:hidden">
+      <button
+        aria-label="close image gallery"
+        command="close"
+        commandfor="project-gallery"
+        class="grid size-8 place-items-center rounded-full border border-solid border-emerald-400 bg-emerald-200 dark:bg-emerald-100"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-x-icon lucide-x"
+          ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
+        >
+      </button>
+    </div>
     <div
       id="selected-image"
-      class="hidden h-full w-full flex-1 items-center justify-center overflow-clip sm:inline-flex sm:max-h-[70dvh]"
+      class="hidden flex-1 items-center justify-center overflow-clip md:inline-flex md:max-h-[70dvh] md:max-w-max"
     >
     </div>
-    <div class="hidden items-center justify-center gap-4 sm:flex">
+    <div class="hidden items-center justify-center gap-4 md:flex">
       <button
         id="previous-image"
         class="grid h-10 w-10 place-items-center rounded-full bg-emerald-300 p-0 text-emerald-700"
@@ -210,15 +231,15 @@ const { className = "" } = Astro.props;
         >
       </button>
     </div>
-    <div class="sm:relative">
+    <div class="p-4 sm:relative md:p-0">
       <div
         id="image-gallery-selected"
-        class="absolute left-0 top-0 z-10 hidden h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out sm:block"
+        class="absolute left-0 top-0 z-10 hidden h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out md:block"
       >
       </div>
       <div
         id="image-gallery"
-        class="flex flex-col items-center justify-center gap-4 sm:inline-flex sm:flex-row"
+        class="flex flex-col items-center justify-center gap-4 md:inline-flex md:flex-row"
       >
       </div>
     </div>
@@ -432,7 +453,7 @@ const { className = "" } = Astro.props;
         img.src = src;
         img.alt = "";
         img.className =
-          "w-full object-cover rounded-md drop-shadow-lg sm:size-20";
+          "max-h-[320px] w-full object-contain rounded-md drop-shadow-lg md:size-20 md:max-h-none md:object-cover";
         img.setAttribute("data-index", i.toString());
         return img;
       });
