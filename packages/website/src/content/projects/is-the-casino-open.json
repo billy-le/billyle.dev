@@ -1,0 +1,30 @@
+{
+  "name": "Is the Casino Open?",
+  "description": "Developed a full-stack application that bridges the gap between social media sentiment and real-time market data, allowing users to track trending assets and engage with the market through a gamified interface. This was a fun project that is completely useless. I wanted to capture the same gambling culture as WallStreetBets where individual would randomly \"YOLO\" their savings on trending stocks.",
+  "link": "https://isthecasinoopen.com",
+  "images": [
+    {
+      "src": "./_images/casino-open-home-page.png",
+      "alt": "is the casino open - homepage"
+    },
+    {
+      "src": "./_images/casino-open-betting.png",
+      "alt": "is the casino open - betting"
+    },
+    {
+      "src": "./_images/casino-open-live-charts.png",
+      "alt": "is the casino open - live charts"
+    }
+  ],
+  "sourceCode": [],
+  "tags": [
+    "react",
+    "tanstack start",
+    "tailwind",
+    "web sockets",
+    "redis",
+    "postresql",
+    "docker"
+  ],
+  "ranking": "high"
+}
