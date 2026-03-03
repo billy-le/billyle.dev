@@ -18,6 +18,8 @@ ARG PUBLIC_REMARK_URL
 ARG PUBLIC_SITE
 ENV PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
 ENV PUBLIC_SITE=${PUBLIC_SITE}
+COPY package.json pnpm-lock.yaml ./
+COPY --from=deps /usr/src/app/node_modules ./node_modules
 COPY . .
 RUN --mount=type=cache,target=/usr/src/app/node_modules/.astro \
     pnpm run build
