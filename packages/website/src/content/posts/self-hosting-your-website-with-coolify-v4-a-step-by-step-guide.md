@@ -1,6 +1,7 @@
 ---
 title: "Self-hosting Your Website with Coolify v4: A Step-by-Step Guide"
 pubDate: 2024-03-01
+lastModifiedDate: 2024-05-04
 description: "Ever wondered how you can self-host your own websites and web apps without the need for services like Netlify, Vercel, and the like? I am venturing down that path and I want to share what I learned. In this tutorial, I will explain what I did to host a static website using Cloudflare, Hetzner, and Coolify."
 image:
   url: "https://images.unsplash.com/photo-1502139214982-d0ad755818d8"

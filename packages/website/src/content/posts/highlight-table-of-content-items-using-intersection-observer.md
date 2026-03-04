@@ -1,6 +1,7 @@
 ---
 title: "Highlight Table of Content Items Using Intersection Observer"
 pubDate: 2024-04-05
+lastModifiedDate: 2024-05-04
 description: "After creating my Table of Contents for my blog, I needed a way to let the readers know which part of it they are viewing. By adding text decorations to the Table of Content links, I'm able to give a visual indicator by using the Web API Intersection Observer."
 image:
   url: "https://images.unsplash.com/photo-1580569214296-5cf2bffc5ccd"

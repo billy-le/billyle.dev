@@ -1,6 +1,7 @@
 ---
 title: "Creating Custom Table of Contents for Astro Content Collections"
 pubDate: 2024-03-13
+lastModifiedDate: 2024-05-04
 description: "There isn't a well-documented source on how you can create a custom Table of Contents from your markdown with the Astro Content Collection API. The 'remark-toc' plugin does the job but offers little control over where you can place it. In this post, I'll show you how I created my ToC for my blog."
 image:
   url: "https://images.unsplash.com/photo-1529473814998-077b4fec6770"
@@ -168,7 +169,7 @@ If you're going to use a sticky ToC, be sure that the parent component has a `po
 ```jsx
 <section class={`${hasToC ? "mx-auto max-w-7xl lg:grid lg:grid-cols-4" : ""}`}>
   {hasToC && (
-    <div class="prose relative mx-auto px-4 dark:prose-invert xl:pt-10 2xl:px-0">
+    <div class="prose dark:prose-invert relative mx-auto px-4 xl:pt-10 2xl:px-0">
       <nav class="xl:sticky xl:top-20">
         <h2 class="text-emerald-400">Table of Contents</h2>
         <ul>
@@ -181,11 +182,7 @@ If you're going to use a sticky ToC, be sure that the parent component has a `po
   )}
 
   <article
-    class={`prose mx-auto px-4 py-10 dark:prose-invert sm:prose-lg lg:prose-xl
-            prose-h1:font-vidaloka prose-code:before:hidden
-            prose-code:after:hidden sm:py-20
-            ${hasToC ? "lg:col-span-3" : ""}
-        `}
+    class={`prose dark:prose-invert sm:prose-lg lg:prose-xl prose-h1:font-vidaloka prose-code:before:hidden prose-code:after:hidden mx-auto px-4 py-10 sm:py-20 ${hasToC ? "lg:col-span-3" : ""} `}
   >
     <h1>{title}</h1>
     <slot />

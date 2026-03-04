@@ -1,6 +1,7 @@
 ---
 title: "Adding RSS Feed Content and Fixing Markdown Image Paths in Astro"
 pubDate: 2024-05-04
+lastModifiedDate: 2024-06-01
 description: "I recently added an RSS feed to my website and wanted to cross-post my writings from my blog to other platforms like dev.to. Following the official docs was fine, however, there was one issue if you were using relative paths in your markdown for your image assets. The images were not correctly pointing to the URL where it was hosted. I did find a way to fix this in this post."
 image:
   url: "https://images.unsplash.com/photo-1464131878849-80cd5cd9055a"
@@ -93,23 +94,23 @@ Using the AstroJS RSS tutorial as a base, we'll add onto it to make sure our ima
 This is the basic code to compile your RSS feed.
 
 ```typescript
-import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-import sanitizeHtml from 'sanitize-html';
-import MarkdownIt from 'markdown-it';
+import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
+import sanitizeHtml from "sanitize-html";
+import MarkdownIt from "markdown-it";
 const parser = new MarkdownIt();
 
 export async function GET(context) {
-  const blog = await getCollection('blog');
+  const blog = await getCollection("blog");
   return rss({
-    title: 'Buzz’s Blog',
-    description: 'A humble Astronaut’s guide to the stars',
+    title: "Buzz’s Blog",
+    description: "A humble Astronaut’s guide to the stars",
     site: context.site,
     items: blog.map((post) => ({
       link: `/blog/${post.slug}/`,
       // Note: this will not process components or JSX expressions in MDX files.
       content: sanitizeHtml(parser.render(post.body), {
-        allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
       }),
       ...post.data,
     })),
@@ -262,11 +263,11 @@ Each dynamic import contains the `ImageMetadata` object which looks like this:
 
 ```typescript
 export interface ImageMetadata {
-    src: string;
-    width: number;
-    height: number;
-    format: ImageInputFormat;
-    orientation?: number;
+  src: string;
+  width: number;
+  height: number;
+  format: ImageInputFormat;
+  orientation?: number;
 }
 ```
 
@@ -299,10 +300,7 @@ if (src.startsWith("./")) {
   if (imagePath) {
     const optimizedImg = await getImage({ src: imagePath });
     // set the correct path to the optimized image
-    img.setAttribute(
-      "src",
-      context.site + optimizedImg.src.replace("/", ""),
-    );
+    img.setAttribute("src", context.site + optimizedImg.src.replace("/", ""));
   }
 }
 ```

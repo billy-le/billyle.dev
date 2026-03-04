@@ -1,16 +1,36 @@
 services:
-  frontend:
+  website:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./packages/website/Dockerfile
       args:
         - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
         - PUBLIC_SITE=${PUBLIC_SITE}
-    container_name: "frontend"
+    container_name: "website"
     expose:
-     - "80"
+     - "4321"
     networks:
-      - app
+      - billyle
+    env_file:
+      - .env
+
+  email:
+    build:
+      context: .
+      dockerfile: ./packages/email/Dockerfile
+      args:
+        - RESEND_API_KEY=${RESEND_API_KEY}
+        - ALLOWED_ORIGIN=website
+        - EMAIL_SERVER_PORT=${EMAIL_SERVER_PORT}
+        - EMAIL_TO=${EMAIL_TO}
+    container_name: "email"
+    expose:
+      - "${EMAIL_SERVER_PORT}"
+    networks:
+      - billyle
+    env_file:
+      - .env
+
   remark42:
     image: umputun/remark42:latest
     container_name: remark42
@@ -24,7 +44,9 @@ services:
     ports:
       - "8081:8080"
     networks:
-      - app 
+      - billyle 
+    env_file:
+      - .env
     environment:
       - REMARK_URL=${PUBLIC_REMARK_URL}
       - SITE=${PUBLIC_SITE}
@@ -42,13 +64,11 @@ services:
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
       - NOTIFY_TELEGRAM_CHAN=${NOTIFY_TELEGRAM_CHAN}
       - ALLOWED_HOSTS=${REMARK_ALLOWED_HOSTS}
-    env_file:
-      - .env
     volumes:
       - remark42:/srv/var
 
 networks:
-  app:
+  billyle:
 
 volumes:
   remark42:

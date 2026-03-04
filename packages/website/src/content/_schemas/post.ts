@@ -25,6 +25,7 @@ const validTags = [
 const postSchema = z.object({
   title: z.string(),
   pubDate: z.date(),
+  lastModifiedDate: z.date().nullable(),
   description: z.string().min(200),
   author: z
     .object({
@@ -60,5 +61,4 @@ export const postsCollection = defineCollection({
 
 export type Post = z.infer<typeof postSchema> & {
   readingTime: string;
-  lastDateModified: string;
 };

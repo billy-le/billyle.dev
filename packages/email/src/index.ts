@@ -5,7 +5,7 @@ import { EmailTemplate } from "./email-templates/message";
 import { logger } from "./utils/logger";
 
 const resend = new Resend(Bun.env.RESEND_API_KEY);
-const serverPort = Bun.env.SERVER_PORT || 3000;
+const serverPort = Bun.env.EMAIL_SERVER_PORT || 3000;
 
 new Elysia()
   .use(
@@ -16,7 +16,7 @@ new Elysia()
           ? Bun.env.ALLOWED_ORIGIN
           : "localhost:4321",
       ],
-    })
+    }),
   )
   .get("/ping", () => {
     return "pong";
@@ -35,7 +35,10 @@ new Elysia()
         });
 
         if (error) {
-          return context.error((error as any).statusCode, error);
+          return context.status(
+            500,
+            error instanceof Error ? error.message : "Internal Server Error",
+          );
         }
 
         logger.info("New email received");
@@ -48,7 +51,10 @@ new Elysia()
         if (error instanceof Error) {
           logger.error(error.message, error);
         }
-        return context.error("Internal Server Error", error);
+        return context.status(
+          500,
+          error instanceof Error ? error.message : "Internal Server Error",
+        );
       }
     },
     {
@@ -68,18 +74,19 @@ new Elysia()
             "Message should be at least 10 characters and max of 1024 characters",
         }),
       }),
-      error: ({ path, body, request: { method, headers }, error, code }) => {
+      error: ({ path, body, request: { method, headers }, error }) => {
+        const message = "message" in error ? error.message : String(error);
         const errorMessage = `method=${method} path=${path} error=${
-          error.message
+          message
         } body=${JSON.stringify(body)} userAgent=${headers.get("user-agent")}`;
         logger.error(errorMessage);
         return error;
       },
-    }
+    },
   )
   .onError(({ path, request: { method, headers }, error }) => {
     const errorMessage = `method=${method} path=${path} userAgent=${headers.get(
-      "user-agent"
+      "user-agent",
     )}`;
     logger.error(errorMessage, error);
     return error;

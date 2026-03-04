@@ -1,6 +1,7 @@
 ---
 title: "My Content Creation In Its Infancy"
 pubDate: 2024-02-22
+lastModifiedDate: 2024-05-04
 description: "Embarking on something new can be both frightening and exciting. In my case, it's a mix of both. Creating content involves putting myself out there for the world to see. I'm starting small with the hope that it will blossom into a consistent flow of creativity. In this post, I share my thoughts on the reasons behind the existence of this blog."
 image:
   url: "https://images.unsplash.com/photo-1496055401924-5e7fdc885742"

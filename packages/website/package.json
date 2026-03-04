@@ -1,22 +1,7 @@
 {
-  "name": "billyle.dev",
-  "author": {
-    "name": "Billy le",
-    "email": "hi@billyle.dev",
-    "url": "https://billyle.dev"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/billy-le/billyle.dev.git"
-  },
-  "bugs": {
-    "url": "https://github.com/billy-le/billyle.dev/issues",
-    "email": "hi@billyle.dev"
-  },
+  "name": "@billyle/website",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
-  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -57,24 +42,14 @@
     "autoprefixer": "^10.4.27",
     "cssnano": "^7.1.2",
     "front-matter": "^4.0.2",
-    "husky": "^9.1.7",
-    "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "remark-sectionize": "^2.1.0",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.2.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "ts-node": "^10.9.2"
   },
   "engines": {
     "node": ">22"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@sentry/cli",
-      "esbuild",
-      "sharp"
-    ]
   }
 }

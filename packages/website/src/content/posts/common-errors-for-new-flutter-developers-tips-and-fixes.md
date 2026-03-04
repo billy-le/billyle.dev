@@ -1,6 +1,7 @@
 ---
 title: "Common Errors for New Flutter Developers: Tips and Fixes"
 pubDate: 2024-05-16
+lastModifiedDate: 2024-05-24
 description: "As a new Flutter developer, I came across these errors that often left me scratching my head and frustrated. I compiled a list of common errors and fixes for them for me to reference back to. I will continue to update this list as I encounter more issues."
 image:
   url: "https://images.unsplash.com/photo-1579559954825-f491c472a6f8"
@@ -94,12 +95,10 @@ Here are some possible fixes:
 
 1. Restart VSCode. You need to completely close all VSCode instances before opening the text editor again.
 2. Reinstall Cocoapods:
-
    - run `sudo gem uninstall cocoapods`. Select all versions.
    - after uninstall is complete, run `sudo gem install -n /usr/local/bin cocoapods`
 
 3. If using a Ruby Version Manager like `rbenv`:
-
    - list all available Ruby version `rbenv install -l`
    - install the latest Ruby version: `rbenv install 3.3.0`
    - set global to 3.3.0 with `rbenv global 3.3.0`

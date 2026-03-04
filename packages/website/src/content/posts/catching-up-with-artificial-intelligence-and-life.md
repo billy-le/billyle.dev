@@ -1,6 +1,7 @@
 ---
 title: "Catching Up with Artificial Intelligence and Life"
 pubDate: 2024-07-03
+lastModifiedDate:
 description: "It's been a few months since I last checked in and wrote a post. During that time, I was head down working on my mobile AI app, Dotted, but progressing slowly. Recently, I finally had the chance to visit the US for a new college graduate in our family. The reunion was absolutely pleasant and a much needed break away from the monotony."
 image:
   url: "https://images.unsplash.com/photo-1438557068880-c5f474830377"
@@ -23,6 +24,7 @@ With content creation in mind, I started to learn Da Vinci Resolve and Open Broa
 In this post, I'll briefly talk about all these points.
 
 ## Learning and using AI 🤖
+
 AI is practically everywhere and you can't really hide from it anymore. I shied away from using AI products for productivity for a while and it still hasn't registered with me completely.
 
 As far as working and developing AI apps, I find it fun yet daunting if you never worked with it before.

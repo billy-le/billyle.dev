@@ -1,6 +1,7 @@
 ---
 title: "Relocate Hetzner Server"
 pubDate: 2026-03-03
+lastModifiedDate: 2026-03-03
 description: "Learn how to transfer your Hetzner server from one location to another. It might sound daunting but it's a straightforward process: create a server snap shot, create server from snapshot, and finally configure DNS with the new IP address."
 image:
   url: "https://images.unsplash.com/photo-1570421250355-67f8952c273b"

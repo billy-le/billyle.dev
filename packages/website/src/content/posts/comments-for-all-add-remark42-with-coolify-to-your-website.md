@@ -1,6 +1,7 @@
 ---
 title: "Comments for All: Add Remark42 with Coolify to Your Website"
 pubDate: 2024-11-14
+lastModifiedDate: 2024-12-05
 description: "Learn how to add Remark42, an open source comment engine with multiple auth providers, to your website without a subdomain. This tutorial will walk you through the steps and dive into the details on how to write the code and set it up on Coolify."
 image:
   url: "https://images.unsplash.com/photo-1494583882007-bfd2321fb8e2"

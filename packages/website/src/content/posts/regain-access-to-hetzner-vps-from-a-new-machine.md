@@ -1,6 +1,7 @@
 ---
 title: "Regain Access to Hetzner VPS From a New Machine"
 pubDate: 2024-07-13
+lastModifiedDate: 2024-07-13
 description: "I recently bought a new laptop and had already factory reset my old one to resell. In doing so, I lost all access to my Hetzner VPS since it was configured to disallow root access entirely and only allow user access via SSH since passwords were turned off. I was able to regain access by following these steps."
 image:
   url: "https://images.unsplash.com/photo-1518600942388-37b306a5544b"

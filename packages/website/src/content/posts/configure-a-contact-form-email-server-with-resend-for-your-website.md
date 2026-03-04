@@ -1,6 +1,7 @@
 ---
 title: "Configure a Contact Form Email Server with Resend for Your Website"
 pubDate: 2024-04-13
+lastModifiedDate: 2024-12-24
 description: "This tutorial covers how to hook up your front-end contact form to a back-end email server using Resend. You can apply the concepts discussed in this post to any front-end or back-end framework. If you're using a form provider like FormSpree or FormSubmit and want to move away from them, then this blog post is for you."
 image:
   url: "https://images.pexels.com/photos/1777792/pexels-photo-1777792.jpeg"

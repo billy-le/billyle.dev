@@ -31,7 +31,6 @@ const { Content, remarkPluginFrontmatter } = await entry.render();
   {...entry.data}
   {headings}
   readingTime={remarkPluginFrontmatter.readingTime}
-  lastDateModified={remarkPluginFrontmatter.lastDateModified}
 >
   <Content />
 </BlogLayout>

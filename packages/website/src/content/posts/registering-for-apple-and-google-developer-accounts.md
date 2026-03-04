@@ -1,6 +1,7 @@
 ---
 title: "Registering for Apple and Google Developer Accounts"
 pubDate: 2024-04-23
+lastModifiedDate: 2024-05-04
 description: "Last week I said I was going to form an LLC but decided not to. I finally took the plunge into mobile development and signed up for Apple and Google Developer Accounts under my name. I believe the web is still the most accessible platform there is out there but something about developing for mobile is appealing."
 image:
   url: "https://images.unsplash.com/photo-1574417836112-fda6a03dae97"
