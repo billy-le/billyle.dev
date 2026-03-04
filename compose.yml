@@ -11,8 +11,16 @@ services:
      - "4321"
     networks:
       - billyle
+      - coolify
     env_file:
       - .env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.website.rule=Host(`billyle.dev`)
+      - traefik.http.routers.website.entrypoints=https
+      - traefik.http.routers.website.tls=true
+      - traefik.http.routers.website.tls.certresolver=letsencrypt
+      - traefik.http.services.website.loadbalancer.server.port=4321
 
   email:
     build:
@@ -69,6 +77,8 @@ services:
 
 networks:
   billyle:
+  coolify:
+    external: true
 
 volumes:
   remark42:
