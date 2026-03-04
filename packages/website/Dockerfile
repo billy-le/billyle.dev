@@ -18,6 +18,7 @@ ARG PUBLIC_REMARK_URL
 ARG PUBLIC_SITE
 ENV PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
 ENV PUBLIC_SITE=${PUBLIC_SITE}
+COPY packages/website ./packages/website
 RUN pnpm --filter @billyle/website run build
 
 FROM nginx:stable-alpine AS final
