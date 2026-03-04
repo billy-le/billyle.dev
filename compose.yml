@@ -15,11 +15,6 @@ services:
     env_file:
       - .env
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.website.rule=Host(`billyle.dev`)
-      - traefik.http.routers.website.entrypoints=https
-      - traefik.http.routers.website.tls=true
-      - traefik.http.routers.website.tls.certresolver=letsencrypt
       - traefik.http.services.website.loadbalancer.server.port=4321
 
   email:
@@ -38,6 +33,8 @@ services:
       - billyle
     env_file:
       - .env
+    labels:
+      - traefik.http.services.email.loadbalancer.server.port=3000
 
   remark42:
     image: umputun/remark42:latest
