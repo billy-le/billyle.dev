@@ -5,6 +5,8 @@ ARG PNPM_VERSION=10.30.3
 
 FROM node:${NODE_VERSION}-alpine AS base
 WORKDIR /app
+# needed for reading last modified for blog posts (use git log)
+RUN apk add --no-cache git
 RUN --mount=type=cache,target=/root/.npm \
     npm install -g pnpm@${PNPM_VERSION}
 COPY package.json pnpm-lock.yaml ./

@@ -7,8 +7,6 @@ services:
         - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
         - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "frontend"
-    ports:
-      - "80:80"
     expose:
      - "80"
     networks:
