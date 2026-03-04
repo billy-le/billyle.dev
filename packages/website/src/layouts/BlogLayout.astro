@@ -19,7 +19,6 @@ import BackdropRadial from "@ui/components/BackdropRadial.astro";
 import TOCHeading from "@ui/components/TOCHeading.astro";
 import { Picture } from "astro:assets";
 import RssFeedButton from "@ui/components/RssFeedButton.astro";
-import Remark42 from "@ui/components/Remark42.astro";
 import {toLocalDate} from '@utils/toLocalDate'
 
 const defaultPicture =
@@ -268,7 +267,6 @@ const hasToC = toc.length > 1;
           }
           <slot />
           <RssFeedButton className="mt-20 mb-8 ml-auto" />
-          <Remark42 />
         </article>
       </section>
     </main>
