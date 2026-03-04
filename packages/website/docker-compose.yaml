@@ -8,16 +8,11 @@ services:
         - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "frontend"
     ports:
-     - "4321:4321"
+      - "80:80"
     expose:
-     - "4321"
+     - "80"
     networks:
       - app
-    environment:
-      - PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
-      - PUBLIC_SITE=${PUBLIC_SITE}
-    env_file: 
-      - .env
   remark42:
     image: umputun/remark42:latest
     container_name: remark42
