@@ -31,6 +31,7 @@ services:
       - "${EMAIL_SERVER_PORT}"
     networks:
       - billyle
+      - coolify
     env_file:
       - .env
     labels:
