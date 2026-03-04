@@ -69,5 +69,12 @@
   },
   "engines": {
     "node": ">22"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@sentry/cli",
+      "esbuild",
+      "sharp"
+    ]
   }
 }

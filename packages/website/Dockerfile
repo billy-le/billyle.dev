@@ -20,8 +20,7 @@ ARG PUBLIC_SITE
 ENV PUBLIC_REMARK_URL=${PUBLIC_REMARK_URL}
 ENV PUBLIC_SITE=${PUBLIC_SITE}
 COPY . .
-RUN --mount=type=cache,target=/app/node_modules/.astro \
-    --mount=type=cache,target=/root/.astro/cache,sharing=locked \
+RUN --mount=type=cache,target=/root/.astro/cache,sharing=locked \
     mkdir -p node_modules/.astro && \
     pnpm run build
 
