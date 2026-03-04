@@ -1,0 +1,10 @@
+**/.git
+**/.env*
+**/node_modules
+**/dist
+**/.astro
+docker-compose*.yml
+docker-compose*.yaml
+**/Dockerfile*
+README.md
+LICENSE
