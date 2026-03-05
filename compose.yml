@@ -13,6 +13,13 @@ services:
       - billyle
     env_file:
       - .env
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:80"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: always
 
   email:
     build:
@@ -30,6 +37,8 @@ services:
       - billyle
     env_file:
       - .env
+    restart: always
+
   remark42:
     image: umputun/remark42:latest
     container_name: remark42
