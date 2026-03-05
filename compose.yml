@@ -14,7 +14,7 @@ services:
     env_file:
       - .env
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:80"]
+      test: ["CMD-SHELL", "nc -z localhost 80 || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -39,7 +39,7 @@ services:
       - .env
     restart: always
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:${EMAIL_SERVER_PORT}/ping"]
+      test: ["CMD", "bun", "--eval", "fetch('http://localhost:3000/ping').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -80,12 +80,6 @@ services:
       - ALLOWED_HOSTS=${REMARK_ALLOWED_HOSTS}
     volumes:
       - remark42:/srv/var
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
-      start_period: 30s
 
 networks:
   billyle:
