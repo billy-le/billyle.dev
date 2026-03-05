@@ -24,4 +24,4 @@ RUN pnpm --filter @billyle/website run build
 FROM nginx:stable-alpine AS final
 COPY packages/website/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/packages/website/dist /usr/share/nginx/html
-EXPOSE 4321
+EXPOSE 80 

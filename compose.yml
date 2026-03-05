@@ -8,7 +8,7 @@ services:
         - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "website"
     expose:
-     - "4321"
+     - "80"
     networks:
       - billyle
     env_file:
