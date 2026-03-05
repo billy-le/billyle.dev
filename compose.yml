@@ -11,11 +11,8 @@ services:
      - "4321"
     networks:
       - billyle
-      - coolify
     env_file:
       - .env
-    labels:
-      - traefik.http.services.website.loadbalancer.server.port=4321
 
   email:
     build:
@@ -23,7 +20,7 @@ services:
       dockerfile: ./packages/email/Dockerfile
       args:
         - RESEND_API_KEY=${RESEND_API_KEY}
-        - ALLOWED_ORIGIN=website
+        - ALLOWED_ORIGIN=${ALLOWED_ORIGIN}
         - EMAIL_SERVER_PORT=${EMAIL_SERVER_PORT}
         - EMAIL_TO=${EMAIL_TO}
     container_name: "email"
@@ -31,12 +28,8 @@ services:
       - "${EMAIL_SERVER_PORT}"
     networks:
       - billyle
-      - coolify
     env_file:
       - .env
-    labels:
-      - traefik.http.services.email.loadbalancer.server.port=3000
-
   remark42:
     image: umputun/remark42:latest
     container_name: remark42
@@ -75,8 +68,6 @@ services:
 
 networks:
   billyle:
-  coolify:
-    external: true
 
 volumes:
   remark42:
