@@ -22,6 +22,7 @@ COPY packages/website ./packages/website
 RUN pnpm --filter @billyle/website run build
 
 FROM nginx:stable-alpine AS final
+RUN rm /etc/nginx/conf.d/default.conf
 COPY packages/website/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/packages/website/dist /usr/share/nginx/html
 EXPOSE 80 
