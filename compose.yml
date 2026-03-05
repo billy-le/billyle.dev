@@ -38,6 +38,12 @@ services:
     env_file:
       - .env
     restart: always
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:${EMAIL_SERVER_PORT}/ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
 
   remark42:
     image: umputun/remark42:latest
@@ -74,6 +80,12 @@ services:
       - ALLOWED_HOSTS=${REMARK_ALLOWED_HOSTS}
     volumes:
       - remark42:/srv/var
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
 
 networks:
   billyle:
