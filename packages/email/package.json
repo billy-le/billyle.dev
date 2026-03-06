@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
+    "@elysiajs/static": "^1.4.7",
     "@react-email/render": "^2.0.4",
     "date-fns": "^4.1.0",
     "elysia": "^1.4.27",
+    "elysia-rate-limit": "^4.5.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "resend": "^6.9.3",

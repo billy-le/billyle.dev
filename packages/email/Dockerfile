@@ -7,6 +7,7 @@ COPY packages/email/package.json ./
 RUN bun install --production --ignore-scripts
 
 COPY packages/email/src ./src
+COPY packages/email/public ./public
 
 EXPOSE ${EMAIL_SERVER_PORT}
 

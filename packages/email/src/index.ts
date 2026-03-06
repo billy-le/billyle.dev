@@ -3,58 +3,56 @@ import { cors } from "@elysiajs/cors";
 import { Resend } from "resend";
 import { EmailTemplate } from "./email-templates/message";
 import { logger } from "./utils/logger";
+import { staticPlugin } from "@elysiajs/static";
+import { rateLimit } from "elysia-rate-limit";
 
 const resend = new Resend(Bun.env.RESEND_API_KEY);
 const serverPort = Bun.env.EMAIL_SERVER_PORT || 3000;
 
 new Elysia()
+  .derive(() => ({
+    requestId: crypto.randomUUID(),
+  }))
   .use(
     cors({
       methods: ["POST"],
-      origin: [
-        Bun.env.NODE_ENV === "production"
-          ? Bun.env.ALLOWED_ORIGIN
-          : "localhost:4321",
-      ],
+      origin: (request) => {
+        const origin = request.headers.get("origin");
+        if (Bun.env.NODE_ENV !== "production") return true;
+        return origin === Bun.env.ALLOWED_ORIGIN;
+      },
     }),
   )
+  .use(staticPlugin())
+  .use(rateLimit({ max: 5, duration: 60_000 }))
   .get("/ping", () => {
     return "pong";
   })
   .post(
     "/send-email",
-    async (context) => {
-      const { name, email, message } = context.body;
+    async ({ body, set }) => {
+      const { name, email, message } = body;
 
       try {
         const { error } = await resend.emails.send({
           from: `${name} <${Bun.env.EMAIL_TO}>`,
+          replyTo: email,
           to: [Bun.env.EMAIL_TO],
           subject: `New Message Received From ${name}`,
           react: EmailTemplate({ name, email, message }),
         });
 
         if (error) {
-          return context.status(
-            500,
-            error instanceof Error ? error.message : "Internal Server Error",
-          );
+          logger.error(`Resend Error: ${error.message}`);
+          set.status = 500;
+          return { success: false, error: error.message };
         }
 
-        logger.info("New email received");
-        return new Response(JSON.stringify({ message: "Success" }), {
-          headers: {
-            "content-type": "application/json",
-          },
-        });
-      } catch (error) {
-        if (error instanceof Error) {
-          logger.error(error.message, error);
-        }
-        return context.status(
-          500,
-          error instanceof Error ? error.message : "Internal Server Error",
-        );
+        logger.info(`Email received from ${email}`);
+        return { success: true, message: "Success" };
+      } catch {
+        set.status = 500;
+        return { success: false, error: "Failed to process email request" };
       }
     },
     {
@@ -74,23 +72,40 @@ new Elysia()
             "Message should be at least 10 characters and max of 1024 characters",
         }),
       }),
-      error: ({ path, body, request: { method, headers }, error }) => {
-        const message = "message" in error ? error.message : String(error);
-        const errorMessage = `method=${method} path=${path} error=${
-          message
-        } body=${JSON.stringify(body)} userAgent=${headers.get("user-agent")}`;
-        logger.error(errorMessage);
-        return error;
-      },
     },
   )
-  .onError(({ path, request: { method, headers }, error }) => {
-    const errorMessage = `method=${method} path=${path} userAgent=${headers.get(
-      "user-agent",
-    )}`;
-    logger.error(errorMessage, error);
-    return error;
-  })
+  .onError(
+    ({ requestId, body, code, request: { method, headers, url }, error }) => {
+      const message = "message" in error ? error.message : String(error);
+      const errorMessage = `id=${requestId} code=${code} method=${method} url=${url} error=${
+        message
+      } body=${JSON.stringify(body)} userAgent=${headers.get("user-agent")}`;
+
+      logger.error(errorMessage);
+
+      if (code === "VALIDATION") {
+        return {
+          success: false,
+          error: "Validation failed",
+          details: error.all.map((e) => ({ path: e.path, message: e.message })),
+        };
+      }
+
+      if (code === "NOT_FOUND") {
+        return {
+          success: false,
+          status: "error",
+          message: "The resource you are looking for doesn't exist.",
+        };
+      }
+
+      return {
+        success: false,
+        status: "error",
+        message: "An unexpected server error occurred.",
+      };
+    },
+  )
   .listen(serverPort, () => {
     logger.info(`Server starting on PORT: ${serverPort}`);
   });

@@ -11,11 +11,11 @@ logger.add(
     format: combine(
       errors({ stack: true }),
       colorize({ all: true }),
-      timestamp(),
+      timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
       printf(
         ({ level, message, timestamp, stack }) =>
-          `[${timestamp}]:${level}: ${message}${stack ? `\n\n${stack}` : ""}`
-      )
+          `[${timestamp}]:${level}: ${message}${stack ? `\n\n${stack}` : ""}`,
+      ),
     ),
-  })
+  }),
 );
