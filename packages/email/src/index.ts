@@ -3,16 +3,22 @@ import { cors } from "@elysiajs/cors";
 import { Resend } from "resend";
 import { EmailTemplate } from "./email-templates/message";
 import { logger } from "./utils/logger";
-import { staticPlugin } from "@elysiajs/static";
 import { rateLimit } from "elysia-rate-limit";
 
 const resend = new Resend(Bun.env.RESEND_API_KEY);
 const serverPort = Bun.env.EMAIL_SERVER_PORT || 3000;
 
 new Elysia()
-  .derive(() => ({
-    requestId: crypto.randomUUID(),
-  }))
+  .state("requestId", "")
+  .onRequest(({ request, store, set }) => {
+    store.requestId = crypto.randomUUID();
+    const ua = request.headers.get("user-agent") ?? "";
+    const blocked = ["curl", "python-requests", "zgrab", "masscan", "nikto"];
+    if (blocked.some((b) => ua.toLowerCase().includes(b))) {
+      set.status = 403;
+    }
+  })
+  .derive(({ store }) => ({ requestId: store.requestId }))
   .use(
     cors({
       methods: ["POST"],
@@ -23,11 +29,21 @@ new Elysia()
       },
     }),
   )
-  .use(staticPlugin())
-  .use(rateLimit({ max: 5, duration: 60_000 }))
-  .get("/ping", () => {
-    return "pong";
-  })
+  .get("/ping", () => "pong")
+  .get("/robots.txt", () => Bun.file("public/robots.txt"))
+  .use(
+    rateLimit({
+      max: 3,
+      duration: 5 * 60_000,
+      generator: (req, server) => {
+        return (
+          server?.requestIP(req)?.address ??
+          req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+          "unknown"
+        );
+      },
+    }),
+  )
   .post(
     "/send-email",
     async ({ body, set }) => {
@@ -74,38 +90,45 @@ new Elysia()
       }),
     },
   )
-  .onError(
-    ({ requestId, body, code, request: { method, headers, url }, error }) => {
-      const message = "message" in error ? error.message : String(error);
-      const errorMessage = `id=${requestId} code=${code} method=${method} url=${url} error=${
-        message
-      } body=${JSON.stringify(body)} userAgent=${headers.get("user-agent")}`;
+  .get("/*", ({ set, request, requestId, server }) => {
+    const ip =
+      server?.requestIP(request)?.address ??
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+      "unknown";
 
-      logger.error(errorMessage);
+    logger.error(
+      `id=${requestId} code=NOT_FOUND ip=${ip} url=${request.url} userAgent=${request.headers.get("user-agent")}`,
+    );
+    set.status = 404;
+    return { success: false, message: "Not found" };
+  })
+  .onError(({ requestId, body, code, request, error, server }) => {
+    const ip =
+      server?.requestIP(request)?.address ??
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
+      "unknown";
 
-      if (code === "VALIDATION") {
-        return {
-          success: false,
-          error: "Validation failed",
-          details: error.all.map((e) => ({ path: e.path, message: e.message })),
-        };
-      }
+    const message = "message" in error ? error.message : String(error);
+    const errorMessage = `id=${requestId} code=${code} method=${request.method} url=${request.url} error=${
+      message
+    } body=${JSON.stringify(body)} userAgent=${request.headers.get("user-agent")} ip=${ip}`;
 
-      if (code === "NOT_FOUND") {
-        return {
-          success: false,
-          status: "error",
-          message: "The resource you are looking for doesn't exist.",
-        };
-      }
+    logger.error(errorMessage);
 
+    if (code === "VALIDATION") {
       return {
         success: false,
-        status: "error",
-        message: "An unexpected server error occurred.",
+        error: "Validation failed",
+        details: error.all.map((e) => ({ path: e.path, message: e.message })),
       };
-    },
-  )
+    }
+
+    return {
+      success: false,
+      status: "error",
+      message: "An unexpected server error occurred.",
+    };
+  })
   .listen(serverPort, () => {
     logger.info(`Server starting on PORT: ${serverPort}`);
   });
