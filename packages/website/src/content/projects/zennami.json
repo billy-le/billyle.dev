@@ -1,0 +1,41 @@
+{
+  "name": "ZenNami",
+  "description": "ZenNami brings lo-fi radio and ambient soundscapes as browser extension. Developed using the browser-wxt package to streamline cross-browser compability development. The radio stations are powered by the Radio Browser Network and features station management via liking and hiding stations, adding 8 different ambient textures to zone in, and using browser storage so data is private to the user.",
+  "link": "https://zennami.com",
+  "images": [
+    {
+      "src": "./_images/zennami-home.webp",
+      "alt": "ZenNami browser extension home screen"
+    },
+    {
+      "src": "./_images/zennami-favorite-stations.webp",
+      "alt": "A list of favorited stations by liking the station"
+    },
+    {
+      "src": "./_images/zennami-hidden-stations.webp",
+      "alt": "A list of hidden stations to unhide stations"
+    },
+    {
+      "src": "./_images/zennami-playlist-multi.webp",
+      "alt": "A list of multi-channel radio stations"
+    },
+    {
+      "src": "./_images/zennami-playlist-single.webp",
+      "alt": "A list of single channel radio stations"
+    },
+    {
+      "src": "./_images/zennami-landing.webp",
+      "alt": "ZenNami Landing Page"
+    }
+  ],
+  "sourceCode": [],
+  "tags": [
+    "browser-wxt",
+    "tanstack start",
+    "react",
+    "tailwind",
+    "cloudflare workers",
+    "web apis"
+  ],
+  "ranking": "high"
+}

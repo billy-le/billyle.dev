@@ -4,23 +4,23 @@
   "link": "https://eventlulu.billyle.dev",
   "images": [
     {
-      "src": "./_images/eventlulu-home.png",
+      "src": "./_images/eventlulu-home.webp",
       "alt": "eventlulu home page"
     },
     {
-      "src": "./_images/eventlulu-dashboard.png",
+      "src": "./_images/eventlulu-dashboard.webp",
       "alt": "eventlulu dashboard page"
     },
     {
-      "src": "./_images/eventlulu-charts.png",
+      "src": "./_images/eventlulu-charts.webp",
       "alt": "eventlulu charst"
     },
     {
-      "src": "./_images/eventlulu-lead-form.png",
+      "src": "./_images/eventlulu-lead-form.webp",
       "alt": "eventlulu lead form"
     },
     {
-      "src": "./_images/eventlulu-leads.png",
+      "src": "./_images/eventlulu-leads.webp",
       "alt": "eventlulu leads table"
     }
   ],
@@ -28,5 +28,5 @@
     { "link": "https://github.com/billy-le/eventlulu", "host": "github" }
   ],
   "tags": ["node", "trpc", "typescript", "tailwindcss", "react"],
-  "ranking": "high"
+  "ranking": "low"
 }

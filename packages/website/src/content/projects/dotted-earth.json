@@ -4,16 +4,32 @@
   "link": "https://billyle.dev/posts/case-study-building-dotted",
   "images": [
     {
-      "src": "../posts/_images/case-study-dotted/dotted-desktop.webp",
+      "src": "./_images/dotted-desktop.webp",
       "alt": "dotted landing page"
     },
     {
-      "src": "../posts/_images/case-study-dotted/dotted-screens.png",
+      "src": "./_images/dotted-screens.webp",
       "alt": "dotted various screens"
     },
     {
-      "src": "../posts/_images/case-study-dotted/excalidraw_dotted.png",
+      "src": "./_images/excalidraw_dotted.webp",
       "alt": "dotted app design and logic flow"
+    },
+    {
+      "src": "./_images/dotted-login.gif",
+      "alt": "dotted login flow"
+    },
+    {
+      "src": "./_images/dotted-on-boarding.gif",
+      "alt": "dotted onboarding flow"
+    },
+    {
+      "src": "./_images/dotted-generate-itinerary.gif",
+      "alt": "dotted generating itineraries"
+    },
+    {
+      "src": "./_images/dotted-view-itinerary.gif",
+      "alt": "dotted view trip itinerary"
     }
   ],
   "sourceCode": [

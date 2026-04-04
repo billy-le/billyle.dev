@@ -4,27 +4,27 @@
   "link": "https://clearbank.billyle.dev",
   "images": [
     {
-      "src": "./_images/clearbank-login.png",
+      "src": "./_images/clearbank-login.webp",
       "alt": "clearbank login page"
     },
     {
-      "src": "./_images/clearbank-dashboard.png",
+      "src": "./_images/clearbank-dashboard.webp",
       "alt": "clearbank dashboard"
     },
     {
-      "src": "./_images/clearbank-accounts.png",
+      "src": "./_images/clearbank-accounts.webp",
       "alt": "clearbank accounts page"
     },
     {
-      "src": "./_images/clearbank-transactions.png",
+      "src": "./_images/clearbank-transactions.webp",
       "alt": "clearbank transactions page"
     },
     {
-      "src": "./_images/clearbank-transfers.png",
+      "src": "./_images/clearbank-transfers.webp",
       "alt": "clearbank transfers page"
     },
     {
-      "src": "./_images/clearbank-plaid.png",
+      "src": "./_images/clearbank-plaid.webp",
       "alt": "clearbank plaid integration"
     }
   ],

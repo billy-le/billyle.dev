@@ -4,23 +4,23 @@
   "link": "https://soillife.org",
   "images": [
     {
-      "src": "./_images/soillife-home.png",
+      "src": "./_images/soillife-home.webp",
       "alt": "soil life home page"
     },
     {
-      "src": "./_images/soillife-web-of-soil.png",
+      "src": "./_images/soillife-web-of-soil.webp",
       "alt": "soil life - web of soil"
     },
     {
-      "src": "./_images/soillife-web-graph.png",
+      "src": "./_images/soillife-web-graph.webp",
       "alt": "soil life - web graph"
     },
     {
-      "src": "./_images/soillife-media.png",
+      "src": "./_images/soillife-media.webp",
       "alt": "soil life - media page"
     },
     {
-      "src": "./_images/soillife-101.png",
+      "src": "./_images/soillife-101.webp",
       "alt": "soil life - soil 101 page"
     }
   ],

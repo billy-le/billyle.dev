@@ -4,19 +4,19 @@
   "link": "https://converse.billyle.dev",
   "images": [
     {
-      "src": "./_images/converse-lobby-01.png",
+      "src": "./_images/converse-lobby-01.webp",
       "alt": "converse user 1 lobby"
     },
     {
-      "src": "./_images/converse-lobby-02.png",
+      "src": "./_images/converse-lobby-02.webp",
       "alt": "converse user 2 lobby"
     },
     {
-      "src": "./_images/converse-chatroom.png",
+      "src": "./_images/converse-chatroom.webp",
       "alt": "converse chatroom"
     },
     {
-      "src": "./_images/converse-livestream.png",
+      "src": "./_images/converse-livestream.webp",
       "alt": "converse livestream"
     }
   ],
