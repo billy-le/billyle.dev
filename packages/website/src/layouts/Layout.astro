@@ -16,7 +16,7 @@ export interface Props {
 }
 
 const { title, description } = Astro.props as Props;
-const newUrl = new URL(Astro.url.pathname, Astro.site);
+const newUrl = new URL(Astro.url.pathname, import.meta.env.SITE);
 const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
 ---
 
@@ -66,12 +66,22 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
       rel="alternate"
       type="application/rss+xml"
       title="Billy Le | Blog"
-      href={`${Astro.site}rss.xml`}
+      href={`${import.meta.env.SITE}/rss.xml`}
     />
     {
       import.meta.env.PROD && (
-          <script is:inline defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
-          <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        <>
+          <script
+            is:inline
+            defer
+            data-domain="billyle.dev"
+            src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"
+          />
+          <script is:inline>
+            window.plausible = window.plausible || function(){" "}
+            {(window.plausible.q = window.plausible.q || []).push(arguments)}
+          </script>
+        </>
       )
     }
     <title>{title}</title>
@@ -83,49 +93,48 @@ const canonicalURL = newUrl.href.replace(RegExp(/\/$/), "");
       <slot />
     </main>
     <Footer />
-      </body>
-  <script>
-      const noJs = document.querySelectorAll(".no-js");
-      for (const el of noJs) {
-        el.classList.remove("no-js");
-      }
+  </body><script>
+    const noJs = document.querySelectorAll(".no-js");
+    for (const el of noJs) {
+      el.classList.remove("no-js");
+    }
 
-      const headingObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const target = entry.target as HTMLElement;
-          if (entry.isIntersecting && !target.style.animation) {
-            target.style.animation = "text-fade-in forwards .7s";
-          }
-        });
+    const headingObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        if (entry.isIntersecting && !target.style.animation) {
+          target.style.animation = "text-fade-in forwards .7s";
+        }
       });
+    });
 
-      const paragraphsObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const target = entry.target as HTMLElement;
-          if (entry.isIntersecting) {
-            const paragraphs = target.querySelectorAll(
-              "p,span",
-            ) as NodeListOf<HTMLElement>;
-            for (let i = 0; i < paragraphs.length; i++) {
-              const paragraph = paragraphs[i];
-              if (paragraph) {
-                paragraph.style.animation = `text-fade-in forwards .4s ${
-                  i * 0.2 + 0.8
-                }s`;
-              }
+    const paragraphsObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const target = entry.target as HTMLElement;
+        if (entry.isIntersecting) {
+          const paragraphs = target.querySelectorAll(
+            "p,span",
+          ) as NodeListOf<HTMLElement>;
+          for (let i = 0; i < paragraphs.length; i++) {
+            const paragraph = paragraphs[i];
+            if (paragraph) {
+              paragraph.style.animation = `text-fade-in forwards .4s ${
+                i * 0.2 + 0.8
+              }s`;
             }
           }
-        });
+        }
       });
+    });
 
-      const headings = document.querySelectorAll(".text-heading");
-      const paragraphSection = document.querySelectorAll(".p-fade");
-      for (const heading of headings) {
-        headingObserver.observe(heading);
-      }
+    const headings = document.querySelectorAll(".text-heading");
+    const paragraphSection = document.querySelectorAll(".p-fade");
+    for (const heading of headings) {
+      headingObserver.observe(heading);
+    }
 
-      for (const section of paragraphSection) {
-        paragraphsObserver.observe(section);
-      }
-    </script>
-  </html>
+    for (const section of paragraphSection) {
+      paragraphsObserver.observe(section);
+    }
+  </script>
+</html>

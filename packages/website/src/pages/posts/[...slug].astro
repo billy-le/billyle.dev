@@ -1,4 +1,5 @@
 ---
+import { render } from "astro:content";
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import { allPosts } from "@utils/getCollection";
 import type { GetStaticPaths } from "astro";
@@ -6,12 +7,12 @@ import type { GetStaticPaths } from "astro";
 export const getStaticPaths = (async () => {
   try {
     const headings = await Promise.all(
-      allPosts.map((entry) => entry.render().then(({ headings }) => headings)),
+      allPosts.map((entry) => render(entry).then(({ headings }) => headings)),
     );
 
     const posts = allPosts.map((entry, index) => {
       return {
-        params: { slug: entry.slug },
+        params: { slug: entry.id },
         props: { entry, headings: headings[index] },
       };
     });
@@ -24,7 +25,7 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { entry, headings } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await entry.render();
+const { Content, remarkPluginFrontmatter } = await render(entry);
 ---
 
 <BlogLayout

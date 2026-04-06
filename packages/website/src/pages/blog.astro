@@ -11,6 +11,7 @@ import SvgGrain from "@ui/components/SvgGrain.astro";
 import RssFeedButton from "@ui/components/RssFeedButton.astro";
 import { toLocalDate } from "@utils/toLocalDate";
 import { allPosts } from "@utils/getCollection";
+import { render } from "astro:content";
 
 const descPosts = allPosts.sort((a, b) =>
   compareDesc(a.data.pubDate, b.data.pubDate),
@@ -18,10 +19,10 @@ const descPosts = allPosts.sort((a, b) =>
 ---
 
 <Layout title="Billy Le | Blog" description="My collection of blog posts">
-  <div class="container relative mx-auto py-16">
-    <div class="absolute left-10 top-0 hidden sm:block lg:top-20">
+  <div class="relative container mx-auto py-16">
+    <div class="absolute top-0 left-10 hidden sm:block lg:top-20">
       <div
-        class="absolute left-0 top-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
+        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
       >
         <Image
           src={blob01}
@@ -43,9 +44,9 @@ const descPosts = allPosts.sort((a, b) =>
       />
     </div>
 
-    <div class="absolute right-10 top-0 hidden sm:block lg:top-20">
+    <div class="absolute top-0 right-10 hidden sm:block lg:top-20">
       <div
-        class="absolute left-0 top-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
+        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
       >
         <Image
           src={blob02}
@@ -85,7 +86,7 @@ const descPosts = allPosts.sort((a, b) =>
     <section class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
       {
         descPosts.map(async (post) => {
-          const { remarkPluginFrontmatter } = await post.render();
+          const { remarkPluginFrontmatter } = await render(post);
           const publishedDate = dateFormat(
             toLocalDate(post.data.pubDate),
             "MMM do, yyyy",
@@ -136,8 +137,8 @@ const descPosts = allPosts.sort((a, b) =>
               </p>
               <a
                 data-astro-prefetch
-                href={`/posts/${post.slug}`}
-                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 shadow-md shadow-blue-950/30 ring-2 ring-slate-50"
+                href={`/posts/${post.id}`}
+                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 shadow-md ring-2 shadow-blue-950/30 ring-slate-50"
               >
                 <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-linear-to-r from-blue-900" />
                 <span class="relative">Read</span>

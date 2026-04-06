@@ -1,4 +1,6 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const validTags = [
   "blogging",
@@ -20,7 +22,7 @@ const validTags = [
   "docker",
   "flutter",
   "case study",
-];
+] as const;
 
 const postSchema = z.object({
   title: z.string(),
@@ -30,32 +32,23 @@ const postSchema = z.object({
   author: z
     .object({
       name: z.string(),
-      email: z.string().email(),
+      email: z.email(),
     })
     .default({
       name: "Billy Le",
       email: "hi@billyle.dev",
     }),
   image: z.object({
-    url: z.string(),
+    url: z.url(),
     alt: z.string(),
     className: z.string().optional(),
   }),
-  tags: z
-    .array(
-      z.string().refine(
-        (tag) => validTags.includes(tag),
-        (tag) => ({
-          message: `'${tag}' is not a valid tag.\nAllowed tags are [ ${validTags.join(", ")} ]\nYou can add more tags in ${import.meta.filename}`,
-        }),
-      ),
-    )
-    .nonempty(),
+  tags: z.array(z.enum(validTags)).nonempty(),
   draft: z.boolean(),
 });
 
 export const postsCollection = defineCollection({
-  type: "content",
+  loader: glob({ pattern: "*.md", base: "./src/content/posts" }),
   schema: postSchema,
 });
 

@@ -12,7 +12,7 @@
     "prepare": "husky || true"
   },
   "dependencies": {
-    "@astrojs/rss": "^4.0.15",
+    "@astrojs/rss": "^4.0.18",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/vidaloka": "^5.2.7",
     "@sentry/astro": "^10.42.0",
@@ -31,14 +31,14 @@
     "three-globe": "^2.45.0"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.7.0",
+    "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "@types/markdown-it": "^14.1.2",
     "@types/node": "^25.3.3",
     "@types/sanitize-html": "^2.16.0",
     "@types/three": "^0.183.1",
-    "astro": "^5.18.0",
+    "astro": "^6.1.4",
     "autoprefixer": "^10.4.27",
     "cssnano": "^7.1.2",
     "front-matter": "^4.0.2",

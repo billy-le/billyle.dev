@@ -1,11 +1,13 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
 import type { ImageFunction } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const project = ({ image }: { image: ImageFunction }) => {
   return z.object({
     name: z.string(),
     description: z.string(),
-    link: z.string().url().nullable(),
+    link: z.url().nullable(),
     images: z
       .array(
         z.object({
@@ -15,7 +17,7 @@ const project = ({ image }: { image: ImageFunction }) => {
       )
       .optional()
       .default([]),
-    sourceCode: z.array(z.object({ link: z.string().url(), host: z.string() })),
+    sourceCode: z.array(z.object({ link: z.url(), host: z.string() })),
     tags: z.array(z.string()).default([]),
     ranking: z
       .string()
@@ -27,7 +29,7 @@ const project = ({ image }: { image: ImageFunction }) => {
 };
 
 export const projectCollections = defineCollection({
-  type: "data",
+  loader: glob({ pattern: "*.json", base: "./src/content/projects" }),
   schema: project,
 });
 

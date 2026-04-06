@@ -42,7 +42,7 @@ const { className = "" } = Astro.props;
             {config.map(({ post, height }) => (
               <BlogCard
                 {height}
-                link={"/posts/" + post?.slug}
+                link={"/posts/" + post?.id}
                 post={post?.data as Post}
                 position={configPosition.shift()}
               />
@@ -58,7 +58,7 @@ const { className = "" } = Astro.props;
           .slice(0, 4)
           .map(({ post }, i) => (
             <BlogCard
-              link={"/posts/" + post?.slug}
+              link={"/posts/" + post?.id}
               post={post?.data as Post}
               height={`h-36 ${i == 2 ? "z-10" : ""}`}
               position={i}

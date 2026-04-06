@@ -13,6 +13,5 @@ export default {
     },
   ],
   astroAllowShorthand: true,
-  tailwindConfig: "./tailwind.config.mjs",
   tailwindFunctions: ["twMerge", "clsx", "cn"],
 };

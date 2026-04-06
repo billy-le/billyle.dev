@@ -11,7 +11,7 @@
 - [x] - more recent picture
 - [ ] - more blobs and animation
 - [ ] - globe animation on contact submit
-- [ ] - more projects
+- [x] - more projects
 - [ ] - detailed project information
 - [ ] - project canvas physics animation
 - [ ] - services and process sections

@@ -35,12 +35,22 @@ import img404NotFound from "@assets/images/404_not_found.png";
       rel="alternate"
       type="application/rss+xml"
       title="Billy Le | Blog"
-      href={`${Astro.site}rss.xml`}
+      href={`${import.meta.env.SITE}/rss.xml`}
     />
     {
       import.meta.env.PROD && (
-          <script is:inline defer data-domain="billyle.dev" src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"></script>
-          <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        <>
+          <script
+            is:inline
+            defer
+            data-domain="billyle.dev"
+            src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"
+          />
+          <script is:inline>
+            window.plausible = window.plausible || function(){" "}
+            {(window.plausible.q = window.plausible.q || []).push(arguments)}
+          </script>
+        </>
       )
     }
     <title>Billy Le | 404 Not Found</title>
