@@ -8,20 +8,20 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
-    "@elysiajs/cors": "^1.4.1",
-    "@elysiajs/static": "^1.4.7",
-    "@react-email/render": "^2.0.4",
-    "date-fns": "^4.1.0",
-    "elysia": "^1.4.27",
-    "elysia-rate-limit": "^4.5.0",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "resend": "^6.9.3",
+    "@elysiajs/cors": "^1.4.2",
+    "@elysiajs/static": "^1.4.10",
+    "@react-email/render": "^2.1.0",
+    "date-fns": "^4.4.0",
+    "elysia": "^1.4.29",
+    "elysia-rate-limit": "^4.6.2",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "resend": "^6.17.2",
     "winston": "^3.19.0"
   },
   "devDependencies": {
-    "@types/bun": "^1.3.10",
-    "@types/react": "^19.2.14",
+    "@types/bun": "^1.3.14",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3"
   },
   "engines": {

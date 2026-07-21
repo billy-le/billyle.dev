@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkSectionize from "remark-sectionize";
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time";
+import { unified } from "@astrojs/markdown-remark";
 
 import sentry from "@sentry/astro";
 import path from "node:path";
@@ -31,7 +32,9 @@ export default defineConfig({
     shikiConfig: {
       wrap: true,
     },
-    remarkPlugins: [remarkSectionize, remarkReadingTime],
+    processor: unified({
+      remarkPlugins: [remarkSectionize, remarkReadingTime],
+    }),
   },
   redirects: {
     "/posts": "/blog",
