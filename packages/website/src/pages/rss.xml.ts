@@ -23,7 +23,7 @@ export async function GET(context: AstroGlobal) {
 
   for (const post of allPosts) {
     // convert markdown to html string
-    const body = markdownParser.render(post.body);
+    const body = markdownParser.render(post.body ?? "");
     // convert html string to DOM-like structure
     const html = htmlParser.parse(body);
     // hold all img tags in variable images

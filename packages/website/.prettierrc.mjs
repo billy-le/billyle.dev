@@ -1,8 +1,10 @@
 /** @type {import("prettier").Config} */
 export default {
+  // Resolved to absolute paths so the plugins load correctly even when
+  // prettier/eslint is invoked from the monorepo root instead of this package.
   plugins: [
-    "prettier-plugin-astro",
-    "prettier-plugin-tailwindcss", // MUST come last
+    import.meta.resolve("prettier-plugin-astro"),
+    import.meta.resolve("prettier-plugin-tailwindcss"), // MUST come last
   ],
   overrides: [
     {
