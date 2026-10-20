@@ -13,16 +13,6 @@ import img500InternalServerError from "@assets/images/500_internal_server_error.
 interface Props {
   error: unknown;
 }
-
-const { error } = Astro.props;
-
-let errorMessage = "";
-
-if (error instanceof Error) {
-  errorMessage = error.message;
-} else if (typeof error === "string") {
-  errorMessage = error;
-}
 ---
 
 <!doctype html>
@@ -51,22 +41,20 @@ if (error instanceof Error) {
       title="Billy Le | Blog"
       href={`${import.meta.env.SITE}/rss.xml`}
     />
-    {
-      import.meta.env.PROD && (
-        <>
-          <script
-            is:inline
-            defer
-            data-domain="billyle.dev"
-            src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"
-          />
-          <script is:inline>
-            window.plausible = window.plausible || function(){" "}
-            {(window.plausible.q = window.plausible.q || []).push(arguments)}
-          </script>
-        </>
-      )
-    }
+    {import.meta.env.PROD && (
+      <>
+        <script
+          is:inline
+          defer
+          data-domain="billyle.dev"
+          src="https://plausible.billyle.dev/js/script.file-downloads.outbound-links.js"
+        />
+        <script
+          is:inline
+          set:html={`window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments); };`}
+        />
+      </>
+    )}
     <title>Billy Le | 500 Internal Server Error</title>
   </head>
   <body class="font-inter relative min-h-screen">

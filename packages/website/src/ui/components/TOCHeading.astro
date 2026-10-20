@@ -15,13 +15,11 @@ const { heading } = Astro.props;
   <a href={"#" + heading.slug} class="no-underline hover:text-blue-500">
     {heading.text}
   </a>
-  {
-    heading.subheadings.length > 0 && (
-      <ul class="pl-8">
-        {heading.subheadings.map((subheading) => (
-          <Astro.self heading={subheading} />
-        ))}
-      </ul>
-    )
-  }
+  {heading.subheadings.length > 0 && (
+    <ul class="pl-8">
+      {heading.subheadings.map((subheading) => (
+        <Astro.self heading={subheading} />
+      ))}
+    </ul>
+  )}
 </li>

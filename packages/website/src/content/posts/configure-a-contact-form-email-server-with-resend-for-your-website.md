@@ -101,7 +101,8 @@ You'll need a basic contact form markup:
     class="rounded px-3 py-2 ring-2 ring-neutral-300"
     rows={5}
     placeholder="What would you like to say?"
-    required></textarea>
+    required
+  ></textarea>
   <div class="flex justify-end space-x-2">
     <button
       type="submit"

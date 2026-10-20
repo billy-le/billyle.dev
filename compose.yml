@@ -1,6 +1,6 @@
 services:
   website:
-    build: 
+    build:
       context: .
       dockerfile: ./packages/website/Dockerfile
       args:
@@ -8,7 +8,7 @@ services:
         - PUBLIC_SITE=${PUBLIC_SITE}
     container_name: "website"
     expose:
-     - "80"
+      - "80"
     networks:
       - billyle
     env_file:
@@ -39,7 +39,13 @@ services:
       - .env
     restart: always
     healthcheck:
-      test: ["CMD", "bun", "--eval", "fetch('http://localhost:3000/ping').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"]
+      test:
+        [
+          "CMD",
+          "bun",
+          "--eval",
+          "fetch('http://localhost:3000/ping').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))",
+        ]
       interval: 10s
       timeout: 5s
       retries: 3
@@ -58,7 +64,7 @@ services:
     ports:
       - "8081:8080"
     networks:
-      - billyle 
+      - billyle
     env_file:
       - .env
     environment:

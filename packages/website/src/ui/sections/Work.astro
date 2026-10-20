@@ -110,32 +110,30 @@ const { className = "" } = Astro.props;
 <section id="work" class={`relative py-8  ${className}`}>
   <h2 class="text-heading container">Work.</h2>
   <div class="isolate mx-auto flex max-w-screen-2xl flex-col lg:flex-row">
-    {
-      workExp.map((exp) => (
-        <div class="work_container">
-          <div class="work_img_container">
-            <Picture
-              src={exp.image}
-              widths={[320, 640, 768]}
-              format="avif"
-              class="work_img"
-              alt={exp.imageAlt}
-              loading="lazy"
-              quality="low"
-            />
-          </div>
-          <h3 class="work_year">
-            {exp.startYear === exp.endYear
-              ? exp.startYear
-              : `${exp.startYear} - ${exp.endYear || "Present"}`}
-          </h3>
-          <div class="work_content">
-            <h4 class="work_title">{exp.name}</h4>
-            <p class="work_description">{exp.description}</p>
-          </div>
+    {workExp.map((exp) => (
+      <div class="work_container">
+        <div class="work_img_container">
+          <Picture
+            src={exp.image}
+            widths={[320, 640, 768]}
+            format="avif"
+            class="work_img"
+            alt={exp.imageAlt}
+            loading="lazy"
+            quality="low"
+          />
         </div>
-      ))
-    }
+        <h3 class="work_year">
+          {exp.startYear === exp.endYear
+            ? exp.startYear
+            : `${exp.startYear} - ${exp.endYear || "Present"}`}
+        </h3>
+        <div class="work_content">
+          <h4 class="work_title">{exp.name}</h4>
+          <p class="work_description">{exp.description}</p>
+        </div>
+      </div>
+    ))}
   </div>
 </section>
 <style>

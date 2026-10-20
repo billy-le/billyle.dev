@@ -36,35 +36,31 @@ const { className = "" } = Astro.props;
   <div class="container py-8">
     <h2 class="text-heading flex items-center gap-6">Blog.</h2>
     <div class="isolate mx-auto hidden max-w-screen-2xl gap-4 sm:flex">
-      {
-        postsWithConfig.map((config) => (
-          <div class="flex-1 shrink space-y-4">
-            {config.map(({ post, height }) => (
-              <BlogCard
-                {height}
-                link={"/posts/" + post?.id}
-                post={post?.data as Post}
-                position={configPosition.shift()}
-              />
-            ))}
-          </div>
-        ))
-      }
-    </div>
-    <div class="flex flex-col gap-4 sm:hidden">
-      {
-        postsWithConfig
-          .flat()
-          .slice(0, 4)
-          .map(({ post }, i) => (
+      {postsWithConfig.map((config) => (
+        <div class="flex-1 shrink space-y-4">
+          {config.map(({ post, height }) => (
             <BlogCard
+              {height}
               link={"/posts/" + post?.id}
               post={post?.data as Post}
-              height={`h-36 ${i == 2 ? "z-10" : ""}`}
-              position={i}
+              position={configPosition.shift()}
             />
-          ))
-      }
+          ))}
+        </div>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 sm:hidden">
+      {postsWithConfig
+        .flat()
+        .slice(0, 4)
+        .map(({ post }, i) => (
+          <BlogCard
+            link={"/posts/" + post?.id}
+            post={post?.data as Post}
+            height={`h-36 ${i == 2 ? "z-10" : ""}`}
+            position={i}
+          />
+        ))}
     </div>
   </div>
 </section>

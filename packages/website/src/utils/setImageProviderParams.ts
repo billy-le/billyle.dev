@@ -8,7 +8,7 @@ export function setImageProviderParams(
     if (imageUrl.host !== provider) continue;
 
     if (queryParams) {
-      for (const [key, _] of [...imageUrl.searchParams]) {
+      for (const key of [...imageUrl.searchParams.keys()]) {
         imageUrl.searchParams.delete(key);
       }
 

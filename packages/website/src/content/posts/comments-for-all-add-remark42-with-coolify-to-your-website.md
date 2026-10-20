@@ -554,9 +554,9 @@ Create a file called `Remark42.astro` if you're using Astro and use the followin
 </script>
 
 <section id="remark42"></section>
-<noscript
-  >Please enable JavaScript to view the comments powered by Remark42.</noscript
->
+<noscript>
+  Please enable JavaScript to view the comments powered by Remark42.
+</noscript>
 ```
 
 In our script tag, the `remark_config` requires the `remark_url` and `site_id`.

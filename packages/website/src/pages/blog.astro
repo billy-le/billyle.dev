@@ -21,9 +21,7 @@ const descPosts = allPosts.sort((a, b) =>
 <Layout title="Billy Le | Blog" description="My collection of blog posts">
   <div class="relative container mx-auto py-16">
     <div class="absolute top-0 left-10 hidden sm:block lg:top-20">
-      <div
-        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
-      >
+      <div class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80">
         <Image
           src={blob01}
           alt=""
@@ -45,9 +43,7 @@ const descPosts = allPosts.sort((a, b) =>
     </div>
 
     <div class="absolute top-0 right-10 hidden sm:block lg:top-20">
-      <div
-        class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80"
-      >
+      <div class="absolute top-0 left-0 -z-10 h-48 w-48 opacity-15 xl:h-52 xl:w-52 2xl:h-80 2xl:w-80">
         <Image
           src={blob02}
           alt=""
@@ -68,14 +64,10 @@ const descPosts = allPosts.sort((a, b) =>
       />
     </div>
 
-    <h1
-      class="font-space-android mx-auto mb-6 text-center text-3xl leading-tight tracking-widest text-slate-800 sm:my-10 sm:text-6xl dark:text-slate-100"
-    >
+    <h1 class="font-space-android mx-auto mb-6 text-center text-3xl leading-tight tracking-widest text-slate-800 sm:my-10 sm:text-6xl dark:text-slate-100">
       <span class="text-glow px-3 py-2">My blog</span>
     </h1>
-    <p
-      class="font-inter mx-auto mb-8 max-w-3xl text-center text-lg font-bold tracking-wide text-slate-600 sm:mb-16 sm:text-3xl dark:text-slate-200"
-    >
+    <p class="font-inter mx-auto mb-8 max-w-3xl text-center text-lg font-bold tracking-wide text-slate-600 sm:mb-16 sm:text-3xl dark:text-slate-200">
       My creative outlet is a reflection of the experiences I've
       encountered—whether in learning, facing setbacks, or achieving success—as
       a software developer.
@@ -84,69 +76,67 @@ const descPosts = allPosts.sort((a, b) =>
     <RssFeedButton className="mx-auto mb-8" />
 
     <section class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-      {
-        descPosts.map(async (post) => {
-          const { remarkPluginFrontmatter } = await render(post);
-          const publishedDate = dateFormat(
-            toLocalDate(post.data.pubDate),
-            "MMM do, yyyy",
-          );
+      {descPosts.map(async (post) => {
+        const { remarkPluginFrontmatter } = await render(post);
+        const publishedDate = dateFormat(
+          toLocalDate(post.data.pubDate),
+          "MMM do, yyyy",
+        );
 
-          return (
-            <div>
-              <h3 class="font-vidaloka mb-2 text-xl font-bold text-emerald-500 dark:text-emerald-300">
-                {post.data.title}
-              </h3>
-              <div class="mb-4 flex items-center gap-8 text-sm">
-                <p class="inline-flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    class="inline h-6 w-6 fill-none stroke-slate-400 dark:stroke-slate-600"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
-                    />
-                  </svg>
-                  <span class="text-slate-400">{publishedDate}</span>
-                </p>
-
-                <p class="inline-flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    class="inline h-6 w-6 fill-none stroke-slate-400 dark:stroke-slate-600"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                    />
-                  </svg>
-                  <span class="text-slate-400">
-                    {remarkPluginFrontmatter.readingTime}
-                  </span>
-                </p>
-              </div>
-              <p class="mb-3 text-slate-600 dark:text-slate-300">
-                {post.data.description}
+        return (
+          <div>
+            <h3 class="font-vidaloka mb-2 text-xl font-bold text-emerald-500 dark:text-emerald-300">
+              {post.data.title}
+            </h3>
+            <div class="mb-4 flex items-center gap-8 text-sm">
+              <p class="inline-flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  class="inline h-6 w-6 fill-none stroke-slate-400 dark:stroke-slate-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"
+                  />
+                </svg>
+                <span class="text-slate-400">{publishedDate}</span>
               </p>
-              <a
-                data-astro-prefetch
-                href={`/posts/${post.id}`}
-                class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 shadow-md ring-2 shadow-blue-950/30 ring-slate-50"
-              >
-                <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-linear-to-r from-blue-900" />
-                <span class="relative">Read</span>
-              </a>
+
+              <p class="inline-flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  class="inline h-6 w-6 fill-none stroke-slate-400 dark:stroke-slate-600"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+                <span class="text-slate-400">
+                  {remarkPluginFrontmatter.readingTime}
+                </span>
+              </p>
             </div>
-          );
-        })
-      }
+            <p class="mb-3 text-slate-600 dark:text-slate-300">
+              {post.data.description}
+            </p>
+            <a
+              data-astro-prefetch
+              href={`/posts/${post.id}`}
+              class="font-space-android relative float-right w-20 overflow-hidden rounded-full bg-blue-400 py-1 text-center tracking-widest text-slate-50 shadow-md ring-2 shadow-blue-950/30 ring-slate-50"
+            >
+              <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-50 bg-linear-to-r from-blue-900" />
+              <span class="relative">Read</span>
+            </a>
+          </div>
+        );
+      })}
     </section>
   </div>
 </Layout>

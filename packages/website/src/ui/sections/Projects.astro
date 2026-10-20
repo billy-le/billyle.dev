@@ -21,49 +21,29 @@ const { className = "" } = Astro.props;
   <div class="container flex h-full flex-col py-8">
     <h2 class="text-heading">Projects.</h2>
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-      {
-        allProjects.map(
-          ({ data: { name, description, link, sourceCode, tags, images } }) => (
-            <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow lg:p-8 dark:bg-slate-800">
-              <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
-              <div class="relative h-full space-y-3">
-                <div class="flex justify-between">
-                  <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
-                    {name}
-                  </h3>
-                  {link && (
-                    <a
-                      href={link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      class="h-6 w-6 md:hidden"
-                      aria-label={`Link to ${name} App`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        class="h-6 w-6 stroke-blue-400"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-                        />
-                      </svg>
-                    </a>
-                  )}
-                </div>
+      {allProjects.map(
+        ({ data: { name, description, link, sourceCode, tags, images } }) => (
+          <div class="relative flex w-full flex-col gap-4 overflow-hidden rounded-lg border-2 border-slate-950/10 bg-slate-100 p-4 shadow lg:p-8 dark:bg-slate-800">
+            <SvgGrain className="absolute top-0 left-0 h-full w-full opacity-15 -z-10" />
+            <div class="relative h-full space-y-3">
+              <div class="flex justify-between">
+                <h3 class="text-xl font-semibold text-slate-800 dark:text-emerald-300">
+                  {name}
+                </h3>
                 {link && (
-                  <h4 class="hidden items-center space-x-2 md:flex">
+                  <a
+                    href={link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="h-6 w-6 md:hidden"
+                    aria-label={`Link to ${name} App`}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
-                      stroke="currentColor"
-                      class="h-4 w-4 stroke-blue-400"
+                      class="h-6 w-6 stroke-blue-400"
                     >
                       <path
                         stroke-linecap="round"
@@ -71,84 +51,102 @@ const { className = "" } = Astro.props;
                         d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
                       />
                     </svg>
-                    <a
-                      href={link}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                    >
-                      {link}
-                    </a>
-                  </h4>
+                  </a>
                 )}
-                <p class="text-sm text-gray-500 dark:text-gray-200">
-                  {description}
-                </p>
               </div>
-              <div
-                class="project-images flex flex-wrap gap-2"
-                data-sources={images.map((image) => image.src.src).join(",")}
-              >
-                {images.slice(0, 4).map((image, i) => (
-                  <button
-                    data-index={i}
-                    class="overflow-cip h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+              {link && (
+                <h4 class="hidden items-center space-x-2 md:flex">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-4 w-4 stroke-blue-400"
                   >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
-                      quality={10}
-                      loading="lazy"
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
                     />
-                  </button>
-                ))}
-                {images.slice(4).length > 0 && (
-                  <button
-                    data-index={4}
-                    class="h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                  </svg>
+                  <a
+                    href={link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                    class="link-hover text-xs text-gray-500 dark:text-gray-200"
                   >
-                    <div class="pointer-events-none grid h-full place-items-center bg-blue-400/20 text-3xl text-blue-400">
-                      {images.slice(4).length}
-                    </div>
-                  </button>
-                )}
-              </div>
-              <div>
-                <ul class="space-y-1">
-                  {sourceCode.map(({ host, link }) => (
-                    <li class="flex items-center space-x-2">
-                      {host === "github" && (
-                        <SiIcon
-                          icon={siGithub}
-                          svgClassName="h-5 w-5 dark:fill-gray-600"
-                        />
-                      )}
-                      <h4 class="leading-none">
-                        <a
-                          href={link}
-                          rel="noopener noreferrer"
-                          target="_blank"
-                          class="link-hover text-xs text-gray-500 dark:text-gray-200"
-                        >
-                          {link}
-                        </a>
-                      </h4>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div class="flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                  <div class="grid place-items-center rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600/20 dark:text-blue-300">
-                    {tag}
-                  </div>
-                ))}
-              </div>
+                    {link}
+                  </a>
+                </h4>
+              )}
+              <p class="text-sm text-gray-500 dark:text-gray-200">
+                {description}
+              </p>
             </div>
-          ),
-        )
-      }
+            <div
+              class="project-images flex flex-wrap gap-2"
+              data-sources={images.map((image) => image.src.src).join(",")}
+            >
+              {images.slice(0, 4).map((image, i) => (
+                <button
+                  data-index={i}
+                  class="overflow-cip h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    class="pointer-events-none h-full max-h-full w-full max-w-full rounded object-cover"
+                    quality={10}
+                    loading="lazy"
+                  />
+                </button>
+              ))}
+              {images.slice(4).length > 0 && (
+                <button
+                  data-index={4}
+                  class="h-16 w-16 rounded-md border-2 border-solid border-blue-300 p-0.5"
+                >
+                  <div class="pointer-events-none grid h-full place-items-center bg-blue-400/20 text-3xl text-blue-400">
+                    {images.slice(4).length}
+                  </div>
+                </button>
+              )}
+            </div>
+            <div>
+              <ul class="space-y-1">
+                {sourceCode.map(({ host, link }) => (
+                  <li class="flex items-center space-x-2">
+                    {host === "github" && (
+                      <SiIcon
+                        icon={siGithub}
+                        svgClassName="h-5 w-5 dark:fill-gray-600"
+                      />
+                    )}
+                    <h4 class="leading-none">
+                      <a
+                        href={link}
+                        rel="noopener noreferrer"
+                        target="_blank"
+                        class="link-hover text-xs text-gray-500 dark:text-gray-200"
+                      >
+                        {link}
+                      </a>
+                    </h4>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {tags.map((tag) => (
+                <div class="grid place-items-center rounded-full bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-500 dark:bg-blue-600/20 dark:text-blue-300">
+                  {tag}
+                </div>
+              ))}
+            </div>
+          </div>
+        ),
+      )}
     </div>
   </div>
 </section>
@@ -158,9 +156,7 @@ const { className = "" } = Astro.props;
   class="mx-auto h-dvh max-h-none w-dvw max-w-none bg-transparent p-0 backdrop:bg-slate-600/80 dark:backdrop:bg-slate-950/80"
   closedby="any"
 >
-  <div
-    class="relative z-50 flex h-full w-full flex-col items-center justify-center gap-4"
-  >
+  <div class="relative z-50 flex h-full w-full flex-col items-center justify-center gap-4">
     <div class="sticky top-0 z-10 flex w-full justify-end pr-4 pt-4 md:hidden">
       <button
         aria-label="close image gallery"
@@ -179,15 +175,16 @@ const { className = "" } = Astro.props;
           stroke-linecap="round"
           stroke-linejoin="round"
           class="lucide lucide-x-icon lucide-x"
-          ><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg
         >
+          <path d="M18 6 6 18"></path>
+          <path d="m6 6 12 12"></path>
+        </svg>
       </button>
     </div>
     <div
       id="selected-image"
       class="hidden flex-1 items-center justify-center overflow-clip md:inline-flex md:max-h-[70dvh] md:max-w-max"
-    >
-    </div>
+    ></div>
     <div class="hidden items-center justify-center gap-4 md:flex">
       <button
         id="previous-image"
@@ -205,14 +202,17 @@ const { className = "" } = Astro.props;
           stroke-linecap="round"
           stroke-linejoin="round"
           class="lucide lucide-arrow-left"
-          ><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg
         >
+          <path d="m12 19-7-7 7-7"></path>
+          <path d="M19 12H5"></path>
+        </svg>
       </button>
       <button
         id="close-gallery"
         class="grid h-10 place-items-center rounded-full bg-emerald-300 p-0 px-4 text-emerald-700"
-        >Close (Esc)</button
       >
+        Close (Esc)
+      </button>
       <button
         id="next-image"
         class="grid h-10 w-10 place-items-center rounded-full bg-emerald-300 p-0 text-emerald-700"
@@ -230,21 +230,21 @@ const { className = "" } = Astro.props;
           stroke-linecap="round"
           stroke-linejoin="round"
           class="lucide lucide-arrow-right"
-          ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
         >
+          <path d="M5 12h14"></path>
+          <path d="m12 5 7 7-7 7"></path>
+        </svg>
       </button>
     </div>
     <div class="h-full p-4 md:relative md:h-auto md:p-0">
       <div
         id="image-gallery-selected"
         class="absolute left-0 top-0 z-10 hidden h-20 w-20 rounded-md bg-transparent ring ring-emerald-400 transition-transform duration-200 ease-in-out md:block"
-      >
-      </div>
+      ></div>
       <div
         id="image-gallery"
         class="flex flex-col items-center justify-center gap-4 py-4 md:inline-flex md:flex-row md:py-0"
-      >
-      </div>
+      ></div>
     </div>
   </div>
 </dialog>

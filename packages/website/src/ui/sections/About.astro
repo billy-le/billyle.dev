@@ -46,10 +46,10 @@ const { className = "" } = Astro.props;
           />
         </div>
 
-        <div
-          class="p-fade flex flex-col justify-center space-y-6 md:col-span-2 lg:col-span-1"
-        >
-          {about.map((text) => <p class="text-body no-js opacity-0">{text}</p>)}
+        <div class="p-fade flex flex-col justify-center space-y-6 md:col-span-2 lg:col-span-1">
+          {about.map((text) => (
+            <p class="text-body no-js opacity-0">{text}</p>
+          ))}
         </div>
       </div>
     </div>
