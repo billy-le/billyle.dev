@@ -25,11 +25,6 @@ services:
     build:
       context: .
       dockerfile: ./packages/email/Dockerfile
-      args:
-        - RESEND_API_KEY=${RESEND_API_KEY}
-        - ALLOWED_ORIGIN=${ALLOWED_ORIGIN}
-        - EMAIL_SERVER_PORT=${EMAIL_SERVER_PORT}
-        - EMAIL_TO=${EMAIL_TO}
     container_name: "email"
     expose:
       - "${EMAIL_SERVER_PORT}"
