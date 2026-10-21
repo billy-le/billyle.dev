@@ -5,11 +5,11 @@
    * } from "@utils/remarkCustomCssProperties";
    */
   // keep as var to keep in global scope
-  var remark_config = {
+  var remark_config: Window["remark_config"] = {
     host: import.meta.env.PUBLIC_REMARK_URL,
     site_id: import.meta.env.PUBLIC_SITE,
     components: ["embed"],
-    theme: window.localStorage.getItem("theme") ?? "dark",
+    theme: window.localStorage.getItem("theme") === "light" ? "light" : "dark",
     locale: "en",
     show_email_subscription: true,
     show_rss_subscription: false,
@@ -97,6 +97,6 @@
 </script>
 
 <section id="remark42"></section>
-<noscript
-  >Please enable JavaScript to view the comments powered by Remark42.</noscript
->
+<noscript>
+  Please enable JavaScript to view the comments powered by Remark42.
+</noscript>

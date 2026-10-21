@@ -34,11 +34,9 @@ const { className = "" } = Astro.props;
     />
     <h2 class="text-heading dark:text-white">Hello. I'm Billy.</h2>
     <h1 class="p-fade space-y-2">
-      {
-        jumboText.map((text) => (
-          <span class="text-body no-js block">{text}</span>
-        ))
-      }
+      {jumboText.map((text) => (
+        <span class="text-body no-js block">{text}</span>
+      ))}
     </h1>
   </div>
 </section>

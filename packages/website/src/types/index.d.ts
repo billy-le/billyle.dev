@@ -1,8 +1,8 @@
 declare module "remark-sectionize";
 
 interface Window {
-  plausible: any;
-  REMARK42: any;
+  plausible: ((...args: unknown[]) => void) & { q?: unknown[][] };
+  REMARK42: { changeTheme: (theme: string) => void };
   remark_config: {
     host: string;
     site_id?: string;
